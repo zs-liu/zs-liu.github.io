@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>无限阶段折扣问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+  <meta name="description" content="引言——成本总和的最小化无限阶段问题的成本总和定义非时变离散时间动态系统：$$x_{k+1}=f(x_k,u_k,w_k)$$$$x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)$$给定初始状态$x_0$，成本函数$g(\cdot,\cdot,\cdot):S\times{}C\times{}D\rightarrow\m">
+<meta name="keywords" content="Dynamic Programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/01/22/hello-world/index.html">
+<meta property="og:title" content="无限阶段折扣问题">
+<meta property="og:url" content="http://yoursite.com/2019/01/24/无限阶段折扣问题/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="引言——成本总和的最小化无限阶段问题的成本总和定义非时变离散时间动态系统：$$x_{k+1}=f(x_k,u_k,w_k)$$$$x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)$$给定初始状态$x_0$，成本函数$g(\cdot,\cdot,\cdot):S\times{}C\times{}D\rightarrow\m">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-23T04:06:08.074Z">
+<meta property="og:updated_time" content="2019-01-25T14:56:19.597Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="无限阶段折扣问题">
+<meta name="twitter:description" content="引言——成本总和的最小化无限阶段问题的成本总和定义非时变离散时间动态系统：$$x_{k+1}=f(x_k,u_k,w_k)$$$$x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)$$给定初始状态$x_0$，成本函数$g(\cdot,\cdot,\cdot):S\times{}C\times{}D\rightarrow\m">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -152,44 +153,85 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-无限阶段折扣问题" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      无限阶段折扣问题
     </h1>
   
 
         
-        <a href="/2019/01/22/hello-world/" class="archive-article-date">
-  	<time datetime="2019-01-22T13:56:07.433Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
+        <a href="/2019/01/24/无限阶段折扣问题/" class="archive-article-date">
+  	<time datetime="2019-01-24T12:39:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <a id="more"></a>
+<h2 id="引言——成本总和的最小化"><a href="#引言——成本总和的最小化" class="headerlink" title="引言——成本总和的最小化"></a>引言——成本总和的最小化</h2><h3 id="无限阶段问题的成本总和"><a href="#无限阶段问题的成本总和" class="headerlink" title="无限阶段问题的成本总和"></a>无限阶段问题的成本总和</h3><p>定义非时变离散时间动态系统：<br>$$x_{k+1}=f(x_k,u_k,w_k)$$<br>$$x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)$$<br>给定初始状态$x_0$，成本函数$g(\cdot,\cdot,\cdot):S\times{}C\times{}D\rightarrow\mathcal{R}$和折扣因子$\alpha$，现需要找到$\pi={\mu_0,\mu_1,…},\mu_k\in{}U(x_k)$，使得如下定义的成本最小：<br>$$J_\pi(x_0)=\lim_{N\rightarrow{}\infty}E_{w_k}{\sum_{k=0}^{N-1}\alpha^kg(x_k,\mu_k(x_k),w_k)}$$<br>对于所有合法的$\pi$构成的集合记为$\Pi$，则记最优成本函数为：<br>$$J^<em>(x)=\min_{\pi\in\Pi}J_\pi(x)\quad{}x\in{}S$$<br>如果对于所有初始状态，其最优策略相同，则称该问题为稳定问题，该最优策略为最优稳定策略：<br>$$J_\mu(x)=J^</em>(x)$$</p>
+<h3 id="有限阶段问题的DP算法"><a href="#有限阶段问题的DP算法" class="headerlink" title="有限阶段问题的DP算法"></a>有限阶段问题的DP算法</h3><p>对于$N$个阶段的成本问题，DP算法为：<br>$$J_{N-k}(x)=\min_{u\in{}U(x)}E{\alpha^{N-k}g(x,u,w)+J_{N-k+1}(f(x,u,w))}$$<br>$$J_N(x)=\alpha^NJ(x)$$<br>重新作如下记号：<br>$$V_k(x)=\frac{J_{N-k}(x)}{\alpha^{N-k}},\quad{}V_0(x)=J(x)$$<br>$$V_{k+1}(x)=\min_{u\in{}U(x)}E{g(x,u,w)+\alpha{}V_k(f(x,u,w))}$$</p>
+<h3 id="简记与单调性"><a href="#简记与单调性" class="headerlink" title="简记与单调性"></a>简记与单调性</h3><p>对于$J:S\rightarrow\mathcal{R}$，采用$TJ$记对$J$应用DP算法：<br>$$(TJ)(x)=\min_{u\in{}U(x)}E{g(x,u,w)+\alpha{}J(f(x,u,w))}$$<br>我们视$T$为$S$上函数$J$到$TJ$的映射。<br>同样，有如下简记：<br>$$(T_\mu{}J)(x)=E{g(x,\mu(x),w)+\alpha{}J(f(x,\mu(x),w))}$$<br>$$(T^kJ)(x)=(T(T^{k-1}J))(x),\quad{}(T^0J)(x)=J(x)$$</p>
+<h4 id="引理-1-1-1-单调性引理"><a href="#引理-1-1-1-单调性引理" class="headerlink" title="引理 1.1.1: 单调性引理"></a>引理 1.1.1: 单调性引理</h4><p>对于任何函数$J:S\rightarrow{}\mathcal{R}$和$J^{‘}:S\rightarrow\mathcal{R}$<br>$$J(x)\leq{}J^{‘}(x)\quad{}\text{for all }x\in{}S$$<br>对于任何稳定策略$\mu:S\rightarrow{}C$：<br>$$(T^kJ)(x)\leq{}(T^kJ^{‘})(x)\quad{}\text{for all }x\in{}S,k=1,2,…,$$<br>$$(T_\mu^kJ)(x)\leq{}(T_\mu^kJ^{‘})(x)\quad{}\text{for all }x\in{}S,k=1,2,…,$$</p>
+<h4 id="引理-1-1-2"><a href="#引理-1-1-2" class="headerlink" title="引理 1.1.2"></a>引理 1.1.2</h4><p>定义单位函数为$e(x)\equiv1(\forall{}x\in{}S)$，则对于任何函数$J:S\rightarrow{}\mathcal{R}$，稳定策略$\mu:S\rightarrow{}C$，标量$r$：<br>$$(T^k(J+re))(x)=(T^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S$$<br>$$(T_\mu^k(J+re))(x)=(T_\mu^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S$$</p>
+<h3 id="随机的过去依赖策略"><a href="#随机的过去依赖策略" class="headerlink" title="随机的过去依赖策略"></a>随机的过去依赖策略</h3><h4 id="命题-1-1-1：-Markov策略的合理性"><a href="#命题-1-1-1：-Markov策略的合理性" class="headerlink" title="命题 1.1.1： Markov策略的合理性"></a>命题 1.1.1： Markov策略的合理性</h4><p>假设策略集合是可数的，初始状态是可数集合上的分布。则每对$(x_k,u_k)$以及与随机的过去依赖策略相对应的每阶段的期望成本，同样可以以随机Markov策略获得。</p>
+<h2 id="有界的阶段成本的折扣问题"><a href="#有界的阶段成本的折扣问题" class="headerlink" title="有界的阶段成本的折扣问题"></a>有界的阶段成本的折扣问题</h2><h4 id="假设D：-折扣成本-有界的阶段成本"><a href="#假设D：-折扣成本-有界的阶段成本" class="headerlink" title="假设D： 折扣成本-有界的阶段成本"></a>假设D： 折扣成本-有界的阶段成本</h4><p>存在标量$M$使阶段成本$g$满足<br>$$|g(x,u,w)|\leq{}M,\quad\text{for all }(x,u,w)\in{}S\times{}C\times{}D$$</p>
+<h4 id="命题-1-2-1：-DP算法的收敛性"><a href="#命题-1-2-1：-DP算法的收敛性" class="headerlink" title="命题 1.2.1： DP算法的收敛性"></a>命题 1.2.1： DP算法的收敛性</h4><p>对于有界函数$J:S\rightarrow{}\mathcal{R}$，最优成本函数满足：<br>$$J^*(x)=\lim_{N\rightarrow\infty}(T^NJ)(x)\quad\text{for all }x\in{}S$$</p>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>要恰饭的么<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifupay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixinpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dynamic Programming</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -240,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/22/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/24/无限阶段折扣问题/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -254,15 +296,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/24/无限阶段折扣问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          无限阶段折扣问题
-        
-      </div>
-    </a>
   
+    <a href="/2019/01/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -279,6 +317,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言——成本总和的最小化"><span class="toc-number">1.</span> <span class="toc-text">引言——成本总和的最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#无限阶段问题的成本总和"><span class="toc-number">1.1.</span> <span class="toc-text">无限阶段问题的成本总和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有限阶段问题的DP算法"><span class="toc-number">1.2.</span> <span class="toc-text">有限阶段问题的DP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简记与单调性"><span class="toc-number">1.3.</span> <span class="toc-text">简记与单调性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1-1-1-单调性引理"><span class="toc-number">1.3.1.</span> <span class="toc-text">引理 1.1.1: 单调性引理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1-1-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">引理 1.1.2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机的过去依赖策略"><span class="toc-number">1.4.</span> <span class="toc-text">随机的过去依赖策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1-1-1：-Markov策略的合理性"><span class="toc-number">1.4.1.</span> <span class="toc-text">命题 1.1.1： Markov策略的合理性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有界的阶段成本的折扣问题"><span class="toc-number">2.</span> <span class="toc-text">有界的阶段成本的折扣问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#假设D：-折扣成本-有界的阶段成本"><span class="toc-number">2.0.1.</span> <span class="toc-text">假设D： 折扣成本-有界的阶段成本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1-2-1：-DP算法的收敛性"><span class="toc-number">2.0.2.</span> <span class="toc-text">命题 1.2.1： DP算法的收敛性</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
