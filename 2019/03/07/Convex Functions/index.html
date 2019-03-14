@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>鲈鱼柳的博客</title>
+  <title>Convex Functions | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="鲈鱼柳的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Basic properties and examples">
+<meta name="keywords" content="Convex Optimization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Convex Functions">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/Convex Functions/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
+<meta property="og:description" content="Basic properties and examples">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-14T12:51:48.093Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鲈鱼柳的博客">
+<meta name="twitter:title" content="Convex Functions">
+<meta name="twitter:description" content="Basic properties and examples">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -148,16 +153,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Convex Functions" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+            <article id="post-Convex Functions" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/07/Convex Functions/">Convex Functions</a>
+    <h1 class="article-title" itemprop="name">
+      Convex Functions
     </h1>
   
 
@@ -171,10 +174,105 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><font face="Times New Roman"></font></p>
-<h2 id="Basic-properties-and-examples"><a href="#Basic-properties-and-examples" class="headerlink" title="Basic properties and examples"></a>Basic properties and examples</h2>
-        
+<h2 id="Basic-properties-and-examples"><a href="#Basic-properties-and-examples" class="headerlink" title="Basic properties and examples"></a>Basic properties and examples</h2><a id="more"></a>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>$f:R^n\rightarrow{}R$ is convex if <strong>dom</strong>$f$ is a convex set and</p>
+<script type="math/tex; mode=display">f(\theta{}x+(1-\theta)y)\leq\theta{}f(x)+(1-\theta)f(y)</script><p>for all $x,y\in$ <strong>dom</strong>$f$, $0\leq\theta\leq1$</p>
+<ul>
+<li><em>strictly convex</em> if we choose $&lt;$ instead of $\leq$</li>
+</ul>
+<h3 id="Examples-on-R-R-n-and-R-m-times-n"><a href="#Examples-on-R-R-n-and-R-m-times-n" class="headerlink" title="Examples on $R$, $R^n$ and $R^{m\times{}n}$"></a>Examples on $R$, $R^n$ and $R^{m\times{}n}$</h3><h3 id="Restriction-of-a-convex-function-to-a-line"><a href="#Restriction-of-a-convex-function-to-a-line" class="headerlink" title="Restriction of a convex function to a line"></a>Restriction of a convex function to a line</h3><p>$f:R^n\rightarrow{}R$ is convex if and only if the function $g:R\rightarrow{}R$</p>
+<script type="math/tex; mode=display">g(t)=f(x+tv), dom g=\{\}</script><h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\forall{}t_1,t_2,x+t_1v\in{}dom~f,x+t_2v\in{}dom~f</script><script type="math/tex; mode=display">g(\theta{}t_1+(1-\theta)t_2)=f(x+(\theta{}t_1+(1-\theta{})t_2)v)</script><script type="math/tex; mode=display">=f(\theta(x+t_1v)+(1-\theta)(x+t_2v))</script><script type="math/tex; mode=display">\leq{}\theta{}f(x+t_1v)+(1-\theta)f(x+t_2v)</script><hr>
+<script type="math/tex; mode=display">let~x_1,x_2\in{}dom~f, de\!{}fine~x=x_1,v=x_2-x_1,g(t)=f(x+tv)</script><script type="math/tex; mode=display">f(\theta{}x_1+(1-\theta)x_2)=f(x_1+(1-\theta)(x_2-x_1))=g(1-\theta)</script><script type="math/tex; mode=display">\leq{}\theta{}g(0)+(1-\theta)g(1)=\theta{}f(x_1)+(1-\theta)f(x_2)</script><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>$f:S^n\rightarrow{}R$ with $f(X)=\log\det{}X$, <strong>dom</strong> $f=S^n_{++}$</p>
+<h3 id="First-order-condition"><a href="#First-order-condition" class="headerlink" title="First-order condition"></a>First-order condition</h3><p>Differentiable $f$ with convex domain is convex iff </p>
+<script type="math/tex; mode=display">f(y)\geq{}f(x)+\nabla{}f(x)^T(y-x)\quad\forall{}x,y\in{}dom~f</script><h4 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">t>0,~f(x+t(y-x))\leq{}(1-t)f(x)+tf(y)</script><script type="math/tex; mode=display">f(y)\geq{}f(x)+\frac{f(x+t(y-x))-f(x)}{t}</script><script type="math/tex; mode=display">f(y)\geq{}f(x)+f^{'}(x)(y-x)</script><hr>
+<script type="math/tex; mode=display">f(x)\geq{}f^{'}(z)(x-z),f(y)\geq{}f^{'}(z)(y-z)</script><script type="math/tex; mode=display">let~z=\theta{}x+(1-\theta{})y</script><script type="math/tex; mode=display">\theta{}f(x)+(1-\theta)f(y)\geq{}f(z)</script><h3 id="Second-order-condition"><a href="#Second-order-condition" class="headerlink" title="Second-order condition"></a>Second-order condition</h3><p>Twice differentiable $f$ with convex domain is convex iff</p>
+<script type="math/tex; mode=display">\nabla^2f(x)\succeq0\quad\forall{}x\in{}dom~f</script><p>if $\nabla^2f(x)\succ0$ for all $x\in{}dom~f$, then $f$ is strictly convex</p>
+<h3 id="Epigraph-and-sublevel-set"><a href="#Epigraph-and-sublevel-set" class="headerlink" title="Epigraph and sublevel set"></a>Epigraph and sublevel set</h3><p>$\alpha$-sublevel set of $f:R^n\rightarrow{}R$</p>
+<script type="math/tex; mode=display">C_\alpha=\{x\in{}dom~f|f(x)\leq\alpha\}</script><p>sublevel sets of convex functions are convex (converse is false)<br>epigraph of $f:R^n\rightarrow{}R$</p>
+<script type="math/tex; mode=display">epi~f=\{(x,t)\in{}R^{n+1}|x\in{}dom~f,f(x)\leq{}t\}</script><p>$f$ is convex iff $epi~f$ is a convex set</p>
+<h2 id="Operations-that-preserve-convexity"><a href="#Operations-that-preserve-convexity" class="headerlink" title="Operations that preserve convexity"></a>Operations that preserve convexity</h2><h3 id="Positive-weighted-sum-amp-composition-with-affine-function"><a href="#Positive-weighted-sum-amp-composition-with-affine-function" class="headerlink" title="Positive weighted sum &amp; composition with affine function"></a>Positive weighted sum &amp; composition with affine function</h3><ul>
+<li>nonnegative multiple</li>
+<li>sum</li>
+<li>composition with affine function</li>
+</ul>
+<h3 id="Pointwise-Maximum"><a href="#Pointwise-Maximum" class="headerlink" title="Pointwise Maximum"></a>Pointwise Maximum</h3><p>if $f_1,…,f_m$ are convex, then <script type="math/tex">f(x)=\max\{f_1(x),...,f_m(x)\}</script> is convex</p>
+<h3 id="Pointwise-Supremum"><a href="#Pointwise-Supremum" class="headerlink" title="Pointwise Supremum"></a>Pointwise Supremum</h3><p>if $f(x,y)$ is convex in $x$ for each $y\in\mathcal{A}$, then <script type="math/tex">g(x)=\sup_{y\in\mathcal{A}}f(x,y)</script> is convex</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>Let $f:R^n\rightarrow{}R$ convex and $dom~f:R^n$, then <script type="math/tex">f(x)=\sup\{g(x)|g~is~af\!{}fine,g(z)\leq{}f(z),\forall{}z\}</script></p>
+<h4 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h4><p>$\geq$, obvious</p>
+<hr>
+<p>$\leq$&lt;/br&gt;</p>
+<script type="math/tex; mode=display">(x,f(x))\in{}bd~epi~f</script><script type="math/tex; mode=display">\exists{}(a,b)\neq0~s.t.~a^Tz+bt\leq{}a^Tx+bf(x)</script><script type="math/tex; mode=display">a^Tz+b(f(z)+s)\leq{}a^Tx+bf(x)</script><script type="math/tex; mode=display">b\leq0,\text{otherwise }bs\rightarrow{}\infty</script><script type="math/tex; mode=display">b=0,z=x+a\rightarrow{}a=0,\text{contradiction}</script><script type="math/tex; mode=display">b<0,s=0\rightarrow{}f(z)\geq{}f(x)+\frac{a^T(x-z)}{b}=g(z)</script><h3 id="Jensen’s-inequality"><a href="#Jensen’s-inequality" class="headerlink" title="Jensen’s inequality"></a>Jensen’s inequality</h3><p>if $f$ is convex, then<script type="math/tex">f(Ez)\leq{}Ef(z)</script></p>
+<h4 id="Proof-3"><a href="#Proof-3" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">Let~x_0=\int_{\Omega}x\rho{}(x)dx</script><script type="math/tex; mode=display">\exists{}a,b~s.t.~ax+b\leq{}f(x)~\text{and}~ax_0+b=f(x_0)</script><script type="math/tex; mode=display">\int_{\Omega}f(x)\rho{}(x)dx\geq{}\int_{\Omega}(ax+b)\rho(x)dx=ax_0+b=f(x_0)</script><h3 id="Composition-with-scalar-functions"><a href="#Composition-with-scalar-functions" class="headerlink" title="Composition with scalar functions"></a>Composition with scalar functions</h3><p>composition of $g:R^n\rightarrow{}R$ and $h:R\rightarrow{}R$</p>
+<script type="math/tex; mode=display">f(x)=h(g(x))</script><p>$f$ is convex if</p>
+<ul>
+<li>$g$ convex, $h$ convex, $\tilde{h}$ nondecreasing</li>
+<li>$g$ concave, $h$ convex, $\tilde{h}$ nonincreasing</li>
+</ul>
+<h3 id="Minimization"><a href="#Minimization" class="headerlink" title="Minimization"></a>Minimization</h3><p>if $f(x,y)$ is convex in $(x,y)$ and $C$ is a convex set, then<script type="math/tex">g(x)=\inf_{y\in{}C}f(x,y)</script><br>is convex</p>
+<h3 id="Perspective"><a href="#Perspective" class="headerlink" title="Perspective"></a>Perspective</h3><p>the perspective of a function $f:R^n\rightarrow{}R$ is the function $g:R^n\times{}R\rightarrow{}R$</p>
+<script type="math/tex; mode=display">g(x,t)=tf(x/t),~dom~g=\{(x,t)|x/t\in{}dom~f,t>0\}</script><p>$g$ is convex if $f$ is convex</p>
+<h4 id="Proof-4"><a href="#Proof-4" class="headerlink" title="Proof"></a>Proof</h4><p>use epi graph</p>
+<script type="math/tex; mode=display">(x,t,s)\in{}epi~g</script><script type="math/tex; mode=display">s\geq{}tf(x/t)</script><script type="math/tex; mode=display">s/t\geq{}f(x/t)</script><script type="math/tex; mode=display">(x/t,s/t)\in{}epi~f</script><h2 id="Conjugate-function"><a href="#Conjugate-function" class="headerlink" title="Conjugate function"></a>Conjugate function</h2><p>the conjugate of a function $f$ is</p>
+<script type="math/tex; mode=display">f^*(y)=\sup_{x\in{}dom~f}(y^Tx-f(x))</script><ul>
+<li>$f^*$ is convex (even if $f$ is not)</li>
+<li>$f(x)+f(y)\geq{}x^Ty$</li>
+<li>$f$ is convex and closed ($epi~f$ is closed), then $f^{**}=f$</li>
+</ul>
+<h4 id="Proof-5"><a href="#Proof-5" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">f(x)\geq{}x^Ty-f(y)</script><script type="math/tex; mode=display">f(x)\geq{}\sup_{y\in{}dom~f^*}(y^Tx-f(x))=f^{**}(x)</script><script type="math/tex; mode=display">epi~f\subseteq{}epi~f^{**}</script><script type="math/tex; mode=display">Let~(x,f^{**}(x))\notin{}epi~f</script><script type="math/tex; mode=display">\exists{}[a,b]\neq0,~s.t.[a,b][z-x,t-f^{**}(x)]^T\leq{}c<0,\forall(z,t)\in{}epi~f</script><script type="math/tex; mode=display">t=f(z)+s,s\geq0</script><script type="math/tex; mode=display">b<0,a^T(z-x)+b(f(z)-f^{**}(x)+s)\leq{}c</script><script type="math/tex; mode=display">\text{Define }y=-\frac{a}{b},~y^Tz-f(z)-s-y^Tx+f^{**}(x)\leq-\frac{c}{b}</script><script type="math/tex; mode=display">\text{Let }s=0,\text{make }\sup</script><hr>
+<script type="math/tex; mode=display">b=0,Let~y\in{}dom~f^*~and~\varepsilon>0</script><script type="math/tex; mode=display">[a+\varepsilon{}\hat{y},-\varepsilon][z-x,t-f^{**}(x)^T</script><script type="math/tex; mode=display">=a^T(z-x)+\varepsilon\hat{y}^T(z-x)-\varepsilon(t-f^{**}(x))</script><script type="math/tex; mode=display">\leq{}c+\varepsilon(f^*(\hat{y})+f^{**}(x)-\hat{y}^Tx)=\tilde{c}<0</script><h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><script type="math/tex; mode=display">f(X)=\log\det{}X,X\in{}S_+^n</script><script type="math/tex; mode=display">f^*(Y)=\sup_{X>0}\{<X,Y>-f(X)\}</script><script type="math/tex; mode=display">Y\geq0,f^*(Y)=+\infty</script><script type="math/tex; mode=display">Y<0,Y-(X^{*})^{-1}=0\rightarrow{}f^*(Y)=Tr(I)-\log\det{}Y^{-1}</script><script type="math/tex; mode=display">Y \ngeq \&\nleq0\rightarrow{}f^*(Y)=+\infty(\exists{}u,s.t.Yu=\lambda{}u,\text{choose }X=tuu^T,t>0)</script><h2 id="Quasiconvex-functions"><a href="#Quasiconvex-functions" class="headerlink" title="Quasiconvex functions"></a>Quasiconvex functions</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><p>$f:R^n\rightarrow{}R$ is quasiconvex if <strong>dom</strong> $f$ is convex and its sublevel sets are all convex</p>
+<h3 id="Modified-Jensen-inequality"><a href="#Modified-Jensen-inequality" class="headerlink" title="Modified Jensen inequality"></a>Modified Jensen inequality</h3><script type="math/tex; mode=display">0\leq\theta\leq1\rightarrow{}f(\theta{}x+(1-\theta)y)\leq\max\{f(x),f(y)\}</script><h4 id="Proof-6"><a href="#Proof-6" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\alpha=f(x)>f(y)\rightarrow{}S_\alpha=\{x|f(x)\leq\alpha\}</script><script type="math/tex; mode=display">[x,y]\subset{}S_\alpha\rightarrow{}f([x,y])\leq\alpha</script><h3 id="First-order-condition-1"><a href="#First-order-condition-1" class="headerlink" title="First-order condition"></a>First-order condition</h3><p>Differentiable $f$ with convex domain is quasiconvex iff</p>
+<script type="math/tex; mode=display">f(y)\leq{}f(x)\rightarrow\triangledown{}f(x)^T(y-x)\leq0</script><h4 id="Proof-7"><a href="#Proof-7" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">g(t)=f(x+t(y-x))\rightarrow{}g^{'}(0)=\triangledown{}f(x)^T(y-x)\leq0</script><hr>
+<script type="math/tex; mode=display">\text{Assume } z\in[x,y],f(z)>f(x)\&{}f(z)>f(y)</script><script type="math/tex; mode=display">\triangledown{}f(z)^T(x-z)\leq0~\&~\triangledown{}f(z)^T(y-z)\leq0</script><script type="math/tex; mode=display">\triangledown{}f(z)=0</script><p>$z_0$ in the neighbour of $z$, $\triangledown{}f(z)\neq0,f(z_0)&gt;f(x),f(z_0)&gt;f(y)$, contradict</p>
+<h3 id="Second-order-condition-1"><a href="#Second-order-condition-1" class="headerlink" title="Second-order condition"></a>Second-order condition</h3><p>Differentiable $f$ with convex domain is quasiconvex iff</p>
+<script type="math/tex; mode=display">f^{'}(x)=0\rightarrow{}f^{''}(x)\geq0</script><h4 id="Proof-8"><a href="#Proof-8" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\exists{}c\in[a,b],f^{'}(c)=0\land{}f^{''}(c)<0</script><script type="math/tex; mode=display">\exists{}\varepsilon{}f(c)>f(c-\varepsilon),f(c)>f(c+\varepsilon)</script><script type="math/tex; mode=display">\exists{}\delta>0,f(c)-\delta>f(c-\varepsilon),f(c)+\delta>f(c+\varepsilon)</script><script type="math/tex; mode=display">c-\varepsilon,c+\varepsilon\in\{x|f(x)\leq{}f(c)-\delta\},c\notin\{x|f(x)\leq{}f(c)-\delta\}</script><p>${x|f(x)\leq{}f(c)-\delta}$ is not convex, contradict</p>
+<hr>
+<script type="math/tex; mode=display">f^{'}\neq0\rightarrow{}f\uparrow{}or\downarrow\rightarrow{}f\in\text{quasiconvex}</script><script type="math/tex; mode=display">d=\sup\{c|f^{'}(c)=0\}</script><script type="math/tex; mode=display">\forall{}x\geq{}d,f{'}(x)\geq0\rightarrow{}f(x)\geq{}f(d)</script><script type="math/tex; mode=display">\forall{}x\leq{}d,f{'}(x)\leq0\rightarrow{}f(x)\leq{}f(d)</script><h2 id="Log-concave-and-Log-convex-functions"><a href="#Log-concave-and-Log-convex-functions" class="headerlink" title="Log-concave and Log-convex functions"></a>Log-concave and Log-convex functions</h2><h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h3><p>A positive function $f$ is log-concave if $\log{}f$ is concave&lt;/br&gt;A positive function $f$ is log-convex if $\log{}f$ is convex</p>
+<ul>
+<li>powers:$x^a$ on $R_{++}$ is log-convex for $a\leq0$, log-concave for $a\geq0$</li>
+<li>many common probability densities are log-concave</li>
+<li>cumulative Gaussian distribution function is log-concave</li>
+</ul>
+<h3 id="Second-order-condition-2"><a href="#Second-order-condition-2" class="headerlink" title="Second-order condition"></a>Second-order condition</h3><p>Twice differentiable $f$ with convex domain is log-concave if and only if</p>
+<script type="math/tex; mode=display">\forall{}x,f(x)\triangledown^2f(x)\preceq\triangledown{}f(x)\triangledown{}f(x)^T</script><h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><ul>
+<li>product of log-concave functions is log-concave</li>
+<li>sum of log-concave functions is not always log-concave</li>
+<li>if $f:R^n\times{}R^m\rightarrow{}R$ is log-concave, then<script type="math/tex">g(x)=\int{}f(x,y)dy</script> is log-concave (not easy to show)</li>
+<li>convolution $f*g$ of log-concave functions $f,g$ is log-concave<script type="math/tex; mode=display">(f*g)(x)=\int{}f(x-y)g(y)dy</script></li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>要恰饭的么<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifupay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixinpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -194,16 +292,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/07/Convex Functions/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/07/Convex Functions/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/04/基本参数与参数估计基础/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基本参数与参数估计基础</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -218,224 +375,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基本参数与参数估计基础" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/04/基本参数与参数估计基础/">基本参数与参数估计基础</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/04/基本参数与参数估计基础/" class="archive-article-date">
-  	<time datetime="2019-03-04T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="基本参数"><a href="#基本参数" class="headerlink" title="基本参数"></a>基本参数</h2>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Reliability Engineering</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/04/基本参数与参数估计基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-properties-and-examples"><span class="toc-number">1.</span> <span class="toc-text">Basic properties and examples</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-number">1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-on-R-R-n-and-R-m-times-n"><span class="toc-number">1.2.</span> <span class="toc-text">Examples on $R$, $R^n$ and $R^{m\times{}n}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restriction-of-a-convex-function-to-a-line"><span class="toc-number">1.3.</span> <span class="toc-text">Restriction of a convex function to a line</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof"><span class="toc-number">1.3.1.</span> <span class="toc-text">Proof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-number">1.3.2.</span> <span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-condition"><span class="toc-number">1.4.</span> <span class="toc-text">First-order condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-condition"><span class="toc-number">1.5.</span> <span class="toc-text">Second-order condition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Epigraph-and-sublevel-set"><span class="toc-number">1.6.</span> <span class="toc-text">Epigraph and sublevel set</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operations-that-preserve-convexity"><span class="toc-number">2.</span> <span class="toc-text">Operations that preserve convexity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Positive-weighted-sum-amp-composition-with-affine-function"><span class="toc-number">2.1.</span> <span class="toc-text">Positive weighted sum &amp; composition with affine function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pointwise-Maximum"><span class="toc-number">2.2.</span> <span class="toc-text">Pointwise Maximum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pointwise-Supremum"><span class="toc-number">2.3.</span> <span class="toc-text">Pointwise Supremum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem"><span class="toc-number">2.4.</span> <span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-2"><span class="toc-number">2.4.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jensen’s-inequality"><span class="toc-number">2.5.</span> <span class="toc-text">Jensen’s inequality</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-3"><span class="toc-number">2.5.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Composition-with-scalar-functions"><span class="toc-number">2.6.</span> <span class="toc-text">Composition with scalar functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Minimization"><span class="toc-number">2.7.</span> <span class="toc-text">Minimization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Perspective"><span class="toc-number">2.8.</span> <span class="toc-text">Perspective</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-4"><span class="toc-number">2.8.1.</span> <span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conjugate-function"><span class="toc-number">3.</span> <span class="toc-text">Conjugate function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-5"><span class="toc-number">3.0.1.</span> <span class="toc-text">Proof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-1"><span class="toc-number">3.0.2.</span> <span class="toc-text">Example</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Quasiconvex-functions"><span class="toc-number">4.</span> <span class="toc-text">Quasiconvex functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-1"><span class="toc-number">4.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modified-Jensen-inequality"><span class="toc-number">4.2.</span> <span class="toc-text">Modified Jensen inequality</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-6"><span class="toc-number">4.2.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-condition-1"><span class="toc-number">4.3.</span> <span class="toc-text">First-order condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-7"><span class="toc-number">4.3.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-condition-1"><span class="toc-number">4.4.</span> <span class="toc-text">Second-order condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-8"><span class="toc-number">4.4.1.</span> <span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Log-concave-and-Log-convex-functions"><span class="toc-number">5.</span> <span class="toc-text">Log-concave and Log-convex functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-2"><span class="toc-number">5.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-condition-2"><span class="toc-number">5.2.</span> <span class="toc-text">Second-order condition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties"><span class="toc-number">5.3.</span> <span class="toc-text">Properties</span></a></li></ol></li>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-无限阶段折扣问题" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/24/无限阶段折扣问题/">无限阶段折扣问题</a>
-    </h1>
   
 
-        
-        <a href="/2019/01/24/无限阶段折扣问题/" class="archive-article-date">
-  	<time datetime="2019-01-24T12:39:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="引言——成本总和的最小化"><a href="#引言——成本总和的最小化" class="headerlink" title="引言——成本总和的最小化"></a>引言——成本总和的最小化</h2>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dynamic Programming</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/24/无限阶段折扣问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/hello-world/">Hello World</a>
-    </h1>
   
 
-        
-        <a href="/2019/01/22/hello-world/" class="archive-article-date">
-  	<time datetime="2019-01-22T13:56:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/22/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -458,8 +423,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
