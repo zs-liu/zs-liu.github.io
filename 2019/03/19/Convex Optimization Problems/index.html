@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>基本参数与参数估计基础 | 鲈鱼柳的博客</title>
+  <title>Convex Optimization Problems | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基本参数">
-<meta name="keywords" content="Reliability Engineering">
+  <meta name="description" content="Optimization problem in standard form">
+<meta name="keywords" content="Convex Optimization">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基本参数与参数估计基础">
-<meta property="og:url" content="http://yoursite.com/2019/03/04/基本参数与参数估计基础/index.html">
+<meta property="og:title" content="Convex Optimization Problems">
+<meta property="og:url" content="http://yoursite.com/2019/03/19/Convex Optimization Problems/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="基本参数">
+<meta property="og:description" content="Optimization problem in standard form">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-12T11:05:00.453Z">
+<meta property="og:updated_time" content="2019-03-26T12:08:18.416Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基本参数与参数估计基础">
-<meta name="twitter:description" content="基本参数">
+<meta name="twitter:title" content="Convex Optimization Problems">
+<meta name="twitter:description" content="Optimization problem in standard form">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -153,110 +153,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-基本参数与参数估计基础" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Convex Optimization Problems" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      基本参数与参数估计基础
+      Convex Optimization Problems
     </h1>
   
 
         
-        <a href="/2019/03/04/基本参数与参数估计基础/" class="archive-article-date">
-  	<time datetime="2019-03-04T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-04</time>
+        <a href="/2019/03/19/Convex Optimization Problems/" class="archive-article-date">
+  	<time datetime="2019-03-19T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基本参数"><a href="#基本参数" class="headerlink" title="基本参数"></a>基本参数</h2><a id="more"></a>
-<h3 id="可靠度与不可靠度"><a href="#可靠度与不可靠度" class="headerlink" title="可靠度与不可靠度"></a>可靠度与不可靠度</h3><ul>
-<li>$n(t)$:在$0\sim{}t$时刻的工作时间内产品的累计失效数</li>
-<li>$N_0$:$t=0$时在规定条件下进行工作的产品数</li>
-</ul>
-<script type="math/tex; mode=display">Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}</script><script type="math/tex; mode=display">Fallibility(t)=F(t)=\frac{n(t)}{N_0}</script><h3 id="失效率"><a href="#失效率" class="headerlink" title="失效率"></a>失效率</h3><script type="math/tex; mode=display">\lambda(t)=\lim_{\Delta{}t\rightarrow0}\frac{P(t<T\leq{}t+\Delta{}t|T>t)}{\Delta{}t}=\frac{F^{'}(t)}{1-F(t)}=-\frac{R^{'}(t)}{R(t)}</script><script type="math/tex; mode=display">\hat{\lambda}(t)=\frac{n(t+\Delta{}t)-n(t)}{\Delta{}t(N_0-n(t))}</script><ul>
-<li>单位:$1Fit=10^{-9}/h$</li>
-<li>$R(t)=\exp{-\int_0^t\lambda(t)dt}$</li>
-<li>$f(t)=\lambda(t)\exp{-\int_0^t\lambda(t)dt}$</li>
-</ul>
-<h4 id="浴盆曲线"><a href="#浴盆曲线" class="headerlink" title="浴盆曲线"></a>浴盆曲线</h4><ul>
-<li>大多数产品的失效率随时间的变化曲线形似浴盆</li>
-<li>由于产品失效机理的不同，失效率随时间的变化大致可以分为三个阶段：早期故障、偶然故障和耗损故障</li>
-</ul>
-<h3 id="平均寿命"><a href="#平均寿命" class="headerlink" title="平均寿命"></a>平均寿命</h3><h4 id="平均故障前时间-MTTF-Mean-Time-To-Failure"><a href="#平均故障前时间-MTTF-Mean-Time-To-Failure" class="headerlink" title="平均故障前时间(MTTF, Mean Time To Failure)"></a>平均故障前时间(MTTF, Mean Time To Failure)</h4><p>设$n$个不可修复产品在同样条件下进行试验，测得其全部故障时间为$t_1,t_2,…,t_n$，则其平均故障前时间为:</p>
-<script type="math/tex; mode=display">T_{TF}=\frac{1}{n}\sum_{i=1}^nt_i</script><h4 id="平均故障间隔时间-MTBF-Mean-Time-Between-Failure"><a href="#平均故障间隔时间-MTBF-Mean-Time-Between-Failure" class="headerlink" title="平均故障间隔时间(MTBF, Mean Time Between Failure)"></a>平均故障间隔时间(MTBF, Mean Time Between Failure)</h4><p>设$1$个可修复产品在使用过程中发生了$n$次故障，每次故障修复后又重新投入使用，测得其每次工作持续时间为$t_1,t_2,…,t_n$，则其平均故障间隔时间为：</p>
-<script type="math/tex; mode=display">T_{BF}=\frac{1}{n}\sum_{i=1}^nt_i</script><h4 id="平均寿命-1"><a href="#平均寿命-1" class="headerlink" title="平均寿命"></a>平均寿命</h4><script type="math/tex; mode=display">\theta=\int_0^\infty{}tf(t)dt=\int_0^\infty{}R(t)dt</script><h4 id="可靠寿命"><a href="#可靠寿命" class="headerlink" title="可靠寿命"></a>可靠寿命</h4><script type="math/tex; mode=display">t_R=R^{-1}(r)</script><h3 id="常用的可靠性定量指标"><a href="#常用的可靠性定量指标" class="headerlink" title="常用的可靠性定量指标"></a>常用的可靠性定量指标</h3><h4 id="指数分布-lambda-const"><a href="#指数分布-lambda-const" class="headerlink" title="指数分布:$\lambda=const$"></a>指数分布:$\lambda=const$</h4><ul>
-<li>$R(t)=\exp{-\lambda{}t}$</li>
-<li>$f(t)=\lambda\exp{-\lambda{}t}$</li>
-<li>$\theta=MTTF=\lambda^{-1}$</li>
-</ul>
-<h3 id="常用分布"><a href="#常用分布" class="headerlink" title="常用分布"></a>常用分布</h3><h4 id="对数正态分布"><a href="#对数正态分布" class="headerlink" title="对数正态分布"></a>对数正态分布</h4><p>$T$的对数$\ln{}T$服从正态分布，则$T$服从对数正态分布，即$X=\ln{}T\sim{}N(\mu,\sigma^2)$</p>
-<script type="math/tex; mode=display">f(t)=\frac{1}{\sigma{}t\sqrt{2\pi}}\exp\{-\frac{(\ln{}t-\mu)^2}{2\sigma^2}\}</script><ul>
-<li>均值:$E(T)=\exp{\mu+\frac{\sigma^2}{2}}$</li>
-<li>方差:$D(T)=\exp{2(\mu+\frac{\sigma^2}{2})}(e^{\sigma^2}-1)$</li>
-</ul>
-<h4 id="威布尔分布"><a href="#威布尔分布" class="headerlink" title="威布尔分布"></a>威布尔分布</h4><script type="math/tex; mode=display">f(t)=\frac{m}{t_0}(t-\gamma)^{m-1}\exp\{-(t-\gamma)\frac{m}{t_0}\}</script><ul>
-<li>均值:$E(T)=\gamma+t_0^{\frac{1}{m}}\Gamma(1+\frac{1}{m})$</li>
-<li>方差:$D(T)=t_0^{\frac{2}{m}}[\Gamma(1+\frac{2}{m})-\Gamma^2(1+\frac{1}{m})]$</li>
-</ul>
-<h2 id="参数估计基础"><a href="#参数估计基础" class="headerlink" title="参数估计基础"></a>参数估计基础</h2><h3 id="截尾实验"><a href="#截尾实验" class="headerlink" title="截尾实验"></a>截尾实验</h3><h4 id="无替换定数截尾试验"><a href="#无替换定数截尾试验" class="headerlink" title="无替换定数截尾试验"></a>无替换定数截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到出现事先指定的$r$个产品失效停止试验。</p>
+        <h2 id="Optimization-problem-in-standard-form"><a href="#Optimization-problem-in-standard-form" class="headerlink" title="Optimization problem in standard form"></a>Optimization problem in standard form</h2><a id="more"></a>
+<script type="math/tex; mode=display">\text{minimize }f_0(x)</script><script type="math/tex; mode=display">\text{subject to }f_i(x)\leq0\quad{}\land{}\quad{}Ax=b</script><h3 id="Theorem-Optimal-and-locally-optimal-options"><a href="#Theorem-Optimal-and-locally-optimal-options" class="headerlink" title="Theorem: Optimal and locally optimal options"></a>Theorem: Optimal and locally optimal options</h3><p>Any locally optimal point of a convex problem is (globally) optimal.</p>
+<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><p>Suppose $x$ is locally optimal, but there exists a feasible $y$ with<br>$f_0(y)&lt;f_0(x)$, for $z$ in the small neighbour of $x$, contradiction must exist</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>$x$ is optimal if and only if it is feasible and</p>
+<script type="math/tex; mode=display">\nabla{}f_0(x)^T(y-x)\geq0\quad\text{for all feasible }y</script><h4 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">f_0(y)\geq{}f_0(x)+\nabla{}f_0(x)^T(y-x)\geq{}f_0(x)</script><hr>
+<script type="math/tex; mode=display">\text{Suppose }\exists{}y,~s.t.~\nabla{}f_0(x)^T(y-x)<0</script><script type="math/tex; mode=display">g(t)=f(x+y(y-x)),g^{'}(0)=\nabla{}f_0(x)^T(y-x)<0</script><script type="math/tex; mode=display">\exists{}\bar{t},g(\bar{t})<g(0)=f_0(x)</script><p>Also, we can view this with Taylor expansion</p>
+<h3 id="Equivalent-convex-problems"><a href="#Equivalent-convex-problems" class="headerlink" title="Equivalent convex problems"></a>Equivalent convex problems</h3><h4 id="Eliminating-equality-constrains"><a href="#Eliminating-equality-constrains" class="headerlink" title="Eliminating equality constrains"></a>Eliminating equality constrains</h4><script type="math/tex; mode=display">Ax=b\rightarrow{}x=Fz+x_0~\text{for some }z</script><h4 id="Introducing-equality-constraints"><a href="#Introducing-equality-constraints" class="headerlink" title="Introducing equality constraints"></a>Introducing equality constraints</h4><script type="math/tex; mode=display">y_i=A_ix+b</script><h4 id="Introducing-slack-variables"><a href="#Introducing-slack-variables" class="headerlink" title="Introducing slack variables"></a>Introducing slack variables</h4><script type="math/tex; mode=display">a_i^Tx\leq{}b_i\rightarrow{}a_i^Tx+s_i=b_i\land{}s_i\geq0</script><h2 id="Quasiconvex-optimization"><a href="#Quasiconvex-optimization" class="headerlink" title="Quasiconvex optimization"></a>Quasiconvex optimization</h2><p>If $f_0$ is quasiconvex, there exists a family of functions $\phi_t$ such that:</p>
 <ul>
-<li>总试验时间:<script type="math/tex">T_r=\sum_{i=1}^rt_i(n-r)t_r</script></li>
-<li>点估计:$\lambda=r/T_r$</li>
-<li>区间估计:$2\lambda{}T_r\sim{}\chi^2(2r)$</li>
+<li>$\phi_t(x)$ is convex in $x$ for fixed $t$</li>
+<li>t-sublevel set of $f_0$ is 0-sublevel set of $\phi_t$, i.e. <script type="math/tex">f_0(x)\leq{}t\leftrightarrow{}\phi_t(x)\leq0</script></li>
 </ul>
-<h4 id="有替换定数截尾试验"><a href="#有替换定数截尾试验" class="headerlink" title="有替换定数截尾试验"></a>有替换定数截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到规定失效数$r$时停止试验。$r$个失效样品的失效时间记为:$t_1\leq{}t_2\leq\dots\leq{}t_r$</p>
-<ul>
-<li>总试验时间:$T_r=nt_r$</li>
+<h2 id="Linear-program-LP"><a href="#Linear-program-LP" class="headerlink" title="Linear program (LP)"></a>Linear program (LP)</h2><script type="math/tex; mode=display">\text{minimize }c^Tx+d</script><script type="math/tex; mode=display">\text{subject to }Gx\leq{}h\land{}Ax=b</script><ul>
+<li>convex problem with affine objective and constraint functions</li>
+<li>feasible set is a polyhedron</li>
 </ul>
-<h4 id="无替换定时截尾试验"><a href="#无替换定时截尾试验" class="headerlink" title="无替换定时截尾试验"></a>无替换定时截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到出现事先规定的时间$t_0$停止试验，共有$r$个失效</p>
-<ul>
-<li>总试验时间:<script type="math/tex">T_0=\sum_{i=1}^rt_i(n-r)t_0</script></li>
-<li>点估计:$\lambda=r/T_0$</li>
+<h3 id="Linear-fractional-program"><a href="#Linear-fractional-program" class="headerlink" title="Linear fractional program"></a>Linear fractional program</h3><script type="math/tex; mode=display">\text{minimize }f_0(x)</script><script type="math/tex; mode=display">\text{subject to }Gx\leq{}h\land{}Ax=b</script><script type="math/tex; mode=display">f_0(x)=\frac{c^Tx+d}{c^Tx+f}, dom~f_0(x)=\{c^Tx+f>0\}</script><ul>
+<li>a quasiconvex optimization problem; can be solved by bisection</li>
+<li>also equivalent to the LP (variables $y$, $z$)</li>
 </ul>
-<h4 id="有替换定时截尾试验"><a href="#有替换定时截尾试验" class="headerlink" title="有替换定时截尾试验"></a>有替换定时截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到出现事先规定的时间$t_0$停止试验，共有$r$个失效</p>
-<ul>
-<li>总试验时间:$T_0=nt_0$</li>
+<script type="math/tex; mode=display">\text{minimize }c^Ty+dz</script><script type="math/tex; mode=display">\text{subject to }Gy\leq{}hz,Ay=bz,e^Ty+fz=1,z\geq0</script><h4 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\forall{}x\in{}X_1,y=\frac{x}{e^Tx+f},z=\frac{1}{e^Tx+f}\rightarrow{}(y,z)\in{}X_2\rightarrow{}p_1^*\geq{}p_2^*</script><hr>
+<script type="math/tex; mode=display">\forall{}(y,z)\in{}X_2, z\neq0,x=\frac{y}{z}\in{}X_1</script><script type="math/tex; mode=display">\forall{}(y,z)\in{}X_2, z=0,\text{Choose }x_0\in{}X_1,x_0+ty\in{}X_1(t\geq0)</script><script type="math/tex; mode=display">\lim_{t\rightarrow\infty}\frac{c^T(x_0+ty)+d}{e^T(x_0+ty)+f}=c^Ty,p_2^*\geq{}p_1^*</script><h2 id="Quadratic-program-QP"><a href="#Quadratic-program-QP" class="headerlink" title="Quadratic program (QP)"></a>Quadratic program (QP)</h2><script type="math/tex; mode=display">A\in{}R^{m\times{}n},A=U\Sigma{}V^T,\Sigma=diag(\lambda_1,...,\lambda_r,0,...)</script><script type="math/tex; mode=display">A^\dagger=V\Sigma^\dagger{}U^T,\Sigma^\dagger=diag(1/\lambda_1,...,1/\lambda_r,0,...)</script><h2 id="Quadratically-constrained-quadratic-program-QCQP"><a href="#Quadratically-constrained-quadratic-program-QCQP" class="headerlink" title="Quadratically constrained quadratic program (QCQP)"></a>Quadratically constrained quadratic program (QCQP)</h2><script type="math/tex; mode=display">\text{minimize }(1/2)x^TP_0x+q_0^Tx+r_0</script><script type="math/tex; mode=display">\text{subject to }(1/2)x^TP_ix+q_i^Tx+r_i\leq0, Ax=b</script><ul>
+<li>$P<em>i\in{}S</em>+^n$; objective and constraints are convex quadratic</li>
 </ul>
-<h3 id="贝叶斯估计简介"><a href="#贝叶斯估计简介" class="headerlink" title="贝叶斯估计简介"></a>贝叶斯估计简介</h3><p>略</p>
+<h3 id="Least-squares"><a href="#Least-squares" class="headerlink" title="Least squares"></a>Least squares</h3><script type="math/tex; mode=display">\text{minimize }||Ax-b||_2^2</script><ul>
+<li>analytical solution $x^\star=A^\dagger{}b$</li>
+</ul>
+<h2 id="Robust-linear-program"><a href="#Robust-linear-program" class="headerlink" title="Robust linear program"></a>Robust linear program</h2><script type="math/tex; mode=display">\text{minimize }c^Tx</script><script type="math/tex; mode=display">\text{subject to }prob(a_i^Tx\leq{}b_i)\geq\eta,i=1,...,m</script><h2 id="Semidefinite-program-SDP"><a href="#Semidefinite-program-SDP" class="headerlink" title="Semidefinite program (SDP)"></a>Semidefinite program (SDP)</h2><script type="math/tex; mode=display">\text{minimize }c^Tx</script><script type="math/tex; mode=display">\text{subject to }x_1F_1+x_2F_2+\dots+x_nF_n+G\preceq0,Ax=b</script><ul>
+<li>inequality constraint is called linear matrix inequality (LMI)</li>
+<li>includes problems with multiple LMI constraints</li>
+</ul>
 
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>要恰饭的么<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/zhifupay.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/weixinpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -267,7 +216,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Reliability Engineering</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Convex Optimization</a>
         		</li>
       		
 		</ul>
@@ -323,7 +272,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/04/基本参数与参数估计基础/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/19/Convex Optimization Problems/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -337,18 +286,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/07/Convex Functions/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Convex Functions
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/01/24/无限阶段折扣问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">无限阶段折扣问题</div>
+    <a href="/2019/03/07/Convex Functions/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Convex Functions</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -375,7 +315,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本参数"><span class="toc-number">1.</span> <span class="toc-text">基本参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可靠度与不可靠度"><span class="toc-number">1.1.</span> <span class="toc-text">可靠度与不可靠度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#失效率"><span class="toc-number">1.2.</span> <span class="toc-text">失效率</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#浴盆曲线"><span class="toc-number">1.2.1.</span> <span class="toc-text">浴盆曲线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#平均寿命"><span class="toc-number">1.3.</span> <span class="toc-text">平均寿命</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#平均故障前时间-MTTF-Mean-Time-To-Failure"><span class="toc-number">1.3.1.</span> <span class="toc-text">平均故障前时间(MTTF, Mean Time To Failure)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平均故障间隔时间-MTBF-Mean-Time-Between-Failure"><span class="toc-number">1.3.2.</span> <span class="toc-text">平均故障间隔时间(MTBF, Mean Time Between Failure)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平均寿命-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">平均寿命</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可靠寿命"><span class="toc-number">1.3.4.</span> <span class="toc-text">可靠寿命</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的可靠性定量指标"><span class="toc-number">1.4.</span> <span class="toc-text">常用的可靠性定量指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#指数分布-lambda-const"><span class="toc-number">1.4.1.</span> <span class="toc-text">指数分布:$\lambda=const$</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用分布"><span class="toc-number">1.5.</span> <span class="toc-text">常用分布</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对数正态分布"><span class="toc-number">1.5.1.</span> <span class="toc-text">对数正态分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#威布尔分布"><span class="toc-number">1.5.2.</span> <span class="toc-text">威布尔分布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数估计基础"><span class="toc-number">2.</span> <span class="toc-text">参数估计基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#截尾实验"><span class="toc-number">2.1.</span> <span class="toc-text">截尾实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无替换定数截尾试验"><span class="toc-number">2.1.1.</span> <span class="toc-text">无替换定数截尾试验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有替换定数截尾试验"><span class="toc-number">2.1.2.</span> <span class="toc-text">有替换定数截尾试验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无替换定时截尾试验"><span class="toc-number">2.1.3.</span> <span class="toc-text">无替换定时截尾试验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有替换定时截尾试验"><span class="toc-number">2.1.4.</span> <span class="toc-text">有替换定时截尾试验</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#贝叶斯估计简介"><span class="toc-number">2.2.</span> <span class="toc-text">贝叶斯估计简介</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimization-problem-in-standard-form"><span class="toc-number">1.</span> <span class="toc-text">Optimization problem in standard form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem-Optimal-and-locally-optimal-options"><span class="toc-number">1.1.</span> <span class="toc-text">Theorem: Optimal and locally optimal options</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof"><span class="toc-number">1.1.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem"><span class="toc-number">1.2.</span> <span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Equivalent-convex-problems"><span class="toc-number">1.3.</span> <span class="toc-text">Equivalent convex problems</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Eliminating-equality-constrains"><span class="toc-number">1.3.1.</span> <span class="toc-text">Eliminating equality constrains</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introducing-equality-constraints"><span class="toc-number">1.3.2.</span> <span class="toc-text">Introducing equality constraints</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introducing-slack-variables"><span class="toc-number">1.3.3.</span> <span class="toc-text">Introducing slack variables</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quasiconvex-optimization"><span class="toc-number">2.</span> <span class="toc-text">Quasiconvex optimization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linear-program-LP"><span class="toc-number">3.</span> <span class="toc-text">Linear program (LP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linear-fractional-program"><span class="toc-number">3.1.</span> <span class="toc-text">Linear fractional program</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-2"><span class="toc-number">3.1.1.</span> <span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quadratic-program-QP"><span class="toc-number">4.</span> <span class="toc-text">Quadratic program (QP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quadratically-constrained-quadratic-program-QCQP"><span class="toc-number">5.</span> <span class="toc-text">Quadratically constrained quadratic program (QCQP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Least-squares"><span class="toc-number">5.1.</span> <span class="toc-text">Least squares</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Robust-linear-program"><span class="toc-number">6.</span> <span class="toc-text">Robust linear program</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Semidefinite-program-SDP"><span class="toc-number">7.</span> <span class="toc-text">Semidefinite program (SDP)</span></a></li></ol>
                     </div>
                 </span>
             </div>
