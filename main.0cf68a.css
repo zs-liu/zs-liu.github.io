@@ -2724,7 +2724,7 @@ pre .id {
 .page-reward .reward-p {
   color: #fff;
   font-weight: 700;
-  text-shadow: 1px 1px 1px #45b9e0
+  text-shadow: 1px 1px 1px #235D70
 }
 
 .page-reward .reward-p .icon {
@@ -2771,7 +2771,7 @@ pre .id {
 }
 
 .jump-container:hover .icon-back {
-  background: rgba(36, 193, 246, .9)
+  background: rgba(25, 142, 200, .9);
 }
 
 .jump-container,
@@ -2827,7 +2827,7 @@ pre .id {
 }
 
 .toc-container.tooltip-left:hover {
-  background: rgba(36, 193, 246, .9)
+  background: rgba(25, 142, 200, .9)
 }
 
 .toc-container.tooltip-left .icon-font {
@@ -2927,7 +2927,7 @@ pre .id {
 
 .tooltip-left .tooltip-content {
   position: absolute;
-  background: rgba(36, 193, 246, .9);
+  background: rgba(25, 142, 200, .9);;
   z-index: 9999;
   width: 200px;
   bottom: 50%;
@@ -3074,7 +3074,7 @@ pre .id {
 }
 
 .tooltip-top .tooltip-inner {
-  background: rgba(36, 193, 246, .9);
+  background: rgba(25, 142, 200, .9);
   padding: 40px;
   -webkit-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);
