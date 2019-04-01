@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Convex Functions | 鲈鱼柳的博客</title>
+  <title>不可修复系统的可靠性分析 | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Basic properties and examples">
-<meta name="keywords" content="Convex Optimization">
+  <meta name="description" content="可靠性逻辑框图">
+<meta name="keywords" content="Reliability Engineering">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Convex Functions">
-<meta property="og:url" content="http://yoursite.com/2019/03/07/Convex Functions/index.html">
+<meta property="og:title" content="不可修复系统的可靠性分析">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/不可修复系统的可靠性分析/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Basic properties and examples">
+<meta property="og:description" content="可靠性逻辑框图">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-31T06:52:00.156Z">
+<meta property="og:updated_time" content="2019-04-01T06:14:21.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Convex Functions">
-<meta name="twitter:description" content="Basic properties and examples">
+<meta name="twitter:title" content="不可修复系统的可靠性分析">
+<meta name="twitter:description" content="可靠性逻辑框图">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -151,94 +151,132 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Convex Functions" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-不可修复系统的可靠性分析" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Convex Functions
+      不可修复系统的可靠性分析
     </h1>
   
 
         
-        <a href="/2019/03/07/Convex Functions/" class="archive-article-date">
-  	<time datetime="2019-03-07T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-07</time>
+        <a href="/2019/03/18/不可修复系统的可靠性分析/" class="archive-article-date">
+  	<time datetime="2019-03-18T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Basic-properties-and-examples"><a href="#Basic-properties-and-examples" class="headerlink" title="Basic properties and examples"></a>Basic properties and examples</h2><a id="more"></a>
-<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>$f:R^n\rightarrow{}R$ is convex if <strong>dom</strong>$f$ is a convex set and</p>
-<script type="math/tex; mode=display">f(\theta{}x+(1-\theta)y)\leq\theta{}f(x)+(1-\theta)f(y)</script><p>for all $x,y\in$ <strong>dom</strong>$f$, $0\leq\theta\leq1$</p>
+        <h2 id="可靠性逻辑框图"><a href="#可靠性逻辑框图" class="headerlink" title="可靠性逻辑框图"></a>可靠性逻辑框图</h2><a id="more"></a>
+<h3 id="系统可靠性"><a href="#系统可靠性" class="headerlink" title="系统可靠性"></a>系统可靠性</h3><ul>
+<li>在<strong>元件故障数据和系统结构已知</strong>的情况下，预测系统的可靠性</li>
+<li>硬件可靠性/人员操作可靠性/软件可靠性</li>
+</ul>
+<h3 id="系统可靠性框图"><a href="#系统可靠性框图" class="headerlink" title="系统可靠性框图"></a>系统可靠性框图</h3><p>描述系统与其组成单元之间的<strong>故障逻辑</strong>关系，以系统工程图为基础。</p>
 <ul>
-<li><em>strictly convex</em> if we choose $&lt;$ instead of $\leq$</li>
+<li>方框:单元或功能</li>
+<li>逻辑关系:功能布局</li>
+<li>连线:系统功能流程的方向</li>
+<li>节点(节点可以在需要时才加以标注)<ul>
+<li>输入节点:系统功能流程的起点</li>
+<li>输出节点:系统功能流程的终点</li>
+<li>中间节点</li>
 </ul>
-<h3 id="Examples-on-R-R-n-and-R-m-times-n"><a href="#Examples-on-R-R-n-and-R-m-times-n" class="headerlink" title="Examples on $R$, $R^n$ and $R^{m\times{}n}$"></a>Examples on $R$, $R^n$ and $R^{m\times{}n}$</h3><h3 id="Restriction-of-a-convex-function-to-a-line"><a href="#Restriction-of-a-convex-function-to-a-line" class="headerlink" title="Restriction of a convex function to a line"></a>Restriction of a convex function to a line</h3><p>$f:R^n\rightarrow{}R$ is convex if and only if the function $g:R\rightarrow{}R$</p>
-<script type="math/tex; mode=display">g(t)=f(x+tv), dom g=\{\}</script><h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\forall{}t_1,t_2,x+t_1v\in{}dom~f,x+t_2v\in{}dom~f</script><script type="math/tex; mode=display">g(\theta{}t_1+(1-\theta)t_2)=f(x+(\theta{}t_1+(1-\theta{})t_2)v)</script><script type="math/tex; mode=display">=f(\theta(x+t_1v)+(1-\theta)(x+t_2v))</script><script type="math/tex; mode=display">\leq{}\theta{}f(x+t_1v)+(1-\theta)f(x+t_2v)</script><hr>
-<script type="math/tex; mode=display">let~x_1,x_2\in{}dom~f, de\!{}fine~x=x_1,v=x_2-x_1,g(t)=f(x+tv)</script><script type="math/tex; mode=display">f(\theta{}x_1+(1-\theta)x_2)=f(x_1+(1-\theta)(x_2-x_1))=g(1-\theta)</script><script type="math/tex; mode=display">\leq{}\theta{}g(0)+(1-\theta)g(1)=\theta{}f(x_1)+(1-\theta)f(x_2)</script><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>$f:S^n\rightarrow{}R$ with $f(X)=\log\det{}X$, <strong>dom</strong> $f=S^n_{++}$</p>
-<h3 id="First-order-condition"><a href="#First-order-condition" class="headerlink" title="First-order condition"></a>First-order condition</h3><p>Differentiable $f$ with convex domain is convex iff </p>
-<script type="math/tex; mode=display">f(y)\geq{}f(x)+\nabla{}f(x)^T(y-x)\quad\forall{}x,y\in{}dom~f</script><h4 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">t>0,~f(x+t(y-x))\leq{}(1-t)f(x)+tf(y)</script><script type="math/tex; mode=display">f(y)\geq{}f(x)+\frac{f(x+t(y-x))-f(x)}{t}</script><script type="math/tex; mode=display">f(y)\geq{}f(x)+f^{'}(x)(y-x)</script><hr>
-<script type="math/tex; mode=display">f(x)\geq{}f^{'}(z)(x-z),f(y)\geq{}f^{'}(z)(y-z)</script><script type="math/tex; mode=display">let~z=\theta{}x+(1-\theta{})y</script><script type="math/tex; mode=display">\theta{}f(x)+(1-\theta)f(y)\geq{}f(z)</script><h3 id="Second-order-condition"><a href="#Second-order-condition" class="headerlink" title="Second-order condition"></a>Second-order condition</h3><p>Twice differentiable $f$ with convex domain is convex iff</p>
-<script type="math/tex; mode=display">\nabla^2f(x)\succeq0\quad\forall{}x\in{}dom~f</script><p>if $\nabla^2f(x)\succ0$ for all $x\in{}dom~f$, then $f$ is strictly convex</p>
-<h3 id="Epigraph-and-sublevel-set"><a href="#Epigraph-and-sublevel-set" class="headerlink" title="Epigraph and sublevel set"></a>Epigraph and sublevel set</h3><p>$\alpha$-sublevel set of $f:R^n\rightarrow{}R$</p>
-<script type="math/tex; mode=display">C_\alpha=\{x\in{}dom~f|f(x)\leq\alpha\}</script><p>sublevel sets of convex functions are convex (converse is false)<br>epigraph of $f:R^n\rightarrow{}R$</p>
-<script type="math/tex; mode=display">epi~f=\{(x,t)\in{}R^{n+1}|x\in{}dom~f,f(x)\leq{}t\}</script><p>$f$ is convex iff $epi~f$ is a convex set</p>
-<h2 id="Operations-that-preserve-convexity"><a href="#Operations-that-preserve-convexity" class="headerlink" title="Operations that preserve convexity"></a>Operations that preserve convexity</h2><h3 id="Positive-weighted-sum-amp-composition-with-affine-function"><a href="#Positive-weighted-sum-amp-composition-with-affine-function" class="headerlink" title="Positive weighted sum &amp; composition with affine function"></a>Positive weighted sum &amp; composition with affine function</h3><ul>
-<li>nonnegative multiple</li>
-<li>sum</li>
-<li>composition with affine function</li>
+</li>
 </ul>
-<h3 id="Pointwise-Maximum"><a href="#Pointwise-Maximum" class="headerlink" title="Pointwise Maximum"></a>Pointwise Maximum</h3><p>if $f_1,…,f_m$ are convex, then <script type="math/tex">f(x)=\max\{f_1(x),...,f_m(x)\}</script> is convex</p>
-<h3 id="Pointwise-Supremum"><a href="#Pointwise-Supremum" class="headerlink" title="Pointwise Supremum"></a>Pointwise Supremum</h3><p>if $f(x,y)$ is convex in $x$ for each $y\in\mathcal{A}$, then <script type="math/tex">g(x)=\sup_{y\in\mathcal{A}}f(x,y)</script> is convex</p>
-<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>Let $f:R^n\rightarrow{}R$ convex and $dom~f:R^n$, then <script type="math/tex">f(x)=\sup\{g(x)|g~is~af\!{}fine,g(z)\leq{}f(z),\forall{}z\}</script></p>
-<h4 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h4><p>$\geq$, obvious</p>
-<hr>
-<p>$\leq$&lt;/br&gt;</p>
-<script type="math/tex; mode=display">(x,f(x))\in{}bd~epi~f</script><script type="math/tex; mode=display">\exists{}(a,b)\neq0~s.t.~a^Tz+bt\leq{}a^Tx+bf(x)</script><script type="math/tex; mode=display">a^Tz+b(f(z)+s)\leq{}a^Tx+bf(x)</script><script type="math/tex; mode=display">b\leq0,\text{otherwise }bs\rightarrow{}\infty</script><script type="math/tex; mode=display">b=0,z=x+a\rightarrow{}a=0,\text{contradiction}</script><script type="math/tex; mode=display">b<0,s=0\rightarrow{}f(z)\geq{}f(x)+\frac{a^T(x-z)}{b}=g(z)</script><h3 id="Jensen’s-inequality"><a href="#Jensen’s-inequality" class="headerlink" title="Jensen’s inequality"></a>Jensen’s inequality</h3><p>if $f$ is convex, then<script type="math/tex">f(Ez)\leq{}Ef(z)</script></p>
-<h4 id="Proof-3"><a href="#Proof-3" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">Let~x_0=\int_{\Omega}x\rho{}(x)dx</script><script type="math/tex; mode=display">\exists{}a,b~s.t.~ax+b\leq{}f(x)~\text{and}~ax_0+b=f(x_0)</script><script type="math/tex; mode=display">\int_{\Omega}f(x)\rho{}(x)dx\geq{}\int_{\Omega}(ax+b)\rho(x)dx=ax_0+b=f(x_0)</script><h3 id="Composition-with-scalar-functions"><a href="#Composition-with-scalar-functions" class="headerlink" title="Composition with scalar functions"></a>Composition with scalar functions</h3><p>composition of $g:R^n\rightarrow{}R$ and $h:R\rightarrow{}R$</p>
-<script type="math/tex; mode=display">f(x)=h(g(x))</script><p>$f$ is convex if</p>
+<h2 id="典型不可修系统的可靠性分析"><a href="#典型不可修系统的可靠性分析" class="headerlink" title="典型不可修系统的可靠性分析"></a>典型不可修系统的可靠性分析</h2><h3 id="可靠性分析假设"><a href="#可靠性分析假设" class="headerlink" title="可靠性分析假设"></a>可靠性分析假设</h3><ul>
+<li>系统及组成单元只有故障与正常两种状态</li>
+<li>不同方框表示的不同单元的故障概率是相互独立的</li>
+<li>不考虑输入错误引起的系统故障</li>
+<li>假设系统的整个软件是完全可靠的</li>
+<li>假设人员操作是完全可靠的。</li>
+</ul>
+<h3 id="串联系统"><a href="#串联系统" class="headerlink" title="串联系统"></a>串联系统</h3><script type="math/tex; mode=display">S=x_1\cap{}x_2\cap{}\dots\cap{}x_n</script><script type="math/tex; mode=display">\bar{S}=\bar{x}_1\cup\bar{x}_2\cup\dots\cup\bar{x}_n</script><script type="math/tex; mode=display">R_S(t)=\prod_{i=1}^nR_i(t)</script><ul>
+<li>当各单元的寿命分布均为指数分布时，系统的寿命也服从指数分布</li>
+<li>串联系统中提高可靠度最小的设备的可靠性，对系统可靠性的提高贡献最大</li>
+</ul>
+<h3 id="并联系统"><a href="#并联系统" class="headerlink" title="并联系统"></a>并联系统</h3><script type="math/tex; mode=display">S=x_1\cup{}x_2\cup{}\dots\cup{}x_n</script><script type="math/tex; mode=display">\bar{S}=\bar{x}_1\cap\bar{x}_2\cap\dots\cap\bar{x}_n</script><script type="math/tex; mode=display">R_S(t)=1-\prod_{i=1}^n(1-e^{-\lambda_it})</script><script type="math/tex; mode=display">MTTF_S=\sum_{i=1}^n(i\lambda)^{-1}</script><ul>
+<li>三并联到四并联基本上可以满足要求</li>
+<li>并联系统中提高可靠度最大的设备的可靠性，对系统可靠性的提高贡献最大</li>
+</ul>
+<h3 id="k-n-表决系统"><a href="#k-n-表决系统" class="headerlink" title="$k/n$表决系统"></a>$k/n$表决系统</h3><script type="math/tex; mode=display">R_S(t)=\sum_{i=0}^{n-k}C_n^i[1-R(t)]^i[R(t)]^{n-i}</script><script type="math/tex; mode=display">\text{For exponential distribution, }MTTF_S=\sum_{i=k}^n\frac{1}{i\lambda}</script><h3 id="储备系统"><a href="#储备系统" class="headerlink" title="储备系统"></a>储备系统</h3><p>组成系统的各单元<strong>只有一个单元工作</strong>，当工作单元故障时，通过转换装置接到另一个单元继续工作，直到所有单元都故障时系统才故障，称为非工作贮备系统(又可称为旁联系统)</p>
+<h4 id="卷积方法"><a href="#卷积方法" class="headerlink" title="卷积方法"></a>卷积方法</h4><script type="math/tex; mode=display">f_{12}(t)=f_1(t)*f_2(t)=\int_0^tf_2(t-t_1)f_1(t)dt_1</script><p>$f_1(t)=\lambda_1e^{-\lambda_1t},f_2(t)=\lambda_2e^{-\lambda_2t}$</p>
+<script type="math/tex; mode=display">L[f_{12}(t)]=L[f_1(t)*f_2(t)]=L[f_1(t)]\cdot{}L[f_2(t)]=\frac{\lambda_1}{s+\lambda_1}\frac{\lambda_2}{s+\lambda_2}</script><script type="math/tex; mode=display">\Rightarrow{}f_{12}(t)=\frac{\lambda_1\lambda_2}{\lambda_1-\lambda_2}(e^{-\lambda_2t}-e^{-\lambda_1t})</script><h4 id="复合事件概率法"><a href="#复合事件概率法" class="headerlink" title="复合事件概率法"></a>复合事件概率法</h4><ul>
+<li>两设备的失效可认为是独立的</li>
+<li>计算储备系统时需考虑两者产生的非独立性（在时间上）</li>
+</ul>
+<script type="math/tex; mode=display">R_{12}(t)=R_1(t)+\int_0^tR_2(t-t_1)f_1(t_1)dt_1</script><ul>
+<li>考虑冗余设备的备用失效 $R_2^{-}(\cdot)$</li>
+<li>考虑不完全切换 $R_{SW}$<script type="math/tex; mode=display">R_{12}(t)=R_1(t)+R_{SW}\int_0^tR_2(t-t_1)R_2^{-}(t_1)f_1(t_1)dt_1</script></li>
+</ul>
+<h2 id="网络系统"><a href="#网络系统" class="headerlink" title="网络系统"></a>网络系统</h2><h3 id="全概率分解法分析复杂系统可靠性"><a href="#全概率分解法分析复杂系统可靠性" class="headerlink" title="全概率分解法分析复杂系统可靠性"></a>全概率分解法分析复杂系统可靠性</h3><script type="math/tex; mode=display">R_S(t)=P(S)=P(x)P(S|x)+P(\bar{x})P(S|\bar{x})</script><ul>
+<li>$S(x)$ 表示把网络 $S$ 中设备 $x$ 的两端节点合成一个节点而产生的新网络</li>
+<li>$S(\bar{x})$ 表示把网络 $S$ 中设备 $x$ 去掉(即两个端点之间不存在经由 $x$ 的联系)而产生的新网络</li>
+</ul>
+<script type="math/tex; mode=display">R_S(t)=P(S)=P(x)P(S(x))+P(\bar{x})P(S(\bar{x}))</script><h4 id="选用分解弧的原则"><a href="#选用分解弧的原则" class="headerlink" title="选用分解弧的原则"></a>选用分解弧的原则</h4><ul>
+<li>对任意无向弧可以作为分解弧</li>
+<li>与输入节点与输出节点相连的弧可以作为分解弧</li>
+<li>对任意有向弧，其两端点的任何一个<strong>只有流入或流出</strong>的弧，可以作为分解弧，若弧的两端都有流入和流出的弧不可作为分解弧（<strong>因为不可以引入原本不存在的通路</strong>）</li>
+</ul>
+<h3 id="最小路集-最小割集法分析系统可靠性"><a href="#最小路集-最小割集法分析系统可靠性" class="headerlink" title="最小路集/最小割集法分析系统可靠性"></a>最小路集/最小割集法分析系统可靠性</h3><h4 id="结构函数"><a href="#结构函数" class="headerlink" title="结构函数"></a>结构函数</h4><script type="math/tex; mode=display">Y=\varphi(X)=\varphi(x_1,x_2,\dots,x_n)</script><script type="math/tex; mode=display">\bar{\varphi}(X)=1-\varphi(\overline{1-X})</script><script type="math/tex; mode=display">C_1(X)=\{i|x_i=1\},C_0(X)=\{i|x_i=0\}</script><ul>
+<li>路集中任何一个设备变成失效则系统失效，此路集为最小路集</li>
+<li>割集中任何一个设备变成成功则系统成功，此割集为最小割集</li>
+</ul>
+<h4 id="单调关联系统的表示"><a href="#单调关联系统的表示" class="headerlink" title="单调关联系统的表示"></a>单调关联系统的表示</h4><p>设最小路集为 $p_1,\dots,p_m$，最小割集为 $k_1,\dots,k_m$</p>
+<script type="math/tex; mode=display">\varphi(x)=\bigcup_{j=1}^m\bigcap_{i\in{}p_j}x_i=\bigcap_{j=1}^l\bigcup_{i\in{}k_j}x_i</script><h3 id="最小路集-最小割集求解"><a href="#最小路集-最小割集求解" class="headerlink" title="最小路集/最小割集求解"></a>最小路集/最小割集求解</h3><h4 id="联络矩阵法"><a href="#联络矩阵法" class="headerlink" title="联络矩阵法"></a>联络矩阵法</h4><script type="math/tex; mode=display">C:\{C_{ij}=x\text{ if arc }x\text{ exists between }i,j\text{; }0\text{ otherwise}\}</script><script type="math/tex; mode=display">C^r=C\times{}C^{r-1}</script><p>如果研究 $I$ 到 $L$ 的可靠性</p>
 <ul>
-<li>$g$ convex, $h$ convex, $\tilde{h}$ nondecreasing</li>
-<li>$g$ concave, $h$ convex, $\tilde{h}$ nonincreasing</li>
+<li>只需求出$C^2,C^3,\dots,C^{n-1}$中第 $L$ 列</li>
+<li>$C^{n-1}$只需求出第 $I$ 行</li>
 </ul>
-<h3 id="Minimization"><a href="#Minimization" class="headerlink" title="Minimization"></a>Minimization</h3><p>if $f(x,y)$ is convex in $(x,y)$ and $C$ is a convex set, then<script type="math/tex">g(x)=\inf_{y\in{}C}f(x,y)</script><br>is convex</p>
-<h3 id="Perspective"><a href="#Perspective" class="headerlink" title="Perspective"></a>Perspective</h3><p>the perspective of a function $f:R^n\rightarrow{}R$ is the function $g:R^n\times{}R\rightarrow{}R$</p>
-<script type="math/tex; mode=display">g(x,t)=tf(x/t),~dom~g=\{(x,t)|x/t\in{}dom~f,t>0\}</script><p>$g$ is convex if $f$ is convex</p>
-<h4 id="Proof-4"><a href="#Proof-4" class="headerlink" title="Proof"></a>Proof</h4><p>use epi graph</p>
-<script type="math/tex; mode=display">(x,t,s)\in{}epi~g</script><script type="math/tex; mode=display">s\geq{}tf(x/t)</script><script type="math/tex; mode=display">s/t\geq{}f(x/t)</script><script type="math/tex; mode=display">(x/t,s/t)\in{}epi~f</script><h2 id="Conjugate-function"><a href="#Conjugate-function" class="headerlink" title="Conjugate function"></a>Conjugate function</h2><p>the conjugate of a function $f$ is</p>
-<script type="math/tex; mode=display">f^*(y)=\sup_{x\in{}dom~f}(y^Tx-f(x))</script><ul>
-<li>$f^*$ is convex (even if $f$ is not)</li>
-<li>$f(x)+f(y)\geq{}x^Ty$</li>
-<li>$f$ is convex and closed ($epi~f$ is closed), then $f^{**}=f$</li>
+<h4 id="布尔行列式"><a href="#布尔行列式" class="headerlink" title="布尔行列式"></a>布尔行列式</h4><ul>
+<li>给定联络矩阵 $C$ ，令 $D=C+I$</li>
+<li>删去输入节点列，输出节点行，得到 $S$</li>
+<li>$|S|$ 展开并且各项取正</li>
 </ul>
-<h4 id="Proof-5"><a href="#Proof-5" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">f(x)\geq{}x^Ty-f(y)</script><script type="math/tex; mode=display">f(x)\geq{}\sup_{y\in{}dom~f^*}(y^Tx-f(x))=f^{**}(x)</script><script type="math/tex; mode=display">epi~f\subseteq{}epi~f^{**}</script><script type="math/tex; mode=display">Let~(x,f^{**}(x))\notin{}epi~f</script><script type="math/tex; mode=display">\exists{}[a,b]\neq0,~s.t.[a,b][z-x,t-f^{**}(x)]^T\leq{}c<0,\forall(z,t)\in{}epi~f</script><script type="math/tex; mode=display">t=f(z)+s,s\geq0</script><script type="math/tex; mode=display">b<0,a^T(z-x)+b(f(z)-f^{**}(x)+s)\leq{}c</script><script type="math/tex; mode=display">\text{Define }y=-\frac{a}{b},~y^Tz-f(z)-s-y^Tx+f^{**}(x)\leq-\frac{c}{b}</script><script type="math/tex; mode=display">\text{Let }s=0,\text{make }\sup</script><hr>
-<script type="math/tex; mode=display">b=0,Let~y\in{}dom~f^*~and~\varepsilon>0</script><script type="math/tex; mode=display">[a+\varepsilon{}\hat{y},-\varepsilon][z-x,t-f^{**}(x)^T</script><script type="math/tex; mode=display">=a^T(z-x)+\varepsilon\hat{y}^T(z-x)-\varepsilon(t-f^{**}(x))</script><script type="math/tex; mode=display">\leq{}c+\varepsilon(f^*(\hat{y})+f^{**}(x)-\hat{y}^Tx)=\tilde{c}<0</script><h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><script type="math/tex; mode=display">f(X)=\log\det{}X,X\in{}S_+^n</script><script type="math/tex; mode=display">f^*(Y)=\sup_{X>0}\{<X,Y>-f(X)\}</script><script type="math/tex; mode=display">Y\geq0,f^*(Y)=+\infty</script><script type="math/tex; mode=display">Y<0,Y-(X^{*})^{-1}=0\rightarrow{}f^*(Y)=Tr(I)-\log\det{}Y^{-1}</script><script type="math/tex; mode=display">Y \ngeq \&\nleq0\rightarrow{}f^*(Y)=+\infty(\exists{}u,s.t.Yu=\lambda{}u,\text{choose }X=tuu^T,t>0)</script><h2 id="Quasiconvex-functions"><a href="#Quasiconvex-functions" class="headerlink" title="Quasiconvex functions"></a>Quasiconvex functions</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><p>$f:R^n\rightarrow{}R$ is quasiconvex if <strong>dom</strong> $f$ is convex and its sublevel sets are all convex</p>
-<h3 id="Modified-Jensen-inequality"><a href="#Modified-Jensen-inequality" class="headerlink" title="Modified Jensen inequality"></a>Modified Jensen inequality</h3><script type="math/tex; mode=display">0\leq\theta\leq1\rightarrow{}f(\theta{}x+(1-\theta)y)\leq\max\{f(x),f(y)\}</script><h4 id="Proof-6"><a href="#Proof-6" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\alpha=f(x)>f(y)\rightarrow{}S_\alpha=\{x|f(x)\leq\alpha\}</script><script type="math/tex; mode=display">[x,y]\subset{}S_\alpha\rightarrow{}f([x,y])\leq\alpha</script><h3 id="First-order-condition-1"><a href="#First-order-condition-1" class="headerlink" title="First-order condition"></a>First-order condition</h3><p>Differentiable $f$ with convex domain is quasiconvex iff</p>
-<script type="math/tex; mode=display">f(y)\leq{}f(x)\rightarrow\triangledown{}f(x)^T(y-x)\leq0</script><h4 id="Proof-7"><a href="#Proof-7" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">g(t)=f(x+t(y-x))\rightarrow{}g^{'}(0)=\triangledown{}f(x)^T(y-x)\leq0</script><hr>
-<script type="math/tex; mode=display">\text{Assume } z\in[x,y],f(z)>f(x)\&{}f(z)>f(y)</script><script type="math/tex; mode=display">\triangledown{}f(z)^T(x-z)\leq0~\&~\triangledown{}f(z)^T(y-z)\leq0</script><script type="math/tex; mode=display">\triangledown{}f(z)=0</script><p>$z_0$ in the neighbour of $z$, $\triangledown{}f(z)\neq0,f(z_0)&gt;f(x),f(z_0)&gt;f(y)$, contradict</p>
-<h3 id="Second-order-condition-1"><a href="#Second-order-condition-1" class="headerlink" title="Second-order condition"></a>Second-order condition</h3><p>Differentiable $f$ with convex domain is quasiconvex iff</p>
-<script type="math/tex; mode=display">f^{'}(x)=0\rightarrow{}f^{''}(x)\geq0</script><h4 id="Proof-8"><a href="#Proof-8" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\exists{}c\in[a,b],f^{'}(c)=0\land{}f^{''}(c)<0</script><script type="math/tex; mode=display">\exists{}\varepsilon{}f(c)>f(c-\varepsilon),f(c)>f(c+\varepsilon)</script><script type="math/tex; mode=display">\exists{}\delta>0,f(c)-\delta>f(c-\varepsilon),f(c)+\delta>f(c+\varepsilon)</script><script type="math/tex; mode=display">c-\varepsilon,c+\varepsilon\in\{x|f(x)\leq{}f(c)-\delta\},c\notin\{x|f(x)\leq{}f(c)-\delta\}</script><p>${x|f(x)\leq{}f(c)-\delta}$ is not convex, contradict</p>
-<hr>
-<script type="math/tex; mode=display">f^{'}\neq0\rightarrow{}f\uparrow{}or\downarrow\rightarrow{}f\in\text{quasiconvex}</script><script type="math/tex; mode=display">d=\sup\{c|f^{'}(c)=0\}</script><script type="math/tex; mode=display">\forall{}x\geq{}d,f{'}(x)\geq0\rightarrow{}f(x)\geq{}f(d)</script><script type="math/tex; mode=display">\forall{}x\leq{}d,f{'}(x)\leq0\rightarrow{}f(x)\leq{}f(d)</script><h2 id="Log-concave-and-Log-convex-functions"><a href="#Log-concave-and-Log-convex-functions" class="headerlink" title="Log-concave and Log-convex functions"></a>Log-concave and Log-convex functions</h2><h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h3><p>A positive function $f$ is log-concave if $\log{}f$ is concave<br>A positive function $f$ is log-convex if $\log{}f$ is convex</p>
-<ul>
-<li>powers:$x^a$ on $R_{++}$ is log-convex for $a\leq0$, log-concave for $a\geq0$</li>
-<li>many common probability densities are log-concave</li>
-<li>cumulative Gaussian distribution function is log-concave</li>
+<h4 id="最小割集"><a href="#最小割集" class="headerlink" title="最小割集"></a>最小割集</h4><p>$S$ 最小割集为 $\bar{S}$ 最小路集</p>
+<h3 id="利用最小路集-最小割集求解系统可靠度"><a href="#利用最小路集-最小割集求解系统可靠度" class="headerlink" title="利用最小路集/最小割集求解系统可靠度"></a>利用最小路集/最小割集求解系统可靠度</h3><h4 id="精确解"><a href="#精确解" class="headerlink" title="精确解"></a>精确解</h4><p>最小路集/最小割集一般相交（可以直接用容斥原理求解），可对其进行“不交化”，得到相互独立的最小路集/最小割集</p>
+<script type="math/tex; mode=display">K_1\cup{}K_2=K_1+\bar{K}_1K_2</script><h4 id="近似解"><a href="#近似解" class="headerlink" title="近似解"></a>近似解</h4><ul>
+<li>区间估计：当设备可靠度较高，容斥原理展式的首项或前两项起主要作用</li>
+<li>点估计</li>
 </ul>
-<h3 id="Second-order-condition-2"><a href="#Second-order-condition-2" class="headerlink" title="Second-order condition"></a>Second-order condition</h3><p>Twice differentiable $f$ with convex domain is log-concave if and only if</p>
-<script type="math/tex; mode=display">\forall{}x,f(x)\triangledown^2f(x)\preceq\triangledown{}f(x)\triangledown{}f(x)^T</script><h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><ul>
-<li>product of log-concave functions is log-concave</li>
-<li>sum of log-concave functions is not always log-concave</li>
-<li>if $f:R^n\times{}R^m\rightarrow{}R$ is log-concave, then <script type="math/tex">g(x)=\int{}f(x,y)dy</script> is log-concave (not easy to show)</li>
-<li>convolution $f*g$ of log-concave functions $f,g$ is log-concave<script type="math/tex; mode=display">(f*g)(x)=\int{}f(x-y)g(y)dy</script></li>
-</ul>
-
+<h3 id="特殊情况：三角形与星形"><a href="#特殊情况：三角形与星形" class="headerlink" title="特殊情况：三角形与星形"></a>特殊情况：三角形与星形</h3>
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>要恰饭的么<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifupay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixinpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -249,7 +287,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Convex Optimization</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Reliability Engineering</a>
         		</li>
       		
 		</ul>
@@ -305,7 +343,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/07/Convex Functions/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/18/不可修复系统的可靠性分析/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -319,18 +357,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/18/不可修复系统的可靠性分析/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/19/Convex Optimization Problems/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          不可修复系统的可靠性分析
+          Convex Optimization Problems
         
       </div>
     </a>
   
   
-    <a href="/2019/03/04/基本参数与参数估计基础/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基本参数与参数估计基础</div>
+    <a href="/2019/03/07/Convex Functions/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Convex Functions</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -357,7 +395,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-properties-and-examples"><span class="toc-number">1.</span> <span class="toc-text">Basic properties and examples</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-number">1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-on-R-R-n-and-R-m-times-n"><span class="toc-number">1.2.</span> <span class="toc-text">Examples on $R$, $R^n$ and $R^{m\times{}n}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restriction-of-a-convex-function-to-a-line"><span class="toc-number">1.3.</span> <span class="toc-text">Restriction of a convex function to a line</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof"><span class="toc-number">1.3.1.</span> <span class="toc-text">Proof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-number">1.3.2.</span> <span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-condition"><span class="toc-number">1.4.</span> <span class="toc-text">First-order condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-condition"><span class="toc-number">1.5.</span> <span class="toc-text">Second-order condition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Epigraph-and-sublevel-set"><span class="toc-number">1.6.</span> <span class="toc-text">Epigraph and sublevel set</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operations-that-preserve-convexity"><span class="toc-number">2.</span> <span class="toc-text">Operations that preserve convexity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Positive-weighted-sum-amp-composition-with-affine-function"><span class="toc-number">2.1.</span> <span class="toc-text">Positive weighted sum &amp; composition with affine function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pointwise-Maximum"><span class="toc-number">2.2.</span> <span class="toc-text">Pointwise Maximum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pointwise-Supremum"><span class="toc-number">2.3.</span> <span class="toc-text">Pointwise Supremum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem"><span class="toc-number">2.4.</span> <span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-2"><span class="toc-number">2.4.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jensen’s-inequality"><span class="toc-number">2.5.</span> <span class="toc-text">Jensen’s inequality</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-3"><span class="toc-number">2.5.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Composition-with-scalar-functions"><span class="toc-number">2.6.</span> <span class="toc-text">Composition with scalar functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Minimization"><span class="toc-number">2.7.</span> <span class="toc-text">Minimization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Perspective"><span class="toc-number">2.8.</span> <span class="toc-text">Perspective</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-4"><span class="toc-number">2.8.1.</span> <span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conjugate-function"><span class="toc-number">3.</span> <span class="toc-text">Conjugate function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-5"><span class="toc-number">3.0.1.</span> <span class="toc-text">Proof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-1"><span class="toc-number">3.0.2.</span> <span class="toc-text">Example</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Quasiconvex-functions"><span class="toc-number">4.</span> <span class="toc-text">Quasiconvex functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-1"><span class="toc-number">4.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modified-Jensen-inequality"><span class="toc-number">4.2.</span> <span class="toc-text">Modified Jensen inequality</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-6"><span class="toc-number">4.2.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-condition-1"><span class="toc-number">4.3.</span> <span class="toc-text">First-order condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-7"><span class="toc-number">4.3.1.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-condition-1"><span class="toc-number">4.4.</span> <span class="toc-text">Second-order condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-8"><span class="toc-number">4.4.1.</span> <span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Log-concave-and-Log-convex-functions"><span class="toc-number">5.</span> <span class="toc-text">Log-concave and Log-convex functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-2"><span class="toc-number">5.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-condition-2"><span class="toc-number">5.2.</span> <span class="toc-text">Second-order condition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties"><span class="toc-number">5.3.</span> <span class="toc-text">Properties</span></a></li></ol></li>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#可靠性逻辑框图"><span class="toc-number">1.</span> <span class="toc-text">可靠性逻辑框图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统可靠性"><span class="toc-number">1.1.</span> <span class="toc-text">系统可靠性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统可靠性框图"><span class="toc-number">1.2.</span> <span class="toc-text">系统可靠性框图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#典型不可修系统的可靠性分析"><span class="toc-number">2.</span> <span class="toc-text">典型不可修系统的可靠性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可靠性分析假设"><span class="toc-number">2.1.</span> <span class="toc-text">可靠性分析假设</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#串联系统"><span class="toc-number">2.2.</span> <span class="toc-text">串联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并联系统"><span class="toc-number">2.3.</span> <span class="toc-text">并联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#k-n-表决系统"><span class="toc-number">2.4.</span> <span class="toc-text">$k/n$表决系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#储备系统"><span class="toc-number">2.5.</span> <span class="toc-text">储备系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积方法"><span class="toc-number">2.5.1.</span> <span class="toc-text">卷积方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复合事件概率法"><span class="toc-number">2.5.2.</span> <span class="toc-text">复合事件概率法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络系统"><span class="toc-number">3.</span> <span class="toc-text">网络系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全概率分解法分析复杂系统可靠性"><span class="toc-number">3.1.</span> <span class="toc-text">全概率分解法分析复杂系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选用分解弧的原则"><span class="toc-number">3.1.1.</span> <span class="toc-text">选用分解弧的原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小路集-最小割集法分析系统可靠性"><span class="toc-number">3.2.</span> <span class="toc-text">最小路集/最小割集法分析系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#结构函数"><span class="toc-number">3.2.1.</span> <span class="toc-text">结构函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单调关联系统的表示"><span class="toc-number">3.2.2.</span> <span class="toc-text">单调关联系统的表示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小路集-最小割集求解"><span class="toc-number">3.3.</span> <span class="toc-text">最小路集/最小割集求解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#联络矩阵法"><span class="toc-number">3.3.1.</span> <span class="toc-text">联络矩阵法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#布尔行列式"><span class="toc-number">3.3.2.</span> <span class="toc-text">布尔行列式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最小割集"><span class="toc-number">3.3.3.</span> <span class="toc-text">最小割集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用最小路集-最小割集求解系统可靠度"><span class="toc-number">3.4.</span> <span class="toc-text">利用最小路集/最小割集求解系统可靠度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#精确解"><span class="toc-number">3.4.1.</span> <span class="toc-text">精确解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#近似解"><span class="toc-number">3.4.2.</span> <span class="toc-text">近似解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊情况：三角形与星形"><span class="toc-number">3.5.</span> <span class="toc-text">特殊情况：三角形与星形</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

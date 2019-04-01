@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Lagrange dual problem">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-28T14:20:22.022Z">
+<meta property="og:updated_time" content="2019-03-29T09:01:47.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Duality">
 <meta name="twitter:description" content="Lagrange dual problem">
@@ -197,9 +197,9 @@
 <li>primal constraints: $f_i(x)\leq0,i=1,\dots,m,h_i(x)=0,i=1,\dots,p$</li>
 <li>dual constraints: $\lambda\succeq0$</li>
 <li>complementary slackness: $\lambda_if_i(x)=0$</li>
-<li>gradient of Lagrangian with respect to $x$ vanishes: <script type="math/tex">\nabla{}f_0(x)+\sum_{i=1}^m\lambda_i\nabla{}f_i(x)+\sum_{i=1}^p\nu_i\nabla{}h_i(x)=0</script></li>
+<li>gradient of Lagrangian with respect to $x$ vanishes: </li>
 </ul>
-<h3 id="KKT-conditions-for-convex-problem"><a href="#KKT-conditions-for-convex-problem" class="headerlink" title="KKT conditions for convex problem"></a>KKT conditions for convex problem</h3><p>If $\tilde{x},\tilde{\lambda},\tilde{\nu}$ satisfy KKT for a convex problem, then they are optimal.&lt;/br&gt;<br>If Slater’s condition is satisfied, then<br>$x$ is optimal if and only if there exist $\lambda, \nu$ that satisfy KKT conditions.</p>
+<script type="math/tex; mode=display">\nabla{}f_0(x)+\sum_{i=1}^m\lambda_i\nabla{}f_i(x)+\sum_{i=1}^p\nu_i\nabla{}h_i(x)=0</script><h3 id="KKT-conditions-for-convex-problem"><a href="#KKT-conditions-for-convex-problem" class="headerlink" title="KKT conditions for convex problem"></a>KKT conditions for convex problem</h3><p>If $\tilde{x},\tilde{\lambda},\tilde{\nu}$ satisfy KKT for a convex problem, then they are optimal.&lt;/br&gt;<br>If Slater’s condition is satisfied, then<br>$x$ is optimal if and only if there exist $\lambda, \nu$ that satisfy KKT conditions.</p>
 <h2 id="Perturbation-and-sensitivity-analysis"><a href="#Perturbation-and-sensitivity-analysis" class="headerlink" title="Perturbation and sensitivity analysis"></a>Perturbation and sensitivity analysis</h2><script type="math/tex; mode=display">f_i(x)\leq0\Rightarrow{}f_i(x)\leq{}u_i</script><script type="math/tex; mode=display">h_i(x)=0\Rightarrow{}h_i(x)=v_i</script><script type="math/tex; mode=display">g(\lambda,\nu)\Rightarrow{}g(\lambda,\nu)-u^T\lambda-v^T\nu</script><hr>
 <script type="math/tex; mode=display">p^\star(u,v)\geq{}g(\lambda^\star,\nu^\star)-u^T\lambda^\star-v^T\nu^\star=p^\star(0,0)-\lambda^\star-\nu^\star</script><h3 id="Local-sensitivity"><a href="#Local-sensitivity" class="headerlink" title="Local sensitivity"></a>Local sensitivity</h3><p>If $p^\star(u,v)$ is differentiable at $(0,0)$, then <script type="math/tex">\lambda_i^\star=-\frac{\partial{}p^\star(0,0)}{\partial{}u_i},\nu_i^\star=-\frac{\partial{}p^\star(0,0)}{\partial{}v_i}</script></p>
 <h2 id="Duality-and-problem-reformulations"><a href="#Duality-and-problem-reformulations" class="headerlink" title="Duality and problem reformulations"></a>Duality and problem reformulations</h2><h3 id="Introducing-new-variables-and-equality-constraints"><a href="#Introducing-new-variables-and-equality-constraints" class="headerlink" title="Introducing new variables and equality constraints"></a>Introducing new variables and equality constraints</h3><script type="math/tex; mode=display">\text{minimize }f_0(Ax+b)</script><ul>
@@ -208,10 +208,12 @@
 </ul>
 <script type="math/tex; mode=display">\Rightarrow\text{minimize }f_0(y)\text{, subject to }Ax+b-y=0</script><h3 id="Implicit-constraints"><a href="#Implicit-constraints" class="headerlink" title="Implicit constraints"></a>Implicit constraints</h3><script type="math/tex; mode=display">\text{minimize }c^Tx\text{, subject to }Ax=b,-1\preceq{}x\preceq{}1</script><script type="math/tex; mode=display">\Rightarrow\text{minimize }f_0(x)=c^Tx(-1\preceq{}x\preceq{}1),\infty(\text{otherwise})\text{, subject to }Ax=b</script><h3 id="Problems-with-generalized-inequalities"><a href="#Problems-with-generalized-inequalities" class="headerlink" title="Problems with generalized inequalities"></a>Problems with generalized inequalities</h3><script type="math/tex; mode=display">\text{minimize }f_0(x)\text{, subject to }f_i(x)\preceq{}_{K_i}0,h_i(x)=0</script><h3 id="Semidefinite-program"><a href="#Semidefinite-program" class="headerlink" title="Semidefinite program"></a>Semidefinite program</h3><script type="math/tex; mode=display">\text{minimize }c^Tx,\text{, subject to }x_1F_1+\dots+x_nF_n\preceq{}G</script><ul>
 <li>Lagrange multiplier is matrix $Z\in{}S^k$</li>
-<li>Lagranigian <script type="math/tex">L(x,Z)=c^Tx+tr(Z(x_1F_1+\dots+x_nF_n-G))</script></li>
-<li>dual function <script type="math/tex">g(Z)=\inf_xL(x,Z)=-tr(GZ)(\text{for }tr(F_iZ)+c_i=0),-\infty(\text{otherwise})</script></li>
+<li>Lagranigian </li>
 </ul>
-
+<script type="math/tex; mode=display">L(x,Z)=c^Tx+tr(Z(x_1F_1+\dots+x_nF_n-G))</script><ul>
+<li>dual function </li>
+</ul>
+<script type="math/tex; mode=display">g(Z)=\inf_xL(x,Z)=-tr(GZ)(\text{for }tr(F_iZ)+c_i=0),-\infty(\text{otherwise})</script>
       
 
       
