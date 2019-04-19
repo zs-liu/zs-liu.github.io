@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Convert LP to a Standard Form">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-29T09:02:00.321Z">
+<meta property="og:updated_time" content="2019-04-19T05:53:04.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Simplex Algorithm">
 <meta name="twitter:description" content="Convert LP to a Standard Form">
@@ -172,7 +172,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Convert-LP-to-a-Standard-Form"><a href="#Convert-LP-to-a-Standard-Form" class="headerlink" title="Convert LP to a Standard Form"></a>Convert LP to a Standard Form</h2><a id="more"></a>
-<script type="math/tex; mode=display">\min{}c^Tx,\text{subject to }Ax=b\land{}x\geq0</script><h3 id="For-Inequality"><a href="#For-Inequality" class="headerlink" title="For Inequality"></a>For Inequality</h3><ul>
+<script type="math/tex; mode=display">\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0</script><h3 id="For-Inequality"><a href="#For-Inequality" class="headerlink" title="For Inequality"></a>For Inequality</h3><ul>
 <li>$x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0$</li>
 <li>$x+y\leq{}a\rightarrow{}x+y+s=a,s\geq0$</li>
 <li>Unrestricted $\rightarrow{}x=y-z,y\geq0,z\geq0$</li>
@@ -182,7 +182,7 @@
 <li>Feasible region for any LP problem is a convex set</li>
 <li>If a LP has an optimal solution, there must be an extreme point of the feasible region that is optimal</li>
 </ul>
-<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\text{Suppose }x^\star=\sum_{i=1}^n\alpha_ix_i\text{ is an optimal solution}</script><script type="math/tex; mode=display">c^Tx^\star=c^T\sum_{i=1}^n\alpha_ix_i>\sum_{i=1}^n\alpha_ic^Tx^\star=c^Tx^\star</script><h3 id="Adjacent-Basic-Feasible-Solutions"><a href="#Adjacent-Basic-Feasible-Solutions" class="headerlink" title="Adjacent Basic Feasible Solutions"></a>Adjacent Basic Feasible Solutions</h3><p>Two basic feasible solutions are said to be <em>adjacent</em> if their sets of basic variables have $m-1$ basic variables in common</p>
+<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\text{Suppose }x^\star=\sum_{i=1}^n\alpha_ix_i\text{ is an optimal solution}</script><script type="math/tex; mode=display">c^\top{}x^\star=c^\top{}\sum_{i=1}^n\alpha_ix_i>\sum_{i=1}^n\alpha_ic^\top{}x^\star=c^\top{}x^\star</script><h3 id="Adjacent-Basic-Feasible-Solutions"><a href="#Adjacent-Basic-Feasible-Solutions" class="headerlink" title="Adjacent Basic Feasible Solutions"></a>Adjacent Basic Feasible Solutions</h3><p>Two basic feasible solutions are said to be <em>adjacent</em> if their sets of basic variables have $m-1$ basic variables in common</p>
 <h2 id="General-Description-of-the-Simplex-Algorithm"><a href="#General-Description-of-the-Simplex-Algorithm" class="headerlink" title="General Description of the Simplex Algorithm"></a>General Description of the Simplex Algorithm</h2><ol>
 <li>Find an initial bfs of LP</li>
 <li>Change bfs to its adjacent bfs</li>
@@ -190,72 +190,27 @@
 <li>For maximum, until the first row is all nonnegative; For minimum, until the first row is all nonpositive </li>
 </ol>
 <h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>Standard form:</p>
-<script type="math/tex; mode=display">\max{}z=3x_1+5x_2\begin{split}
+<script type="math/tex; mode=display">\max{}z=3x_1+5x_2$$ $$\begin{split}
             \text{subject to }\quad{}x_1+s_1&=8\\
             2x_2+s_2&=12\\
             3x_1+4x_2+s_3&=36\\
             x_1,x_2,s_1,s_2,s_3&\geq0
         \end{split}
             \label{p1s}</script><p>Choose $(s_1,s_2,s_3)$ as BFS, we have table:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$z$</th>
-<th style="text-align:center">$x_1$</th>
-<th style="text-align:center">$x_2$</th>
-<th style="text-align:center">$s_1$</th>
-<th style="text-align:center">$s_2$</th>
-<th style="text-align:center">$s_3$</th>
-<th style="text-align:center">rhs</th>
-<th style="text-align:center">Basic Variable</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">-3</td>
-<td style="text-align:center">-5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">$z=0$</td>
-</tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">$s_1=8$</td>
-</tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">$s_2=12$</td>
-</tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">36</td>
-<td style="text-align:center">$s_3=36$</td>
-</tr>
-</tbody>
-</table>
-</div>
+<center>
+
+| $z$ | $x_1$ | $x_2$ | $s_1$ | $s_2$ | $s_3$ | rhs | Basic Variable |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| 1 | -3 | -5 | 0 | 0 | 0 | 0 | $z=0$ |
+| 0 |     1   |    0    |   1    |   0   |    0   |   8    |   $s_1=8$|
+|    0   |   0   |    2   |    0   |    1   |    0   |  12    |   $s_2=12$ |
+|    0   |   3   |    4   |    0   |    0   |    1  |   36   |    $s_3=36$ |
+
+</center>
+
 <p>Choose $(s_1,x_2,s_3)$ as BFS, we have table:</p>
+<center>
+
 <div class="table-container">
 <table>
 <thead>
@@ -314,7 +269,9 @@
 </tbody>
 </table>
 </div>
-<p>Choose $(s_1,x_2,x_1)$ as BFS, we have table:</p>
+<p>&lt;/center&gt;<br>Choose $(s_1,x_2,x_1)$ as BFS, we have table:</p>
+<center>
+
 <div class="table-container">
 <table>
 <thead>
@@ -373,14 +330,16 @@
 </tbody>
 </table>
 </div>
-<p>So the final result is </p>
-<script type="math/tex; mode=display">x_1=4,x_2=6,z_{max}=42</script><h3 id="Degeneracy"><a href="#Degeneracy" class="headerlink" title="Degeneracy"></a>Degeneracy</h3><p>An LP is degenerate if it has at least one basic feasible solution in which a basic feasible variable is equal to 0</p>
+<p>&lt;/center&gt;<br>So the final result is <script type="math/tex">x_1=4,x_2=6,z_{max}=42</script></p>
+<h3 id="Degeneracy"><a href="#Degeneracy" class="headerlink" title="Degeneracy"></a>Degeneracy</h3><p>An LP is degenerate if it has at least one basic feasible solution in which a basic feasible variable is equal to 0</p>
 <ul>
 <li>pivoting may not improve the objective value</li>
 <li>simplex method may end up in cycles</li>
 </ul>
-<h2 id="Two-BFS-Methods"><a href="#Two-BFS-Methods" class="headerlink" title="Two BFS Methods"></a>Two BFS Methods</h2><h3 id="Big-M-Method"><a href="#Big-M-Method" class="headerlink" title="Big M Method"></a>Big M Method</h3><script type="math/tex; mode=display">\min{}f(x_1,x_2),\text{ subject to }x_1+x_2=10</script><script type="math/tex; mode=display">\Rightarrow\min{}f(x_1,x_2)+Ma,\text{ subject to }x_1+x_2+a=10</script><p>Introduce $a_i$ to every row which has a negative coefficient (on $s$ or $z$), then we can get bfs easily</p>
-<h3 id="Two-Phase-Method"><a href="#Two-Phase-Method" class="headerlink" title="Two-Phase Method"></a>Two-Phase Method</h3><script type="math/tex; mode=display">\min{}f(x_1,x_2),\text{ subject to }x_1+x_2=10</script><script type="math/tex; mode=display">\Rightarrow\min{}a,\text{ subject to }x_1+x_2+a=10,a\geq0</script>
+<h2 id="Two-BFS-Methods"><a href="#Two-BFS-Methods" class="headerlink" title="Two BFS Methods"></a>Two BFS Methods</h2><h3 id="Big-M-Method"><a href="#Big-M-Method" class="headerlink" title="Big M Method"></a>Big M Method</h3><script type="math/tex; mode=display">\min{}f(x),\text{ subject to }Ax=b(b\succeq0)</script><script type="math/tex; mode=display">\Rightarrow\min{}f(x)+M^\top{}a,\text{ subject to }Ax+Ia=b</script><p>Introduce $a_i$ to every row which has a negative coefficient (on $s$ or $z$), then we can get bfs easily</p>
+<script type="math/tex; mode=display">(x=0,a=b)</script><p>If we can’t reduce all parameters of $a$ to 0, then the original problem is infeasible</p>
+<h3 id="Two-Phase-Method"><a href="#Two-Phase-Method" class="headerlink" title="Two-Phase Method"></a>Two-Phase Method</h3><script type="math/tex; mode=display">\min{}f(x),\text{ subject to }Ax=b(b\succeq0)</script><script type="math/tex; mode=display">\Rightarrow\min{}I^\top{}a,\text{ subject to }Ax+Ia=b,a\succeq0</script><p>If $a^\star\neq0$, then the original problem is infeasible</p>
+</center></center>
       
 
       
