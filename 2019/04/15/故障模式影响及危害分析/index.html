@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
-  <title>可修复系统的可靠性分析 | 鲈鱼柳的博客</title>
+  <title>故障模式影响及危害分析 | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="维修性特征量">
+  <meta name="description" content="概述">
 <meta name="keywords" content="Reliability Engineering">
 <meta property="og:type" content="article">
-<meta property="og:title" content="可修复系统的可靠性分析">
-<meta property="og:url" content="https://zs-liu.github.io/2019/04/01/可修复系统的可靠性分析/index.html">
+<meta property="og:title" content="故障模式影响及危害分析">
+<meta property="og:url" content="https://zs-liu.github.io/2019/04/15/故障模式影响及危害分析/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="维修性特征量">
+<meta property="og:description" content="概述">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-18T10:54:38.648Z">
+<meta property="og:updated_time" content="2019-04-22T06:09:09.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="可修复系统的可靠性分析">
-<meta name="twitter:description" content="维修性特征量">
+<meta name="twitter:title" content="故障模式影响及危害分析">
+<meta name="twitter:description" content="概述">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -151,74 +151,135 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-可修复系统的可靠性分析" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-故障模式影响及危害分析" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      可修复系统的可靠性分析
+      故障模式影响及危害分析
     </h1>
   
 
         
-        <a href="/2019/04/01/可修复系统的可靠性分析/" class="archive-article-date">
-  	<time datetime="2019-04-01T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
+        <a href="/2019/04/15/故障模式影响及危害分析/" class="archive-article-date">
+  	<time datetime="2019-04-15T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="维修性特征量"><a href="#维修性特征量" class="headerlink" title="维修性特征量"></a>维修性特征量</h2><a id="more"></a>
-<h4 id="维修分布函数-维修度"><a href="#维修分布函数-维修度" class="headerlink" title="维修分布函数/维修度"></a>维修分布函数/维修度</h4><p>产品从故障开始到修理完毕经历的时间 $Y$</p>
-<script type="math/tex; mode=display">M(t)=P(Y\leq{}t)</script><h4 id="修复率"><a href="#修复率" class="headerlink" title="修复率"></a>修复率</h4><p>尚未修复的产品在单位时间内修复完成</p>
-<script type="math/tex; mode=display">\mu(t)=\frac{m(t)}{1-M(t)}</script><h4 id="平均修复时间"><a href="#平均修复时间" class="headerlink" title="平均修复时间"></a>平均修复时间</h4><script type="math/tex; mode=display">MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)</script><h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><ul>
-<li>也称有效性，综合反映可靠性和维修性，即可维修产品使用效率的广义可靠性</li>
-<li>规定条件包括工作条件和维修条件</li>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><a id="more"></a>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>Failure Mode, Effects and Criticality analysis</li>
+<li>归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每个故障模式的严重程度及发 生概率予以分类。<ul>
+<li>一种自下而上的归纳分析方法</li>
+<li>FMEA和CA</li>
 </ul>
-<h3 id="特征量"><a href="#特征量" class="headerlink" title="特征量"></a>特征量</h3><h4 id="瞬时可用度"><a href="#瞬时可用度" class="headerlink" title="瞬时可用度"></a>瞬时可用度</h4><ul>
-<li>可维修产品在某时刻具有或维持功能的概率</li>
-<li>瞬时可用度常用于理论分析</li>
+</li>
 </ul>
-<h4 id="平均可用度"><a href="#平均可用度" class="headerlink" title="平均可用度"></a>平均可用度</h4><script type="math/tex; mode=display">\bar{A}(t_1,t_2)=\frac{1}{t_2-t_1}\int_{t_1}^{t_2}A(t)dt</script><h4 id="稳态可用度"><a href="#稳态可用度" class="headerlink" title="稳态可用度"></a>稳态可用度</h4><script type="math/tex; mode=display">A=A(\infty)=\lim_{t\rightarrow\infty}A(t)=\frac{MTBF}{MTBF+MTTR}</script><p>当可靠度函数和维修度函数均是指数函数：</p>
-<script type="math/tex; mode=display">A=\frac{\mu}{\mu+\lambda}</script><h2 id="预防维修与事后维修"><a href="#预防维修与事后维修" class="headerlink" title="预防维修与事后维修"></a>预防维修与事后维修</h2><h3 id="预防维修"><a href="#预防维修" class="headerlink" title="预防维修"></a>预防维修</h3><ul>
-<li>计划性的维修活动，最常用的形式是定期检修，使设备总是 保持良好的工作状态</li>
-<li>按照规定程序，假定起始时间为 $0$，检修时间间隔为 $T$，则产品工作时间 $t=jT+\tau$</li>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>在设计、生产和使用阶段发现影响系统可靠性的各薄弱环节</li>
+<li>对薄弱环节提出改进措施，提高系统可靠性水平</li>
 </ul>
-<h4 id="理想预防维修系统的可用度"><a href="#理想预防维修系统的可用度" class="headerlink" title="理想预防维修系统的可用度"></a>理想预防维修系统的可用度</h4><ul>
-<li>平均预防维修时间 $T_p$ ；平均事后维修时间 $T_f$</li>
-<li>系统平均停工时间 $MDT=R(T)T_p+(1-R(T))T_f$</li>
-<li>系统平均工作时间 $MUT=\int_0^TR(t)dt$</li>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="系统定义"><a href="#系统定义" class="headerlink" title="系统定义"></a>系统定义</h3><ul>
+<li>确定系统中进行FMECA的设备范围</li>
+<li>系统功能任务的描述</li>
+<li>确定系统及设备的故障判据</li>
 </ul>
-<script type="math/tex; mode=display">A=\frac{MUT}{MUT+MDT}</script><h3 id="事后维修"><a href="#事后维修" class="headerlink" title="事后维修"></a>事后维修</h3><ul>
-<li>系统投入运行后，一旦发生故障，立即开始修理</li>
-<li>系统只存在运行状态 $S$ 和失效状态 $F$</li>
-<li>状态转移关系</li>
+<h3 id="FMEA"><a href="#FMEA" class="headerlink" title="FMEA"></a>FMEA</h3><ul>
+<li>代码：采用统一的编码体系对每个设备的每个故障模式进行编码</li>
+<li>设备或功能标识：记录被分析设备或功能的名称标识</li>
+<li>功能：简要描述设备的主要功能</li>
+<li>故障模式：故障的表现形式，每一个产品有可能具有多种故障模式<ul>
+<li>损坏型、退化型、松脱型、失调型、堵塞或渗漏型、功能型等</li>
 </ul>
-<script type="math/tex; mode=display">P_F(t+\Delta{}t)=P_S(t)\lambda(t)\Delta{}t+P_F(t)[1-\mu(t)\Delta{}t]</script><script type="math/tex; mode=display">P_F(t)=\exp\{-Q(t)\}\int_0^t\exp\{Q(t)\}\lambda(t)dt,Q(t)=\int_0^t[\lambda(t)+mu(t)]dt</script><h2 id="马尔科夫模型求解可修复系统可靠性"><a href="#马尔科夫模型求解可修复系统可靠性" class="headerlink" title="马尔科夫模型求解可修复系统可靠性"></a>马尔科夫模型求解可修复系统可靠性</h2><h3 id="马尔科夫过程"><a href="#马尔科夫过程" class="headerlink" title="马尔科夫过程"></a>马尔科夫过程</h3><script type="math/tex; mode=display">P(X(t_n)=x_n|X(t_1)=x_1,\dots,X(t_{n-1})=x_{n-1})=P(X(t_n)=x_n|X(t_{n-1})=x_{n-1})</script><p>随机过程 ${X(t),t\geq0}$ 是连续时间和离散状态空间 $S={0,1,2,\dots,n}$ 的马尔科夫过程，若满足如下条件（即转移密度为常数），则称此过程为<strong>齐次</strong>马尔科夫过程：</p>
-<script type="math/tex; mode=display">P(X(t+\Delta{}t)=j|X(t)=i)\equiv{}p_{ij}(\Delta{}t)</script><p>由归一化条件，显然有：</p>
-<script type="math/tex; mode=display">p_{ii}+\sum_{j\neq{}i}p_{ij}=1</script><h3 id="转移率"><a href="#转移率" class="headerlink" title="转移率"></a>转移率</h3><script type="math/tex; mode=display">q_{ij}=\lim_{\Delta{}t\rightarrow0}\frac{p_{ij}(\Delta{}t)}{\Delta{}t},q_{i}=\lim_{\Delta{}t\rightarrow0}\frac{1-p_{ii}(\Delta{}t)}{\Delta{}t}</script><p>由全概率条件，显然有：</p>
-<script type="math/tex; mode=display">q_i=\sum_{j\neq{}i}q_{ij}</script><p>转移率矩阵为：</p>
-<script type="math/tex; mode=display">a_{ij}=q_{ij}~(i\neq{}j)~\text{or}~-q_i~(i=j)</script><h3 id="利用转移率矩阵求解系统可靠性参数"><a href="#利用转移率矩阵求解系统可靠性参数" class="headerlink" title="利用转移率矩阵求解系统可靠性参数"></a>利用转移率矩阵求解系统可靠性参数</h3><ul>
-<li>状态概率：系统在 $t$ 时刻处于状态 $i$ 的概率</li>
-<li>可用度：瞬时可用度、稳态可用度</li>
-<li>系统可靠度、平均首次故障时间</li>
-<li>状态频率、状态持续时间</li>
+</li>
+<li>故障原因<ul>
+<li>直接原因：导致设备功能故障的设备自身的那些物理、化学或生物变化过程等</li>
+<li>间接原因：其他设备故障、环境因素和人为因素等外部原因</li>
 </ul>
-<h4 id="系统状态概率"><a href="#系统状态概率" class="headerlink" title="系统状态概率"></a>系统状态概率</h4><p>令</p>
-<script type="math/tex; mode=display">P(t)=[p_1(t),p_2(t),\dots,p_n(t)]</script><p>则有：</p>
-<script type="math/tex; mode=display">P^{'}(t)=P(t)A</script><p>等式两边使用拉普拉斯变换</p>
-<script type="math/tex; mode=display">sP^*(s)-P(0)=P^*(s)A</script><script type="math/tex; mode=display">P^*(s)=P(0)(sI-A)^{-1}</script><p>然后进行分式分解（$s_i$ 为矩阵 $sI-A$ 第 $i$ 个特征值）</p>
-<script type="math/tex; mode=display">P^*_j(s)=\sum_{i=0}^Nb_{ji}(s-s_i)^{-1}</script><p>从而可以得到原函数</p>
-<script type="math/tex; mode=display">P_j(t)=\sum_{i=0}^Nb_{ji}\exp(s_it)</script><h4 id="系统可用度"><a href="#系统可用度" class="headerlink" title="系统可用度"></a>系统可用度</h4><ul>
-<li>系统的瞬时可用度 $A(t)$</li>
+</li>
+<li>任务阶段与工作方式<ul>
+<li>任务可能包含多个阶段，设备可能需要参与一个或多个阶段</li>
+<li>工作方式：可替换、有冗余等</li>
 </ul>
-<script type="math/tex; mode=display">A(t)=\sum_{j\in{}W}p_j(t)</script><ul>
-<li>系统稳态可用度 $A(\infty)$</li>
+</li>
+<li>故障影响<ul>
+<li>局部影响：某设备的故障模式对自身和与其所在约定层次相同的其他设备的使用、功能或状态的影响</li>
+<li>高一层次影响：某设备的故障模式对其所在约定层次的高一层次设备的使用、功能或状态的影响。</li>
+<li>最终影响：指系统中某设备的故障模式对初始约定层次设备的使用、功能或状态的影响。</li>
 </ul>
-<script type="math/tex; mode=display">(\pi_0,\dots,\pi_n)A=(0,\dots,0),\pi_0+\dots+\pi_n=1</script><script type="math/tex; mode=display">A(\infty)=\sum_{j\in{}W}\pi_j</script><h4 id="系统可靠度与平均首次故障前时间MTTFF"><a href="#系统可靠度与平均首次故障前时间MTTFF" class="headerlink" title="系统可靠度与平均首次故障前时间MTTFF"></a>系统可靠度与平均首次故障前时间MTTFF</h4><h4 id="状态频率和持续时间"><a href="#状态频率和持续时间" class="headerlink" title="状态频率和持续时间"></a>状态频率和持续时间</h4>
+</li>
+<li>严酷度等级<ul>
+<li>严酷度：设备故障模式所产生后果的严重程度</li>
+<li>严酷度等级：应考虑故障造成的最坏潜在后果，根据最终可能出现的人员伤亡、系统损坏或经济损失的程度等来确定。</li>
+</ul>
+</li>
+<li>故障检测方法<ul>
+<li>包括事前检测与事后检测</li>
+<li>目视检查、离机检测、原位测试等手段</li>
+</ul>
+</li>
+<li>补偿措施<ul>
+<li>设计补偿措施<ul>
+<li>设备发生故障时，能继续工作的冗余设备</li>
+<li>安全或保险装置(如监控及报警装置)</li>
+<li>可替换的工作方式(如备用或辅助设备)</li>
+<li>可以消除或减轻故障影响的设计或工艺改进</li>
+</ul>
+</li>
+<li>操作人员补偿措施<ul>
+<li>特殊的使用和维护规程，尽量避免或预防故障的发生</li>
+<li>一旦出现某故障后操作人员应采取的最恰当的补救措施</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="CA"><a href="#CA" class="headerlink" title="CA"></a>CA</h3><ul>
+<li>危害性分析CA：按每个故障模式的严重程度及其发生概率所产生的综合影响对系统中的设备分级</li>
+<li>分析方法<ul>
+<li>风险优先数法</li>
+<li>危害性矩阵法</li>
+</ul>
+</li>
+</ul>
+<h4 id="风险优先数法"><a href="#风险优先数法" class="headerlink" title="风险优先数法"></a>风险优先数法</h4><script type="math/tex; mode=display">RPN=OPR\times{}ESR</script><ul>
+<li>$OPR$：发生概率等级</li>
+<li>$ESR$：影响严酷度等级</li>
+</ul>
+<h4 id="危害性矩阵法"><a href="#危害性矩阵法" class="headerlink" title="危害性矩阵法"></a>危害性矩阵法</h4><ul>
+<li>故障模式频数比 $\alpha$：设备某故障模式占其全部故障模式的百分比率</li>
+<li>故障影响概率 $\beta$：某故障模式发生后，导致确定的严酷度等级的最终影响的条件概率</li>
+<li>故障模式危害度：评价设备单一故障模式危害性</li>
+</ul>
+<script type="math/tex; mode=display">C_m(j)=\alpha\beta\lambda{}pt</script><ul>
+<li>设备危害度：评价设备的危害性</li>
+</ul>
+<script type="math/tex; mode=display">C_r(j)=\sum{}C_{mi}(j)</script><h3 id="结果呈现"><a href="#结果呈现" class="headerlink" title="结果呈现"></a>结果呈现</h3><ul>
+<li>可靠性关键设备清单<ul>
+<li>RPN 值大于某规定值的设备</li>
+<li>危害性矩阵中落在某一规定区域之内的设备</li>
+</ul>
+</li>
+<li>严重故障模式清单<ul>
+<li>严酷度为 Ⅰ、Ⅱ 类的故障模式</li>
+<li>故障影响严重程度被评为 9-10 分的故障模式</li>
+</ul>
+</li>
+<li>单点故障模式清单<ul>
+<li>某一设备或故障模式发生后将直接导致系统故障</li>
+</ul>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>FMECA 中各故障模式的相关数据是定量化分析的基础</li>
+<li>FMECA 是静态的、单一因素的分析方法，在动态方面还很不完善</li>
+</ul>
+
       
 
       
@@ -287,7 +348,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zs-liu.github.io/2019/04/01/可修复系统的可靠性分析/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zs-liu.github.io/2019/04/15/故障模式影响及危害分析/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +362,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/04/15/故障模式影响及危害分析/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          故障模式影响及危害分析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/26/Duality/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Duality</div>
+    <a href="/2019/04/01/可修复系统的可靠性分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">可修复系统的可靠性分析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -339,7 +391,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#维修性特征量"><span class="toc-number">1.</span> <span class="toc-text">维修性特征量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#维修分布函数-维修度"><span class="toc-number">1.0.1.</span> <span class="toc-text">维修分布函数/维修度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修复率"><span class="toc-number">1.0.2.</span> <span class="toc-text">修复率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平均修复时间"><span class="toc-number">1.0.3.</span> <span class="toc-text">平均修复时间</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#可用性"><span class="toc-number">2.</span> <span class="toc-text">可用性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特征量"><span class="toc-number">2.1.</span> <span class="toc-text">特征量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#瞬时可用度"><span class="toc-number">2.1.1.</span> <span class="toc-text">瞬时可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平均可用度"><span class="toc-number">2.1.2.</span> <span class="toc-text">平均可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#稳态可用度"><span class="toc-number">2.1.3.</span> <span class="toc-text">稳态可用度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预防维修与事后维修"><span class="toc-number">3.</span> <span class="toc-text">预防维修与事后维修</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#预防维修"><span class="toc-number">3.1.</span> <span class="toc-text">预防维修</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#理想预防维修系统的可用度"><span class="toc-number">3.1.1.</span> <span class="toc-text">理想预防维修系统的可用度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事后维修"><span class="toc-number">3.2.</span> <span class="toc-text">事后维修</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#马尔科夫模型求解可修复系统可靠性"><span class="toc-number">4.</span> <span class="toc-text">马尔科夫模型求解可修复系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#马尔科夫过程"><span class="toc-number">4.1.</span> <span class="toc-text">马尔科夫过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转移率"><span class="toc-number">4.2.</span> <span class="toc-text">转移率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用转移率矩阵求解系统可靠性参数"><span class="toc-number">4.3.</span> <span class="toc-text">利用转移率矩阵求解系统可靠性参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#系统状态概率"><span class="toc-number">4.3.1.</span> <span class="toc-text">系统状态概率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统可用度"><span class="toc-number">4.3.2.</span> <span class="toc-text">系统可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统可靠度与平均首次故障前时间MTTFF"><span class="toc-number">4.3.3.</span> <span class="toc-text">系统可靠度与平均首次故障前时间MTTFF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态频率和持续时间"><span class="toc-number">4.3.4.</span> <span class="toc-text">状态频率和持续时间</span></a></li></ol></li></ol></li>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目的"><span class="toc-number">1.2.</span> <span class="toc-text">目的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统定义"><span class="toc-number">2.1.</span> <span class="toc-text">系统定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FMEA"><span class="toc-number">2.2.</span> <span class="toc-text">FMEA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CA"><span class="toc-number">2.3.</span> <span class="toc-text">CA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#风险优先数法"><span class="toc-number">2.3.1.</span> <span class="toc-text">风险优先数法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#危害性矩阵法"><span class="toc-number">2.3.2.</span> <span class="toc-text">危害性矩阵法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结果呈现"><span class="toc-number">2.4.</span> <span class="toc-text">结果呈现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol>
                     </div>
                 </span>
             </div>
