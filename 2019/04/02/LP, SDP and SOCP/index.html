@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
-  <title>故障模式影响及危害分析 | 鲈鱼柳的博客</title>
+  <title>LP, SOP and SOCP | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述">
-<meta name="keywords" content="Reliability Engineering">
+  <meta name="description" content="Linear Programming">
+<meta name="keywords" content="Convex Optimization">
 <meta property="og:type" content="article">
-<meta property="og:title" content="故障模式影响及危害分析">
-<meta property="og:url" content="https://zs-liu.github.io/2019/04/15/故障模式影响及危害分析/index.html">
+<meta property="og:title" content="LP, SOP and SOCP">
+<meta property="og:url" content="https://zs-liu.github.io/2019/04/02/LP, SDP and SOCP/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="概述">
+<meta property="og:description" content="Linear Programming">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-22T06:09:09.100Z">
+<meta property="og:updated_time" content="2019-04-25T05:37:39.750Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="故障模式影响及危害分析">
-<meta name="twitter:description" content="概述">
+<meta name="twitter:title" content="LP, SOP and SOCP">
+<meta name="twitter:description" content="Linear Programming">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -151,133 +151,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-故障模式影响及危害分析" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-LP, SDP and SOCP" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      故障模式影响及危害分析
+      LP, SOP and SOCP
     </h1>
   
 
         
-        <a href="/2019/04/15/故障模式影响及危害分析/" class="archive-article-date">
-  	<time datetime="2019-04-15T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-15</time>
+        <a href="/2019/04/02/LP, SDP and SOCP/" class="archive-article-date">
+  	<time datetime="2019-04-02T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><a id="more"></a>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
-<li>Failure Mode, Effects and Criticality analysis</li>
-<li>归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每个故障模式的严重程度及发 生概率予以分类。<ul>
-<li>一种自下而上的归纳分析方法</li>
-<li>FMEA和CA</li>
+        <h2 id="Linear-Programming"><a href="#Linear-Programming" class="headerlink" title="Linear Programming"></a>Linear Programming</h2><a id="more"></a>
+<script type="math/tex; mode=display">\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0</script><script type="math/tex; mode=display">\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0</script><h3 id="Strong-duality"><a href="#Strong-duality" class="headerlink" title="Strong duality"></a>Strong duality</h3><script type="math/tex; mode=display">c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0</script><h3 id="KKT-system-in-LP"><a href="#KKT-system-in-LP" class="headerlink" title="KKT system in LP"></a>KKT system in LP</h3><ul>
+<li>Primal feasibility</li>
 </ul>
-</li>
+<script type="math/tex; mode=display">Ax=b\land{}x\geq0</script><ul>
+<li>Dual feasibility</li>
 </ul>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
-<li>在设计、生产和使用阶段发现影响系统可靠性的各薄弱环节</li>
-<li>对薄弱环节提出改进措施，提高系统可靠性水平</li>
+<script type="math/tex; mode=display">A^Ty+s=c\land{}s\geq0</script><ul>
+<li>Complementarity</li>
 </ul>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="系统定义"><a href="#系统定义" class="headerlink" title="系统定义"></a>系统定义</h3><ul>
-<li>确定系统中进行FMECA的设备范围</li>
-<li>系统功能任务的描述</li>
-<li>确定系统及设备的故障判据</li>
+<script type="math/tex; mode=display">x_is_i=0</script><h3 id="Algebraic-Characterization"><a href="#Algebraic-Characterization" class="headerlink" title="Algebraic Characterization"></a>Algebraic Characterization</h3><ul>
+<li>Define $x\circ{}s=(x_1s_1,\dots,x_ns_n)^\top$ and</li>
 </ul>
-<h3 id="FMEA"><a href="#FMEA" class="headerlink" title="FMEA"></a>FMEA</h3><ul>
-<li>代码：采用统一的编码体系对每个设备的每个故障模式进行编码</li>
-<li>设备或功能标识：记录被分析设备或功能的名称标识</li>
-<li>功能：简要描述设备的主要功能</li>
-<li>故障模式：故障的表现形式，每一个产品有可能具有多种故障模式<ul>
-<li>损坏型、退化型、松脱型、失调型、堵塞或渗漏型、功能型等</li>
+<script type="math/tex; mode=display">L_x:y\mapsto(x_1y_1,\dots,x_ny_n)^\top,\text{ i.e. }L_x={\rm Diag}(x)</script><h2 id="Semidefinite-programming-SDP"><a href="#Semidefinite-programming-SDP" class="headerlink" title="Semidefinite programming (SDP)"></a>Semidefinite programming (SDP)</h2><script type="math/tex; mode=display">\text{(P) }\min\langle{}C_1,X_1\rangle{}+\dots+\langle{}C_n,X_n\rangle{}</script><script type="math/tex; mode=display">s.t.~\langle{}A_{i1},X_1\rangle{}+\dots+\langle{}A_{in},X_n\rangle{}=b_i,X_i\succeq0</script><script type="math/tex; mode=display">\text{(D) }\max{}b^\top{}y</script><script type="math/tex; mode=display">s.t.~A_{1i}b_1+\dots+A_{ni}b_n+S_i=C_i,S_i\succeq0</script><h3 id="Strong-duality-1"><a href="#Strong-duality-1" class="headerlink" title="Strong duality"></a>Strong duality</h3><script type="math/tex; mode=display">\langle{}X,S\rangle{}=0\Leftrightarrow{}X\succeq0\land{}S\succeq0\land\frac{XS+SX}{2}=0</script><h2 id="Second-order-cone-programming-SOCP"><a href="#Second-order-cone-programming-SOCP" class="headerlink" title="Second order cone programming (SOCP)"></a>Second order cone programming (SOCP)</h2><script type="math/tex; mode=display">\text{(P) }\min{}c^\top{}x,s.t.Ax=b,x\succeq_{\mathcal{Q}}0</script><script type="math/tex; mode=display">\text{(Q) }\min{}b^\top{}y,s.t.A^\top{}y+s=c,s\succeq_{\mathcal{Q}}0</script><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><script type="math/tex; mode=display">x\in{}S,\lambda_1\geq\lambda_2\geq\dots\geq\lambda_n</script><script type="math/tex; mode=display">(\lambda_1+\dots+\lambda_K)(X)</script><script type="math/tex; mode=display">\Leftrightarrow</script><script type="math/tex; mode=display">\min_{Y,t}Tr(Y)+Kt,~s.t.tI+Y\succeq{}X,Y\succeq0</script><h2 id="SDP-Relaxation"><a href="#SDP-Relaxation" class="headerlink" title="SDP Relaxation"></a>SDP Relaxation</h2><p>Consider QCQP</p>
+<script type="math/tex; mode=display">\min~x^TA_0x+2b_0^Tx+c_0\text{ assume }A_i\in{}S^n</script><script type="math/tex; mode=display">\text{s.t. }x^TA_ix+2b_i^Tx+c_i\leq0,i=1,\dots,m</script><h3 id="Max-Cut"><a href="#Max-Cut" class="headerlink" title="Max Cut"></a>Max Cut</h3><p>For graph $(V,E)$ and weights $w<em>{ij}=w</em>{ji}\geq0$, the maxcut problem is:</p>
+<script type="math/tex; mode=display">(Q)~\max_x\frac{1}{2}\sum_{i<j}w_{ij}(1-x_ix_j),~\text{ s.t. }x_i\in\{-1,1\}</script><p>where $x_i=-1$ means $x$ in set $X_1$ and $x_i=1$ means $x$ in set $X_2$.<br>And its relaxation is:</p>
+<script type="math/tex; mode=display">(P)~\max_{v_i\in{}R^n}\frac{1}{2}\sum_{i<j}w_{ij}(1-v_iv_j),~\text{ s.t. }||v_i||_2=1</script><p>The equivalent SDP of $(P)$ is :</p>
+<script type="math/tex; mode=display">(SDP)~\max_{X\in{}S^n}\frac{1}{2}\sum_{i<j}w_{ij}(1-X_{ij}),~\text{ s.t. }X_{ii}=1,X\succeq0</script><p>where $X=V^TV=(v_1,\dots,v_n)^T(v_1,\dots,v_n)$.<br><br>Add $rank(X)=1$, then $X=xx^T\Rightarrow{}x_i^2=1$, which means that it is equivalent to the original problem.</p>
+<h4 id="Greedy-Way"><a href="#Greedy-Way" class="headerlink" title="Greedy Way"></a>Greedy Way</h4><p>Every time we pick most distant one, then</p>
+<script type="math/tex; mode=display">Z^*\geq\frac{1}{2}Z_{opt}</script><h4 id="Rounding-Procedure"><a href="#Rounding-Procedure" class="headerlink" title="Rounding Procedure"></a>Rounding Procedure</h4><ul>
+<li>Generate a vector $r$ uniformly distributed on the unit sphere, i.e. $||r||_2=1$</li>
+<li>Set $x_i=1(v_i^Tr\geq0),-1(\text{otherwise})$</li>
 </ul>
-</li>
-<li>故障原因<ul>
-<li>直接原因：导致设备功能故障的设备自身的那些物理、化学或生物变化过程等</li>
-<li>间接原因：其他设备故障、环境因素和人为因素等外部原因</li>
+<h4 id="Theoretical-Result"><a href="#Theoretical-Result" class="headerlink" title="Theoretical Result"></a>Theoretical Result</h4><ul>
+<li>Let $W$ be the objective function value of $x$ and $E(W)$ be the expected value. Then</li>
 </ul>
-</li>
-<li>任务阶段与工作方式<ul>
-<li>任务可能包含多个阶段，设备可能需要参与一个或多个阶段</li>
-<li>工作方式：可替换、有冗余等</li>
+<script type="math/tex; mode=display">E(W)=\frac{1}{\pi}\sum_{i<j}w_{ij}\arccos(v_i^Tv_j)</script><ul>
+<li>Goemans and Williamson showed:</li>
 </ul>
-</li>
-<li>故障影响<ul>
-<li>局部影响：某设备的故障模式对自身和与其所在约定层次相同的其他设备的使用、功能或状态的影响</li>
-<li>高一层次影响：某设备的故障模式对其所在约定层次的高一层次设备的使用、功能或状态的影响。</li>
-<li>最终影响：指系统中某设备的故障模式对初始约定层次设备的使用、功能或状态的影响。</li>
+<script type="math/tex; mode=display">E(W)\geq\alpha\frac{1}{2}\sum_{i<j}w_{ij}(1-v_i^Tv_j),\alpha=\min_{0\leq\theta\leq\pi}\frac{2}{\pi}\frac{\theta}{1-\cos\theta}>0.878</script><h2 id="SDP-Representablity"><a href="#SDP-Representablity" class="headerlink" title="SDP Representablity"></a>SDP Representablity</h2><p>A set $X\subseteq{}R^n$ is SDP-representable (or SDP-Rep for short) if it can be expressed linearly as the feasible region of an SDP:</p>
+<script type="math/tex; mode=display">X=\{x|(\exists{}u\in{}R^k)(\exists{}A_i,B_j,C\in{}R^{m\times{}m})\sum_ix_iA_i+\sum_ju_jB_j+C\succeq0\}</script><p>A function $f(x)$ is SDP-Rep if its epigraph is SDP-representable:</p>
+<script type="math/tex; mode=display">\text{epi}(f)=\{(x_0,x)|f(x)\leq{}x_0\}</script><ul>
+<li>If $X$ is SDP-Rep, then $\min_{x\in{}X}c^Tx$ is an SDP</li>
+<li>If $f(x)$ is SDP-Rep, then $\min_xf(x)$ is an SDP</li>
 </ul>
-</li>
-<li>严酷度等级<ul>
-<li>严酷度：设备故障模式所产生后果的严重程度</li>
-<li>严酷度等级：应考虑故障造成的最坏潜在后果，根据最终可能出现的人员伤亡、系统损坏或经济损失的程度等来确定。</li>
+<h3 id="‘Calculus’-of-SDP-Rep-Sets"><a href="#‘Calculus’-of-SDP-Rep-Sets" class="headerlink" title="‘Calculus’ of SDP-Rep Sets"></a>‘Calculus’ of SDP-Rep Sets</h3><p>If $X$ and $Y$ are SDP-Rep then so are</p>
+<ul>
+<li>Minkowski sum $X+Y$</li>
+<li>Intersection $X\cap{}Y$</li>
+<li>Affine pre-image $A^{-1}(X)$ if $A$ is affine</li>
+<li>Affine map $A(X)$ if $A$ is affine</li>
+<li>Cartesian Product $X\times{}Y={(x,y)|x\in{}X,y\in{}Y}$</li>
 </ul>
-</li>
-<li>故障检测方法<ul>
-<li>包括事前检测与事后检测</li>
-<li>目视检查、离机检测、原位测试等手段</li>
+<h4 id="Proof-of-Affine-map"><a href="#Proof-of-Affine-map" class="headerlink" title="Proof of Affine map"></a>Proof of Affine map</h4><script type="math/tex; mode=display">Y=\{Fx+f|F\in{}R^{m\times{}n},x\in{}X\}</script><script type="math/tex; mode=display">m\geq{}n,rank(F)=n</script><script type="math/tex; mode=display">y=Fx+f\Rightarrow{}x=(F^TF)^{-1}F^T(y-f)=F^+(y-f)</script><script type="math/tex; mode=display">A(F^+(y-f))+B(u)+C\geq0\Rightarrow{}A(F^+y)+B(u)+C-A(F^+f)\geq0</script><hr>
+<script type="math/tex; mode=display">m\leq{}n,rank(F)=m</script><script type="math/tex; mode=display">y=Fx\Rightarrow{}y=[F_1,F_2][x_1,x_2]^T\Rightarrow{}x_1=F^{-1}(y-F_2x_2)</script><h3 id="‘Calculus’-of-SDP-Rep-Functions"><a href="#‘Calculus’-of-SDP-Rep-Functions" class="headerlink" title="‘Calculus’ of SDP-Rep Functions"></a>‘Calculus’ of SDP-Rep Functions</h3><p>If functions $f_i,i=1,\dots,m$ and $g$ are SDP-Rep. Then the following are SDP-Rep:</p>
+<ul>
+<li>nonnegative sum $\sum\alpha_if_i$ for $\alpha_i\geq0$</li>
+<li>maximum $\max_if_i$</li>
+<li>composition $g(f_1(x),\dots,f_m(x))$</li>
+<li>Legendre transform $f^*(y)=\max_xy^Tx-f(x)$</li>
 </ul>
-</li>
-<li>补偿措施<ul>
-<li>设计补偿措施<ul>
-<li>设备发生故障时，能继续工作的冗余设备</li>
-<li>安全或保险装置(如监控及报警装置)</li>
-<li>可替换的工作方式(如备用或辅助设备)</li>
-<li>可以消除或减轻故障影响的设计或工艺改进</li>
-</ul>
-</li>
-<li>操作人员补偿措施<ul>
-<li>特殊的使用和维护规程，尽量避免或预防故障的发生</li>
-<li>一旦出现某故障后操作人员应采取的最恰当的补救措施</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="CA"><a href="#CA" class="headerlink" title="CA"></a>CA</h3><ul>
-<li>危害性分析CA：按每个故障模式的严重程度及其发生概率所产生的综合影响对系统中的设备分级</li>
-<li>分析方法<ul>
-<li>风险优先数法</li>
-<li>危害性矩阵法</li>
-</ul>
-</li>
-</ul>
-<h4 id="风险优先数法"><a href="#风险优先数法" class="headerlink" title="风险优先数法"></a>风险优先数法</h4><script type="math/tex; mode=display">RPN=OPR\times{}ESR</script><ul>
-<li>$OPR$：发生概率等级</li>
-<li>$ESR$：影响严酷度等级</li>
-</ul>
-<h4 id="危害性矩阵法"><a href="#危害性矩阵法" class="headerlink" title="危害性矩阵法"></a>危害性矩阵法</h4><ul>
-<li>故障模式频数比 $\alpha$：设备某故障模式占其全部故障模式的百分比率</li>
-<li>故障影响概率 $\beta$：某故障模式发生后，导致确定的严酷度等级的最终影响的条件概率</li>
-<li>故障模式危害度：评价设备单一故障模式危害性</li>
-</ul>
-<script type="math/tex; mode=display">C_m(j)=\alpha\beta\lambda{}pt</script><ul>
-<li>设备危害度：评价设备的危害性</li>
-</ul>
-<script type="math/tex; mode=display">C_r(j)=\sum{}C_{mi}(j)</script><h3 id="结果呈现"><a href="#结果呈现" class="headerlink" title="结果呈现"></a>结果呈现</h3><ul>
-<li>可靠性关键设备清单<ul>
-<li>RPN 值大于某规定值的设备</li>
-<li>危害性矩阵中落在某一规定区域之内的设备</li>
-</ul>
-</li>
-<li>严重故障模式清单<ul>
-<li>严酷度为 Ⅰ、Ⅱ 类的故障模式</li>
-<li>故障影响严重程度被评为 9-10 分的故障模式</li>
-</ul>
-</li>
-<li>单点故障模式清单<ul>
-<li>某一设备或故障模式发生后将直接导致系统故障</li>
-</ul>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li>FMECA 中各故障模式的相关数据是定量化分析的基础</li>
-<li>FMECA 是静态的、单一因素的分析方法，在动态方面还很不完善</li>
+<h3 id="Positive-Polynomials"><a href="#Positive-Polynomials" class="headerlink" title="Positive Polynomials"></a>Positive Polynomials</h3><p>The set of nonnegative polynomials of a given degree forms a proper cone</p>
+<script type="math/tex; mode=display">P_n=\{(p_0,\dots,p_n)|(\forall{}t\in{}I)p_o+p_1t+\dots+p_nt^n>0\}</script><ul>
+<li>The cone of positive polynomials is SDP-Rep</li>
 </ul>
 
       
@@ -292,7 +239,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Reliability Engineering</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Convex Optimization</a>
         		</li>
       		
 		</ul>
@@ -348,7 +295,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zs-liu.github.io/2019/04/15/故障模式影响及危害分析/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zs-liu.github.io/2019/04/02/LP, SDP and SOCP/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -362,9 +309,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/04/15/故障模式影响及危害分析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          故障模式影响及危害分析
+        
+      </div>
+    </a>
   
-    <a href="/2019/04/02/LP, SDP and SOCP/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LP, SOP and SOCP</div>
+  
+    <a href="/2019/04/01/可修复系统的可靠性分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">可修复系统的可靠性分析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +347,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目的"><span class="toc-number">1.2.</span> <span class="toc-text">目的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统定义"><span class="toc-number">2.1.</span> <span class="toc-text">系统定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FMEA"><span class="toc-number">2.2.</span> <span class="toc-text">FMEA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CA"><span class="toc-number">2.3.</span> <span class="toc-text">CA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#风险优先数法"><span class="toc-number">2.3.1.</span> <span class="toc-text">风险优先数法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#危害性矩阵法"><span class="toc-number">2.3.2.</span> <span class="toc-text">危害性矩阵法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结果呈现"><span class="toc-number">2.4.</span> <span class="toc-text">结果呈现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linear-Programming"><span class="toc-number">1.</span> <span class="toc-text">Linear Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Strong-duality"><span class="toc-number">1.1.</span> <span class="toc-text">Strong duality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KKT-system-in-LP"><span class="toc-number">1.2.</span> <span class="toc-text">KKT system in LP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Algebraic-Characterization"><span class="toc-number">1.3.</span> <span class="toc-text">Algebraic Characterization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Semidefinite-programming-SDP"><span class="toc-number">2.</span> <span class="toc-text">Semidefinite programming (SDP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Strong-duality-1"><span class="toc-number">2.1.</span> <span class="toc-text">Strong duality</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Second-order-cone-programming-SOCP"><span class="toc-number">3.</span> <span class="toc-text">Second order cone programming (SOCP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-number">3.0.1.</span> <span class="toc-text">Example</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#SDP-Relaxation"><span class="toc-number">4.</span> <span class="toc-text">SDP Relaxation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Max-Cut"><span class="toc-number">4.1.</span> <span class="toc-text">Max Cut</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Greedy-Way"><span class="toc-number">4.1.1.</span> <span class="toc-text">Greedy Way</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rounding-Procedure"><span class="toc-number">4.1.2.</span> <span class="toc-text">Rounding Procedure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theoretical-Result"><span class="toc-number">4.1.3.</span> <span class="toc-text">Theoretical Result</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDP-Representablity"><span class="toc-number">5.</span> <span class="toc-text">SDP Representablity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#‘Calculus’-of-SDP-Rep-Sets"><span class="toc-number">5.1.</span> <span class="toc-text">‘Calculus’ of SDP-Rep Sets</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-of-Affine-map"><span class="toc-number">5.1.1.</span> <span class="toc-text">Proof of Affine map</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#‘Calculus’-of-SDP-Rep-Functions"><span class="toc-number">5.2.</span> <span class="toc-text">‘Calculus’ of SDP-Rep Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Positive-Polynomials"><span class="toc-number">5.3.</span> <span class="toc-text">Positive Polynomials</span></a></li></ol></li>
                     </div>
                 </span>
             </div>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zs-liu.github.io/2019/04/02/LP,%20SDP%20and%20SOCP/</loc>
+    
+    <lastmod>2019-04-25T05:37:39.750Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/03/19/Convex%20Optimization%20Problems/</loc>
+    
+    <lastmod>2019-04-24T11:02:05.828Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zs-liu.github.io/2019/03/22/Simplex%20Algorithm/</loc>
     
     <lastmod>2019-04-24T01:19:49.976Z</lastmod>
@@ -47,13 +61,6 @@
     <loc>https://zs-liu.github.io/2019/03/26/Duality/</loc>
     
     <lastmod>2019-03-29T09:01:47.014Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/03/19/Convex%20Optimization%20Problems/</loc>
-    
-    <lastmod>2019-03-26T12:08:18.416Z</lastmod>
     
   </url>
   

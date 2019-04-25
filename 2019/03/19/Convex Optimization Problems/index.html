@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Optimization problem in standard form">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-26T12:08:18.416Z">
+<meta property="og:updated_time" content="2019-04-24T11:02:05.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convex Optimization Problems">
 <meta name="twitter:description" content="Optimization problem in standard form">
@@ -192,7 +192,7 @@
 </ul>
 <script type="math/tex; mode=display">\text{minimize }c^Ty+dz</script><script type="math/tex; mode=display">\text{subject to }Gy\leq{}hz,Ay=bz,e^Ty+fz=1,z\geq0</script><h4 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\forall{}x\in{}X_1,y=\frac{x}{e^Tx+f},z=\frac{1}{e^Tx+f}\rightarrow{}(y,z)\in{}X_2\rightarrow{}p_1^*\geq{}p_2^*</script><hr>
 <script type="math/tex; mode=display">\forall{}(y,z)\in{}X_2, z\neq0,x=\frac{y}{z}\in{}X_1</script><script type="math/tex; mode=display">\forall{}(y,z)\in{}X_2, z=0,\text{Choose }x_0\in{}X_1,x_0+ty\in{}X_1(t\geq0)</script><script type="math/tex; mode=display">\lim_{t\rightarrow\infty}\frac{c^T(x_0+ty)+d}{e^T(x_0+ty)+f}=c^Ty,p_2^*\geq{}p_1^*</script><h2 id="Quadratic-program-QP"><a href="#Quadratic-program-QP" class="headerlink" title="Quadratic program (QP)"></a>Quadratic program (QP)</h2><script type="math/tex; mode=display">A\in{}R^{m\times{}n},A=U\Sigma{}V^T,\Sigma=diag(\lambda_1,...,\lambda_r,0,...)</script><script type="math/tex; mode=display">A^\dagger=V\Sigma^\dagger{}U^T,\Sigma^\dagger=diag(1/\lambda_1,...,1/\lambda_r,0,...)</script><h2 id="Quadratically-constrained-quadratic-program-QCQP"><a href="#Quadratically-constrained-quadratic-program-QCQP" class="headerlink" title="Quadratically constrained quadratic program (QCQP)"></a>Quadratically constrained quadratic program (QCQP)</h2><script type="math/tex; mode=display">\text{minimize }(1/2)x^TP_0x+q_0^Tx+r_0</script><script type="math/tex; mode=display">\text{subject to }(1/2)x^TP_ix+q_i^Tx+r_i\leq0, Ax=b</script><ul>
-<li>$P<em>i\in{}S</em>+^n$; objective and constraints are convex quadratic</li>
+<li><script type="math/tex">P_i\in{}S_{+}^{n}</script>; objective and constraints are convex quadratic</li>
 </ul>
 <h3 id="Least-squares"><a href="#Least-squares" class="headerlink" title="Least squares"></a>Least squares</h3><script type="math/tex; mode=display">\text{minimize }||Ax-b||_2^2</script><ul>
 <li>analytical solution $x^\star=A^\dagger{}b$</li>
