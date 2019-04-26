@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zs-liu.github.io/2019/03/26/Duality/</loc>
+    
+    <lastmod>2019-04-26T02:35:25.260Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zs-liu.github.io/2019/04/16/Subgradient%20Method/</loc>
     
     <lastmod>2019-04-25T14:55:28.189Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>https://zs-liu.github.io/2019/03/07/Convex%20Functions/</loc>
     
     <lastmod>2019-03-31T06:52:00.156Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/03/26/Duality/</loc>
-    
-    <lastmod>2019-03-29T09:01:47.014Z</lastmod>
     
   </url>
   
