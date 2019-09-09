@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Wasserstein Distance">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-04T14:12:19.085Z">
+<meta property="og:updated_time" content="2019-09-09T11:02:14.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Optimal Transport">
 <meta name="twitter:description" content="Wasserstein Distance">
@@ -177,13 +177,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Wasserstein-Distance"><a href="#Wasserstein-Distance" class="headerlink" title="Wasserstein Distance"></a>Wasserstein Distance</h2><a id="more"></a>
+        <p><font face="Times"></font></p>
+<h2 id="Wasserstein-Distance"><a href="#Wasserstein-Distance" class="headerlink" title="Wasserstein Distance"></a>Wasserstein Distance</h2><a id="more"></a>
 <h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Consider, general functions $f$ and $g$, the Wasserstein distance is</p>
 <script type="math/tex; mode=display">\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}</script><p>For $f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+$, the distance can be formulated as</p>
 <script type="math/tex; mode=display">W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}</script><p>where $\mathcal{M}$  is the set of all maps that rearrange the distribution $f$ into $g$.</p>
-<h3 id="Quadratic-Wasserstein-distance-p-2"><a href="#Quadratic-Wasserstein-distance-p-2" class="headerlink" title="Quadratic Wasserstein distance: $p=2$"></a>Quadratic Wasserstein distance: $p=2$</h3><script type="math/tex; mode=display">W_2^2(f,g)=\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx</script><h2 id="Kantorovich-Problem"><a href="#Kantorovich-Problem" class="headerlink" title="Kantorovich Problem"></a>Kantorovich Problem</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><script type="math/tex; mode=display">\inf_\gamma\left\{\int_{X\times{}Y}c(x,y)d\gamma|\gamma\geq0,\gamma\in\Pi(\mu,\nu)\right\}</script><p>where <script type="math/tex">\Pi(\mu,\nu)=\{\gamma\in\mathcal{P}(X\times{}Y)|(P_X)\#\gamma=\mu,(P_Y)\#\gamma=\nu\}</script> $P_X$ and $P_Y$ are two projections</p>
+<h3 id="Quadratic-Wasserstein-distance-p-2"><a href="#Quadratic-Wasserstein-distance-p-2" class="headerlink" title="Quadratic Wasserstein distance: $p=2$"></a>Quadratic Wasserstein distance: $p=2$</h3><script type="math/tex; mode=display">W_2^2(f,g)=\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx</script><h2 id="Kantorovich-Problem"><a href="#Kantorovich-Problem" class="headerlink" title="Kantorovich Problem"></a>Kantorovich Problem</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><script type="math/tex; mode=display">\inf_\gamma\left\{\int_{X\times{}Y}c(x,y)d\gamma|\gamma\geq0,\gamma\in\Pi(\mu,\nu)\right\}</script><p>where $\Pi(\mu,\nu)={\gamma\in\mathcal{P}(X\times{}Y)|(P_X)#\gamma=\mu,(P_Y)#\gamma=\nu}$, $P_X$ and $P_Y$ are two projections</p>
 <h3 id="Kantorovich-Dual-Problem"><a href="#Kantorovich-Dual-Problem" class="headerlink" title="Kantorovich Dual Problem"></a>Kantorovich Dual Problem</h3><p>Consider $\varphi\in{}L^1(\mu)$ and $\psi\in{}L^1(\nu)$, the Kantorovich dual problem is formulated as the following:</p>
-<script type="math/tex; mode=display">\sup_{\varphi,\psi}\left(\int_X\varphi{}d\mu+\int_Y\psi{}d\nu\right)</script><p>subject to $\varphi(x)+\psi(y)\leq{}c(x,y)$, for any $(x,y)\in{}X\times{}Y$.<br>Note that this dual formulation is a linear optimization problem which is solvable by linear programming.</p>
+<script type="math/tex; mode=display">\sup_{\varphi,\psi}\left(\int_X\varphi{}d\mu+\int_Y\psi{}d\nu\right)</script><p>subject to $\varphi(x)+\psi(y)\leq{}c(x,y)$, for any $(x,y)\in{}X\times{}Y$.&lt;/br&gt;<br>Note that this dual formulation is a linear optimization problem which is solvable by linear programming.</p>
 <h2 id="Dynamic-Formulation"><a href="#Dynamic-Formulation" class="headerlink" title="Dynamic Formulation"></a>Dynamic Formulation</h2><p>The Benamou-Brenier formula identifies the squared quadratic Wasserstein metric between $\mu$ and $\nu$ by:</p>
 <script type="math/tex; mode=display">W_2^2(\mu,\nu)=\inf\int_0^1\int|v(t,x)|^2\rho(t,x)dxdt</script><p>where infimum is taken among all the Borel fields $v(t,x)$ that transports $\mu$ to $\nu$ continuously in time, satisfying the zero flux condition on the boundary:</p>
 <script type="math/tex; mode=display">\begin{split}\frac{\partial\rho}{\partial{}t}+\nabla(v\rho)&=0\\\text{subject to }\rho(0,x)=d\mu,\rho(1,x)&=d\nu\end{split}</script><h2 id="Monge-Ampere-Equation"><a href="#Monge-Ampere-Equation" class="headerlink" title="Monge-Ampere Equation"></a>Monge-Ampere Equation</h2><script type="math/tex; mode=display">\left\{\begin{split}&det(D^2u(x))=f(x)/g(\nabla{}u(x))\\&\nabla{}u:X\rightarrow{}Y\\&u\text{ is convex}\end{split}\right.</script><p>The optimal map is $\nabla{}u$. Thus, the square of the quadratic Wasserstein distance<br>has the form:</p>
@@ -274,6 +275,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/09/09/Introduction to Queue and Lyapunov Analysis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Introduction to Queue and Lyapunov Analysis
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/04/25/Proximal Mapping/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Proximal Mapping</div>
@@ -333,7 +343,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		Copyright &copy; 2019.07 鲈鱼柳 <a href="/assets/GNU General Public License v3.0 - GNU Project - Free Software Foundation (FSF).html" target="_blank">GPL</a> | Visitors <span id="busuanzi_value_site_uv"></span>
+    		Copyright &copy; 2019.09 鲈鱼柳 <a href="/assets/GNU General Public License v3.0 - GNU Project - Free Software Foundation (FSF).html" target="_blank">GPL</a> | Visitors <span id="busuanzi_value_site_uv"></span>
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -437,11 +447,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Reliability Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color1">Network Optimization</a>
               </li>
             
             <div class="clearfix"></div>
