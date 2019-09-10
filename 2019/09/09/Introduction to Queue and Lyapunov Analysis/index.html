@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Queue">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-09T11:02:35.208Z">
+<meta property="og:updated_time" content="2019-09-10T02:41:21.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Introduction to Queue and Lyapunov Analysis">
 <meta name="twitter:description" content="Queue">
@@ -180,9 +180,9 @@
         <h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><a id="more"></a>
 <h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><ul>
 <li>Arrival: $A(t)$</li>
-<li>cummulative arrival: $X[t<em>1,t_2]=\int</em>{t_1}^{t_2}A(t)dt$</li>
+<li>Cumulative arrival: <script type="math/tex">X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt</script></li>
 <li>Service: $\mu(t)$</li>
-<li>cummulative departure: $Y[t<em>1,t_2]=\int</em>{t<em>1}^{t_2}Y(t)dt\leq\int</em>{t_1}^{t_2}\mu(t)dt$</li>
+<li>Cumulative departure: <script type="math/tex">Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt</script></li>
 <li>$Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise$</li>
 <li>$Q(t)=X[0,t]-Y[0,t],Q(0)=0$</li>
 </ul>
@@ -190,8 +190,8 @@
 <li>Def: An interval $I=[t_1,t_2]$ is a busy period if $Y(t)&gt;0,\forall{}t\in{}I$ and $Y(t_1^-)=Y(t_2^+)=0$</li>
 <li>Def: A work conserving single server system is one where $Y(t)=\mu(t)$ wherever $Q(t)&gt;0$</li>
 </ul>
-<p>If we start from an empty system, and $Q(t)&gt;0$, then $\exists{}t^<em>$ with $Q(t^</em>)=0$ s.t. $Q(t)=X[t^<em>,t]-\int_{t^</em>}^t\mu(t)dt$</p>
-<h3 id="Stability"><a href="#Stability" class="headerlink" title="Stability"></a>Stability</h3><ul>
+<p>If we start from an empty system, and $Q(t)&gt;0$, then </p>
+<script type="math/tex; mode=display">\exists{}t^* \text{ with } Q(t^*)=0 \text{ s.t. } Q(t)=X[t^*,t]-\int_{t^*}^t\mu(t)dt</script><h3 id="Stability"><a href="#Stability" class="headerlink" title="Stability"></a>Stability</h3><ul>
 <li>Def: $X[0,t]$ has a rate $\lambda$ if $\lim_{t\rightarrow\infty}\frac{X[0,t]}{t}=\lambda$ w.p.1</li>
 <li>Def: $\mu(t)$ has rate $\mu$ if $\lim_{t\rightarrow\infty}\frac{\int_0^t\mu(t)}{t}=\mu$ w.p.1</li>
 <li>Def: $Q(t)$ is rate stable if $\lim_{t\rightarrow\infty}\frac{Q(t)}{t}=0$ w.p.1</li>
@@ -209,12 +209,12 @@
 <h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>Suppose $L(\vec{Q}(t))$ is a lyapunor function and satisifes $\Delta(t)\leq{}B-e\sum_kQ_k(t)$ and $L(\vec{Q}(0))&lt;\infty$, then</p>
 <ul>
 <li>$e&gt;0\rightarrow{}Q(t)$ is strongly stable <script type="math/tex">\lim_{T\rightarrow\infty}\sup\frac{1}{T}\sum_{t=0}^{T-1}\sum_kE\{Q_k(t)\}\leq\frac{B}{e}</script></li>
-<li>$e\geq0$ and $L(\vec{Q})=\sum<em>kw_kQ_k$, then $$\lim</em>{t\rightarrow\infty}\frac{E{Q_k(t)}}{t}=0,\forall{}k$$</li>
+<li>$e\geq0$ and <script type="math/tex">L(\vec{Q})=\sum_k{}w_kQ_k</script> , then <script type="math/tex">\lim_{t\rightarrow\infty}\frac{E\{Q_k(t)\}}{t}=0,\forall{}k</script></li>
 </ul>
 <hr>
 <p>Proof is made by list the inequality from $t=0$ to $t=T$ and sum them up. For the first one, divide by $T$ then is obvious. For the second one, put exception into square, the left side is $O(\sqrt{T})$.</p>
 <h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>$A(t), \mu(t), \sim{}Bernoulli~\lambda,\mu$</p>
-<script type="math/tex; mode=display">Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)</script><script type="math/tex; mode=display">\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}Q(t)(\mu-\lambda)</script><script type="math/tex; mode=display">\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}</script>
+<script type="math/tex; mode=display">Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)</script><script type="math/tex; mode=display">\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}-Q(t)(\mu-\lambda)</script><script type="math/tex; mode=display">\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}</script>
       
 
       
@@ -460,11 +460,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Operations Research</a>
+                <a href="javascript:void(0)" class="js-tag color1">Network Optimization</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color5">Operations Research</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +472,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Network Optimization</a>
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
             
             <div class="clearfix"></div>
