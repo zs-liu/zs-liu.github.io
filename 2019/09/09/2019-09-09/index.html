@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Queue">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-10T02:41:21.347Z">
+<meta property="og:updated_time" content="2019-09-16T14:28:55.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Introduction to Queue and Lyapunov Analysis">
 <meta name="twitter:description" content="Queue">
@@ -208,8 +208,16 @@
 <hr>
 <p><span class="math display">\[Q(t)\text{ stable } \leftarrow\lambda\leq\mu\]</span></p>
 <h3 id="littles-law">Little's law</h3>
-<p><span class="math display">\[Q_{av}=\lim_{t\rightarrow\infty}\frac{1}{t}\int_{\tau=0}^tQ(\tau)d\tau,D_{av}=\lim_{k\rightarrow\infty}\frac{1}{k}\sum_{k=1}^kD_k\]</span> <span class="math display">\[\Rightarrow{}Q_{av}=\lambda{}D_{av}\]</span> ## Lyapunor Analysis ### Definition Denote <span class="math inline">\(\vec{Q}(t)=(Q_1(t),\dots,Q_k(t))\)</span>, Def <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor-function if - <span class="math inline">\(L(\vec{Q}(t))\geq0\)</span> - <span class="math inline">\(L(0)=0\)</span></p>
-<p>Define one-slot conditional lyapunor drift <span class="math display">\[\Delta(t)=E\{L(\vec{Q}(t+1))-L(\vec{Q}(t))|\vec{Q}(t)\}\]</span> ### Theorem Suppose <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor function and satisifes <span class="math inline">\(\Delta(t)\leq{}B-e\sum_kQ_k(t)\)</span> and <span class="math inline">\(L(\vec{Q}(0))&lt;\infty\)</span>, then - <span class="math inline">\(e&gt;0\rightarrow{}Q(t)\)</span> is strongly stable <span class="math display">\[\lim_{T\rightarrow\infty}\sup\frac{1}{T}\sum_{t=0}^{T-1}\sum_kE\{Q_k(t)\}\leq\frac{B}{e}\]</span> - <span class="math inline">\(e\geq0\)</span> and <span class="math display">\[L(\vec{Q})=\sum_k{}w_kQ_k\]</span> , then <span class="math display">\[\lim_{t\rightarrow\infty}\frac{E\{Q_k(t)\}}{t}=0,\forall{}k\]</span></p>
+<p><span class="math display">\[Q_{av}=\lim_{t\rightarrow\infty}\frac{1}{t}\int_{\tau=0}^tQ(\tau)d\tau,D_{av}=\lim_{k\rightarrow\infty}\frac{1}{k}\sum_{k=1}^kD_k\]</span> <span class="math display">\[\Rightarrow{}Q_{av}=\lambda{}D_{av}\]</span> ## Lyapunor Analysis ### Definition Denote <span class="math inline">\(\vec{Q}(t)=(Q_1(t),\dots,Q_k(t))\)</span>, Def <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor-function if</p>
+<ul>
+<li><span class="math inline">\(L(\vec{Q}(t))\geq0\)</span></li>
+<li><span class="math inline">\(L(0)=0\)</span></li>
+</ul>
+<p>Define one-slot conditional lyapunor drift <span class="math display">\[\Delta(t)=E\{L(\vec{Q}(t+1))-L(\vec{Q}(t))|\vec{Q}(t)\}\]</span> ### Theorem Suppose <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor function and satisifes <span class="math inline">\(\Delta(t)\leq{}B-e\sum_kQ_k(t)\)</span> and <span class="math inline">\(L(\vec{Q}(0))&lt;\infty\)</span>, then</p>
+<ul>
+<li><span class="math inline">\(e&gt;0\rightarrow{}Q(t)\)</span> is strongly stable <span class="math display">\[\lim_{T\rightarrow\infty}\sup\frac{1}{T}\sum_{t=0}^{T-1}\sum_kE\{Q_k(t)\}\leq\frac{B}{e}\]</span></li>
+<li><span class="math inline">\(e\geq0\)</span> and <span class="math display">\[L(\vec{Q})=\sum_k{}w_kQ_k\]</span> , then <span class="math display">\[\lim_{t\rightarrow\infty}\frac{E\{Q_k(t)\}}{t}=0,\forall{}k\]</span></li>
+</ul>
 <hr>
 <p>Proof is made by list the inequality from <span class="math inline">\(t=0\)</span> to <span class="math inline">\(t=T\)</span> and sum them up. For the first one, divide by <span class="math inline">\(T\)</span> then is obvious. For the second one, put exception into square, the left side is <span class="math inline">\(O(\sqrt{T})\)</span>. #### Example <span class="math inline">\(A(t), \mu(t), \sim{}Bernoulli~\lambda,\mu\)</span> <span class="math display">\[Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)\]</span> <span class="math display">\[\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}-Q(t)(\mu-\lambda)\]</span> <span class="math display">\[\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}\]</span></p>
 
@@ -463,11 +471,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Convex Optimization</a>
+                <a href="javascript:void(0)" class="js-tag color1">Network Optimization</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Network Optimization</a>
+                <a href="javascript:void(0)" class="js-tag color5">Convex Optimization</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -1142,7 +1142,7 @@ html {
 
 .article-entry code {
   background: #eee;
-  padding: 0 .3em;
+  padding: 0.3em;
   border: none
 }
 
@@ -1203,6 +1203,7 @@ html {
 }
 
 .article-entry .highlight .line {
+  font-family: Source Code Pro, Consolas, Monaco, Menlo, monospace;
   color: #fff;
   min-height: 19px
 }
@@ -2313,11 +2314,6 @@ pre .id {
   line-height: 1.3125;
   margin-top: 3.5em;
   margin-bottom: 1.75em
-}
-
-.article-inner h4 {
-  letter-spacing: .140625em;
-  text-transform: uppercase
 }
 
 .article-inner h6 {
