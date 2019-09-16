@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
-  <title>Archives | 鲈鱼柳的博客</title>
+  <title>Max Weight and Back Pressure Method | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="鲈鱼柳的博客">
-<meta property="og:url" content="https://zs-liu.github.io/archives/index.html">
+  <meta name="description" content="Queue Control Problem">
+<meta name="keywords" content="Network Optimization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Max Weight and Back Pressure Method">
+<meta property="og:url" content="https://zs-liu.github.io/2019/09/16/2019-09-16/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
+<meta property="og:description" content="Queue Control Problem">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-16T08:56:01.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鲈鱼柳的博客">
+<meta name="twitter:title" content="Max Weight and Back Pressure Method">
+<meta name="twitter:description" content="Queue Control Problem">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -152,36 +157,100 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-2019-09-16" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Max Weight and Back Pressure Method
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/2019-09-16/" class="archive-article-date">
+
+        
+        <a href="/2019/09/16/2019-09-16/" class="archive-article-date">
   	<time datetime="2019-09-16T05:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/2019-09-16/">Max Weight and Back Pressure Method</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="queue-control-problem">Queue Control Problem</h2>
+<a id="more"></a>
+<p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
+<ul>
+<li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(E\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S_i(t)\)</span> is condition of link <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i(t)\in\{0,1\}\)</span></li>
+<li><span class="math inline">\(P_{xy}=P_r\{S_1(t)=x,S_2(t)=y\}\)</span></li>
+<li>At every time, serve <span class="math inline">\(Q_1(t)\)</span> or <span class="math inline">\(Q_2(t)\)</span></li>
+<li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
+<li>Goal: stabilize both queues</li>
+</ul>
+<h3 id="linear-program">Linear Program</h3>
+<p><span class="math display">\[\max~e\]</span> <span class="math display">\[\begin{split}s.t.~\lambda_1+e&amp;\leq{}P_{10}+P_{11}\theta\\\lambda_2+e&amp;\leq{}P_{01}+(1-\theta)P_{11}\end{split}\]</span></p>
+<ul>
+<li>optimal value <span class="math inline">\(e^\star&gt;0\)</span></li>
+<li>LP policy is obvious</li>
+<li>If we know all <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\(P_{xy}\)</span></li>
+</ul>
+<h3 id="alg-max-weight">ALG Max-Weight</h3>
+<ul>
+<li>Policy is simple
+<ul>
+<li><span class="math inline">\(S(t)=\{1,0\}\)</span>, serve <span class="math inline">\(Q_1\)</span></li>
+<li><span class="math inline">\(S(t)=\{0,1\}\)</span>, serve <span class="math inline">\(Q_2\)</span></li>
+<li><span class="math inline">\(S(t)=\{1,1\}\)</span>, serve <span class="math inline">\(\max\{Q_1,Q_2\}\)</span></li>
+</ul></li>
+<li>Without any infomation</li>
+</ul>
+<hr>
+<p><span class="math display">\[L(t)=\frac{1}{2}Q_1^2(t)+\frac{1}{2}Q_2^2(t)\]</span> <span class="math display">\[Q_i(t+1)=(Q_i(t)-\mu_i(t)+A_i(t))^+\]</span> <span class="math display">\[\begin{split}\Delta(t)&amp;=E\{L(t+1)-L(t)|Q(t)\}\\&amp;=\frac{1}{2}E\{Q_1^2(t+1)-Q_1^2(t)+Q_2^2(t+1)-Q_2^2(t)|Q(t)\}\\&amp;\leq{}B-E\{Q_1(t)[\mu_1(t)-A_1(t)]+Q_2(t)[\mu_2(t)-A_2(t)]|Q(t)\}\\&amp;=B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-E\{Q_1(t)\mu_1(t)+Q_2(t)\mu_2(t)|Q(t)\}\\&amp;\leq{}B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-Q_1(t)[P_{10}+P_{11}\theta]-Q_2(t)[P_{01}+P_{11}(1-\theta)]\\&amp;=B-eQ_1(t)-eQ_2(t)\end{split}\]</span></p>
+<h3 id="capacity-region">Capacity Region</h3>
+<p><span class="math inline">\(\lambda=(\lambda_1,\lambda_2,\dots,\lambda_n)\)</span></p>
+<ul>
+<li>Def: The capacity region <span class="math inline">\(\Lambda\)</span> is the closure of <span class="math inline">\(\lambda\)</span> under which exists an algorithm that can stabilize the system</li>
+<li>Claim: <span class="math inline">\(\Lambda=\{(\lambda_1,\lambda_2,\dots,\lambda_n)\text{ s.t. }e(\lambda)\geq0\}\)</span></li>
+<li>Corollary: Max-weight stabilizes the system whenever <span class="math inline">\(\exists{}e\geq0\text{ s.t. } \lambda+e\in\Lambda\)</span></li>
+<li>So, in some way, Max-weight is &quot;Throughput Optimal&quot;</li>
+</ul>
+<h3 id="caratheodorys-theorem">Caratheodory's Theorem</h3>
+<p>Let <span class="math inline">\(X\)</span> be a subset of <span class="math inline">\(R^d\)</span>. If <span class="math inline">\(x\in\text{conv}(X)\)</span>, then <span class="math inline">\(\exists~d+1\)</span> points in <span class="math inline">\(X\)</span> (i.e. <span class="math inline">\(x_1,\dots,x_{d+1}\)</span>), s.t. <span class="math display">\[x=\sum_{i=1}^{d+1}\alpha_ix_i,\alpha_i\geq0,\sum_{i=1}^{d+1}a_i=1\]</span></p>
+<h2 id="multi-hop">Multi-Hop</h2>
+<ul>
+<li><span class="math inline">\(V=\{1,2,\dots,7\}\)</span></li>
+<li><span class="math inline">\(E\)</span> are linkes</li>
+<li><span class="math inline">\(A_n^{(k)(t)}\)</span> is packages entering <span class="math inline">\(n\)</span> for destination <span class="math inline">\(k\)</span>, <span class="math inline">\(E\{A_n^{(k)}(t)\}=\lambda_n^{(k)}\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S(t)=(S_{nm}(t),[n,m]\in{}E)\)</span>, <span class="math inline">\(S_{n,m}\in\{0,1\}\)</span>, iid</li>
+<li><span class="math inline">\(\mu_{nm}(t)=1\text{ if }S_{nm}(t)=1\text{ and use link }[n,m]\quad0\text{ otherwise}\)</span></li>
+<li>No interference</li>
+<li>Queueing: <span class="math inline">\(Q_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(Q_n^{(k)}(t+1)\leq{}(Q_n^{(k)}(t)-\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t))^+{}+\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)+A_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(Q_n^{(0)}(t)=0\)</span></li>
+<li>Goal: stabilize all queues</li>
+</ul>
+<h3 id="back-pressure">Back Pressure</h3>
+<p>At time <span class="math inline">\(t\)</span>, observe <span class="math inline">\(Q_n^{(k)}(t)\)</span> for all <span class="math inline">\(n,k\)</span></p>
+<ul>
+<li>For each <span class="math inline">\([n,m]\)</span>, define weight <span class="math inline">\(W_{nm}(t)=\max_k[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\)</span> and let <span class="math inline">\(k^\star=\arg\max{}W_{nm}^{(k)}(t)\)</span></li>
+<li>If <span class="math inline">\(W_{nm}(t)&gt;0\)</span>, <span class="math inline">\(\mu_{nm}^{(k)}(t)=\mu_{nm}(t)\text{ if }k=k^\star\quad0\text{ otherwise}\)</span></li>
+<li>If <span class="math inline">\(W_{nm}(t)=0\)</span>, <span class="math inline">\(\mu_{nm}^{(k)}(t)=0\)</span></li>
+</ul>
+<h3 id="analysis">Analysis</h3>
+<p><span class="math inline">\(Q(t)=(Q_n^{(k)}(t)),L(Q(t))=\frac{1}{2}\sum_{n,k}Q_n^{(k)}(t)^2\)</span> <span class="math display">\[\begin{split}\Delta(t)&amp;=E\{L(t+1)-L(t)|Q(t)\}\\&amp;\leq{}B-E\{\sum_{n,k}Q_n^{(k)}(t)[\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t)-\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)-A_n^{(k)}(t)]|Q(t)\}\\&amp;=B-\sum_{n,m,k}E\{\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]|Q(t)\}+\sum_{n,k}Q_n^{(k)}(t)\lambda_n^{(k)}\\&amp;\leq{}B-e\sum_{nm}Q_n^{(k)}(t)\end{split}\]</span></p>
+<hr>
+<p><span class="math display">\[\max{}e\]</span> <span class="math display">\[\begin{split}s.t.~\lambda_n^{(k)}+e+\sum_{[a,n]}f_{an}^{(k)}&amp;\leq\sum_{[n,m]}f_{nm}^{(k)}\\\sum_kf_{nm}^{(k)}&amp;\leq\mu_{nm}\\f_{nm}^{(k)}&amp;\geq0\end{split}\]</span></p>
+<h3 id="interference-problem">Interference Problem</h3>
+<p><span class="math display">\[\max~\sum_{n,m,k}\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\]</span> <span class="math display">\[s.t.~\sum_k\mu_{nm}^{(k)}(t)\leq\mu_{nm}(I(t),S(t)),I(t)\text{ feasible}\]</span></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -193,364 +262,122 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://zs-liu.github.io/2019/09/16/2019-09-16/" alt="微信分享二维码">
+    </div>
+</div>
+
+
+    
+
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/09/2019-09-09/" class="archive-article-date">
-  	<time datetime="2019-09-09T05:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/09/2019-09-09/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Introduction to Queue and Lyapunov Analysis</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/09/2019-09-09/">Introduction to Queue and Lyapunov Analysis</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Network Optimization</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#queue-control-problem"><span class="toc-number">1.</span> <span class="toc-text">Queue Control Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-program"><span class="toc-number">1.1.</span> <span class="toc-text">Linear Program</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alg-max-weight"><span class="toc-number">1.2.</span> <span class="toc-text">ALG Max-Weight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capacity-region"><span class="toc-number">1.3.</span> <span class="toc-text">Capacity Region</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#caratheodorys-theorem"><span class="toc-number">1.4.</span> <span class="toc-text">Caratheodory&#39;s Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multi-hop"><span class="toc-number">2.</span> <span class="toc-text">Multi-Hop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#back-pressure"><span class="toc-number">2.1.</span> <span class="toc-text">Back Pressure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#analysis"><span class="toc-number">2.2.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interference-problem"><span class="toc-number">2.3.</span> <span class="toc-text">Interference Problem</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/25/Optimal Transport/" class="archive-article-date">
-  	<time datetime="2019-05-25T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-25</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/25/Optimal Transport/">Optimal Transport</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Operations Research</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/25/Proximal Mapping/" class="archive-article-date">
-  	<time datetime="2019-04-25T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/25/Proximal Mapping/">Proximal Mapping</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Convex Optimization</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/16/Subgradient Method/" class="archive-article-date">
-  	<time datetime="2019-04-16T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/16/Subgradient Method/">Subgradient Method</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Convex Optimization</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/15/故障模式影响及危害分析/" class="archive-article-date">
-  	<time datetime="2019-04-15T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/15/故障模式影响及危害分析/">故障模式影响及危害分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Reliability Engineering</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/02/LP, SDP and SOCP/" class="archive-article-date">
-  	<time datetime="2019-04-02T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/02/LP, SDP and SOCP/">LP, SOP and SOCP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Convex Optimization</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/01/可修复系统的可靠性分析/" class="archive-article-date">
-  	<time datetime="2019-04-01T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/01/可修复系统的可靠性分析/">可修复系统的可靠性分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Reliability Engineering</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/26/Duality/" class="archive-article-date">
-  	<time datetime="2019-03-26T11:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/26/Duality/">Duality</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Convex Optimization</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/Simplex Algorithm/" class="archive-article-date">
-  	<time datetime="2019-03-22T01:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/Simplex Algorithm/">Simplex Algorithm</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Operations Research</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -575,8 +402,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
