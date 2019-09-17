@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
   <title>LP, SOP and SOCP | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linear Programming">
+  <meta name="description" content="Linear Programming \[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\] \[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\] Strong duality \[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]">
 <meta name="keywords" content="Convex Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LP, SOP and SOCP">
 <meta property="og:url" content="https://zs-liu.github.io/2019/04/02/LP, SDP and SOCP/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Linear Programming">
+<meta property="og:description" content="Linear Programming \[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\] \[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\] Strong duality \[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-25T05:37:39.000Z">
+<meta property="og:updated_time" content="2019-09-17T07:53:28.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LP, SOP and SOCP">
-<meta name="twitter:description" content="Linear Programming">
+<meta name="twitter:description" content="Linear Programming \[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\] \[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\] Strong duality \[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -178,10 +178,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="linear-programming">Linear Programming</h2>
+<p><span class="math display">\[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\]</span> <span class="math display">\[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\]</span></p>
+<h3 id="strong-duality">Strong duality</h3>
+<p><span class="math display">\[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]</span></p>
 <a id="more"></a>
-<p><span class="math display">\[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\]</span> <span class="math display">\[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\]</span> ### Strong duality <span class="math display">\[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]</span> ### KKT system in LP - Primal feasibility</p>
-<p><span class="math display">\[Ax=b\land{}x\geq0\]</span> - Dual feasibility</p>
-<p><span class="math display">\[A^Ty+s=c\land{}s\geq0\]</span> - Complementarity</p>
+<h3 id="kkt-system-in-lp">KKT system in LP</h3>
+<ul>
+<li>Primal feasibility</li>
+</ul>
+<p><span class="math display">\[Ax=b\land{}x\geq0\]</span></p>
+<ul>
+<li>Dual feasibility</li>
+</ul>
+<p><span class="math display">\[A^Ty+s=c\land{}s\geq0\]</span></p>
+<ul>
+<li>Complementarity</li>
+</ul>
 <p><span class="math display">\[x_is_i=0\]</span></p>
 <h3 id="algebraic-characterization">Algebraic Characterization</h3>
 <ul>
@@ -189,23 +201,65 @@
 </ul>
 <p><span class="math display">\[L_x:y\mapsto(x_1y_1,\dots,x_ny_n)^\top,\text{ i.e. }L_x={\rm Diag}(x)\]</span></p>
 <h2 id="semidefinite-programming-sdp">Semidefinite programming (SDP)</h2>
-<p><span class="math display">\[\text{(P) }\min\langle{}C_1,X_1\rangle{}+\dots+\langle{}C_n,X_n\rangle{}\]</span> <span class="math display">\[s.t.~\langle{}A_{i1},X_1\rangle{}+\dots+\langle{}A_{in},X_n\rangle{}=b_i,X_i\succeq0\]</span> <span class="math display">\[\text{(D) }\max{}b^\top{}y\]</span> <span class="math display">\[s.t.~A_{1i}b_1+\dots+A_{ni}b_n+S_i=C_i,S_i\succeq0\]</span> ### Strong duality <span class="math display">\[\langle{}X,S\rangle{}=0\Leftrightarrow{}X\succeq0\land{}S\succeq0\land\frac{XS+SX}{2}=0\]</span> ## Second order cone programming (SOCP) <span class="math display">\[\text{(P) }\min{}c^\top{}x,s.t.Ax=b,x\succeq_{\mathcal{Q}}0\]</span> <span class="math display">\[\text{(Q) }\min{}b^\top{}y,s.t.A^\top{}y+s=c,s\succeq_{\mathcal{Q}}0\]</span> #### Example <span class="math display">\[x\in{}S,\lambda_1\geq\lambda_2\geq\dots\geq\lambda_n\]</span> <span class="math display">\[(\lambda_1+\dots+\lambda_K)(X)\]</span> <span class="math display">\[\Leftrightarrow\]</span> <span class="math display">\[\min_{Y,t}Tr(Y)+Kt,~s.t.tI+Y\succeq{}X,Y\succeq0\]</span></p>
+<p><span class="math display">\[\text{(P) }\min\langle{}C_1,X_1\rangle{}+\dots+\langle{}C_n,X_n\rangle{}\]</span> <span class="math display">\[s.t.~\langle{}A_{i1},X_1\rangle{}+\dots+\langle{}A_{in},X_n\rangle{}=b_i,X_i\succeq0\]</span> <span class="math display">\[\text{(D) }\max{}b^\top{}y\]</span> <span class="math display">\[s.t.~A_{1i}b_1+\dots+A_{ni}b_n+S_i=C_i,S_i\succeq0\]</span></p>
+<h3 id="strong-duality-1">Strong duality</h3>
+<p><span class="math display">\[\langle{}X,S\rangle{}=0\Leftrightarrow{}X\succeq0\land{}S\succeq0\land\frac{XS+SX}{2}=0\]</span></p>
+<h2 id="second-order-cone-programming-socp">Second order cone programming (SOCP)</h2>
+<p><span class="math display">\[\text{(P) }\min{}c^\top{}x,s.t.Ax=b,x\succeq_{\mathcal{Q}}0\]</span> <span class="math display">\[\text{(Q) }\min{}b^\top{}y,s.t.A^\top{}y+s=c,s\succeq_{\mathcal{Q}}0\]</span></p>
+<h4 id="example">Example</h4>
+<p><span class="math display">\[x\in{}S,\lambda_1\geq\lambda_2\geq\dots\geq\lambda_n\]</span> <span class="math display">\[(\lambda_1+\dots+\lambda_K)(X)\]</span> <span class="math display">\[\Leftrightarrow\]</span> <span class="math display">\[\min_{Y,t}Tr(Y)+Kt,~s.t.tI+Y\succeq{}X,Y\succeq0\]</span></p>
 <h2 id="sdp-relaxation">SDP Relaxation</h2>
-<p>Consider QCQP <span class="math display">\[\min~x^TA_0x+2b_0^Tx+c_0\text{ assume }A_i\in{}S^n\]</span> <span class="math display">\[\text{s.t. }x^TA_ix+2b_i^Tx+c_i\leq0,i=1,\dots,m\]</span> ### Max Cut For graph <span class="math inline">\((V,E)\)</span> and weights <span class="math inline">\(w_{ij}=w_{ji}\geq0\)</span>, the maxcut problem is: <span class="math display">\[(Q)~\max_x\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-x_ix_j),~\text{ s.t. }x_i\in\{-1,1\}\]</span> where <span class="math inline">\(x_i=-1\)</span> means <span class="math inline">\(x\)</span> in set <span class="math inline">\(X_1\)</span> and <span class="math inline">\(x_i=1\)</span> means <span class="math inline">\(x\)</span> in set <span class="math inline">\(X_2\)</span>. And its relaxation is: <span class="math display">\[(P)~\max_{v_i\in{}R^n}\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-v_iv_j),~\text{ s.t. }||v_i||_2=1\]</span> The equivalent SDP of <span class="math inline">\((P)\)</span> is : <span class="math display">\[(SDP)~\max_{X\in{}S^n}\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-X_{ij}),~\text{ s.t. }X_{ii}=1,X\succeq0\]</span> where <span class="math inline">\(X=V^TV=(v_1,\dots,v_n)^T(v_1,\dots,v_n)\)</span>.<br> Add <span class="math inline">\(rank(X)=1\)</span>, then <span class="math inline">\(X=xx^T\Rightarrow{}x_i^2=1\)</span>, which means that it is equivalent to the original problem. #### Greedy Way Every time we pick most distant one, then <span class="math display">\[Z^*\geq\frac{1}{2}Z_{opt}\]</span> #### Rounding Procedure - Generate a vector <span class="math inline">\(r\)</span> uniformly distributed on the unit sphere, i.e. <span class="math inline">\(||r||_2=1\)</span> - Set <span class="math inline">\(x_i=1(v_i^Tr\geq0),-1(\text{otherwise})\)</span></p>
+<p>Consider QCQP <span class="math display">\[\min~x^TA_0x+2b_0^Tx+c_0\text{ assume }A_i\in{}S^n\]</span> <span class="math display">\[\text{s.t. }x^TA_ix+2b_i^Tx+c_i\leq0,i=1,\dots,m\]</span></p>
+<h3 id="max-cut">Max Cut</h3>
+<p>For graph <span class="math inline">\((V,E)\)</span> and weights <span class="math inline">\(w_{ij}=w_{ji}\geq0\)</span>, the maxcut problem is: <span class="math display">\[(Q)~\max_x\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-x_ix_j),~\text{ s.t. }x_i\in\{-1,1\}\]</span> where <span class="math inline">\(x_i=-1\)</span> means <span class="math inline">\(x\)</span> in set <span class="math inline">\(X_1\)</span> and <span class="math inline">\(x_i=1\)</span> means <span class="math inline">\(x\)</span> in set <span class="math inline">\(X_2\)</span>. And its relaxation is: <span class="math display">\[(P)~\max_{v_i\in{}R^n}\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-v_iv_j),~\text{ s.t. }||v_i||_2=1\]</span> The equivalent SDP of <span class="math inline">\((P)\)</span> is : <span class="math display">\[(SDP)~\max_{X\in{}S^n}\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-X_{ij}),~\text{ s.t. }X_{ii}=1,X\succeq0\]</span> where <span class="math inline">\(X=V^TV=(v_1,\dots,v_n)^T(v_1,\dots,v_n)\)</span>.<br> Add <span class="math inline">\(rank(X)=1\)</span>, then <span class="math inline">\(X=xx^T\Rightarrow{}x_i^2=1\)</span>, which means that it is equivalent to the original problem.</p>
+<h4 id="greedy-way">Greedy Way</h4>
+<p>Every time we pick most distant one, then <span class="math display">\[Z^*\geq\frac{1}{2}Z_{opt}\]</span></p>
+<h4 id="rounding-procedure">Rounding Procedure</h4>
+<ul>
+<li>Generate a vector <span class="math inline">\(r\)</span> uniformly distributed on the unit sphere, i.e. <span class="math inline">\(||r||_2=1\)</span></li>
+<li>Set <span class="math inline">\(x_i=1(v_i^Tr\geq0),-1(\text{otherwise})\)</span></li>
+</ul>
 <h4 id="theoretical-result">Theoretical Result</h4>
 <ul>
 <li>Let <span class="math inline">\(W\)</span> be the objective function value of <span class="math inline">\(x\)</span> and <span class="math inline">\(E(W)\)</span> be the expected value. Then</li>
 </ul>
-<p><span class="math display">\[E(W)=\frac{1}{\pi}\sum_{i&lt;j}w_{ij}\arccos(v_i^Tv_j)\]</span> - Goemans and Williamson showed:</p>
-<p><span class="math display">\[E(W)\geq\alpha\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-v_i^Tv_j),\alpha=\min_{0\leq\theta\leq\pi}\frac{2}{\pi}\frac{\theta}{1-\cos\theta}&gt;0.878\]</span> ## SDP Representablity A set <span class="math inline">\(X\subseteq{}R^n\)</span> is SDP-representable (or SDP-Rep for short) if it can be expressed linearly as the feasible region of an SDP: <span class="math display">\[X=\{x|(\exists{}u\in{}R^k)(\exists{}A_i,B_j,C\in{}R^{m\times{}m})\sum_ix_iA_i+\sum_ju_jB_j+C\succeq0\}\]</span> A function <span class="math inline">\(f(x)\)</span> is SDP-Rep if its epigraph is SDP-representable: <span class="math display">\[\text{epi}(f)=\{(x_0,x)|f(x)\leq{}x_0\}\]</span> - If <span class="math inline">\(X\)</span> is SDP-Rep, then <span class="math inline">\(\min_{x\in{}X}c^Tx\)</span> is an SDP - If <span class="math inline">\(f(x)\)</span> is SDP-Rep, then <span class="math inline">\(\min_xf(x)\)</span> is an SDP</p>
+<p><span class="math display">\[E(W)=\frac{1}{\pi}\sum_{i&lt;j}w_{ij}\arccos(v_i^Tv_j)\]</span></p>
+<ul>
+<li>Goemans and Williamson showed:</li>
+</ul>
+<p><span class="math display">\[E(W)\geq\alpha\frac{1}{2}\sum_{i&lt;j}w_{ij}(1-v_i^Tv_j),\alpha=\min_{0\leq\theta\leq\pi}\frac{2}{\pi}\frac{\theta}{1-\cos\theta}&gt;0.878\]</span></p>
+<h2 id="sdp-representablity">SDP Representablity</h2>
+<p>A set <span class="math inline">\(X\subseteq{}R^n\)</span> is SDP-representable (or SDP-Rep for short) if it can be expressed linearly as the feasible region of an SDP: <span class="math display">\[X=\{x|(\exists{}u\in{}R^k)(\exists{}A_i,B_j,C\in{}R^{m\times{}m})\sum_ix_iA_i+\sum_ju_jB_j+C\succeq0\}\]</span> A function <span class="math inline">\(f(x)\)</span> is SDP-Rep if its epigraph is SDP-representable: <span class="math display">\[\text{epi}(f)=\{(x_0,x)|f(x)\leq{}x_0\}\]</span></p>
+<ul>
+<li>If <span class="math inline">\(X\)</span> is SDP-Rep, then <span class="math inline">\(\min_{x\in{}X}c^Tx\)</span> is an SDP</li>
+<li>If <span class="math inline">\(f(x)\)</span> is SDP-Rep, then <span class="math inline">\(\min_xf(x)\)</span> is an SDP</li>
+</ul>
 <h3 id="calculus-of-sdp-rep-sets">'Calculus' of SDP-Rep Sets</h3>
-<p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are SDP-Rep then so are - Minkowski sum <span class="math inline">\(X+Y\)</span> - Intersection <span class="math inline">\(X\cap{}Y\)</span> - Affine pre-image <span class="math inline">\(A^{-1}(X)\)</span> if <span class="math inline">\(A\)</span> is affine - Affine map <span class="math inline">\(A(X)\)</span> if <span class="math inline">\(A\)</span> is affine - Cartesian Product <span class="math inline">\(X\times{}Y=\{(x,y)|x\in{}X,y\in{}Y\}\)</span></p>
+<p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are SDP-Rep then so are</p>
+<ul>
+<li>Minkowski sum <span class="math inline">\(X+Y\)</span></li>
+<li>Intersection <span class="math inline">\(X\cap{}Y\)</span></li>
+<li>Affine pre-image <span class="math inline">\(A^{-1}(X)\)</span> if <span class="math inline">\(A\)</span> is affine</li>
+<li>Affine map <span class="math inline">\(A(X)\)</span> if <span class="math inline">\(A\)</span> is affine</li>
+<li>Cartesian Product <span class="math inline">\(X\times{}Y=\{(x,y)|x\in{}X,y\in{}Y\}\)</span></li>
+</ul>
 <h4 id="proof-of-affine-map">Proof of Affine map</h4>
 <p><span class="math display">\[Y=\{Fx+f|F\in{}R^{m\times{}n},x\in{}X\}\]</span> <span class="math display">\[m\geq{}n,rank(F)=n\]</span> <span class="math display">\[y=Fx+f\Rightarrow{}x=(F^TF)^{-1}F^T(y-f)=F^+(y-f)\]</span> <span class="math display">\[A(F^+(y-f))+B(u)+C\geq0\Rightarrow{}A(F^+y)+B(u)+C-A(F^+f)\geq0\]</span></p>
 <hr>
-<p><span class="math display">\[m\leq{}n,rank(F)=m\]</span> <span class="math display">\[y=Fx\Rightarrow{}y=[F_1,F_2][x_1,x_2]^T\Rightarrow{}x_1=F^{-1}(y-F_2x_2)\]</span> ### 'Calculus' of SDP-Rep Functions If functions <span class="math inline">\(f_i,i=1,\dots,m\)</span> and <span class="math inline">\(g\)</span> are SDP-Rep. Then the following are SDP-Rep: - nonnegative sum <span class="math inline">\(\sum\alpha_if_i\)</span> for <span class="math inline">\(\alpha_i\geq0\)</span> - maximum <span class="math inline">\(\max_if_i\)</span> - composition <span class="math inline">\(g(f_1(x),\dots,f_m(x))\)</span> - Legendre transform <span class="math inline">\(f^*(y)=\max_xy^Tx-f(x)\)</span></p>
+<p><span class="math display">\[m\leq{}n,rank(F)=m\]</span> <span class="math display">\[y=Fx\Rightarrow{}y=[F_1,F_2][x_1,x_2]^T\Rightarrow{}x_1=F^{-1}(y-F_2x_2)\]</span></p>
+<h3 id="calculus-of-sdp-rep-functions">'Calculus' of SDP-Rep Functions</h3>
+<p>If functions <span class="math inline">\(f_i,i=1,\dots,m\)</span> and <span class="math inline">\(g\)</span> are SDP-Rep. Then the following are SDP-Rep:</p>
+<ul>
+<li>nonnegative sum <span class="math inline">\(\sum\alpha_if_i\)</span> for <span class="math inline">\(\alpha_i\geq0\)</span></li>
+<li>maximum <span class="math inline">\(\max_if_i\)</span></li>
+<li>composition <span class="math inline">\(g(f_1(x),\dots,f_m(x))\)</span></li>
+<li>Legendre transform <span class="math inline">\(f^*(y)=\max_xy^Tx-f(x)\)</span></li>
+</ul>
 <h3 id="positive-polynomials">Positive Polynomials</h3>
-<p>The set of nonnegative polynomials of a given degree forms a proper cone <span class="math display">\[P_n=\{(p_0,\dots,p_n)|(\forall{}t\in{}I)p_o+p_1t+\dots+p_nt^n&gt;0\}\]</span> - The cone of positive polynomials is SDP-Rep</p>
+<p>The set of nonnegative polynomials of a given degree forms a proper cone <span class="math display">\[P_n=\{(p_0,\dots,p_n)|(\forall{}t\in{}I)p_o+p_1t+\dots+p_nt^n&gt;0\}\]</span></p>
+<ul>
+<li>The cone of positive polynomials is SDP-Rep</li>
+</ul>
 
       
 
@@ -331,7 +385,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linear-programming"><span class="toc-number">1.</span> <span class="toc-text">Linear Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#algebraic-characterization"><span class="toc-number">1.1.</span> <span class="toc-text">Algebraic Characterization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#semidefinite-programming-sdp"><span class="toc-number">2.</span> <span class="toc-text">Semidefinite programming (SDP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sdp-relaxation"><span class="toc-number">3.</span> <span class="toc-text">SDP Relaxation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#theoretical-result"><span class="toc-number">3.0.1.</span> <span class="toc-text">Theoretical Result</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calculus-of-sdp-rep-sets"><span class="toc-number">3.1.</span> <span class="toc-text">&#39;Calculus&#39; of SDP-Rep Sets</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof-of-affine-map"><span class="toc-number">3.1.1.</span> <span class="toc-text">Proof of Affine map</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#positive-polynomials"><span class="toc-number">3.2.</span> <span class="toc-text">Positive Polynomials</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linear-programming"><span class="toc-number">1.</span> <span class="toc-text">Linear Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#strong-duality"><span class="toc-number">1.1.</span> <span class="toc-text">Strong duality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kkt-system-in-lp"><span class="toc-number">1.2.</span> <span class="toc-text">KKT system in LP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#algebraic-characterization"><span class="toc-number">1.3.</span> <span class="toc-text">Algebraic Characterization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#semidefinite-programming-sdp"><span class="toc-number">2.</span> <span class="toc-text">Semidefinite programming (SDP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#strong-duality-1"><span class="toc-number">2.1.</span> <span class="toc-text">Strong duality</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#second-order-cone-programming-socp"><span class="toc-number">3.</span> <span class="toc-text">Second order cone programming (SOCP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#example"><span class="toc-number">3.0.1.</span> <span class="toc-text">Example</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#sdp-relaxation"><span class="toc-number">4.</span> <span class="toc-text">SDP Relaxation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#max-cut"><span class="toc-number">4.1.</span> <span class="toc-text">Max Cut</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#greedy-way"><span class="toc-number">4.1.1.</span> <span class="toc-text">Greedy Way</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rounding-procedure"><span class="toc-number">4.1.2.</span> <span class="toc-text">Rounding Procedure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#theoretical-result"><span class="toc-number">4.1.3.</span> <span class="toc-text">Theoretical Result</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sdp-representablity"><span class="toc-number">5.</span> <span class="toc-text">SDP Representablity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#calculus-of-sdp-rep-sets"><span class="toc-number">5.1.</span> <span class="toc-text">&#39;Calculus&#39; of SDP-Rep Sets</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof-of-affine-map"><span class="toc-number">5.1.1.</span> <span class="toc-text">Proof of Affine map</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calculus-of-sdp-rep-functions"><span class="toc-number">5.2.</span> <span class="toc-text">&#39;Calculus&#39; of SDP-Rep Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#positive-polynomials"><span class="toc-number">5.3.</span> <span class="toc-text">Positive Polynomials</span></a></li></ol></li>
                     </div>
                 </span>
             </div>

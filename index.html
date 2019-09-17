@@ -175,6 +175,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="queue-control-problem">Queue Control Problem</h2>
+<p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
+<ul>
+<li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(E\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S_i(t)\)</span> is condition of link <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i(t)\in\{0,1\}\)</span></li>
+<li><span class="math inline">\(P_{xy}=P_r\{S_1(t)=x,S_2(t)=y\}\)</span></li>
+<li>At every time, serve <span class="math inline">\(Q_1(t)\)</span> or <span class="math inline">\(Q_2(t)\)</span></li>
+<li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
+<li>Goal: stabilize both queues</li>
+</ul>
         
       
 
@@ -249,6 +258,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="queue">Queue</h2>
+<h3 id="definition">Definition</h3>
+<ul>
+<li>Arrival: <span class="math inline">\(A(t)\)</span></li>
+<li>Cumulative arrival: <span class="math display">\[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]</span></li>
+<li>Service: <span class="math inline">\(\mu(t)\)</span></li>
+<li>Cumulative departure: <span class="math display">\[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\]</span></li>
+<li><span class="math inline">\(Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise\)</span></li>
+<li><span class="math inline">\(Q(t)=X[0,t]-Y[0,t],Q(0)=0\)</span></li>
+</ul>
         
       
 
@@ -322,12 +340,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font face="Times"> ## Wasserstein Distance
+        <h2 id="wasserstein-distance">Wasserstein Distance</h2>
+<h3 id="definition">Definition</h3>
+<p>Consider, general functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, the Wasserstein distance is <span class="math display">\[\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}\]</span> For <span class="math inline">\(f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+\)</span>, the distance can be formulated as <span class="math display">\[W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}\]</span> where <span class="math inline">\(\mathcal{M}\)</span> is the set of all maps that rearrange the distribution <span class="math inline">\(f\)</span> into <span class="math inline">\(g\)</span>.</p>
         
       
 
       
-    </font></p></div>
+    </div>
     <div class="article-info article-info-index">
       
       
@@ -397,6 +417,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="closed">Closed</h2>
+<h3 id="closed-set">Closed set</h3>
+<p>A set <span class="math inline">\(\mathcal{C}\)</span> is closed if it contains its boundary: <span class="math display">\[x^k\in\mathcal{C},x^k\rightarrow\bar{x}\Rightarrow\bar{x}\in\mathcal{C}\]</span></p>
+<ul>
+<li>the intersection of closed sets is closed</li>
+<li>the union of a finite number of closed sets is closed</li>
+<li>inverse under linear mapping <span class="math display">\[\{x|Ax\in\mathcal{C}\}\]</span> is closed if <span class="math inline">\(\mathcal{C}\)</span> is closed</li>
+</ul>
         
       
 
@@ -471,6 +498,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="subgradient">Subgradient</h2>
+<p><span class="math inline">\(g\)</span> is a subgradient of a convex function <span class="math inline">\(f\)</span> at <span class="math inline">\(x\in{}dom~f\)</span> if <span class="math display">\[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]</span></p>
         
       
 
@@ -545,6 +573,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="概述">概述</h2>
+<h3 id="定义">定义</h3>
+<ul>
+<li>Failure Mode, Effects and Criticality analysis</li>
+<li>归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每个故障模式的严重程度及发 生概率予以分类。
+<ul>
+<li>一种自下而上的归纳分析方法</li>
+<li>FMEA和CA</li>
+</ul></li>
+</ul>
         
       
 
@@ -619,6 +656,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="linear-programming">Linear Programming</h2>
+<p><span class="math display">\[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\]</span> <span class="math display">\[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\]</span></p>
+<h3 id="strong-duality">Strong duality</h3>
+<p><span class="math display">\[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]</span></p>
         
       
 
@@ -693,6 +733,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="维修性特征量">维修性特征量</h2>
+<h4 id="维修分布函数维修度">维修分布函数/维修度</h4>
+<p>产品从故障开始到修理完毕经历的时间 <span class="math inline">\(Y\)</span> <span class="math display">\[M(t)=P(Y\leq{}t)\]</span></p>
+<h4 id="修复率">修复率</h4>
+<p>尚未修复的产品在单位时间内修复完成 <span class="math display">\[\mu(t)=\frac{m(t)}{1-M(t)}\]</span></p>
+<h4 id="平均修复时间">平均修复时间</h4>
+<p><span class="math display">\[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]</span></p>
         
       
 
@@ -767,6 +813,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="lagrange-dual-problem">Lagrange dual problem</h2>
+<h3 id="lagrangian">Lagrangian</h3>
+<p><span class="math display">\[\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0\]</span> variable <span class="math inline">\(x\in{}R^n\)</span>, domain <span class="math inline">\(\mathcal{D}\)</span>, optimal value <span class="math inline">\(p^\star\)</span> <span class="math display">\[L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\mathcal{D}\times{}R^m\times{}R^p\]</span> <span class="math display">\[L(x,\lambda,\nu)=f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p\nu_ih_i(x)\]</span></p>
         
       
 
@@ -841,6 +889,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="convert-lp-to-a-standard-form">Convert LP to a Standard Form</h2>
+<p><span class="math display">\[\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0\]</span></p>
+<h3 id="for-inequality">For Inequality</h3>
+<ul>
+<li><span class="math inline">\(x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0\)</span></li>
+<li><span class="math inline">\(x+y\leq{}a\rightarrow{}x+y+s=a,s\geq0\)</span></li>
+<li>Unrestricted <span class="math inline">\(\rightarrow{}x=y-z,y\geq0,z\geq0\)</span></li>
+</ul>
         
       
 

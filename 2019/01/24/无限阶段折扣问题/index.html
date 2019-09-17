@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
   <title>无限阶段折扣问题 | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引言——成本总和的最小化">
+  <meta name="description" content="引言——成本总和的最小化 无限阶段问题的成本总和 定义非时变离散时间动态系统： \[x_{k+1}=f(x_k,u_k,w_k)\] \[x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)\]">
 <meta name="keywords" content="Dynamic Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无限阶段折扣问题">
 <meta property="og:url" content="https://zs-liu.github.io/2019/01/24/无限阶段折扣问题/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="引言——成本总和的最小化">
+<meta property="og:description" content="引言——成本总和的最小化 无限阶段问题的成本总和 定义非时变离散时间动态系统： \[x_{k+1}=f(x_k,u_k,w_k)\] \[x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)\]">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-06T13:49:10.000Z">
+<meta property="og:updated_time" content="2019-09-17T07:50:24.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无限阶段折扣问题">
-<meta name="twitter:description" content="引言——成本总和的最小化">
+<meta name="twitter:description" content="引言——成本总和的最小化 无限阶段问题的成本总和 定义非时变离散时间动态系统： \[x_{k+1}=f(x_k,u_k,w_k)\] \[x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)\]">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -178,9 +178,36 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="引言成本总和的最小化">引言——成本总和的最小化</h2>
-<a id="more"></a>
 <h3 id="无限阶段问题的成本总和">无限阶段问题的成本总和</h3>
-<p>定义非时变离散时间动态系统： <span class="math display">\[x_{k+1}=f(x_k,u_k,w_k)\]</span> <span class="math display">\[x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)\]</span> 给定初始状态<span class="math inline">\(x_0\)</span>，成本函数<span class="math inline">\(g(\cdot,\cdot,\cdot):S\times{}C\times{}D\rightarrow\mathcal{R}\)</span>和折扣因子<span class="math inline">\(\alpha\)</span>，现需要找到<span class="math inline">\(\pi=\{\mu_0,\mu_1,...\},\mu_k\in{}U(x_k)\)</span>，使得如下定义的成本最小： <span class="math display">\[J_\pi(x_0)=\lim_{N\rightarrow{}\infty}E_{w_k}\{\sum_{k=0}^{N-1}\alpha^kg(x_k,\mu_k(x_k),w_k)\}\]</span> <br>对于所有合法的<span class="math inline">\(\pi\)</span>构成的集合记为<span class="math inline">\(\Pi\)</span>，则记最优成本函数为：<br> <span class="math display">\[J^*(x)=\min_{\pi\in\Pi}J_\pi(x)\quad{}x\in{}S\]</span> <br>如果对于所有初始状态，其最优策略相同，则称该问题为稳定问题，该最优策略为最优稳定策略：<br> <span class="math display">\[J_\mu(x)=J^*(x)\]</span> ### 有限阶段问题的DP算法 对于<span class="math inline">\(N\)</span>个阶段的成本问题，DP算法为： <span class="math display">\[J_{N-k}(x)=\min_{u\in{}U(x)}E\{\alpha^{N-k}g(x,u,w)+J_{N-k+1}(f(x,u,w))\}\]</span> <span class="math display">\[J_N(x)=\alpha^NJ(x)\]</span> 重新作如下记号： <span class="math display">\[V_k(x)=\frac{J_{N-k}(x)}{\alpha^{N-k}},\quad{}V_0(x)=J(x)\]</span> <span class="math display">\[V_{k+1}(x)=\min_{u\in{}U(x)}E\{g(x,u,w)+\alpha{}V_k(f(x,u,w))\}\]</span> ### 简记与单调性 对于<span class="math inline">\(J:S\rightarrow\mathcal{R}\)</span>，采用<span class="math inline">\(TJ\)</span>记对<span class="math inline">\(J\)</span>应用DP算法： <span class="math display">\[(TJ)(x)=\min_{u\in{}U(x)}E\{g(x,u,w)+\alpha{}J(f(x,u,w))\}\]</span> 我们视<span class="math inline">\(T\)</span>为<span class="math inline">\(S\)</span>上函数<span class="math inline">\(J\)</span>到<span class="math inline">\(TJ\)</span>的映射。 同样，有如下简记： <span class="math display">\[(T_\mu{}J)(x)=E\{g(x,\mu(x),w)+\alpha{}J(f(x,\mu(x),w))\}\]</span> <span class="math display">\[(T^kJ)(x)=(T(T^{k-1}J))(x),\quad{}(T^0J)(x)=J(x)\]</span> #### 引理 1.1.1: 单调性引理 对于任何函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>和<span class="math inline">\(J^{&#39;}:S\rightarrow\mathcal{R}\)</span> <span class="math display">\[J(x)\leq{}J^{&#39;}(x)\quad{}\text{for all }x\in{}S\]</span> 对于任何稳定策略<span class="math inline">\(\mu:S\rightarrow{}C\)</span>： <span class="math display">\[(T^kJ)(x)\leq{}(T^kJ^{&#39;})(x)\quad{}\text{for all }x\in{}S,k=1,2,...,\]</span> <span class="math display">\[(T_\mu^kJ)(x)\leq{}(T_\mu^kJ^{&#39;})(x)\quad{}\text{for all }x\in{}S,k=1,2,...,\]</span> #### 引理 1.1.2 定义单位函数为<span class="math inline">\(e(x)\equiv1(\forall{}x\in{}S)\)</span>，则对于任何函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>，稳定策略<span class="math inline">\(\mu:S\rightarrow{}C\)</span>，标量<span class="math inline">\(r\)</span>： <span class="math display">\[(T^k(J+re))(x)=(T^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S\]</span> <span class="math display">\[(T_\mu^k(J+re))(x)=(T_\mu^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S\]</span> ### 随机的过去依赖策略 #### 命题 1.1.1： Markov策略的合理性 假设策略集合是可数的，初始状态是可数集合上的分布。则每对<span class="math inline">\((x_k,u_k)\)</span>以及与随机的过去依赖策略相对应的每阶段的期望成本，同样可以以随机Markov策略获得。 ## 有界的阶段成本的折扣问题 #### 假设D： 折扣成本-有界的阶段成本 存在标量<span class="math inline">\(M\)</span>使阶段成本<span class="math inline">\(g\)</span>满足 <span class="math display">\[|g(x,u,w)|\leq{}M,\quad\text{for all }(x,u,w)\in{}S\times{}C\times{}D\]</span> #### 命题 1.2.1： DP算法的收敛性 对于有界函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>，最优成本函数满足： <span class="math display">\[J^*(x)=\lim_{N\rightarrow\infty}(T^NJ)(x)\quad\text{for all }x\in{}S\]</span> #### 推论 1.2.1.1 对于稳定策略<span class="math inline">\(\mu\)</span>，相关联的成本函数满足： <span class="math display">\[J_{\mu}(x)=\lim_{N\rightarrow\infty}(T_{\mu}^NJ)(x)\quad\text{for all }x\in{}S\]</span> #### 命题 1.2.2：贝尔曼方程 最优成本函数满足： <span class="math display">\[J^*=TJ^*\]</span> 此外，<span class="math inline">\(J^*\)</span>也是有界成本函数中满足这一方程的唯一解 #### 推论 1.2.2.1 对于稳定策略<span class="math inline">\(\mu\)</span>，相关联的成本函数满足： <span class="math display">\[J_{\mu}=T_{\mu}J_{\mu}\]</span> 此外，<span class="math inline">\(J_{\mu}\)</span>也是有界成本函数中满足这一方程的唯一解 #### 命题 1.2.3：最优的充要条件 稳定策略<span class="math inline">\(\mu\)</span>是最优的当且仅当对于<span class="math inline">\(\forall{}x\in{}S\)</span>，<span class="math inline">\(\mu(x)\)</span>取得了贝尔曼方程的最小值，即： <span class="math display">\[TJ^*=T_{\mu}J^*\]</span> #### 命题 1.2.4 对于任意两个有界函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R},J^{&#39;}:S\rightarrow{}\mathcal{R}\)</span>，有： <span class="math display">\[(\forall{}k)~\max_{x\in{}S}|(T^kJ(x)-(T^kJ^{&#39;})(x))|\leq\alpha^k\max_{x\in{}S}|J(x)-J^{&#39;}(x)|\]</span></p>
+<p>定义非时变离散时间动态系统： <span class="math display">\[x_{k+1}=f(x_k,u_k,w_k)\]</span> <span class="math display">\[x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)\]</span></p>
+<a id="more"></a>
+<p>给定初始状态<span class="math inline">\(x_0\)</span>，成本函数<span class="math inline">\(g(\cdot,\cdot,\cdot):S\times{}C\times{}D\rightarrow\mathcal{R}\)</span>和折扣因子<span class="math inline">\(\alpha\)</span>，现需要找到<span class="math inline">\(\pi=\{\mu_0,\mu_1,...\},\mu_k\in{}U(x_k)\)</span>，使得如下定义的成本最小： <span class="math display">\[J_\pi(x_0)=\lim_{N\rightarrow{}\infty}E_{w_k}\{\sum_{k=0}^{N-1}\alpha^kg(x_k,\mu_k(x_k),w_k)\}\]</span> <br>对于所有合法的<span class="math inline">\(\pi\)</span>构成的集合记为<span class="math inline">\(\Pi\)</span>，则记最优成本函数为：<br> <span class="math display">\[J^*(x)=\min_{\pi\in\Pi}J_\pi(x)\quad{}x\in{}S\]</span> <br>如果对于所有初始状态，其最优策略相同，则称该问题为稳定问题，该最优策略为最优稳定策略：<br> <span class="math display">\[J_\mu(x)=J^*(x)\]</span></p>
+<h3 id="有限阶段问题的dp算法">有限阶段问题的DP算法</h3>
+<p>对于<span class="math inline">\(N\)</span>个阶段的成本问题，DP算法为： <span class="math display">\[J_{N-k}(x)=\min_{u\in{}U(x)}E\{\alpha^{N-k}g(x,u,w)+J_{N-k+1}(f(x,u,w))\}\]</span> <span class="math display">\[J_N(x)=\alpha^NJ(x)\]</span> 重新作如下记号： <span class="math display">\[V_k(x)=\frac{J_{N-k}(x)}{\alpha^{N-k}},\quad{}V_0(x)=J(x)\]</span> <span class="math display">\[V_{k+1}(x)=\min_{u\in{}U(x)}E\{g(x,u,w)+\alpha{}V_k(f(x,u,w))\}\]</span></p>
+<h3 id="简记与单调性">简记与单调性</h3>
+<p>对于<span class="math inline">\(J:S\rightarrow\mathcal{R}\)</span>，采用<span class="math inline">\(TJ\)</span>记对<span class="math inline">\(J\)</span>应用DP算法： <span class="math display">\[(TJ)(x)=\min_{u\in{}U(x)}E\{g(x,u,w)+\alpha{}J(f(x,u,w))\}\]</span> 我们视<span class="math inline">\(T\)</span>为<span class="math inline">\(S\)</span>上函数<span class="math inline">\(J\)</span>到<span class="math inline">\(TJ\)</span>的映射。 同样，有如下简记： <span class="math display">\[(T_\mu{}J)(x)=E\{g(x,\mu(x),w)+\alpha{}J(f(x,\mu(x),w))\}\]</span> <span class="math display">\[(T^kJ)(x)=(T(T^{k-1}J))(x),\quad{}(T^0J)(x)=J(x)\]</span></p>
+<h4 id="引理-1.1.1-单调性引理">引理 1.1.1: 单调性引理</h4>
+<p>对于任何函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>和<span class="math inline">\(J^{&#39;}:S\rightarrow\mathcal{R}\)</span> <span class="math display">\[J(x)\leq{}J^{&#39;}(x)\quad{}\text{for all }x\in{}S\]</span> 对于任何稳定策略<span class="math inline">\(\mu:S\rightarrow{}C\)</span>： <span class="math display">\[(T^kJ)(x)\leq{}(T^kJ^{&#39;})(x)\quad{}\text{for all }x\in{}S,k=1,2,...,\]</span> <span class="math display">\[(T_\mu^kJ)(x)\leq{}(T_\mu^kJ^{&#39;})(x)\quad{}\text{for all }x\in{}S,k=1,2,...,\]</span></p>
+<h4 id="引理-1.1.2">引理 1.1.2</h4>
+<p>定义单位函数为<span class="math inline">\(e(x)\equiv1(\forall{}x\in{}S)\)</span>，则对于任何函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>，稳定策略<span class="math inline">\(\mu:S\rightarrow{}C\)</span>，标量<span class="math inline">\(r\)</span>： <span class="math display">\[(T^k(J+re))(x)=(T^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S\]</span> <span class="math display">\[(T_\mu^k(J+re))(x)=(T_\mu^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S\]</span></p>
+<h3 id="随机的过去依赖策略">随机的过去依赖策略</h3>
+<h4 id="命题-1.1.1-markov策略的合理性">命题 1.1.1： Markov策略的合理性</h4>
+<p>假设策略集合是可数的，初始状态是可数集合上的分布。则每对<span class="math inline">\((x_k,u_k)\)</span>以及与随机的过去依赖策略相对应的每阶段的期望成本，同样可以以随机Markov策略获得。</p>
+<h2 id="有界的阶段成本的折扣问题">有界的阶段成本的折扣问题</h2>
+<h4 id="假设d-折扣成本-有界的阶段成本">假设D： 折扣成本-有界的阶段成本</h4>
+<p>存在标量<span class="math inline">\(M\)</span>使阶段成本<span class="math inline">\(g\)</span>满足 <span class="math display">\[|g(x,u,w)|\leq{}M,\quad\text{for all }(x,u,w)\in{}S\times{}C\times{}D\]</span></p>
+<h4 id="命题-1.2.1-dp算法的收敛性">命题 1.2.1： DP算法的收敛性</h4>
+<p>对于有界函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>，最优成本函数满足： <span class="math display">\[J^*(x)=\lim_{N\rightarrow\infty}(T^NJ)(x)\quad\text{for all }x\in{}S\]</span></p>
+<h4 id="推论-1.2.1.1">推论 1.2.1.1</h4>
+<p>对于稳定策略<span class="math inline">\(\mu\)</span>，相关联的成本函数满足： <span class="math display">\[J_{\mu}(x)=\lim_{N\rightarrow\infty}(T_{\mu}^NJ)(x)\quad\text{for all }x\in{}S\]</span></p>
+<h4 id="命题-1.2.2贝尔曼方程">命题 1.2.2：贝尔曼方程</h4>
+<p>最优成本函数满足： <span class="math display">\[J^*=TJ^*\]</span> 此外，<span class="math inline">\(J^*\)</span>也是有界成本函数中满足这一方程的唯一解</p>
+<h4 id="推论-1.2.2.1">推论 1.2.2.1</h4>
+<p>对于稳定策略<span class="math inline">\(\mu\)</span>，相关联的成本函数满足： <span class="math display">\[J_{\mu}=T_{\mu}J_{\mu}\]</span> 此外，<span class="math inline">\(J_{\mu}\)</span>也是有界成本函数中满足这一方程的唯一解</p>
+<h4 id="命题-1.2.3最优的充要条件">命题 1.2.3：最优的充要条件</h4>
+<p>稳定策略<span class="math inline">\(\mu\)</span>是最优的当且仅当对于<span class="math inline">\(\forall{}x\in{}S\)</span>，<span class="math inline">\(\mu(x)\)</span>取得了贝尔曼方程的最小值，即： <span class="math display">\[TJ^*=T_{\mu}J^*\]</span></p>
+<h4 id="命题-1.2.4">命题 1.2.4</h4>
+<p>对于任意两个有界函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R},J^{&#39;}:S\rightarrow{}\mathcal{R}\)</span>，有： <span class="math display">\[(\forall{}k)~\max_{x\in{}S}|(T^kJ(x)-(T^kJ^{&#39;})(x))|\leq\alpha^k\max_{x\in{}S}|J(x)-J^{&#39;}(x)|\]</span></p>
 
       
 
@@ -278,8 +305,8 @@
     </a>
   
   
-    <a href="/2019/01/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/01/22/Latex Manual/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">$\rm \LaTeX$ Manual</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -306,7 +333,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言成本总和的最小化"><span class="toc-number">1.</span> <span class="toc-text">引言——成本总和的最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#无限阶段问题的成本总和"><span class="toc-number">1.1.</span> <span class="toc-text">无限阶段问题的成本总和</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言成本总和的最小化"><span class="toc-number">1.</span> <span class="toc-text">引言——成本总和的最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#无限阶段问题的成本总和"><span class="toc-number">1.1.</span> <span class="toc-text">无限阶段问题的成本总和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有限阶段问题的dp算法"><span class="toc-number">1.2.</span> <span class="toc-text">有限阶段问题的DP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简记与单调性"><span class="toc-number">1.3.</span> <span class="toc-text">简记与单调性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1.1.1-单调性引理"><span class="toc-number">1.3.1.</span> <span class="toc-text">引理 1.1.1: 单调性引理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1.1.2"><span class="toc-number">1.3.2.</span> <span class="toc-text">引理 1.1.2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机的过去依赖策略"><span class="toc-number">1.4.</span> <span class="toc-text">随机的过去依赖策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.1.1-markov策略的合理性"><span class="toc-number">1.4.1.</span> <span class="toc-text">命题 1.1.1： Markov策略的合理性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有界的阶段成本的折扣问题"><span class="toc-number">2.</span> <span class="toc-text">有界的阶段成本的折扣问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#假设d-折扣成本-有界的阶段成本"><span class="toc-number">2.0.1.</span> <span class="toc-text">假设D： 折扣成本-有界的阶段成本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.1-dp算法的收敛性"><span class="toc-number">2.0.2.</span> <span class="toc-text">命题 1.2.1： DP算法的收敛性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推论-1.2.1.1"><span class="toc-number">2.0.3.</span> <span class="toc-text">推论 1.2.1.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.2贝尔曼方程"><span class="toc-number">2.0.4.</span> <span class="toc-text">命题 1.2.2：贝尔曼方程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推论-1.2.2.1"><span class="toc-number">2.0.5.</span> <span class="toc-text">推论 1.2.2.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.3最优的充要条件"><span class="toc-number">2.0.6.</span> <span class="toc-text">命题 1.2.3：最优的充要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.4"><span class="toc-number">2.0.7.</span> <span class="toc-text">命题 1.2.4</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

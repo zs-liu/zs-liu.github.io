@@ -2,107 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zs-liu.github.io/2019/01/22/Latex%20Manual/</loc>
+    
+    <lastmod>2019-09-17T07:57:25.895Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zs-liu.github.io/2019/03/07/Convex%20Functions/</loc>
     
-    <lastmod>2019-09-16T14:47:53.040Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/03/19/Convex%20Optimization%20Problems/</loc>
-    
-    <lastmod>2019-09-16T14:45:37.819Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/04/01/%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/</loc>
-    
-    <lastmod>2019-09-16T14:31:37.222Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/03/04/%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2019-09-16T14:31:11.099Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/04/15/%E6%95%85%E9%9A%9C%E6%A8%A1%E5%BC%8F%E5%BD%B1%E5%93%8D%E5%8F%8A%E5%8D%B1%E5%AE%B3%E5%88%86%E6%9E%90/</loc>
-    
-    <lastmod>2019-09-16T14:30:12.002Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/03/18/%E4%B8%8D%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/</loc>
-    
-    <lastmod>2019-09-16T14:29:35.490Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/09/09/2019-09-09/</loc>
-    
-    <lastmod>2019-09-16T14:28:55.706Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/05/25/Optimal%20Transport/</loc>
-    
-    <lastmod>2019-09-16T08:57:45.392Z</lastmod>
+    <lastmod>2019-09-17T07:57:02.698Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/2019/09/16/2019-09-16/</loc>
     
-    <lastmod>2019-09-16T08:56:01.445Z</lastmod>
+    <lastmod>2019-09-17T07:56:02.414Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zs-liu.github.io/2019/01/22/Latex%20Manual/</loc>
+    <loc>https://zs-liu.github.io/2019/09/09/2019-09-09/</loc>
     
-    <lastmod>2019-09-11T06:51:08.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/04/25/Proximal%20Mapping/</loc>
-    
-    <lastmod>2019-05-09T11:39:29.000Z</lastmod>
+    <lastmod>2019-09-17T07:55:30.371Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zs-liu.github.io/2019/03/26/Duality/</loc>
+    <loc>https://zs-liu.github.io/2019/05/25/Optimal%20Transport/</loc>
     
-    <lastmod>2019-04-26T02:35:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/04/16/Subgradient%20Method/</loc>
-    
-    <lastmod>2019-04-25T14:55:28.000Z</lastmod>
+    <lastmod>2019-09-17T07:53:54.058Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/2019/04/02/LP,%20SDP%20and%20SOCP/</loc>
     
-    <lastmod>2019-04-25T05:37:39.000Z</lastmod>
+    <lastmod>2019-09-17T07:53:28.031Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/03/26/Duality/</loc>
+    
+    <lastmod>2019-09-17T07:52:59.700Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/2019/03/22/Simplex%20Algorithm/</loc>
     
-    <lastmod>2019-04-24T01:19:49.976Z</lastmod>
+    <lastmod>2019-09-17T07:52:45.005Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/04/01/%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/</loc>
+    
+    <lastmod>2019-09-17T07:52:21.395Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/03/18/%E4%B8%8D%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/</loc>
+    
+    <lastmod>2019-09-17T07:51:37.947Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/04/15/%E6%95%85%E9%9A%9C%E6%A8%A1%E5%BC%8F%E5%BD%B1%E5%93%8D%E5%8F%8A%E5%8D%B1%E5%AE%B3%E5%88%86%E6%9E%90/</loc>
+    
+    <lastmod>2019-09-17T07:50:49.312Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/01/24/%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2019-09-17T07:50:24.600Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/03/04/%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2019-09-17T07:49:30.209Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/04/16/Subgradient%20Method/</loc>
+    
+    <lastmod>2019-09-17T07:46:15.790Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/04/25/Proximal%20Mapping/</loc>
+    
+    <lastmod>2019-09-17T07:42:19.928Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/2019/03/19/Convex%20Optimization%20Problems/</loc>
+    
+    <lastmod>2019-09-17T07:34:20.141Z</lastmod>
     
   </url>
   
@@ -110,13 +117,6 @@
     <loc>https://zs-liu.github.io/google462fce11ee28ad9d.html</loc>
     
     <lastmod>2019-04-02T07:45:20.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/2019/01/24/%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2019-02-06T13:49:10.000Z</lastmod>
     
   </url>
   

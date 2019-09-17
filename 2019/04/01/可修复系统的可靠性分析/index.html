@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
   <title>可修复系统的可靠性分析 | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="维修性特征量">
+  <meta name="description" content="维修性特征量 维修分布函数/维修度 产品从故障开始到修理完毕经历的时间 \(Y\) \[M(t)=P(Y\leq{}t)\] 修复率 尚未修复的产品在单位时间内修复完成 \[\mu(t)=\frac{m(t)}{1-M(t)}\] 平均修复时间 \[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]">
 <meta name="keywords" content="Reliability Engineering">
 <meta property="og:type" content="article">
 <meta property="og:title" content="可修复系统的可靠性分析">
 <meta property="og:url" content="https://zs-liu.github.io/2019/04/01/可修复系统的可靠性分析/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="维修性特征量">
+<meta property="og:description" content="维修性特征量 维修分布函数/维修度 产品从故障开始到修理完毕经历的时间 \(Y\) \[M(t)=P(Y\leq{}t)\] 修复率 尚未修复的产品在单位时间内修复完成 \[\mu(t)=\frac{m(t)}{1-M(t)}\] 平均修复时间 \[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T14:31:37.222Z">
+<meta property="og:updated_time" content="2019-09-17T07:52:21.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="可修复系统的可靠性分析">
-<meta name="twitter:description" content="维修性特征量">
+<meta name="twitter:description" content="维修性特征量 维修分布函数/维修度 产品从故障开始到修理完毕经历的时间 \(Y\) \[M(t)=P(Y\leq{}t)\] 修复率 尚未修复的产品在单位时间内修复完成 \[\mu(t)=\frac{m(t)}{1-M(t)}\] 平均修复时间 \[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -178,9 +178,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="维修性特征量">维修性特征量</h2>
-<a id="more"></a>
 <h4 id="维修分布函数维修度">维修分布函数/维修度</h4>
-<p>产品从故障开始到修理完毕经历的时间 <span class="math inline">\(Y\)</span> <span class="math display">\[M(t)=P(Y\leq{}t)\]</span> #### 修复率 尚未修复的产品在单位时间内修复完成 <span class="math display">\[\mu(t)=\frac{m(t)}{1-M(t)}\]</span> #### 平均修复时间 <span class="math display">\[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]</span> ## 可用性</p>
+<p>产品从故障开始到修理完毕经历的时间 <span class="math inline">\(Y\)</span> <span class="math display">\[M(t)=P(Y\leq{}t)\]</span></p>
+<h4 id="修复率">修复率</h4>
+<p>尚未修复的产品在单位时间内修复完成 <span class="math display">\[\mu(t)=\frac{m(t)}{1-M(t)}\]</span></p>
+<h4 id="平均修复时间">平均修复时间</h4>
+<p><span class="math display">\[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]</span></p>
+<a id="more"></a>
+<h2 id="可用性">可用性</h2>
 <ul>
 <li>也称有效性，综合反映可靠性和维修性，即可维修产品使用效率的广义可靠性</li>
 <li>规定条件包括工作条件和维修条件</li>
@@ -192,7 +197,9 @@
 <li>瞬时可用度常用于理论分析</li>
 </ul>
 <h4 id="平均可用度">平均可用度</h4>
-<p><span class="math display">\[\bar{A}(t_1,t_2)=\frac{1}{t_2-t_1}\int_{t_1}^{t_2}A(t)dt\]</span> #### 稳态可用度 <span class="math display">\[A=A(\infty)=\lim_{t\rightarrow\infty}A(t)=\frac{MTBF}{MTBF+MTTR}\]</span> 当可靠度函数和维修度函数均是指数函数： <span class="math display">\[A=\frac{\mu}{\mu+\lambda}\]</span></p>
+<p><span class="math display">\[\bar{A}(t_1,t_2)=\frac{1}{t_2-t_1}\int_{t_1}^{t_2}A(t)dt\]</span></p>
+<h4 id="稳态可用度">稳态可用度</h4>
+<p><span class="math display">\[A=A(\infty)=\lim_{t\rightarrow\infty}A(t)=\frac{MTBF}{MTBF+MTTR}\]</span> 当可靠度函数和维修度函数均是指数函数： <span class="math display">\[A=\frac{\mu}{\mu+\lambda}\]</span></p>
 <h2 id="预防维修与事后维修">预防维修与事后维修</h2>
 <h3 id="预防维修">预防维修</h3>
 <ul>
@@ -205,13 +212,20 @@
 <li>系统平均停工时间 <span class="math inline">\(MDT=R(T)T_p+(1-R(T))T_f\)</span></li>
 <li>系统平均工作时间 <span class="math inline">\(MUT=\int_0^TR(t)dt\)</span></li>
 </ul>
-<p><span class="math display">\[A=\frac{MUT}{MUT+MDT}\]</span> ### 事后维修</p>
+<p><span class="math display">\[A=\frac{MUT}{MUT+MDT}\]</span></p>
+<h3 id="事后维修">事后维修</h3>
 <ul>
 <li>系统投入运行后，一旦发生故障，立即开始修理</li>
 <li>系统只存在运行状态 <span class="math inline">\(S\)</span> 和失效状态 <span class="math inline">\(F\)</span></li>
 <li>状态转移关系</li>
 </ul>
-<p><span class="math display">\[P_F(t+\Delta{}t)=P_S(t)\lambda(t)\Delta{}t+P_F(t)[1-\mu(t)\Delta{}t]\]</span> <span class="math display">\[P_F(t)=\exp\{-Q(t)\}\int_0^t\exp\{Q(t)\}\lambda(t)dt,Q(t)=\int_0^t[\lambda(t)+mu(t)]dt\]</span> ## 马尔科夫模型求解可修复系统可靠性 ### 马尔科夫过程 <span class="math display">\[P(X(t_n)=x_n|X(t_1)=x_1,\dots,X(t_{n-1})=x_{n-1})=P(X(t_n)=x_n|X(t_{n-1})=x_{n-1})\]</span> 随机过程 <span class="math inline">\(\{X(t),t\geq0\}\)</span> 是连续时间和离散状态空间 <span class="math inline">\(S=\{0,1,2,\dots,n\}\)</span> 的马尔科夫过程，若满足如下条件（即转移密度为常数），则称此过程为<strong>齐次</strong>马尔科夫过程： <span class="math display">\[P(X(t+\Delta{}t)=j|X(t)=i)\equiv{}p_{ij}(\Delta{}t)\]</span> 由归一化条件，显然有： <span class="math display">\[p_{ii}+\sum_{j\neq{}i}p_{ij}=1\]</span> ### 转移率 <span class="math display">\[q_{ij}=\lim_{\Delta{}t\rightarrow0}\frac{p_{ij}(\Delta{}t)}{\Delta{}t},q_{i}=\lim_{\Delta{}t\rightarrow0}\frac{1-p_{ii}(\Delta{}t)}{\Delta{}t}\]</span> 由全概率条件，显然有： <span class="math display">\[q_i=\sum_{j\neq{}i}q_{ij}\]</span> 转移率矩阵为： <span class="math display">\[a_{ij}=q_{ij}~(i\neq{}j)~\text{or}~-q_i~(i=j)\]</span> ### 利用转移率矩阵求解系统可靠性参数</p>
+<p><span class="math display">\[P_F(t+\Delta{}t)=P_S(t)\lambda(t)\Delta{}t+P_F(t)[1-\mu(t)\Delta{}t]\]</span> <span class="math display">\[P_F(t)=\exp\{-Q(t)\}\int_0^t\exp\{Q(t)\}\lambda(t)dt,Q(t)=\int_0^t[\lambda(t)+mu(t)]dt\]</span></p>
+<h2 id="马尔科夫模型求解可修复系统可靠性">马尔科夫模型求解可修复系统可靠性</h2>
+<h3 id="马尔科夫过程">马尔科夫过程</h3>
+<p><span class="math display">\[P(X(t_n)=x_n|X(t_1)=x_1,\dots,X(t_{n-1})=x_{n-1})=P(X(t_n)=x_n|X(t_{n-1})=x_{n-1})\]</span> 随机过程 <span class="math inline">\(\{X(t),t\geq0\}\)</span> 是连续时间和离散状态空间 <span class="math inline">\(S=\{0,1,2,\dots,n\}\)</span> 的马尔科夫过程，若满足如下条件（即转移密度为常数），则称此过程为<strong>齐次</strong>马尔科夫过程： <span class="math display">\[P(X(t+\Delta{}t)=j|X(t)=i)\equiv{}p_{ij}(\Delta{}t)\]</span> 由归一化条件，显然有： <span class="math display">\[p_{ii}+\sum_{j\neq{}i}p_{ij}=1\]</span></p>
+<h3 id="转移率">转移率</h3>
+<p><span class="math display">\[q_{ij}=\lim_{\Delta{}t\rightarrow0}\frac{p_{ij}(\Delta{}t)}{\Delta{}t},q_{i}=\lim_{\Delta{}t\rightarrow0}\frac{1-p_{ii}(\Delta{}t)}{\Delta{}t}\]</span> 由全概率条件，显然有： <span class="math display">\[q_i=\sum_{j\neq{}i}q_{ij}\]</span> 转移率矩阵为： <span class="math display">\[a_{ij}=q_{ij}~(i\neq{}j)~\text{or}~-q_i~(i=j)\]</span></p>
+<h3 id="利用转移率矩阵求解系统可靠性参数">利用转移率矩阵求解系统可靠性参数</h3>
 <ul>
 <li>状态概率：系统在 <span class="math inline">\(t\)</span> 时刻处于状态 <span class="math inline">\(i\)</span> 的概率</li>
 <li>可用度：瞬时可用度、稳态可用度</li>
@@ -224,8 +238,13 @@
 <ul>
 <li>系统的瞬时可用度 <span class="math inline">\(A(t)\)</span></li>
 </ul>
-<p><span class="math display">\[A(t)=\sum_{j\in{}W}p_j(t)\]</span> - 系统稳态可用度 <span class="math inline">\(A(\infty)\)</span></p>
-<p><span class="math display">\[(\pi_0,\dots,\pi_n)A=(0,\dots,0),\pi_0+\dots+\pi_n=1\]</span> <span class="math display">\[A(\infty)=\sum_{j\in{}W}\pi_j\]</span> #### 系统可靠度与平均首次故障前时间MTTFF #### 状态频率和持续时间</p>
+<p><span class="math display">\[A(t)=\sum_{j\in{}W}p_j(t)\]</span></p>
+<ul>
+<li>系统稳态可用度 <span class="math inline">\(A(\infty)\)</span></li>
+</ul>
+<p><span class="math display">\[(\pi_0,\dots,\pi_n)A=(0,\dots,0),\pi_0+\dots+\pi_n=1\]</span> <span class="math display">\[A(\infty)=\sum_{j\in{}W}\pi_j\]</span></p>
+<h4 id="系统可靠度与平均首次故障前时间mttff">系统可靠度与平均首次故障前时间MTTFF</h4>
+<h4 id="状态频率和持续时间">状态频率和持续时间</h4>
 
       
 
@@ -351,7 +370,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#维修性特征量"><span class="toc-number">1.</span> <span class="toc-text">维修性特征量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#维修分布函数维修度"><span class="toc-number">1.0.1.</span> <span class="toc-text">维修分布函数/维修度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特征量"><span class="toc-number">1.1.</span> <span class="toc-text">特征量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#瞬时可用度"><span class="toc-number">1.1.1.</span> <span class="toc-text">瞬时可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平均可用度"><span class="toc-number">1.1.2.</span> <span class="toc-text">平均可用度</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#预防维修与事后维修"><span class="toc-number">2.</span> <span class="toc-text">预防维修与事后维修</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#预防维修"><span class="toc-number">2.1.</span> <span class="toc-text">预防维修</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#理想预防维修系统的可用度"><span class="toc-number">2.1.1.</span> <span class="toc-text">理想预防维修系统的可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统状态概率"><span class="toc-number">2.1.2.</span> <span class="toc-text">系统状态概率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统可用度"><span class="toc-number">2.1.3.</span> <span class="toc-text">系统可用度</span></a></li></ol></li></ol></li>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#维修性特征量"><span class="toc-number">1.</span> <span class="toc-text">维修性特征量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#维修分布函数维修度"><span class="toc-number">1.0.1.</span> <span class="toc-text">维修分布函数/维修度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修复率"><span class="toc-number">1.0.2.</span> <span class="toc-text">修复率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平均修复时间"><span class="toc-number">1.0.3.</span> <span class="toc-text">平均修复时间</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#可用性"><span class="toc-number">2.</span> <span class="toc-text">可用性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特征量"><span class="toc-number">2.1.</span> <span class="toc-text">特征量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#瞬时可用度"><span class="toc-number">2.1.1.</span> <span class="toc-text">瞬时可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平均可用度"><span class="toc-number">2.1.2.</span> <span class="toc-text">平均可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#稳态可用度"><span class="toc-number">2.1.3.</span> <span class="toc-text">稳态可用度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预防维修与事后维修"><span class="toc-number">3.</span> <span class="toc-text">预防维修与事后维修</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#预防维修"><span class="toc-number">3.1.</span> <span class="toc-text">预防维修</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#理想预防维修系统的可用度"><span class="toc-number">3.1.1.</span> <span class="toc-text">理想预防维修系统的可用度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事后维修"><span class="toc-number">3.2.</span> <span class="toc-text">事后维修</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#马尔科夫模型求解可修复系统可靠性"><span class="toc-number">4.</span> <span class="toc-text">马尔科夫模型求解可修复系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#马尔科夫过程"><span class="toc-number">4.1.</span> <span class="toc-text">马尔科夫过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转移率"><span class="toc-number">4.2.</span> <span class="toc-text">转移率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用转移率矩阵求解系统可靠性参数"><span class="toc-number">4.3.</span> <span class="toc-text">利用转移率矩阵求解系统可靠性参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#系统状态概率"><span class="toc-number">4.3.1.</span> <span class="toc-text">系统状态概率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统可用度"><span class="toc-number">4.3.2.</span> <span class="toc-text">系统可用度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统可靠度与平均首次故障前时间mttff"><span class="toc-number">4.3.3.</span> <span class="toc-text">系统可靠度与平均首次故障前时间MTTFF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态频率和持续时间"><span class="toc-number">4.3.4.</span> <span class="toc-text">状态频率和持续时间</span></a></li></ol></li></ol></li>
                     </div>
                 </span>
             </div>

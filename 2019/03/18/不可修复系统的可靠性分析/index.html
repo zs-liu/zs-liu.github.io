@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
   <title>不可修复系统的可靠性分析 | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="可靠性逻辑框图">
+  <meta name="description" content="可靠性逻辑框图 系统可靠性  在元件故障数据和系统结构已知的情况下，预测系统的可靠性 硬件可靠性/人员操作可靠性/软件可靠性">
 <meta name="keywords" content="Reliability Engineering">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不可修复系统的可靠性分析">
 <meta property="og:url" content="https://zs-liu.github.io/2019/03/18/不可修复系统的可靠性分析/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="可靠性逻辑框图">
+<meta property="og:description" content="可靠性逻辑框图 系统可靠性  在元件故障数据和系统结构已知的情况下，预测系统的可靠性 硬件可靠性/人员操作可靠性/软件可靠性">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T14:29:35.490Z">
+<meta property="og:updated_time" content="2019-09-17T07:51:37.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不可修复系统的可靠性分析">
-<meta name="twitter:description" content="可靠性逻辑框图">
+<meta name="twitter:description" content="可靠性逻辑框图 系统可靠性  在元件故障数据和系统结构已知的情况下，预测系统的可靠性 硬件可靠性/人员操作可靠性/软件可靠性">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -178,12 +178,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="可靠性逻辑框图">可靠性逻辑框图</h2>
-<a id="more"></a>
 <h3 id="系统可靠性">系统可靠性</h3>
 <ul>
 <li>在<strong>元件故障数据和系统结构已知</strong>的情况下，预测系统的可靠性</li>
 <li>硬件可靠性/人员操作可靠性/软件可靠性</li>
 </ul>
+<a id="more"></a>
 <h3 id="系统可靠性框图">系统可靠性框图</h3>
 <p>描述系统与其组成单元之间的<strong>故障逻辑</strong>关系，以系统工程图为基础。</p>
 <ul>
@@ -219,7 +219,12 @@
 <li>并联系统中提高可靠度最大的设备的可靠性，对系统可靠性的提高贡献最大</li>
 </ul>
 <h3 id="kn表决系统"><span class="math inline">\(k/n\)</span>表决系统</h3>
-<p><span class="math display">\[R_S(t)=\sum_{i=0}^{n-k}C_n^i[1-R(t)]^i[R(t)]^{n-i}\]</span> <span class="math display">\[\text{For exponential distribution, }MTTF_S=\sum_{i=k}^n\frac{1}{i\lambda}\]</span> ### 储备系统 组成系统的各单元<strong>只有一个单元工作</strong>，当工作单元故障时，通过转换装置接到另一个单元继续工作，直到所有单元都故障时系统才故障，称为非工作贮备系统(又可称为旁联系统) #### 卷积方法 <span class="math display">\[f_{12}(t)=f_1(t)*f_2(t)=\int_0^tf_2(t-t_1)f_1(t)dt_1\]</span> <span class="math inline">\(f_1(t)=\lambda_1e^{-\lambda_1t},f_2(t)=\lambda_2e^{-\lambda_2t}\)</span> <span class="math display">\[L[f_{12}(t)]=L[f_1(t)*f_2(t)]=L[f_1(t)]\cdot{}L[f_2(t)]=\frac{\lambda_1}{s+\lambda_1}\frac{\lambda_2}{s+\lambda_2}\]</span> <span class="math display">\[\Rightarrow{}f_{12}(t)=\frac{\lambda_1\lambda_2}{\lambda_1-\lambda_2}(e^{-\lambda_2t}-e^{-\lambda_1t})\]</span> #### 复合事件概率法</p>
+<p><span class="math display">\[R_S(t)=\sum_{i=0}^{n-k}C_n^i[1-R(t)]^i[R(t)]^{n-i}\]</span> <span class="math display">\[\text{For exponential distribution, }MTTF_S=\sum_{i=k}^n\frac{1}{i\lambda}\]</span></p>
+<h3 id="储备系统">储备系统</h3>
+<p>组成系统的各单元<strong>只有一个单元工作</strong>，当工作单元故障时，通过转换装置接到另一个单元继续工作，直到所有单元都故障时系统才故障，称为非工作贮备系统(又可称为旁联系统)</p>
+<h4 id="卷积方法">卷积方法</h4>
+<p><span class="math display">\[f_{12}(t)=f_1(t)*f_2(t)=\int_0^tf_2(t-t_1)f_1(t)dt_1\]</span> <span class="math inline">\(f_1(t)=\lambda_1e^{-\lambda_1t},f_2(t)=\lambda_2e^{-\lambda_2t}\)</span> <span class="math display">\[L[f_{12}(t)]=L[f_1(t)*f_2(t)]=L[f_1(t)]\cdot{}L[f_2(t)]=\frac{\lambda_1}{s+\lambda_1}\frac{\lambda_2}{s+\lambda_2}\]</span> <span class="math display">\[\Rightarrow{}f_{12}(t)=\frac{\lambda_1\lambda_2}{\lambda_1-\lambda_2}(e^{-\lambda_2t}-e^{-\lambda_1t})\]</span></p>
+<h4 id="复合事件概率法">复合事件概率法</h4>
 <ul>
 <li>两设备的失效可认为是独立的</li>
 <li>计算储备系统时需考虑两者产生的非独立性（在时间上）</li>
@@ -227,8 +232,9 @@
 <p><span class="math display">\[R_{12}(t)=R_1(t)+\int_0^tR_2(t-t_1)f_1(t_1)dt_1\]</span></p>
 <ul>
 <li>考虑冗余设备的备用失效 <span class="math inline">\(R_2^{-}(\cdot)\)</span></li>
-<li>考虑不完全切换 <span class="math inline">\(R_{SW}\)</span> <span class="math display">\[R_{12}(t)=R_1(t)+R_{SW}\int_0^tR_2(t-t_1)R_2^{-}(t_1)f_1(t_1)dt_1\]</span></li>
+<li>考虑不完全切换 <span class="math inline">\(R_{SW}\)</span></li>
 </ul>
+<p><span class="math display">\[R_{12}(t)=R_1(t)+R_{SW}\int_0^tR_2(t-t_1)R_2^{-}(t_1)f_1(t_1)dt_1\]</span></p>
 <h2 id="网络系统">网络系统</h2>
 <h3 id="全概率分解法分析复杂系统可靠性">全概率分解法分析复杂系统可靠性</h3>
 <p><span class="math display">\[R_S(t)=P(S)=P(x)P(S|x)+P(\bar{x})P(S|\bar{x})\]</span></p>
@@ -236,7 +242,8 @@
 <li><span class="math inline">\(S(x)\)</span> 表示把网络 <span class="math inline">\(S\)</span> 中设备 <span class="math inline">\(x\)</span> 的两端节点合成一个节点而产生的新网络</li>
 <li><span class="math inline">\(S(\bar{x})\)</span> 表示把网络 <span class="math inline">\(S\)</span> 中设备 <span class="math inline">\(x\)</span> 去掉(即两个端点之间不存在经由 <span class="math inline">\(x\)</span> 的联系)而产生的新网络</li>
 </ul>
-<p><span class="math display">\[R_S(t)=P(S)=P(x)P(S(x))+P(\bar{x})P(S(\bar{x}))\]</span> #### 选用分解弧的原则</p>
+<p><span class="math display">\[R_S(t)=P(S)=P(x)P(S(x))+P(\bar{x})P(S(\bar{x}))\]</span></p>
+<h4 id="选用分解弧的原则">选用分解弧的原则</h4>
 <ul>
 <li>对任意无向弧可以作为分解弧</li>
 <li>与输入节点与输出节点相连的弧可以作为分解弧</li>
@@ -250,7 +257,10 @@
 <li>割集中任何一个设备变成成功则系统成功，此割集为最小割集</li>
 </ul>
 <h4 id="单调关联系统的表示">单调关联系统的表示</h4>
-<p>设最小路集为 <span class="math inline">\(p_1,\dots,p_m\)</span>，最小割集为 <span class="math inline">\(k_1,\dots,k_m\)</span> <span class="math display">\[\varphi(x)=\bigcup_{j=1}^m\bigcap_{i\in{}p_j}x_i=\bigcap_{j=1}^l\bigcup_{i\in{}k_j}x_i\]</span> ### 最小路集/最小割集求解 #### 联络矩阵法 <span class="math display">\[C:\{C_{ij}=x\text{ if arc }x\text{ exists between }i,j\text{; }0\text{ otherwise}\}\]</span> <span class="math display">\[C^r=C\times{}C^{r-1}\]</span> 如果研究 <span class="math inline">\(I\)</span> 到 <span class="math inline">\(L\)</span> 的可靠性</p>
+<p>设最小路集为 <span class="math inline">\(p_1,\dots,p_m\)</span>，最小割集为 <span class="math inline">\(k_1,\dots,k_m\)</span> <span class="math display">\[\varphi(x)=\bigcup_{j=1}^m\bigcap_{i\in{}p_j}x_i=\bigcap_{j=1}^l\bigcup_{i\in{}k_j}x_i\]</span></p>
+<h3 id="最小路集最小割集求解">最小路集/最小割集求解</h3>
+<h4 id="联络矩阵法">联络矩阵法</h4>
+<p><span class="math display">\[C:\{C_{ij}=x\text{ if arc }x\text{ exists between }i,j\text{; }0\text{ otherwise}\}\]</span> <span class="math display">\[C^r=C\times{}C^{r-1}\]</span> 如果研究 <span class="math inline">\(I\)</span> 到 <span class="math inline">\(L\)</span> 的可靠性</p>
 <ul>
 <li>只需求出<span class="math inline">\(C^2,C^3,\dots,C^{n-1}\)</span>中第 <span class="math inline">\(L\)</span> 列</li>
 <li><span class="math inline">\(C^{n-1}\)</span>只需求出第 <span class="math inline">\(I\)</span> 行</li>
@@ -265,7 +275,12 @@
 <p><span class="math inline">\(S\)</span> 最小割集为 <span class="math inline">\(\bar{S}\)</span> 最小路集</p>
 <h3 id="利用最小路集最小割集求解系统可靠度">利用最小路集/最小割集求解系统可靠度</h3>
 <h4 id="精确解">精确解</h4>
-<p>最小路集/最小割集一般相交（可以直接用容斥原理求解），可对其进行“不交化”，得到相互独立的最小路集/最小割集 <span class="math display">\[K_1\cup{}K_2=K_1+\bar{K}_1K_2\]</span> #### 近似解 - 区间估计：当设备可靠度较高，容斥原理展式的首项或前两项起主要作用 - 点估计</p>
+<p>最小路集/最小割集一般相交（可以直接用容斥原理求解），可对其进行“不交化”，得到相互独立的最小路集/最小割集 <span class="math display">\[K_1\cup{}K_2=K_1+\bar{K}_1K_2\]</span></p>
+<h4 id="近似解">近似解</h4>
+<ul>
+<li>区间估计：当设备可靠度较高，容斥原理展式的首项或前两项起主要作用</li>
+<li>点估计</li>
+</ul>
 <h3 id="特殊情况三角形与星形">特殊情况：三角形与星形</h3>
 
       
@@ -392,7 +407,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#可靠性逻辑框图"><span class="toc-number">1.</span> <span class="toc-text">可靠性逻辑框图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统可靠性"><span class="toc-number">1.1.</span> <span class="toc-text">系统可靠性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统可靠性框图"><span class="toc-number">1.2.</span> <span class="toc-text">系统可靠性框图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#典型不可修系统的可靠性分析"><span class="toc-number">2.</span> <span class="toc-text">典型不可修系统的可靠性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可靠性分析假设"><span class="toc-number">2.1.</span> <span class="toc-text">可靠性分析假设</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#串联系统"><span class="toc-number">2.2.</span> <span class="toc-text">串联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并联系统"><span class="toc-number">2.3.</span> <span class="toc-text">并联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kn表决系统"><span class="toc-number">2.4.</span> <span class="toc-text">\(k/n\)表决系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络系统"><span class="toc-number">3.</span> <span class="toc-text">网络系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全概率分解法分析复杂系统可靠性"><span class="toc-number">3.1.</span> <span class="toc-text">全概率分解法分析复杂系统可靠性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小路集最小割集法分析系统可靠性"><span class="toc-number">3.2.</span> <span class="toc-text">最小路集/最小割集法分析系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#结构函数"><span class="toc-number">3.2.1.</span> <span class="toc-text">结构函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单调关联系统的表示"><span class="toc-number">3.2.2.</span> <span class="toc-text">单调关联系统的表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#布尔行列式"><span class="toc-number">3.2.3.</span> <span class="toc-text">布尔行列式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最小割集"><span class="toc-number">3.2.4.</span> <span class="toc-text">最小割集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用最小路集最小割集求解系统可靠度"><span class="toc-number">3.3.</span> <span class="toc-text">利用最小路集/最小割集求解系统可靠度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#精确解"><span class="toc-number">3.3.1.</span> <span class="toc-text">精确解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊情况三角形与星形"><span class="toc-number">3.4.</span> <span class="toc-text">特殊情况：三角形与星形</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#可靠性逻辑框图"><span class="toc-number">1.</span> <span class="toc-text">可靠性逻辑框图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统可靠性"><span class="toc-number">1.1.</span> <span class="toc-text">系统可靠性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统可靠性框图"><span class="toc-number">1.2.</span> <span class="toc-text">系统可靠性框图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#典型不可修系统的可靠性分析"><span class="toc-number">2.</span> <span class="toc-text">典型不可修系统的可靠性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可靠性分析假设"><span class="toc-number">2.1.</span> <span class="toc-text">可靠性分析假设</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#串联系统"><span class="toc-number">2.2.</span> <span class="toc-text">串联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并联系统"><span class="toc-number">2.3.</span> <span class="toc-text">并联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kn表决系统"><span class="toc-number">2.4.</span> <span class="toc-text">\(k/n\)表决系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#储备系统"><span class="toc-number">2.5.</span> <span class="toc-text">储备系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积方法"><span class="toc-number">2.5.1.</span> <span class="toc-text">卷积方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复合事件概率法"><span class="toc-number">2.5.2.</span> <span class="toc-text">复合事件概率法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络系统"><span class="toc-number">3.</span> <span class="toc-text">网络系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全概率分解法分析复杂系统可靠性"><span class="toc-number">3.1.</span> <span class="toc-text">全概率分解法分析复杂系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选用分解弧的原则"><span class="toc-number">3.1.1.</span> <span class="toc-text">选用分解弧的原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小路集最小割集法分析系统可靠性"><span class="toc-number">3.2.</span> <span class="toc-text">最小路集/最小割集法分析系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#结构函数"><span class="toc-number">3.2.1.</span> <span class="toc-text">结构函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单调关联系统的表示"><span class="toc-number">3.2.2.</span> <span class="toc-text">单调关联系统的表示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小路集最小割集求解"><span class="toc-number">3.3.</span> <span class="toc-text">最小路集/最小割集求解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#联络矩阵法"><span class="toc-number">3.3.1.</span> <span class="toc-text">联络矩阵法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#布尔行列式"><span class="toc-number">3.3.2.</span> <span class="toc-text">布尔行列式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最小割集"><span class="toc-number">3.3.3.</span> <span class="toc-text">最小割集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用最小路集最小割集求解系统可靠度"><span class="toc-number">3.4.</span> <span class="toc-text">利用最小路集/最小割集求解系统可靠度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#精确解"><span class="toc-number">3.4.1.</span> <span class="toc-text">精确解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#近似解"><span class="toc-number">3.4.2.</span> <span class="toc-text">近似解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊情况三角形与星形"><span class="toc-number">3.5.</span> <span class="toc-text">特殊情况：三角形与星形</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

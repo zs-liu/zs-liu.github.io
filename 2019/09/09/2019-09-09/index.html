@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
   <title>Introduction to Queue and Lyapunov Analysis | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Queue">
+  <meta name="description" content="Queue Definition  Arrival: \(A(t)\) Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\] Service: \(\mu(t)\) Cumulative departure: \[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\">
 <meta name="keywords" content="Network Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Queue and Lyapunov Analysis">
 <meta property="og:url" content="https://zs-liu.github.io/2019/09/09/2019-09-09/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Queue">
+<meta property="og:description" content="Queue Definition  Arrival: \(A(t)\) Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\] Service: \(\mu(t)\) Cumulative departure: \[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T14:28:55.706Z">
+<meta property="og:updated_time" content="2019-09-17T07:55:30.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Introduction to Queue and Lyapunov Analysis">
-<meta name="twitter:description" content="Queue">
+<meta name="twitter:description" content="Queue Definition  Arrival: \(A(t)\) Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\] Service: \(\mu(t)\) Cumulative departure: \[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -178,7 +178,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="queue">Queue</h2>
-<a id="more"></a>
 <h3 id="definition">Definition</h3>
 <ul>
 <li>Arrival: <span class="math inline">\(A(t)\)</span></li>
@@ -188,6 +187,7 @@
 <li><span class="math inline">\(Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise\)</span></li>
 <li><span class="math inline">\(Q(t)=X[0,t]-Y[0,t],Q(0)=0\)</span></li>
 </ul>
+<a id="more"></a>
 <h3 id="interval-and-conserving">Interval and Conserving</h3>
 <ul>
 <li>Def: An interval <span class="math inline">\(I=[t_1,t_2]\)</span> is a busy period if <span class="math inline">\(Y(t)&gt;0,\forall{}t\in{}I\)</span> and <span class="math inline">\(Y(t_1^-)=Y(t_2^+)=0\)</span></li>
@@ -208,18 +208,25 @@
 <hr>
 <p><span class="math display">\[Q(t)\text{ stable } \leftarrow\lambda\leq\mu\]</span></p>
 <h3 id="littles-law">Little's law</h3>
-<p><span class="math display">\[Q_{av}=\lim_{t\rightarrow\infty}\frac{1}{t}\int_{\tau=0}^tQ(\tau)d\tau,D_{av}=\lim_{k\rightarrow\infty}\frac{1}{k}\sum_{k=1}^kD_k\]</span> <span class="math display">\[\Rightarrow{}Q_{av}=\lambda{}D_{av}\]</span> ## Lyapunor Analysis ### Definition Denote <span class="math inline">\(\vec{Q}(t)=(Q_1(t),\dots,Q_k(t))\)</span>, Def <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor-function if</p>
+<p><span class="math display">\[Q_{av}=\lim_{t\rightarrow\infty}\frac{1}{t}\int_{\tau=0}^tQ(\tau)d\tau,D_{av}=\lim_{k\rightarrow\infty}\frac{1}{k}\sum_{k=1}^kD_k\]</span> <span class="math display">\[\Rightarrow{}Q_{av}=\lambda{}D_{av}\]</span></p>
+<h2 id="lyapunor-analysis">Lyapunor Analysis</h2>
+<h3 id="definition-1">Definition</h3>
+<p>Denote <span class="math inline">\(\vec{Q}(t)=(Q_1(t),\dots,Q_k(t))\)</span>, Def <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor-function if</p>
 <ul>
 <li><span class="math inline">\(L(\vec{Q}(t))\geq0\)</span></li>
 <li><span class="math inline">\(L(0)=0\)</span></li>
 </ul>
-<p>Define one-slot conditional lyapunor drift <span class="math display">\[\Delta(t)=E\{L(\vec{Q}(t+1))-L(\vec{Q}(t))|\vec{Q}(t)\}\]</span> ### Theorem Suppose <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor function and satisifes <span class="math inline">\(\Delta(t)\leq{}B-e\sum_kQ_k(t)\)</span> and <span class="math inline">\(L(\vec{Q}(0))&lt;\infty\)</span>, then</p>
+<p>Define one-slot conditional lyapunor drift <span class="math display">\[\Delta(t)=E\{L(\vec{Q}(t+1))-L(\vec{Q}(t))|\vec{Q}(t)\}\]</span></p>
+<h3 id="theorem">Theorem</h3>
+<p>Suppose <span class="math inline">\(L(\vec{Q}(t))\)</span> is a lyapunor function and satisifes <span class="math inline">\(\Delta(t)\leq{}B-e\sum_kQ_k(t)\)</span> and <span class="math inline">\(L(\vec{Q}(0))&lt;\infty\)</span>, then</p>
 <ul>
 <li><span class="math inline">\(e&gt;0\rightarrow{}Q(t)\)</span> is strongly stable <span class="math display">\[\lim_{T\rightarrow\infty}\sup\frac{1}{T}\sum_{t=0}^{T-1}\sum_kE\{Q_k(t)\}\leq\frac{B}{e}\]</span></li>
-<li><span class="math inline">\(e\geq0\)</span> and <span class="math display">\[L(\vec{Q})=\sum_k{}w_kQ_k\]</span> , then <span class="math display">\[\lim_{t\rightarrow\infty}\frac{E\{Q_k(t)\}}{t}=0,\forall{}k\]</span></li>
+<li><span class="math inline">\(e\geq0\)</span> and <span class="math inline">\(L(\vec{Q})=\sum_k{}w_kQ_k\)</span>, then <span class="math display">\[\lim_{t\rightarrow\infty}\frac{E\{Q_k(t)\}}{t}=0,\forall{}k\]</span></li>
 </ul>
 <hr>
-<p>Proof is made by list the inequality from <span class="math inline">\(t=0\)</span> to <span class="math inline">\(t=T\)</span> and sum them up. For the first one, divide by <span class="math inline">\(T\)</span> then is obvious. For the second one, put exception into square, the left side is <span class="math inline">\(O(\sqrt{T})\)</span>. #### Example <span class="math inline">\(A(t), \mu(t), \sim{}Bernoulli~\lambda,\mu\)</span> <span class="math display">\[Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)\]</span> <span class="math display">\[\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}-Q(t)(\mu-\lambda)\]</span> <span class="math display">\[\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}\]</span></p>
+<p>Proof is made by list the inequality from <span class="math inline">\(t=0\)</span> to <span class="math inline">\(t=T\)</span> and sum them up. For the first one, divide by <span class="math inline">\(T\)</span> then is obvious. For the second one, put exception into square, the left side is <span class="math inline">\(O(\sqrt{T})\)</span>.</p>
+<h4 id="example">Example</h4>
+<p><span class="math inline">\(A(t), \mu(t), \sim{}Bernoulli~\lambda,\mu\)</span> <span class="math display">\[Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)\]</span> <span class="math display">\[\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}-Q(t)(\mu-\lambda)\]</span> <span class="math display">\[\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}\]</span></p>
 
       
 
@@ -345,7 +352,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-number">1.</span> <span class="toc-text">Queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-number">1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interval-and-conserving"><span class="toc-number">1.2.</span> <span class="toc-text">Interval and Conserving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stability"><span class="toc-number">1.3.</span> <span class="toc-text">Stability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#theorem-rate-stability"><span class="toc-number">1.3.1.</span> <span class="toc-text">Theorem-Rate Stability</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#littles-law"><span class="toc-number">1.4.</span> <span class="toc-text">Little&#39;s law</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-number">1.</span> <span class="toc-text">Queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-number">1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interval-and-conserving"><span class="toc-number">1.2.</span> <span class="toc-text">Interval and Conserving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stability"><span class="toc-number">1.3.</span> <span class="toc-text">Stability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#theorem-rate-stability"><span class="toc-number">1.3.1.</span> <span class="toc-text">Theorem-Rate Stability</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#littles-law"><span class="toc-number">1.4.</span> <span class="toc-text">Little&#39;s law</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lyapunor-analysis"><span class="toc-number">2.</span> <span class="toc-text">Lyapunor Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition-1"><span class="toc-number">2.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem"><span class="toc-number">2.2.</span> <span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#example"><span class="toc-number">2.2.1.</span> <span class="toc-text">Example</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

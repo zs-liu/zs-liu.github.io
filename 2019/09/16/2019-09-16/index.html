@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
   <title>Max Weight and Back Pressure Method | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Queue Control Problem">
+  <meta name="description" content="Queue Control Problem \(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)  \(A_i(t)\) is iid, \(E\{A_i(t)\}=\lambda_i\), \(A_i(t)\in[0,A_{\max}]\) \(S_i(t)\) is condition of link \(i\), \(S_i(t)\in\{0,1">
 <meta name="keywords" content="Network Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Max Weight and Back Pressure Method">
 <meta property="og:url" content="https://zs-liu.github.io/2019/09/16/2019-09-16/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Queue Control Problem">
+<meta property="og:description" content="Queue Control Problem \(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)  \(A_i(t)\) is iid, \(E\{A_i(t)\}=\lambda_i\), \(A_i(t)\in[0,A_{\max}]\) \(S_i(t)\) is condition of link \(i\), \(S_i(t)\in\{0,1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T08:56:01.445Z">
+<meta property="og:updated_time" content="2019-09-17T07:56:02.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Max Weight and Back Pressure Method">
-<meta name="twitter:description" content="Queue Control Problem">
+<meta name="twitter:description" content="Queue Control Problem \(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)  \(A_i(t)\) is iid, \(E\{A_i(t)\}=\lambda_i\), \(A_i(t)\in[0,A_{\max}]\) \(S_i(t)\) is condition of link \(i\), \(S_i(t)\in\{0,1">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -178,7 +178,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="queue-control-problem">Queue Control Problem</h2>
-<a id="more"></a>
 <p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
 <ul>
 <li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(E\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
@@ -188,6 +187,7 @@
 <li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
 <li>Goal: stabilize both queues</li>
 </ul>
+<a id="more"></a>
 <h3 id="linear-program">Linear Program</h3>
 <p><span class="math display">\[\max~e\]</span> <span class="math display">\[\begin{split}s.t.~\lambda_1+e&amp;\leq{}P_{10}+P_{11}\theta\\\lambda_2+e&amp;\leq{}P_{01}+(1-\theta)P_{11}\end{split}\]</span></p>
 <ul>
