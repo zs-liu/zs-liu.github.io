@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Text">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-17T07:57:25.895Z">
+<meta property="og:updated_time" content="2019-09-19T02:48:32.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="$\rm \LaTeX$ Manual">
 <meta name="twitter:description" content="Text">
@@ -210,6 +210,8 @@
 <h2 id="others">Others</h2>
 <h3 id="two-column-document">Two Column Document</h3>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[UTF8,a4paper,14pt,twocolumn]&#123;ctexart&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">    \twocolumn[</span><br><span class="line">    \begin&#123;@twocolumnfalse&#125;</span><br><span class="line">        % something here may cross two column</span><br><span class="line">    \end&#123;@twocolumnfalse&#125;]</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="hyperlink">Hyperlink</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\usepackage[colorlinks,linkcolor=blue]&#123;hyperref&#125;</span><br><span class="line">% set this command as the final one</span><br><span class="line">\href&#123;https://www.google.com&#125;&#123;Google&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -335,7 +337,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#text"><span class="toc-number">1.</span> <span class="toc-text">Text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#figure"><span class="toc-number">2.</span> <span class="toc-text">Figure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#two-column-figure"><span class="toc-number">2.1.</span> <span class="toc-text">Two Column Figure</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#table"><span class="toc-number">3.</span> <span class="toc-text">Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equation"><span class="toc-number">4.</span> <span class="toc-text">Equation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#un-italic"><span class="toc-number">4.1.</span> <span class="toc-text">Un-Italic</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others"><span class="toc-number">5.</span> <span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#two-column-document"><span class="toc-number">5.1.</span> <span class="toc-text">Two Column Document</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#text"><span class="toc-number">1.</span> <span class="toc-text">Text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#figure"><span class="toc-number">2.</span> <span class="toc-text">Figure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#two-column-figure"><span class="toc-number">2.1.</span> <span class="toc-text">Two Column Figure</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#table"><span class="toc-number">3.</span> <span class="toc-text">Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equation"><span class="toc-number">4.</span> <span class="toc-text">Equation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#un-italic"><span class="toc-number">4.1.</span> <span class="toc-text">Un-Italic</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others"><span class="toc-number">5.</span> <span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#two-column-document"><span class="toc-number">5.1.</span> <span class="toc-text">Two Column Document</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hyperlink"><span class="toc-number">5.2.</span> <span class="toc-text">Hyperlink</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -469,10 +471,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Operations Research</a>
               </li>
              
@@ -482,6 +480,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
             
             <div class="clearfix"></div>
