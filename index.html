@@ -154,19 +154,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-2019-09-16" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Max Weight, Back Pressure and Utility Maximization" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/2019-09-16/">Max Weight and Back Pressure Method</a>
+      <a class="article-title" href="/2019/09/16/Max Weight, Back Pressure and Utility Maximization/">Max Weight, Back Pressure and Utility Maximization</a>
     </h1>
   
 
         
-        <a href="/2019/09/16/2019-09-16/" class="archive-article-date">
+        <a href="/2019/09/16/Max Weight, Back Pressure and Utility Maximization/" class="archive-article-date">
   	<time datetime="2019-09-16T05:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
 </a>
         
@@ -174,14 +174,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="queue-control-problem">Queue Control Problem</h2>
-<p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
+        <h2 id="Queue-Control-Problem"><a href="#Queue-Control-Problem" class="headerlink" title="Queue Control Problem"></a>Queue Control Problem</h2><p>$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$</p>
 <ul>
-<li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(E\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
-<li><span class="math inline">\(S_i(t)\)</span> is condition of link <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i(t)\in\{0,1\}\)</span></li>
-<li><span class="math inline">\(P_{xy}=P_r\{S_1(t)=x,S_2(t)=y\}\)</span></li>
-<li>At every time, serve <span class="math inline">\(Q_1(t)\)</span> or <span class="math inline">\(Q_2(t)\)</span></li>
-<li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
+<li>$A<em>i(t)$ is iid, $E{A_i(t)}=\lambda_i$, $A_i(t)\in[0,A</em>{\max}]$</li>
+<li>$S_i(t)$ is condition of link $i$, $S_i(t)\in{0,1}$</li>
+<li>$P_{xy}=P_r{S_1(t)=x,S_2(t)=y}$</li>
+<li>At every time, serve $Q_1(t)$ or $Q_2(t)$</li>
+<li>$\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}$</li>
 <li>Goal: stabilize both queues</li>
 </ul>
         
@@ -207,7 +206,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/2019-09-16/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/16/Max Weight, Back Pressure and Utility Maximization/">展开全文 >></a>
         </p>
       
 
@@ -237,19 +236,19 @@
 
 
   
-    <article id="post-2019-09-09" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Introduction to Queue and Lyapunov Analysis" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/2019-09-09/">Introduction to Queue and Lyapunov Analysis</a>
+      <a class="article-title" href="/2019/09/09/Introduction to Queue and Lyapunov Analysis/">Introduction to Queue and Lyapunov Analysis</a>
     </h1>
   
 
         
-        <a href="/2019/09/09/2019-09-09/" class="archive-article-date">
+        <a href="/2019/09/09/Introduction to Queue and Lyapunov Analysis/" class="archive-article-date">
   	<time datetime="2019-09-09T05:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
 </a>
         
@@ -257,15 +256,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="queue">Queue</h2>
-<h3 id="definition">Definition</h3>
-<ul>
-<li>Arrival: <span class="math inline">\(A(t)\)</span></li>
-<li>Cumulative arrival: <span class="math display">\[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]</span></li>
-<li>Service: <span class="math inline">\(\mu(t)\)</span></li>
-<li>Cumulative departure: <span class="math display">\[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\]</span></li>
-<li><span class="math inline">\(Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise\)</span></li>
-<li><span class="math inline">\(Q(t)=X[0,t]-Y[0,t],Q(0)=0\)</span></li>
+        <h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li>Arrival: $A(t)$</li>
+<li>Cumulative arrival: <script type="math/tex">X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt</script></li>
+<li>Service: $\mu(t)$</li>
+<li>Cumulative departure: <script type="math/tex">Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt</script></li>
+<li>$Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise$</li>
+<li>$Q(t)=X[0,t]-Y[0,t],Q(0)=0$</li>
 </ul>
         
       
@@ -290,7 +287,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/2019-09-09/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/09/Introduction to Queue and Lyapunov Analysis/">展开全文 >></a>
         </p>
       
 
@@ -1068,6 +1065,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Operations Research</a>
               </li>
              
@@ -1077,10 +1078,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
             
             <div class="clearfix"></div>
