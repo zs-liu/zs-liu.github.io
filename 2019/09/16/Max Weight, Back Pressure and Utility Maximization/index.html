@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://zs-liu.github.io">
   <title>Max Weight, Back Pressure and Utility Maximization | 鲈鱼柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Queue Control Problem$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$  $Ai(t)$ is iid, $E{A_i(t)}=\lambda_i$, $A_i(t)\in[0,A{\max}]$ $S_i(t)$ is condition of link $i$, $S_i(t)\in{0,1}$ $P_{xy}=P_r{S_1(">
+  <meta name="description" content="Queue Control Problem \(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)  \(A_i(t)\) is iid, \(E\{A_i(t)\}=\lambda_i\), \(A_i(t)\in[0,A_{\max}]\) \(S_i(t)\) is condition of link \(i\), \(S_i(t)\in\{0,1">
 <meta name="keywords" content="Network Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Max Weight, Back Pressure and Utility Maximization">
 <meta property="og:url" content="https://zs-liu.github.io/2019/09/16/Max Weight, Back Pressure and Utility Maximization/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Queue Control Problem$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$  $Ai(t)$ is iid, $E{A_i(t)}=\lambda_i$, $A_i(t)\in[0,A{\max}]$ $S_i(t)$ is condition of link $i$, $S_i(t)\in{0,1}$ $P_{xy}=P_r{S_1(">
+<meta property="og:description" content="Queue Control Problem \(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)  \(A_i(t)\) is iid, \(E\{A_i(t)\}=\lambda_i\), \(A_i(t)\in[0,A_{\max}]\) \(S_i(t)\) is condition of link \(i\), \(S_i(t)\in\{0,1">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-09-23T07:42:59.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Max Weight, Back Pressure and Utility Maximization">
-<meta name="twitter:description" content="Queue Control Problem$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$  $Ai(t)$ is iid, $E{A_i(t)}=\lambda_i$, $A_i(t)\in[0,A{\max}]$ $S_i(t)$ is condition of link $i$, $S_i(t)\in{0,1}$ $P_{xy}=P_r{S_1(">
+<meta name="twitter:description" content="Queue Control Problem \(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)  \(A_i(t)\) is iid, \(E\{A_i(t)\}=\lambda_i\), \(A_i(t)\in[0,A_{\max}]\) \(S_i(t)\) is condition of link \(i\), \(S_i(t)\in\{0,1">
   
     <link rel="alternative" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -177,83 +177,111 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Queue-Control-Problem"><a href="#Queue-Control-Problem" class="headerlink" title="Queue Control Problem"></a>Queue Control Problem</h2><p>$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$</p>
+        <h2 id="queue-control-problem">Queue Control Problem</h2>
+<p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
 <ul>
-<li>$A<em>i(t)$ is iid, $E{A_i(t)}=\lambda_i$, $A_i(t)\in[0,A</em>{\max}]$</li>
-<li>$S_i(t)$ is condition of link $i$, $S_i(t)\in{0,1}$</li>
-<li>$P_{xy}=P_r{S_1(t)=x,S_2(t)=y}$</li>
-<li>At every time, serve $Q_1(t)$ or $Q_2(t)$</li>
-<li>$\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}$</li>
+<li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(E\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S_i(t)\)</span> is condition of link <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i(t)\in\{0,1\}\)</span></li>
+<li><span class="math inline">\(P_{xy}=P_r\{S_1(t)=x,S_2(t)=y\}\)</span></li>
+<li>At every time, serve <span class="math inline">\(Q_1(t)\)</span> or <span class="math inline">\(Q_2(t)\)</span></li>
+<li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
 <li>Goal: stabilize both queues</li>
 </ul>
 <a id="more"></a>
-<h3 id="Linear-Program"><a href="#Linear-Program" class="headerlink" title="Linear Program"></a>Linear Program</h3><script type="math/tex; mode=display">\max~e</script><script type="math/tex; mode=display">\begin{split}s.t.~\lambda_1+e&\leq{}P_{10}+P_{11}\theta\\\lambda_2+e&\leq{}P_{01}+(1-\theta)P_{11}\end{split}</script><ul>
-<li>optimal value $e^\star&gt;0$</li>
+<h3 id="linear-program">Linear Program</h3>
+<p><span class="math display">\[\max~e\]</span> <span class="math display">\[\begin{split}s.t.~\lambda_1+e&amp;\leq{}P_{10}+P_{11}\theta\\\lambda_2+e&amp;\leq{}P_{01}+(1-\theta)P_{11}\end{split}\]</span></p>
+<ul>
+<li>optimal value <span class="math inline">\(e^\star&gt;0\)</span></li>
 <li>LP policy is obvious</li>
-<li>If we know all $\lambda<em>i$ and $P</em>{xy}$</li>
+<li>If we know all <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\(P_{xy}\)</span></li>
 </ul>
-<h3 id="ALG-Max-Weight"><a href="#ALG-Max-Weight" class="headerlink" title="ALG Max-Weight"></a>ALG Max-Weight</h3><ul>
-<li>Policy is simple<ul>
-<li>$S(t)={1,0}$, serve $Q_1$</li>
-<li>$S(t)={0,1}$, serve $Q_2$</li>
-<li>$S(t)={1,1}$, serve $\max{Q_1,Q_2}$</li>
-</ul>
-</li>
+<h3 id="alg-max-weight">ALG Max-Weight</h3>
+<ul>
+<li>Policy is simple
+<ul>
+<li><span class="math inline">\(S(t)=\{1,0\}\)</span>, serve <span class="math inline">\(Q_1\)</span></li>
+<li><span class="math inline">\(S(t)=\{0,1\}\)</span>, serve <span class="math inline">\(Q_2\)</span></li>
+<li><span class="math inline">\(S(t)=\{1,1\}\)</span>, serve <span class="math inline">\(\max\{Q_1,Q_2\}\)</span></li>
+</ul></li>
 <li>Without any infomation</li>
 </ul>
 <hr>
-<script type="math/tex; mode=display">L(t)=\frac{1}{2}Q_1^2(t)+\frac{1}{2}Q_2^2(t)</script><script type="math/tex; mode=display">Q_i(t+1)=(Q_i(t)-\mu_i(t)+A_i(t))^+</script><script type="math/tex; mode=display">\begin{split}\Delta(t)&=E\{L(t+1)-L(t)|Q(t)\}\\&=\frac{1}{2}E\{Q_1^2(t+1)-Q_1^2(t)+Q_2^2(t+1)-Q_2^2(t)|Q(t)\}\\&\leq{}B-E\{Q_1(t)[\mu_1(t)-A_1(t)]+Q_2(t)[\mu_2(t)-A_2(t)]|Q(t)\}\\&=B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-E\{Q_1(t)\mu_1(t)+Q_2(t)\mu_2(t)|Q(t)\}\\&\leq{}B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-Q_1(t)[P_{10}+P_{11}\theta]-Q_2(t)[P_{01}+P_{11}(1-\theta)]\\&=B-eQ_1(t)-eQ_2(t)\end{split}</script><h3 id="Capacity-Region"><a href="#Capacity-Region" class="headerlink" title="Capacity Region"></a>Capacity Region</h3><p>$\lambda=(\lambda_1,\lambda_2,\dots,\lambda_n)$</p>
+<p><span class="math display">\[L(t)=\frac{1}{2}Q_1^2(t)+\frac{1}{2}Q_2^2(t)\]</span> <span class="math display">\[Q_i(t+1)=(Q_i(t)-\mu_i(t)+A_i(t))^+\]</span> <span class="math display">\[\begin{split}\Delta(t)&amp;=E\{L(t+1)-L(t)|Q(t)\}\\&amp;=\frac{1}{2}E\{Q_1^2(t+1)-Q_1^2(t)+Q_2^2(t+1)-Q_2^2(t)|Q(t)\}\\&amp;\leq{}B-E\{Q_1(t)[\mu_1(t)-A_1(t)]+Q_2(t)[\mu_2(t)-A_2(t)]|Q(t)\}\\&amp;=B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-E\{Q_1(t)\mu_1(t)+Q_2(t)\mu_2(t)|Q(t)\}\\&amp;\leq{}B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-Q_1(t)[P_{10}+P_{11}\theta]-Q_2(t)[P_{01}+P_{11}(1-\theta)]\\&amp;=B-eQ_1(t)-eQ_2(t)\end{split}\]</span></p>
+<h3 id="capacity-region">Capacity Region</h3>
+<p><span class="math inline">\(\lambda=(\lambda_1,\lambda_2,\dots,\lambda_n)\)</span></p>
 <ul>
-<li>Def: The capacity region $\Lambda$ is the closure of $\lambda$ under which exists an algorithm that can stabilize the system</li>
-<li>Claim: $\Lambda={(\lambda_1,\lambda_2,\dots,\lambda_n)\text{ s.t. }e(\lambda)\geq0}$</li>
-<li>Corollary: Max-weight stabilizes the system whenever $\exists{}e\geq0\text{ s.t. } \lambda+e\in\Lambda$</li>
-<li>So, in some way, Max-weight is “Throughput Optimal”</li>
+<li>Def: The capacity region <span class="math inline">\(\Lambda\)</span> is the closure of <span class="math inline">\(\lambda\)</span> under which exists an algorithm that can stabilize the system</li>
+<li>Claim: <span class="math inline">\(\Lambda=\{(\lambda_1,\lambda_2,\dots,\lambda_n)\text{ s.t. }e(\lambda)\geq0\}\)</span></li>
+<li>Corollary: Max-weight stabilizes the system whenever <span class="math inline">\(\exists{}e\geq0\text{ s.t. } \lambda+e\in\Lambda\)</span></li>
+<li>So, in some way, Max-weight is &quot;Throughput Optimal&quot;</li>
 </ul>
-<h3 id="Caratheodory’s-Theorem"><a href="#Caratheodory’s-Theorem" class="headerlink" title="Caratheodory’s Theorem"></a>Caratheodory’s Theorem</h3><p>Let $X$ be a subset of $R^d$. If $x\in\text{conv}(X)$, then $\exists~d+1$ points in $X$ (i.e. $x<em>1,\dots,x</em>{d+1}$), s.t.</p>
-<script type="math/tex; mode=display">x=\sum_{i=1}^{d+1}\alpha_ix_i,\alpha_i\geq0,\sum_{i=1}^{d+1}\alpha_i=1</script><h2 id="Multi-Hop"><a href="#Multi-Hop" class="headerlink" title="Multi-Hop"></a>Multi-Hop</h2><ul>
-<li>$V={1,2,\dots,7}$</li>
-<li>$E$ are linkes</li>
-<li>$A<em>n^{(k)(t)}$ is packages entering $n$ for destination $k$, $E{A_n^{(k)}(t)}=\lambda_n^{(k)}\in[0,A</em>{\max}]$</li>
-<li>$S(t)=(S<em>{nm}(t),[n,m]\in{}E)$, $S</em>{n,m}\in{0,1}$, iid</li>
-<li>$\mu<em>{nm}(t)=1\text{ if }S</em>{nm}(t)=1\text{ and use link }[n,m]\quad0\text{ otherwise}$</li>
+<h3 id="caratheodorys-theorem">Caratheodory's Theorem</h3>
+<p>Let <span class="math inline">\(X\)</span> be a subset of <span class="math inline">\(R^d\)</span>. If <span class="math inline">\(x\in\text{conv}(X)\)</span>, then <span class="math inline">\(\exists~d+1\)</span> points in <span class="math inline">\(X\)</span> (i.e. <span class="math inline">\(x_1,\dots,x_{d+1}\)</span>), s.t. <span class="math display">\[x=\sum_{i=1}^{d+1}\alpha_ix_i,\alpha_i\geq0,\sum_{i=1}^{d+1}\alpha_i=1\]</span></p>
+<h2 id="multi-hop">Multi-Hop</h2>
+<ul>
+<li><span class="math inline">\(V=\{1,2,\dots,7\}\)</span></li>
+<li><span class="math inline">\(E\)</span> are linkes</li>
+<li><span class="math inline">\(A_n^{(k)(t)}\)</span> is packages entering <span class="math inline">\(n\)</span> for destination <span class="math inline">\(k\)</span>, <span class="math inline">\(E\{A_n^{(k)}(t)\}=\lambda_n^{(k)}\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S(t)=(S_{nm}(t),[n,m]\in{}E)\)</span>, <span class="math inline">\(S_{n,m}\in\{0,1\}\)</span>, iid</li>
+<li><span class="math inline">\(\mu_{nm}(t)=1\text{ if }S_{nm}(t)=1\text{ and use link }[n,m]\quad0\text{ otherwise}\)</span></li>
 <li>No interference</li>
-<li>Queueing: $Q_n^{(k)}(t)$</li>
-<li>$Q<em>n^{(k)}(t+1)\leq{}(Q_n^{(k)}(t)-\sum</em>{[n,m]\in{}E}\mu<em>{nm}^{(k)}(t))^+{}+\sum</em>{[a,n]\in{}E}\mu_{an}^{(k)}(t)+A_n^{(k)}(t)$</li>
-<li>$Q_n^{(0)}(t)=0$</li>
+<li>Queueing: <span class="math inline">\(Q_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(Q_n^{(k)}(t+1)\leq{}(Q_n^{(k)}(t)-\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t))^+{}+\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)+A_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(Q_n^{(0)}(t)=0\)</span></li>
 <li>Goal: stabilize all queues</li>
 </ul>
-<h3 id="Back-Pressure"><a href="#Back-Pressure" class="headerlink" title="Back Pressure"></a>Back Pressure</h3><p>At time $t$, observe $Q_n^{(k)}(t)$ for all $n,k$</p>
+<h3 id="back-pressure">Back Pressure</h3>
+<p>At time <span class="math inline">\(t\)</span>, observe <span class="math inline">\(Q_n^{(k)}(t)\)</span> for all <span class="math inline">\(n,k\)</span></p>
 <ul>
-<li>For each $[n,m]$, define weight $W<em>{nm}(t)=\max_k[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+$ and let $k^\star=\arg\max{}W</em>{nm}^{(k)}(t)$</li>
-<li>If $W<em>{nm}(t)&gt;0$, $\mu</em>{nm}^{(k)}(t)=\mu_{nm}(t)\text{ if }k=k^\star\quad0\text{ otherwise}$</li>
-<li>If $W<em>{nm}(t)=0$, $\mu</em>{nm}^{(k)}(t)=0$</li>
+<li>For each <span class="math inline">\([n,m]\)</span>, define weight <span class="math inline">\(W_{nm}(t)=\max_k[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\)</span> and let <span class="math inline">\(k^\star=\arg\max{}W_{nm}^{(k)}(t)\)</span></li>
+<li>If <span class="math inline">\(W_{nm}(t)&gt;0\)</span>, <span class="math inline">\(\mu_{nm}^{(k)}(t)=\mu_{nm}(t)\text{ if }k=k^\star\quad0\text{ otherwise}\)</span></li>
+<li>If <span class="math inline">\(W_{nm}(t)=0\)</span>, <span class="math inline">\(\mu_{nm}^{(k)}(t)=0\)</span></li>
 </ul>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>$Q(t)=(Q<em>n^{(k)}(t)),L(Q(t))=\frac{1}{2}\sum</em>{n,k}Q_n^{(k)}(t)^2$</p>
-<script type="math/tex; mode=display">\begin{split}\Delta(t)&=E\{L(t+1)-L(t)|Q(t)\}\\&\leq{}B-E\{\sum_{n,k}Q_n^{(k)}(t)[\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t)-\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)-A_n^{(k)}(t)]|Q(t)\}\\&=B-\sum_{n,m,k}E\{\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]|Q(t)\}+\sum_{n,k}Q_n^{(k)}(t)\lambda_n^{(k)}\\&\leq{}B-e\sum_{nm}Q_n^{(k)}(t)\end{split}</script><hr>
-<script type="math/tex; mode=display">\max{}e</script><script type="math/tex; mode=display">\begin{split}s.t.~\lambda_n^{(k)}+e+\sum_{[a,n]}f_{an}^{(k)}&\leq\sum_{[n,m]}f_{nm}^{(k)}\\\sum_kf_{nm}^{(k)}&\leq\mu_{nm}\\f_{nm}^{(k)}&\geq0\end{split}</script><h3 id="Interference-Problem"><a href="#Interference-Problem" class="headerlink" title="Interference Problem"></a>Interference Problem</h3><script type="math/tex; mode=display">\max~\sum_{n,m,k}\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+</script><script type="math/tex; mode=display">s.t.~\sum_k\mu_{nm}^{(k)}(t)\leq\mu_{nm}(I(t),S(t)),I(t)\text{ feasible}</script><h2 id="Utility-Maximization-in-Networks"><a href="#Utility-Maximization-in-Networks" class="headerlink" title="Utility Maximization in Networks"></a>Utility Maximization in Networks</h2><ul>
-<li>$A_n^{(k)}(t)$: # of pkts arrivals to $n$ for $k$ at t</li>
-<li>$R<em>n^{(k)}(t)$: # of pkts admitted (admission control), $0\leq{}R_n^{(k)}(t)\leq{}R</em>{\max}$</li>
-<li>$S(t)=(S<em>{nm}(t),[n,m]\in{}E)$, $S</em>{n,m}\in{0,1}$, iid</li>
-<li>$Q<em>n^{(k)}(t+1)\leq{}(Q_n^{(k)}(t)-\sum</em>{[n,m]\in{}E}\mu<em>{nm}^{(k)}(t))^+{}+\sum</em>{[a,n]\in{}E}\mu_{an}^{(k)}(t)+R_n^{(k)}(t)$</li>
-<li>$\bar{r}<em>n^{(k)}=\lim</em>{T\rightarrow\infty}\frac{1}{T}\sum_{t=0}^{T-1}E{R_n^{(k)}(t)}$</li>
-<li>$g_n^{(k)}(\cdot)$ is utility function which is usually concave increasing</li>
-<li>Goal: <script type="math/tex">\max\sum_{n,k}g_n^{(k)}(\bar{r}_n^{(k)}),\text{ s.t. stability}</script></li>
-</ul>
-<h3 id="Lyapunor-function"><a href="#Lyapunor-function" class="headerlink" title="Lyapunor function"></a>Lyapunor function</h3><script type="math/tex; mode=display">L(Q(t))=\frac{1}{2}\sum_{n,k}Q_n^{(k)}(t)^2</script><script type="math/tex; mode=display">\begin{split}\Delta(t)&\leq{}B-E\{\sum_{n,k}Q_n^{(k)}(t)[\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t)-\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)-R_n^{(k)}(t)]|Q(t)\}\\\text{subtract from both sides the term}& \\ &V\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}\\\Delta(t)-V\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}& \leq{}B-\sum_{n,k}E\{Vg_n^{(k)}(R_n^{(k)}(t))-Q_n^{(k)}(t)R_n^{(k)}(t)|Q(t)\}\\&-\sum_{n,m,k}E\{\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]|Q(t)\}\end{split}</script><h3 id="Cross-Longer-Control"><a href="#Cross-Longer-Control" class="headerlink" title="Cross-Longer Control"></a>Cross-Longer Control</h3><p>At time $t$, observe $S(t)$ and $Q(t)$</p>
+<h3 id="analysis">Analysis</h3>
+<p><span class="math inline">\(Q(t)=(Q_n^{(k)}(t)),L(Q(t))=\frac{1}{2}\sum_{n,k}Q_n^{(k)}(t)^2\)</span> <span class="math display">\[\begin{split}\Delta(t)&amp;=E\{L(t+1)-L(t)|Q(t)\}\\&amp;\leq{}B-E\{\sum_{n,k}Q_n^{(k)}(t)[\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t)-\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)-A_n^{(k)}(t)]|Q(t)\}\\&amp;=B-\sum_{n,m,k}E\{\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]|Q(t)\}+\sum_{n,k}Q_n^{(k)}(t)\lambda_n^{(k)}\\&amp;\leq{}B-e\sum_{nm}Q_n^{(k)}(t)\end{split}\]</span></p>
+<hr>
+<p><span class="math display">\[\max{}e\]</span> <span class="math display">\[\begin{split}s.t.~\lambda_n^{(k)}+e+\sum_{[a,n]}f_{an}^{(k)}&amp;\leq\sum_{[n,m]}f_{nm}^{(k)}\\\sum_kf_{nm}^{(k)}&amp;\leq\mu_{nm}\\f_{nm}^{(k)}&amp;\geq0\end{split}\]</span></p>
+<h3 id="interference-problem">Interference Problem</h3>
+<p><span class="math display">\[\max~\sum_{n,m,k}\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\]</span> <span class="math display">\[s.t.~\sum_k\mu_{nm}^{(k)}(t)\leq\mu_{nm}(I(t),S(t)),I(t)\text{ feasible}\]</span></p>
+<h2 id="utility-maximization-in-networks">Utility Maximization in Networks</h2>
 <ul>
-<li>Admission control (Application): Choose $R_n^{(k)}(t)$</li>
+<li><span class="math inline">\(A_n^{(k)}(t)\)</span>: # of pkts arrivals to <span class="math inline">\(n\)</span> for <span class="math inline">\(k\)</span> at t</li>
+<li><span class="math inline">\(R_n^{(k)}(t)\)</span>: # of pkts admitted (admission control), <span class="math inline">\(0\leq{}R_n^{(k)}(t)\leq{}R_{\max}\)</span></li>
+<li><span class="math inline">\(S(t)=(S_{nm}(t),[n,m]\in{}E)\)</span>, <span class="math inline">\(S_{n,m}\in\{0,1\}\)</span>, iid</li>
+<li><span class="math inline">\(Q_n^{(k)}(t+1)\leq{}(Q_n^{(k)}(t)-\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t))^+{}+\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)+R_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(\bar{r}_n^{(k)}=\lim_{T\rightarrow\infty}\frac{1}{T}\sum_{t=0}^{T-1}E\{R_n^{(k)}(t)\}\)</span></li>
+<li><span class="math inline">\(g_n^{(k)}(\cdot)\)</span> is utility function which is usually concave increasing</li>
+<li>Goal: <span class="math display">\[\max\sum_{n,k}g_n^{(k)}(\bar{r}_n^{(k)}),\text{ s.t. stability}\]</span></li>
 </ul>
-<script type="math/tex; mode=display">\max{}Vg_n^{(k)}(R_n^{(k)}(t))-Q_n^{(k)}(t)R_n^{(k)}(t),\text{ s.t. }0\leq{}R_n^{(k)}(t)\leq{}R_{\max}</script><ul>
-<li>Scheduling and Routing (Transport): Define $W_{nm}(t)=\max_k[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+$, choose </li>
+<h3 id="lyapunor-function">Lyapunor function</h3>
+<p><span class="math display">\[L(Q(t))=\frac{1}{2}\sum_{n,k}Q_n^{(k)}(t)^2\]</span> <span class="math display">\[\begin{split}\Delta(t)&amp;\leq{}B-E\{\sum_{n,k}Q_n^{(k)}(t)[\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t)-\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)-R_n^{(k)}(t)]|Q(t)\}\\\text{subtract from both sides the term}&amp; \\ &amp;V\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}\\\Delta(t)-V\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}&amp; \leq{}B-\sum_{n,k}E\{Vg_n^{(k)}(R_n^{(k)}(t))-Q_n^{(k)}(t)R_n^{(k)}(t)|Q(t)\}\\&amp;-\sum_{n,m,k}E\{\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]|Q(t)\}\end{split}\]</span></p>
+<h3 id="cross-longer-control">Cross-Longer Control</h3>
+<p>At time <span class="math inline">\(t\)</span>, observe <span class="math inline">\(S(t)\)</span> and <span class="math inline">\(Q(t)\)</span></p>
+<ul>
+<li>Admission control (Application): Choose <span class="math inline">\(R_n^{(k)}(t)\)</span></li>
 </ul>
-<script type="math/tex; mode=display">\mu_{nm}^{(k)}(t)=\mu_{nm}(t)\text{ if }k=k^\star\quad0\text{ otherwise}</script><ul>
-<li>Resource Allocation (Physical): Choose $\mu(t)$</li>
+<p><span class="math display">\[\max{}Vg_n^{(k)}(R_n^{(k)}(t))-Q_n^{(k)}(t)R_n^{(k)}(t),\text{ s.t. }0\leq{}R_n^{(k)}(t)\leq{}R_{\max}\]</span></p>
+<ul>
+<li>Scheduling and Routing (Transport): Define <span class="math inline">\(W_{nm}(t)=\max_k[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\)</span>, choose</li>
 </ul>
-<script type="math/tex; mode=display">\max\sum_{n,m}W_{nm}(t)\mu_{nm}(t),\text{ s.t. }\mu(t)\text{ is feasible}</script><h3 id="Queue-Independent-Policy"><a href="#Queue-Independent-Policy" class="headerlink" title="Queue Independent Policy"></a>Queue Independent Policy</h3><script type="math/tex; mode=display">\begin{split}\max&\sum_{n,k}g_n^{(k)}(r_n^{(k)})\\\text{s.t. }r_n^{(k)}+\sum_{a,n}f_{an}^{(k)}&\leq{}f_{nm}^{(k)}\\\sum_kf_{nm}^{(k)}&\leq\mu_{nm}\\\mu=(\mu_{nm},[n,m]\in{}E)&\in\sum_{S}\beta_S\text{conv}(\Gamma_S)\end{split}</script><p>$r<em>n^{(k)\star}$, $f</em>{nm}^{(k)\star}$, $\mu_{nm}^{(k)\star}$ refers to a stationary randomized policy</p>
-<script type="math/tex; mode=display">\Rightarrow{}\Delta-V\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}\leq{}B-V\cdot\text{opt}</script><p>Sum over $t=0,\cdots,T-1$, take expectation</p>
-<script type="math/tex; mode=display">\begin{split}E\{L(t)\}-E\{L(0)\}-\sum_tV\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&\leq{}BT-VT\cdot{}\text{opt}\\\sum_tV\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&\geq{}-BT+VT\cdot{}\text{opt}-E\{L(0)\}\end{split}</script><p>If consider $g_n^{(k)}(\cdot)$ as concave increasing, we can use Jensen Inequality to put the expectation sign inside.</p>
-<h4 id="Utility-Performance"><a href="#Utility-Performance" class="headerlink" title="Utility Performance"></a>Utility Performance</h4><script type="math/tex; mode=display">\sum_{n,k}g_n^{(k)}(r_n^{(k)}(t))\geq{}\text{opt}-\frac{B}{V}</script><h3 id="Delay-Bound"><a href="#Delay-Bound" class="headerlink" title="Delay Bound"></a>Delay Bound</h3><p>Assume $r_n^{(k)\star}\geq{}e&gt;0$</p>
-<script type="math/tex; mode=display">r_n^{(k)'}=r_n^{(k)\star}-e,~f_{nm}^{(k)'}=f_{nm}^{(k)\star}</script><script type="math/tex; mode=display">\begin{split}\Delta(t)-VE\{\sum_{n,k}g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&\leq{}B-e\sum_{n,k}Q_n^{(k)}(t)\\\Delta(t)&\leq{}B+Vg_{\max}-e\sum_{n,k}Q_n^{(k)}(t)\\\bar{Q}(t)&\leq\frac{B+Vg_{\max}}{e}\sim\mathcal{O}(V)\end{split}</script>
+<p><span class="math display">\[\mu_{nm}^{(k)}(t)=\mu_{nm}(t)\text{ if }k=k^\star\quad0\text{ otherwise}\]</span></p>
+<ul>
+<li>Resource Allocation (Physical): Choose <span class="math inline">\(\mu(t)\)</span></li>
+</ul>
+<p><span class="math display">\[\max\sum_{n,m}W_{nm}(t)\mu_{nm}(t),\text{ s.t. }\mu(t)\text{ is feasible}\]</span></p>
+<h3 id="queue-independent-policy">Queue Independent Policy</h3>
+<p><span class="math display">\[\begin{split}\max&amp;\sum_{n,k}g_n^{(k)}(r_n^{(k)})\\\text{s.t. }r_n^{(k)}+\sum_{a,n}f_{an}^{(k)}&amp;\leq{}f_{nm}^{(k)}\\\sum_kf_{nm}^{(k)}&amp;\leq\mu_{nm}\\\mu=(\mu_{nm},[n,m]\in{}E)&amp;\in\sum_{S}\beta_S\text{conv}(\Gamma_S)\end{split}\]</span></p>
+<p><span class="math inline">\(r_n^{(k)\star}\)</span>, <span class="math inline">\(f_{nm}^{(k)\star}\)</span>, <span class="math inline">\(\mu_{nm}^{(k)\star}\)</span> refers to a stationary randomized policy</p>
+<p><span class="math display">\[\Rightarrow{}\Delta-V\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}\leq{}B-V\cdot\text{opt}\]</span></p>
+<p>Sum over <span class="math inline">\(t=0,\cdots,T-1\)</span>, take expectation</p>
+<p><span class="math display">\[\begin{split}E\{L(t)\}-E\{L(0)\}-\sum_tV\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&amp;\leq{}BT-VT\cdot{}\text{opt}\\\sum_tV\sum_{n,k}E\{g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&amp;\geq{}-BT+VT\cdot{}\text{opt}-E\{L(0)\}\end{split}\]</span></p>
+<p>If consider <span class="math inline">\(g_n^{(k)}(\cdot)\)</span> as concave increasing, we can use Jensen Inequality to put the expectation sign inside.</p>
+<h4 id="utility-performance">Utility Performance</h4>
+<p><span class="math display">\[\sum_{n,k}g_n^{(k)}(r_n^{(k)}(t))\geq{}\text{opt}-\frac{B}{V}\]</span></p>
+<h3 id="delay-bound">Delay Bound</h3>
+<p>Assume <span class="math inline">\(r_n^{(k)\star}\geq{}e&gt;0\)</span></p>
+<p><span class="math display">\[r_n^{(k)&#39;}=r_n^{(k)\star}-e,~f_{nm}^{(k)&#39;}=f_{nm}^{(k)\star}\]</span> <span class="math display">\[\begin{split}\Delta(t)-VE\{\sum_{n,k}g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&amp;\leq{}B-e\sum_{n,k}Q_n^{(k)}(t)\\\Delta(t)&amp;\leq{}B+Vg_{\max}-e\sum_{n,k}Q_n^{(k)}(t)\\\bar{Q}(t)&amp;\leq\frac{B+Vg_{\max}}{e}\sim\mathcal{O}(V)\end{split}\]</span></p>
+
       
 
       
@@ -369,7 +397,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Queue-Control-Problem"><span class="toc-number">1.</span> <span class="toc-text">Queue Control Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linear-Program"><span class="toc-number">1.1.</span> <span class="toc-text">Linear Program</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALG-Max-Weight"><span class="toc-number">1.2.</span> <span class="toc-text">ALG Max-Weight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Capacity-Region"><span class="toc-number">1.3.</span> <span class="toc-text">Capacity Region</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Caratheodory’s-Theorem"><span class="toc-number">1.4.</span> <span class="toc-text">Caratheodory’s Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-Hop"><span class="toc-number">2.</span> <span class="toc-text">Multi-Hop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Back-Pressure"><span class="toc-number">2.1.</span> <span class="toc-text">Back Pressure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis"><span class="toc-number">2.2.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Interference-Problem"><span class="toc-number">2.3.</span> <span class="toc-text">Interference Problem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Utility-Maximization-in-Networks"><span class="toc-number">3.</span> <span class="toc-text">Utility Maximization in Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lyapunor-function"><span class="toc-number">3.1.</span> <span class="toc-text">Lyapunor function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cross-Longer-Control"><span class="toc-number">3.2.</span> <span class="toc-text">Cross-Longer Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue-Independent-Policy"><span class="toc-number">3.3.</span> <span class="toc-text">Queue Independent Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Utility-Performance"><span class="toc-number">3.3.1.</span> <span class="toc-text">Utility Performance</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Delay-Bound"><span class="toc-number">3.4.</span> <span class="toc-text">Delay Bound</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#queue-control-problem"><span class="toc-number">1.</span> <span class="toc-text">Queue Control Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-program"><span class="toc-number">1.1.</span> <span class="toc-text">Linear Program</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alg-max-weight"><span class="toc-number">1.2.</span> <span class="toc-text">ALG Max-Weight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capacity-region"><span class="toc-number">1.3.</span> <span class="toc-text">Capacity Region</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#caratheodorys-theorem"><span class="toc-number">1.4.</span> <span class="toc-text">Caratheodory&#39;s Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multi-hop"><span class="toc-number">2.</span> <span class="toc-text">Multi-Hop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#back-pressure"><span class="toc-number">2.1.</span> <span class="toc-text">Back Pressure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#analysis"><span class="toc-number">2.2.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interference-problem"><span class="toc-number">2.3.</span> <span class="toc-text">Interference Problem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#utility-maximization-in-networks"><span class="toc-number">3.</span> <span class="toc-text">Utility Maximization in Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lyapunor-function"><span class="toc-number">3.1.</span> <span class="toc-text">Lyapunor function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cross-longer-control"><span class="toc-number">3.2.</span> <span class="toc-text">Cross-Longer Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#queue-independent-policy"><span class="toc-number">3.3.</span> <span class="toc-text">Queue Independent Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#utility-performance"><span class="toc-number">3.3.1.</span> <span class="toc-text">Utility Performance</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delay-bound"><span class="toc-number">3.4.</span> <span class="toc-text">Delay Bound</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -495,11 +523,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Network Optimization</a>
+                <a href="javascript:void(0)" class="js-tag color5">Convex Optimization</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Convex Optimization</a>
+                <a href="javascript:void(0)" class="js-tag color1">Network Optimization</a>
               </li>
              
               <li class="article-tag-list-item">
