@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!--prettify highlight intro-->
+  <link href="/plugins/code-prettify/src/prettify.css" rel="stylesheet">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -157,7 +159,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-无限阶段折扣问题" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-无限阶段折扣问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -282,8 +284,8 @@
 </div>
 
 
-    
-
+    </div>
+</div>
 
 <div class="mask js-mask"></div>
       
@@ -333,7 +335,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言成本总和的最小化"><span class="toc-number">1.</span> <span class="toc-text">引言——成本总和的最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#无限阶段问题的成本总和"><span class="toc-number">1.1.</span> <span class="toc-text">无限阶段问题的成本总和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有限阶段问题的dp算法"><span class="toc-number">1.2.</span> <span class="toc-text">有限阶段问题的DP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简记与单调性"><span class="toc-number">1.3.</span> <span class="toc-text">简记与单调性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1.1.1-单调性引理"><span class="toc-number">1.3.1.</span> <span class="toc-text">引理 1.1.1: 单调性引理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1.1.2"><span class="toc-number">1.3.2.</span> <span class="toc-text">引理 1.1.2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机的过去依赖策略"><span class="toc-number">1.4.</span> <span class="toc-text">随机的过去依赖策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.1.1-markov策略的合理性"><span class="toc-number">1.4.1.</span> <span class="toc-text">命题 1.1.1： Markov策略的合理性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有界的阶段成本的折扣问题"><span class="toc-number">2.</span> <span class="toc-text">有界的阶段成本的折扣问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#假设d-折扣成本-有界的阶段成本"><span class="toc-number">2.0.1.</span> <span class="toc-text">假设D： 折扣成本-有界的阶段成本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.1-dp算法的收敛性"><span class="toc-number">2.0.2.</span> <span class="toc-text">命题 1.2.1： DP算法的收敛性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推论-1.2.1.1"><span class="toc-number">2.0.3.</span> <span class="toc-text">推论 1.2.1.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.2贝尔曼方程"><span class="toc-number">2.0.4.</span> <span class="toc-text">命题 1.2.2：贝尔曼方程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推论-1.2.2.1"><span class="toc-number">2.0.5.</span> <span class="toc-text">推论 1.2.2.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.3最优的充要条件"><span class="toc-number">2.0.6.</span> <span class="toc-text">命题 1.2.3：最优的充要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.4"><span class="toc-number">2.0.7.</span> <span class="toc-text">命题 1.2.4</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言成本总和的最小化"><span class="toc-number">1.</span> <span class="toc-text">引言——成本总和的最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#无限阶段问题的成本总和"><span class="toc-number">1.1.</span> <span class="toc-text">无限阶段问题的成本总和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有限阶段问题的dp算法"><span class="toc-number">1.2.</span> <span class="toc-text">有限阶段问题的DP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简记与单调性"><span class="toc-number">1.3.</span> <span class="toc-text">简记与单调性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1.1.1-单调性引理"><span class="toc-number">1.3.1.</span> <span class="toc-text">引理 1.1.1: 单调性引理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引理-1.1.2"><span class="toc-number">1.3.2.</span> <span class="toc-text">引理 1.1.2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机的过去依赖策略"><span class="toc-number">1.4.</span> <span class="toc-text">随机的过去依赖策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.1.1-markov策略的合理性"><span class="toc-number">1.4.1.</span> <span class="toc-text">命题 1.1.1： Markov策略的合理性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有界的阶段成本的折扣问题"><span class="toc-number">2.</span> <span class="toc-text">有界的阶段成本的折扣问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#假设d-折扣成本-有界的阶段成本"><span class="toc-number">2.0.1.</span> <span class="toc-text">假设D： 折扣成本-有界的阶段成本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.1-dp算法的收敛性"><span class="toc-number">2.0.2.</span> <span class="toc-text">命题 1.2.1： DP算法的收敛性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推论-1.2.1.1"><span class="toc-number">2.0.3.</span> <span class="toc-text">推论 1.2.1.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.2贝尔曼方程"><span class="toc-number">2.0.4.</span> <span class="toc-text">命题 1.2.2：贝尔曼方程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推论-1.2.2.1"><span class="toc-number">2.0.5.</span> <span class="toc-text">推论 1.2.2.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.3最优的充要条件"><span class="toc-number">2.0.6.</span> <span class="toc-text">命题 1.2.3：最优的充要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命题-1.2.4"><span class="toc-number">2.0.7.</span> <span class="toc-text">命题 1.2.4</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -415,6 +417,16 @@ MathJax.Hub.Queue(function() {
 </script>
 
 
+
+<!--prettify highlight intro-->
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="/plugins/code-prettify/src/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-nav header-menu">
@@ -487,7 +499,7 @@ MathJax.Hub.Queue(function() {
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

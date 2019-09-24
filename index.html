@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!--prettify highlight intro-->
+  <link href="/plugins/code-prettify/src/prettify.css" rel="stylesheet">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -154,7 +156,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Max Weight, Back Pressure and Utility Maximization" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Max Weight, Back Pressure and Utility Maximization" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -237,7 +239,7 @@
 
 
   
-    <article id="post-Introduction to Queue and Lyapunov Analysis" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Introduction to Queue and Lyapunov Analysis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -320,7 +322,7 @@
 
 
   
-    <article id="post-Optimal Transport" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Optimal Transport" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -396,7 +398,7 @@
 
 
   
-    <article id="post-Proximal Mapping" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Proximal Mapping" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -477,7 +479,7 @@
 
 
   
-    <article id="post-Subgradient Method" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Subgradient Method" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -552,7 +554,7 @@
 
 
   
-    <article id="post-故障模式影响及危害分析" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-故障模式影响及危害分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -635,7 +637,7 @@
 
 
   
-    <article id="post-LP, SDP and SOCP" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-LP, SDP and SOCP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -712,7 +714,7 @@
 
 
   
-    <article id="post-可修复系统的可靠性分析" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-可修复系统的可靠性分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -792,7 +794,7 @@
 
 
   
-    <article id="post-Duality" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Duality" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -868,7 +870,7 @@
 
 
   
-    <article id="post-Simplex Algorithm" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Simplex Algorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -1016,6 +1018,16 @@ MathJax.Hub.Queue(function() {
 </script>
 
 
+
+<!--prettify highlight intro-->
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="/plugins/code-prettify/src/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-nav header-menu">
@@ -1088,7 +1100,7 @@ MathJax.Hub.Queue(function() {
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

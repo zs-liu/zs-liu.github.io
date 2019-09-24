@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!--prettify highlight intro-->
+  <link href="/plugins/code-prettify/src/prettify.css" rel="stylesheet">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -16,7 +18,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Text">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-19T02:48:32.238Z">
+<meta property="og:updated_time" content="2019-09-24T03:43:50.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="$\rm \LaTeX$ Manual">
 <meta name="twitter:description" content="Text">
@@ -157,7 +159,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Latex Manual" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Latex Manual" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -181,7 +183,14 @@
 <a id="more"></a>
 <h2 id="figure">Figure</h2>
 <h3 id="two-column-figure">Two Column Figure</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;figure&#125;[htbp]</span><br><span class="line">    \begin&#123;minipage&#125;[t]&#123;0.5\linewidth&#125;</span><br><span class="line">        \includegraphics[]&#123;&#125;</span><br><span class="line">    \end&#123;minipage&#125;</span><br><span class="line">    \begin&#123;minipage&#125;[t]&#123;0.5\linewidth&#125;</span><br><span class="line">        \includegraphics[]&#123;&#125;</span><br><span class="line">    \end&#123;minipage&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<div class="sourceCode" id="cb1"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">figure</span>}[htbp]</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="kw">\begin</span>{<span class="ex">minipage</span>}[t]{0.5<span class="fu">\linewidth</span>}</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">        <span class="bu">\includegraphics</span>[]{}</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="kw">\end</span>{<span class="ex">minipage</span>}</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="kw">\begin</span>{<span class="ex">minipage</span>}[t]{0.5<span class="fu">\linewidth</span>}</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">        <span class="bu">\includegraphics</span>[]{}</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="kw">\end</span>{<span class="ex">minipage</span>}</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">\end</span>{<span class="ex">figure</span>}</a></code></pre></div>
 <h2 id="table">Table</h2>
 <h2 id="equation">Equation</h2>
 <h3 id="un-italic">Un-Italic</h3>
@@ -209,9 +218,20 @@
 </table>
 <h2 id="others">Others</h2>
 <h3 id="two-column-document">Two Column Document</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[UTF8,a4paper,14pt,twocolumn]&#123;ctexart&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">    \twocolumn[</span><br><span class="line">    \begin&#123;@twocolumnfalse&#125;</span><br><span class="line">        % something here may cross two column</span><br><span class="line">    \end&#123;@twocolumnfalse&#125;]</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<div class="sourceCode" id="cb2"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="bu">\documentclass</span>[UTF8,a4paper,14pt,twocolumn]{<span class="ex">ctexart</span>}</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">\begin</span>{<span class="ex">document</span>}</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="fu">\twocolumn</span>[</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="kw">\begin</span>{<span class="er">@</span>twocolumnfalse}</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">        <span class="co">% something here may cross two column</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="kw">\end</span>{<span class="er">@</span>twocolumnfalse}]</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">\end</span>{<span class="ex">document</span>}</a></code></pre></div>
 <h3 id="hyperlink">Hyperlink</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\usepackage[colorlinks,linkcolor=blue]&#123;hyperref&#125;</span><br><span class="line">% set this command as the final one</span><br><span class="line">\href&#123;https://www.google.com&#125;&#123;Google&#125;</span><br></pre></td></tr></table></figure>
+<div class="sourceCode" id="cb3"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="bu">\usepackage</span>[colorlinks,linkcolor=blue]{<span class="ex">hyperref</span>}</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">% set this command as the final one</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="fu">\href</span>{https://www.google.com}{Google}</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">int</span> main(){</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="cf">return</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">}</a></code></pre></div>
 
       
 
@@ -286,8 +306,8 @@
 </div>
 
 
-    
-
+    </div>
+</div>
 
 <div class="mask js-mask"></div>
       
@@ -414,6 +434,16 @@ MathJax.Hub.Queue(function() {
 </script>
 
 
+
+<!--prettify highlight intro-->
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="/plugins/code-prettify/src/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-nav header-menu">
@@ -486,7 +516,7 @@ MathJax.Hub.Queue(function() {
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
