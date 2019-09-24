@@ -1023,6 +1023,8 @@ html {
 }
 
 .left-col #header .profilepic img {
+  width: 100px;
+  height: 100px;
   border-radius: 300px;
   opacity: 1;
   -webkit-transition: all .2s ease-in
