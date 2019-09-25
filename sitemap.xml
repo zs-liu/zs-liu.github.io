@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zs-liu.github.io/about/index.html</loc>
+    
+    <lastmod>2019-09-25T08:00:39.305Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zs-liu.github.io/2019/01/22/Latex%20Manual/</loc>
     
-    <lastmod>2019-09-24T05:39:01.747Z</lastmod>
+    <lastmod>2019-09-25T03:14:22.734Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/tags/index.html</loc>
+    
+    <lastmod>2019-09-25T01:50:02.039Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/categories/index.html</loc>
+    
+    <lastmod>2019-09-25T01:49:43.985Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/2019/09/16/Max%20Weight,%20Back%20Pressure%20and%20Utility%20Maximization/</loc>
     
-    <lastmod>2019-09-23T07:42:59.129Z</lastmod>
+    <lastmod>2019-09-24T12:41:49.211Z</lastmod>
     
   </url>
   
