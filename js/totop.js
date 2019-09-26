@@ -2,6 +2,14 @@ $(window).scroll(function() {
     $(window).scrollTop() > $(window).height()*0.5 ? $("#rocket").addClass("show") : $("#rocket").removeClass("show");
 });
 
+$("#rocket").hover(function() {
+    $("#rocket").addClass("hover");
+});
+
+$("#rocket").mouseout(function() {
+    $("#rocket").removeClass("hover");
+});
+
 $("#rocket").click(function() {
     $("#rocket").addClass("launch");
     $("html, body").animate({
