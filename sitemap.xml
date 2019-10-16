@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zs-liu.github.io/about/index.html</loc>
+    
+    <lastmod>2019-10-16T05:44:55.738Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zs-liu.github.io/2019/01/22/Latex%20Manual/</loc>
     
     <lastmod>2019-10-14T09:00:58.875Z</lastmod>
@@ -124,13 +131,6 @@
     <loc>https://zs-liu.github.io/2019/01/24/%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2019-09-26T10:07:23.280Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zs-liu.github.io/about/index.html</loc>
-    
-    <lastmod>2019-09-25T08:00:39.305Z</lastmod>
     
   </url>
   
