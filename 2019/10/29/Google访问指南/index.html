@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>macos google访问指南 | 鲈鱼柳的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Shadowsocks">
+  
+  
+    <meta name="google-site-verification" content="ASjdal3AW5M1Il9dQ4F0PXDuN3rWu6JjudYKexnSFJM">
+  
+  
+  
+  <meta name="description" content="声明本文旨在为从事科研/教育行业的学生或教师提供便利。如果您企图使用本文提及的方式出售相关服务，请您注意是否符合当地法律法规！在您阅读本文前，请您仔细阅读网站下方的版权声明及其中的免责内容。">
+<meta name="keywords" content="Shadowsocks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MacOS Google访问指南">
+<meta property="og:url" content="https://zs-liu.github.io/2019/10/29/Google访问指南/index.html">
+<meta property="og:site_name" content="鲈鱼柳的博客">
+<meta property="og:description" content="声明本文旨在为从事科研/教育行业的学生或教师提供便利。如果您企图使用本文提及的方式出售相关服务，请您注意是否符合当地法律法规！在您阅读本文前，请您仔细阅读网站下方的版权声明及其中的免责内容。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-29T11:21:48.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacOS Google访问指南">
+<meta name="twitter:description" content="声明本文旨在为从事科研/教育行业的学生或教师提供便利。如果您企图使用本文提及的方式出售相关服务，请您注意是否符合当地法律法规！在您阅读本文前，请您仔细阅读网站下方的版权声明及其中的免责内容。">
+  
+    <link rel="alternate" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/addition/favicon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/addition/favicon.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;"  
+                 >
+                  <img width="85px" height="85px" alt="Hike News" src="/addition/me.svg">
+              </a>
+              
+                <a class="brand" onclick="javascript:setBackground();" style="
+                  margin-top: 25px; margin-left: 115px; border-width: 0px;" onclick="javascript:setBackground();" >
+                    <i class="fa fa-adjust  fa-lg" aria-hidden="true"></i>
+                </a>
+                <a class="brand" onclick="javascript:setFontSize();" style="
+                  margin-top: 25px; margin-left: 165px; border-width: 0px;" onclick="javascript:setFontSize();" >
+                    <i class="fa fa-font  fa-lg" aria-hidden="true"></i>
+                </a>
+              
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Google访问指南" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      MacOS Google访问指南
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/10/29/Google访问指南/" class="article-date">
+	  <time datetime="2019-10-29T05:00:00.000Z" itemprop="datePublished">2019-10-29</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Life/">Life</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>本文旨在为从事科研/教育行业的学生或教师提供便利。如果您企图使用本文提及的方式出售相关服务，请您注意是否符合当地法律法规！在您阅读本文前，请您仔细阅读网站下方的版权声明及其中的免责内容。</p>
+<a id="more"></a>
+<h2 id="申请服务器"><a href="#申请服务器" class="headerlink" title="申请服务器"></a>申请服务器</h2><h3 id="注册账号"><a href="#注册账号" class="headerlink" title="注册账号"></a>注册账号</h3><p>前往某一VPS供应商注册账号。比较推荐的有 <a href="https://www.vultr.com/?ref=8288950" target="_blank" rel="noopener">Vultr</a> 和 <a href="https://www.digitalocean.com/" target="_blank" rel="noopener">DigitalOcean</a>。如果您以此链接在 <a href="https://www.vultr.com/?ref=8288950" target="_blank" rel="noopener">Vultr</a> 进行注册，我将获得一些 Feedback。当然，如果您拥有 Github 的教育账号，您可以在 <a href="https://www.digitalocean.com/" target="_blank" rel="noopener">DigitalOcean</a> 获得较可观的优惠。</p>
+<blockquote>
+<p>这些供应商一般都是实时计费，最低价格一般为每月5美元。与 VPN 相比，其好处在于您可以随时销毁服务器，此时的计费一会随之停止。同时，如果您的服务器被禁用，您也可以销毁它再重新配置一个（虽然可能会消耗您一些时间）。</p>
+</blockquote>
+<h3 id="开通服务器"><a href="#开通服务器" class="headerlink" title="开通服务器"></a>开通服务器</h3><p>注册账号后需充值开通一个服务器。由于是实时计费，您无须担心这会带来很高的成本，并且可以同时开通多个以供测试。服务器需要选择 <strong>CentOS 6</strong> 系统并<strong>开启IPv6</strong>。之后您会很快获得服务器的IP地址，您可以分别检测在<a href="http://coolaf.com/tool/port" target="_blank" rel="noopener">国内</a>和<a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外</a>这一地址是否通畅。</p>
+<ul>
+<li>如果两者都不通畅，请检查服务器开通有无问题；这种情况是VPS供应商的问题</li>
+<li>如果仅前者不通畅，请开启另一个服务器，<strong>再</strong>彻底销毁这一服务器；这种情况是这一IP已经被禁用</li>
+<li>如果均通畅，可以在终端执行<code>ping **.**.**.***</code>看一下延时，如果认为还可以的话这步就完成了</li>
+</ul>
+<h2 id="远程配置-Shadowsocks"><a href="#远程配置-Shadowsocks" class="headerlink" title="远程配置 Shadowsocks"></a>远程配置 Shadowsocks</h2><p>在终端运行如下命令<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@**.**.**.***</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意这里我们使用<code>root</code>是因为一般来说配置服务器默认的登录用户名都是<code>root</code>。您应当可以在VPS供应商的网站上看到您服务器的<code>Username</code>。</p>
+</blockquote>
+<p>在这之后会出现提示输入密码的文字，将密码粘入并敲击回车即可。此时我们已经远程登入了服务器。然后执行如下代码以安装 Shadowsocks<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate  https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line">chmod +x shadowsocks.sh</span><br><span class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure></p>
+<p>之后终端会提示您选择加密方式并设置端口和密码，请<strong>务必</strong>将三者记录下来，因为它们会在配置本地 Shadowsocks 时使用。</p>
+<h2 id="本地配置-Shadowsocks"><a href="#本地配置-Shadowsocks" class="headerlink" title="本地配置 Shadowsocks"></a>本地配置 Shadowsocks</h2><p>前往<a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases" target="_blank" rel="noopener">这里</a>下载 ShadowsocksX-NG 最新的客户端并安装。配置服务器信息，然后打开 Shadowsocks 。此时您应当可以顺利登陆 <a href="https://www.google.com/" target="_blank" rel="noopener">Google</a> 。 </p>
+<h2 id="重置远程-Shadowsocks-配置"><a href="#重置远程-Shadowsocks-配置" class="headerlink" title="重置远程 Shadowsocks 配置"></a>重置远程 Shadowsocks 配置</h2><p>先在终端连接远程服务器，然后运行如下命令<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/shadowsocks.json</span><br></pre></td></tr></table></figure></p>
+<p>然后您应当会在终端看到如下的 json 文件：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"server"</span>:<span class="string">"*.*.*.*"</span>,</span><br><span class="line">    <span class="attr">"server_port"</span>:*****,</span><br><span class="line">    <span class="attr">"local_address"</span>:<span class="string">"***.*.*.*"</span>,</span><br><span class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</span><br><span class="line">    <span class="attr">"password"</span>:<span class="string">"***"</span>,</span><br><span class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</span><br><span class="line">    <span class="attr">"method"</span>:<span class="string">"***"</span>,</span><br><span class="line">    <span class="attr">"fast_open"</span>:<span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>按<code>i</code>键进入编辑，编辑完成后按<code>:</code>键并输入<code>wq</code>以保存并退出。之后，您需要在终端重启远程 Shadowsocks ：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置谷歌学术"><a href="#配置谷歌学术" class="headerlink" title="配置谷歌学术"></a>配置谷歌学术</h2><p>只使用IPv4可能由于某些原因无法访问谷歌学术，这给科研狗带来了极大的不便。您可以在<a href="https://raw.githubusercontent.com/lennylxx/ipv6-hosts/master/hosts" target="_blank" rel="noopener">这里</a>查询到谷歌学术最新的IPv6地址。目前查询到的是<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2404<span class="selector-pseudo">:6800</span><span class="selector-pseudo">:4008</span><span class="selector-pseudo">:c06</span><span class="selector-pseudo">::be</span> <span class="selector-tag">scholar</span><span class="selector-class">.google</span><span class="selector-class">.com</span></span><br><span class="line">2404<span class="selector-pseudo">:6800</span><span class="selector-pseudo">:4008</span><span class="selector-pseudo">:c06</span><span class="selector-pseudo">::be</span> <span class="selector-tag">scholar</span><span class="selector-class">.google</span><span class="selector-class">.com</span><span class="selector-class">.hk</span></span><br><span class="line">2404<span class="selector-pseudo">:6800</span><span class="selector-pseudo">:4008</span><span class="selector-pseudo">:c06</span><span class="selector-pseudo">::be</span> <span class="selector-tag">scholar</span><span class="selector-class">.google</span><span class="selector-class">.com</span><span class="selector-class">.tw</span></span><br><span class="line">2404<span class="selector-pseudo">:6800</span><span class="selector-pseudo">:4005</span><span class="selector-pseudo">:805</span><span class="selector-pseudo">::200e</span> <span class="selector-tag">scholar</span><span class="selector-class">.google</span><span class="selector-class">.cn</span> <span class="selector-id">#www</span><span class="selector-class">.google</span><span class="selector-class">.cn</span></span><br></pre></td></tr></table></figure></p>
+<p>先在终端连接远程服务器，然后运行如下命令<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hosts</span><br></pre></td></tr></table></figure></p>
+<p>这回会打开 host 配置文件，粘贴查询到的IPv6地址，保存并退出。最后，您需要在终端重启远程 Shadowsocks 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/23/Heavy Traffic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Heavy Traffic Analysis</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请服务器"><span class="nav-number">2.</span> <span class="nav-text">申请服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册账号"><span class="nav-number">2.1.</span> <span class="nav-text">注册账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开通服务器"><span class="nav-number">2.2.</span> <span class="nav-text">开通服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程配置-Shadowsocks"><span class="nav-number">3.</span> <span class="nav-text">远程配置 Shadowsocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地配置-Shadowsocks"><span class="nav-number">4.</span> <span class="nav-text">本地配置 Shadowsocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重置远程-Shadowsocks-配置"><span class="nav-number">5.</span> <span class="nav-text">重置远程 Shadowsocks 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置谷歌学术"><span class="nav-number">6.</span> <span class="nav-text">配置谷歌学术</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> 
+        
+          
+            <a class="busuanzi_uv">
+            Visitor : <span id="busuanzi_value_site_uv"></span>
+            </a>
+          
+         | 
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2019 鲈鱼柳 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="vertical-align:middle" src="/addition/by-sa.svg" /></a></p>
+        <p>Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+        <p>除另有标注处，本网站内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可</p>
+	      
+	      
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            鲈鱼柳的博客
+          </div>
+          <div class="panel-body">
+            Copyright © 2019 鲈鱼柳 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

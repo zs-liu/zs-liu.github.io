@@ -13,18 +13,18 @@
   
   
   
-  <meta name="description" content="Subgradient$g$ is a subgradient of a convex function $f$ at $x\in{}dom~f$ if f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f">
+  <meta name="description" content="Subgradient \(g\) is a subgradient of a convex function \(f\) at \(x\in{}dom~f\) if \[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]">
 <meta name="keywords" content="Convex Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Subgradient Method">
 <meta property="og:url" content="https://zs-liu.github.io/2019/04/16/Subgradient Method/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Subgradient$g$ is a subgradient of a convex function $f$ at $x\in{}dom~f$ if f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f">
+<meta property="og:description" content="Subgradient \(g\) is a subgradient of a convex function \(f\) at \(x\in{}dom~f\) if \[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-09-26T10:09:37.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Subgradient Method">
-<meta name="twitter:description" content="Subgradient$g$ is a subgradient of a convex function $f$ at $x\in{}dom~f$ if f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f">
+<meta name="twitter:description" content="Subgradient \(g\) is a subgradient of a convex function \(f\) at \(x\in{}dom~f\) if \[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]">
   
     <link rel="alternate" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -201,58 +201,87 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Subgradient"><a href="#Subgradient" class="headerlink" title="Subgradient"></a>Subgradient</h2><p>$g$ is a subgradient of a convex function $f$ at $x\in{}dom~f$ if</p>
-<script type="math/tex; mode=display">f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f</script><a id="more"></a>
-<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><ul>
-<li>$f(x)+g^\top(y-x)$ is a global lower bound on $f(y)$</li>
-<li>$g$ defines non-vertical supporting hyperplane to $epi~f$ at $(x, f (x))$</li>
-<li>if $f$ is convex and differentiable, then $\nabla{}f(x)$ is a subgradient of $g$ at $x$</li>
+        <h2 id="subgradient">Subgradient</h2>
+<p><span class="math inline">\(g\)</span> is a subgradient of a convex function <span class="math inline">\(f\)</span> at <span class="math inline">\(x\in{}dom~f\)</span> if <span class="math display">\[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]</span></p>
+<a id="more"></a>
+<h3 id="properties">Properties</h3>
+<ul>
+<li><span class="math inline">\(f(x)+g^\top(y-x)\)</span> is a global lower bound on <span class="math inline">\(f(y)\)</span></li>
+<li><span class="math inline">\(g\)</span> defines non-vertical supporting hyperplane to <span class="math inline">\(epi~f\)</span> at <span class="math inline">\((x, f (x))\)</span></li>
+<li>if <span class="math inline">\(f\)</span> is convex and differentiable, then <span class="math inline">\(\nabla{}f(x)\)</span> is a subgradient of <span class="math inline">\(g\)</span> at <span class="math inline">\(x\)</span></li>
 </ul>
-<h3 id="Subdifferential"><a href="#Subdifferential" class="headerlink" title="Subdifferential"></a>Subdifferential</h3><p>the subdifferential $\partial{}f(x)$ of $f$ at $x$ is the set of all subgradients:</p>
-<script type="math/tex; mode=display">\partial{}f(x)=\{g|g^\top(y-x)\leq{}f(y)-f(x),\forall{}y\in{}dom~f\}</script><h3 id="Monotonicity"><a href="#Monotonicity" class="headerlink" title="Monotonicity"></a>Monotonicity</h3><p>the subdifferential of a convex function is a monotone operator:</p>
-<script type="math/tex; mode=display">(u-v)^\top(x-y)\geq0,\text{for all }x,y,u\in\partial{}f(x),v\in\partial{}f(y)</script><h2 id="Directional-Derivative"><a href="#Directional-Derivative" class="headerlink" title="Directional Derivative"></a>Directional Derivative</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><script type="math/tex; mode=display">f(x+d)=f(x)+\nabla{}f(x)^\top{}d</script><script type="math/tex; mode=display">\text{If }\nabla{}f(x)^\top{}d<0,d\text{ is a descent direction}</script><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>The directional derivative of $f$ at $x$ in the direction $y$ is</p>
-<script type="math/tex; mode=display">f^{'}(x;y)=\lim_{a\searrow{}0}\frac{f(x+\alpha{}y)-f(x)}{\alpha}=\lim_{t\rightarrow\infty}(tf(x+\frac{y}{t})-tf(x))</script><ul>
-<li>$f^{‘}(x;y)$ is the right derivative of $g(\alpha)=f(x+\alpha{}y)$ at $\alpha=0$</li>
+<h3 id="subdifferential">Subdifferential</h3>
+<p>the subdifferential <span class="math inline">\(\partial{}f(x)\)</span> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> is the set of all subgradients: <span class="math display">\[\partial{}f(x)=\{g|g^\top(y-x)\leq{}f(y)-f(x),\forall{}y\in{}dom~f\}\]</span></p>
+<h3 id="monotonicity">Monotonicity</h3>
+<p>the subdifferential of a convex function is a monotone operator: <span class="math display">\[(u-v)^\top(x-y)\geq0,\text{for all }x,y,u\in\partial{}f(x),v\in\partial{}f(y)\]</span></p>
+<h2 id="directional-derivative">Directional Derivative</h2>
+<h3 id="introduction">Introduction</h3>
+<p><span class="math display">\[f(x+d)=f(x)+\nabla{}f(x)^\top{}d\]</span> <span class="math display">\[\text{If }\nabla{}f(x)^\top{}d&lt;0,d\text{ is a descent direction}\]</span></p>
+<h3 id="definition">Definition</h3>
+<p>The directional derivative of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> in the direction <span class="math inline">\(y\)</span> is <span class="math display">\[f^{&#39;}(x;y)=\lim_{a\searrow{}0}\frac{f(x+\alpha{}y)-f(x)}{\alpha}=\lim_{t\rightarrow\infty}(tf(x+\frac{y}{t})-tf(x))\]</span></p>
+<ul>
+<li><span class="math inline">\(f^{&#39;}(x;y)\)</span> is the right derivative of <span class="math inline">\(g(\alpha)=f(x+\alpha{}y)\)</span> at <span class="math inline">\(\alpha=0\)</span></li>
 </ul>
-<h4 id="Proof-Existence"><a href="#Proof-Existence" class="headerlink" title="Proof:Existence"></a>Proof:Existence</h4><script type="math/tex; mode=display">h(\alpha)=\frac{f(x+\alpha{}y)-f(x)}{\alpha}</script><script type="math/tex; mode=display">x+\alpha_1{}y=x+\frac{\alpha_1}{\alpha_2}x-\frac{\alpha_1}{\alpha_2}x+\frac{\alpha_1}{\alpha_2}\alpha_2y=(1-\frac{\alpha_1}{\alpha_2})x+\frac{\alpha_1}{\alpha_2}(x+\alpha_2y)</script><script type="math/tex; mode=display">f(x+\alpha_1{}y)\leq(1-\frac{\alpha_1}{\alpha_2})f(x)+\frac{\alpha_1}{\alpha_2}f(x+\alpha_2y)\text{ (convex)}</script><script type="math/tex; mode=display">h(\alpha_1)\leq{}h(\alpha_2)</script><h4 id="Proof-Homogeneous"><a href="#Proof-Homogeneous" class="headerlink" title="Proof:Homogeneous"></a>Proof:Homogeneous</h4><script type="math/tex; mode=display">\text{If }x\in\text{int dom}f\Rightarrow{}\text{dom}f^{'}(x,y)=R^n</script><script type="math/tex; mode=display">\text{Let }\beta=\alpha\lambda,\text{ it is easy to prove}</script><h3 id="Directional-derivative-and-subgradients"><a href="#Directional-derivative-and-subgradients" class="headerlink" title="Directional derivative and subgradients"></a>Directional derivative and subgradients</h3><p>For convex $f$ and $x\in\text{int dom}f$:</p>
-<script type="math/tex; mode=display">f^{'}(x;y)=\sup_{g\in\partial{}f(x)}g^\top{}y</script><ul>
-<li>generalize $f^{‘}(x;y)$ for differentiable functions</li>
-<li>implies that $f^{‘}(x;y)$ exists for all $x\in\text{int dom}f$, all $y$</li>
+<h4 id="proofexistence">Proof:Existence</h4>
+<p><span class="math display">\[h(\alpha)=\frac{f(x+\alpha{}y)-f(x)}{\alpha}\]</span> <span class="math display">\[x+\alpha_1{}y=x+\frac{\alpha_1}{\alpha_2}x-\frac{\alpha_1}{\alpha_2}x+\frac{\alpha_1}{\alpha_2}\alpha_2y=(1-\frac{\alpha_1}{\alpha_2})x+\frac{\alpha_1}{\alpha_2}(x+\alpha_2y)\]</span> <span class="math display">\[f(x+\alpha_1{}y)\leq(1-\frac{\alpha_1}{\alpha_2})f(x)+\frac{\alpha_1}{\alpha_2}f(x+\alpha_2y)\text{ (convex)}\]</span> <span class="math display">\[h(\alpha_1)\leq{}h(\alpha_2)\]</span></p>
+<h4 id="proofhomogeneous">Proof:Homogeneous</h4>
+<p><span class="math display">\[\text{If }x\in\text{int dom}f\Rightarrow{}\text{dom}f^{&#39;}(x,y)=R^n\]</span> <span class="math display">\[\text{Let }\beta=\alpha\lambda,\text{ it is easy to prove}\]</span></p>
+<h3 id="directional-derivative-and-subgradients">Directional derivative and subgradients</h3>
+<p>For convex <span class="math inline">\(f\)</span> and <span class="math inline">\(x\in\text{int dom}f\)</span>: <span class="math display">\[f^{&#39;}(x;y)=\sup_{g\in\partial{}f(x)}g^\top{}y\]</span></p>
+<ul>
+<li>generalize <span class="math inline">\(f^{&#39;}(x;y)\)</span> for differentiable functions</li>
+<li>implies that <span class="math inline">\(f^{&#39;}(x;y)\)</span> exists for all <span class="math inline">\(x\in\text{int dom}f\)</span>, all <span class="math inline">\(y\)</span></li>
 </ul>
-<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">f^{'}(x;y)=\lim_{a\searrow{}0}\frac{f(x+\alpha{}y)-f(x)}{\alpha}\geq\lim_{a\searrow{}0}\frac{}{}</script><hr>
-<script type="math/tex; mode=display">\text{Let }\hat{g}\in\partial_yf^{'}(x;y)</script><script type="math/tex; mode=display">\lambda{}f^{'}(x;v)=f^{'}(x,\lambda{}v)\geq{}f^{'}(x;y)+\hat{g}^\top(\lambda{}v-y)$$$$\Leftrightarrow{}\lambda(f^{'}(x,v)-\hat{g}^\top{}v)\geq{}f^{'}(x;y)-\hat{g}^\top{}y</script><script type="math/tex; mode=display">\Leftrightarrow{}^{\lambda\rightarrow\infty}f^{'}(x,v)\geq\hat{h}^\top{}v</script><script type="math/tex; mode=display">\Leftrightarrow{}f(x,v)\geq{}f(x)+f^{'}(x,v)\geq{}f(x)+\hat{g}^\top{}v\Rightarrow{}\hat{g}\in\partial{}f(x)</script><script type="math/tex; mode=display">\Leftrightarrow{}^{\lambda\rightarrow0}f^{'}(x,y)\leq{}g^\top{}y</script><h3 id="Steepest-descent-direction"><a href="#Steepest-descent-direction" class="headerlink" title="Steepest descent direction"></a>Steepest descent direction</h3><p>Steepest descent direction at $x\in\text{int dom} f$ is</p>
-<script type="math/tex; mode=display">\Delta{}x_{nsd}=\arg\min_{||y||_2\leq1}f^{'}(x;y)</script><script type="math/tex; mode=display">\text{(P) }\min_yf^{'}(x;y),s.t.||y||_2\leq1</script><script type="math/tex; mode=display">\text{(D) }\max_g-||g||_2,s.t.g\in\partial{}f(x)</script><h4 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h4><p>if $f$ is convex, $f(y)<f(x),g\in\partial{}f(x)$, then for small $t>0$:</f(x),g\in\partial{}f(x)$,></p>
-<script type="math/tex; mode=display">||x-tg-y||_2^2=||x-y||_2^2-2tg^\top(x-y)+t^2||g||_2^2\leq||x-y||_2^2-2t(f(x)-f(y))+t^2||g||_2^2<||x-y||_2^2</script><script type="math/tex; mode=display">f^\star(x^\star)=\min{}f(x),x_{k+1}=x_k-tg_k,g_k\in\partial{}f(x_k)</script><script type="math/tex; mode=display">f(x_k)>f(x^\star),\text{but }||x_{k+1}-x^\star||<||x_k-x^\star||</script><h3 id="Lemma-1"><a href="#Lemma-1" class="headerlink" title="Lemma 1"></a>Lemma 1</h3><p>Let $x_0\in{}int~dom~f$, then</p>
-<script type="math/tex; mode=display">f \text{ is convex }\Rightarrow{}f\text{ is continuous at }x_0</script><h4 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">g(x)=f(x_0+x)-f(x_0), g(0)=0, g\text{ is convex}, 0\in~int~dom~g</script><script type="math/tex; mode=display">\exists\alpha~s.t.~x_0+\alpha{}y_i\in~dom~f</script><script type="math/tex; mode=display">\{y_1,\dots,y_{2n}\}=\{e_1,\dots,e_n,-e_1,\dots,-e_n\}</script><p>……</p>
-<h2 id="Subgradient-Method"><a href="#Subgradient-Method" class="headerlink" title="Subgradient Method"></a>Subgradient Method</h2><p>to minimize a nondifferentiable convex function $f$: choose $x^{(0)}$ and repeat</p>
-<script type="math/tex; mode=display">x^{(k)}=x^{(k-1)}-t_kg^{(k-1)},k=1,2,\dots</script><p>$g^{(k-1)}$ is any subgradient of $f$ at $x^{(k−1)}$</p>
-<h3 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h3><ul>
-<li>$f$ has finite optimal value $f^\star$, minimizer $x^\star$</li>
-<li>$f$ is convex, $dom~f = R^n$</li>
-<li>$f$ is Lipschitz continuous with constant $G &gt; 0$</li>
+<h4 id="proof">Proof</h4>
+<p><span class="math display">\[f^{&#39;}(x;y)=\lim_{a\searrow{}0}\frac{f(x+\alpha{}y)-f(x)}{\alpha}\geq\lim_{a\searrow{}0}\frac{}{}\]</span></p>
+<hr>
+<p><span class="math display">\[\text{Let }\hat{g}\in\partial_yf^{&#39;}(x;y)\]</span> <span class="math display">\[\lambda{}f^{&#39;}(x;v)=f^{&#39;}(x,\lambda{}v)\geq{}f^{&#39;}(x;y)+\hat{g}^\top(\lambda{}v-y)\]</span><span class="math display">\[\Leftrightarrow{}\lambda(f^{&#39;}(x,v)-\hat{g}^\top{}v)\geq{}f^{&#39;}(x;y)-\hat{g}^\top{}y\]</span> <span class="math display">\[\Leftrightarrow{}^{\lambda\rightarrow\infty}f^{&#39;}(x,v)\geq\hat{h}^\top{}v\]</span> <span class="math display">\[\Leftrightarrow{}f(x,v)\geq{}f(x)+f^{&#39;}(x,v)\geq{}f(x)+\hat{g}^\top{}v\Rightarrow{}\hat{g}\in\partial{}f(x)\]</span> <span class="math display">\[\Leftrightarrow{}^{\lambda\rightarrow0}f^{&#39;}(x,y)\leq{}g^\top{}y\]</span></p>
+<h3 id="steepest-descent-direction">Steepest descent direction</h3>
+<p>Steepest descent direction at <span class="math inline">\(x\in\text{int dom} f\)</span> is <span class="math display">\[\Delta{}x_{nsd}=\arg\min_{||y||_2\leq1}f^{&#39;}(x;y)\]</span> <span class="math display">\[\text{(P) }\min_yf^{&#39;}(x;y),s.t.||y||_2\leq1\]</span> <span class="math display">\[\text{(D) }\max_g-||g||_2,s.t.g\in\partial{}f(x)\]</span></p>
+<h4 id="proof-1">Proof</h4>
+<p>if <span class="math inline">\(f\)</span> is convex, <span class="math inline">\(f(y)&lt;f(x),g\in\partial{}f(x)\)</span>, then for small <span class="math inline">\(t&gt;0\)</span>: <span class="math display">\[||x-tg-y||_2^2=||x-y||_2^2-2tg^\top(x-y)+t^2||g||_2^2\leq||x-y||_2^2-2t(f(x)-f(y))+t^2||g||_2^2&lt;||x-y||_2^2\]</span> <span class="math display">\[f^\star(x^\star)=\min{}f(x),x_{k+1}=x_k-tg_k,g_k\in\partial{}f(x_k)\]</span> <span class="math display">\[f(x_k)&gt;f(x^\star),\text{but }||x_{k+1}-x^\star||&lt;||x_k-x^\star||\]</span></p>
+<h3 id="lemma-1">Lemma 1</h3>
+<p>Let <span class="math inline">\(x_0\in{}int~dom~f\)</span>, then <span class="math display">\[f \text{ is convex }\Rightarrow{}f\text{ is continuous at }x_0\]</span></p>
+<h4 id="proof-2">Proof</h4>
+<p><span class="math display">\[g(x)=f(x_0+x)-f(x_0), g(0)=0, g\text{ is convex}, 0\in~int~dom~g\]</span> <span class="math display">\[\exists\alpha~s.t.~x_0+\alpha{}y_i\in~dom~f\]</span> <span class="math display">\[\{y_1,\dots,y_{2n}\}=\{e_1,\dots,e_n,-e_1,\dots,-e_n\}\]</span> ......</p>
+<h2 id="subgradient-method">Subgradient Method</h2>
+<p>to minimize a nondifferentiable convex function <span class="math inline">\(f\)</span>: choose <span class="math inline">\(x^{(0)}\)</span> and repeat <span class="math display">\[x^{(k)}=x^{(k-1)}-t_kg^{(k-1)},k=1,2,\dots\]</span> <span class="math inline">\(g^{(k-1)}\)</span> is any subgradient of <span class="math inline">\(f\)</span> at <span class="math inline">\(x^{(k−1)}\)</span></p>
+<h3 id="assumptions">Assumptions</h3>
+<ul>
+<li><span class="math inline">\(f\)</span> has finite optimal value <span class="math inline">\(f^\star\)</span>, minimizer <span class="math inline">\(x^\star\)</span></li>
+<li><span class="math inline">\(f\)</span> is convex, <span class="math inline">\(dom~f = R^n\)</span></li>
+<li><span class="math inline">\(f\)</span> is Lipschitz continuous with constant <span class="math inline">\(G &gt; 0\)</span></li>
 </ul>
-<script type="math/tex; mode=display">|f(x)-f(y)|\leq{}G||x-y||_2\quad\forall{}x,y</script><p>this is equivalent to $||g||_2\leq{}G$ for all $x$ and $g\in\partial{}f(x)$</p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<p><span class="math display">\[|f(x)-f(y)|\leq{}G||x-y||_2\quad\forall{}x,y\]</span> this is equivalent to <span class="math inline">\(||g||_2\leq{}G\)</span> for all <span class="math inline">\(x\)</span> and <span class="math inline">\(g\in\partial{}f(x)\)</span></p>
+<h3 id="analysis">Analysis</h3>
+<ul>
 <li>the subgradient method is not a descent method</li>
 <li>the key quantity in the analysis is the distance to the optimal set</li>
 </ul>
-<p>with $x^+=x^{(i)},x=x^{(i-1)},g=g^{(i-1)},t=t_i$:</p>
-<script type="math/tex; mode=display">||x^+-x^\star||_2^2=||x-tg-x^\star||_2^2</script><script type="math/tex; mode=display">=||x-x^\star||_2^2-2tg^\top(x-x^\star)+t^2||g_2^2||\leq||x-x^\star||_2^2-2t(f(x)-f^\star)+t^2||g_2^2||</script><p>combine inequalities for $i=1,\dots,k$, and define $f^{(k)}<em>{\text{best}}=\min</em>{0\leq{}i\leq{}k}f(x^{(i)})$</p>
-<script type="math/tex; mode=display">(f^{(k)}_{\text{best}}-f^\star)\leq\frac{||x^{(0)}-x^\star||_2^2+\sum_{i=1}^kt_i^2||g^{(i-1)}||_2^2}{2\sum_{i=1}^kt_i}</script><h4 id="Fixed-step-size-t-i-t"><a href="#Fixed-step-size-t-i-t" class="headerlink" title="Fixed step size: $t_i=t$"></a>Fixed step size: $t_i=t$</h4><script type="math/tex; mode=display">f^{(k)}_{\text{best}}-f^\star\leq\frac{||x^{(0)}-x^\star||_2^2}{2kt}+\frac{G^2t}{2}</script><ul>
-<li>does not guarantee convergence of $f^{(k)}_{\text{best}}$</li>
+<p>with <span class="math inline">\(x^+=x^{(i)},x=x^{(i-1)},g=g^{(i-1)},t=t_i\)</span>: <span class="math display">\[||x^+-x^\star||_2^2=||x-tg-x^\star||_2^2\]</span> <span class="math display">\[=||x-x^\star||_2^2-2tg^\top(x-x^\star)+t^2||g_2^2||\leq||x-x^\star||_2^2-2t(f(x)-f^\star)+t^2||g_2^2||\]</span> combine inequalities for <span class="math inline">\(i=1,\dots,k\)</span>, and define <span class="math inline">\(f^{(k)}_{\text{best}}=\min_{0\leq{}i\leq{}k}f(x^{(i)})\)</span> <span class="math display">\[(f^{(k)}_{\text{best}}-f^\star)\leq\frac{||x^{(0)}-x^\star||_2^2+\sum_{i=1}^kt_i^2||g^{(i-1)}||_2^2}{2\sum_{i=1}^kt_i}\]</span></p>
+<h4 id="fixed-step-size-t_it">Fixed step size: <span class="math inline">\(t_i=t\)</span></h4>
+<p><span class="math display">\[f^{(k)}_{\text{best}}-f^\star\leq\frac{||x^{(0)}-x^\star||_2^2}{2kt}+\frac{G^2t}{2}\]</span></p>
+<ul>
+<li>does not guarantee convergence of <span class="math inline">\(f^{(k)}_{\text{best}}\)</span></li>
 </ul>
-<h4 id="Fixed-step-length-t-i-s-g-i-1-2"><a href="#Fixed-step-length-t-i-s-g-i-1-2" class="headerlink" title="Fixed step length: $t_i=s/||g^{(i-1)}||_2$"></a>Fixed step length: $t_i=s/||g^{(i-1)}||_2$</h4><script type="math/tex; mode=display">f^{(k)}_{\text{best}}-f^\star\leq\frac{G||x^{(0)}-x^\star||_2^2}{2ks}+\frac{Gs}{2}</script><ul>
-<li>does not guarantee convergence of $f^{(k)}_{\text{best}}$</li>
+<h4 id="fixed-step-length-t_isgi-1_2">Fixed step length: <span class="math inline">\(t_i=s/||g^{(i-1)}||_2\)</span></h4>
+<p><span class="math display">\[f^{(k)}_{\text{best}}-f^\star\leq\frac{G||x^{(0)}-x^\star||_2^2}{2ks}+\frac{Gs}{2}\]</span></p>
+<ul>
+<li>does not guarantee convergence of <span class="math inline">\(f^{(k)}_{\text{best}}\)</span></li>
 </ul>
-<h4 id="Diminishing-step-size-t-i-rightarrow0"><a href="#Diminishing-step-size-t-i-rightarrow0" class="headerlink" title="Diminishing step size: $t_i\rightarrow0$"></a>Diminishing step size: $t_i\rightarrow0$</h4><ul>
-<li>$f^{(k)}_{\text{best}}$ converges to $f^\star$</li>
-<li>currently we don’t know the speed of convergence</li>
-<li>large $t_i$ may converge fast at first, but then smaller $t_i$ should be used</li>
+<h4 id="diminishing-step-size-t_irightarrow0">Diminishing step size: <span class="math inline">\(t_i\rightarrow0\)</span></h4>
+<ul>
+<li><span class="math inline">\(f^{(k)}_{\text{best}}\)</span> converges to <span class="math inline">\(f^\star\)</span></li>
+<li>currently we don't know the speed of convergence</li>
+<li>large <span class="math inline">\(t_i\)</span> may converge fast at first, but then smaller <span class="math inline">\(t_i\)</span> should be used</li>
 </ul>
-<h4 id="Optimal-step-size-when-f-star-is-known"><a href="#Optimal-step-size-when-f-star-is-known" class="headerlink" title="Optimal step size when $f^\star$ is known"></a>Optimal step size when $f^\star$ is known</h4><script type="math/tex; mode=display">t_i=\frac{f(x^{(i-1)})-f^\star}{||g^{(i-1)}||_2^2}</script><ul>
-<li>applying recursively (with $||x^{(0)}-x^\star||_2\leq{}R$ and $||g^{(i)}||_2\leq{}G$) gives</li>
+<h4 id="optimal-step-size-when-fstar-is-known">Optimal step size when <span class="math inline">\(f^\star\)</span> is known</h4>
+<p><span class="math display">\[t_i=\frac{f(x^{(i-1)})-f^\star}{||g^{(i-1)}||_2^2}\]</span></p>
+<ul>
+<li>applying recursively (with <span class="math inline">\(||x^{(0)}-x^\star||_2\leq{}R\)</span> and <span class="math inline">\(||g^{(i)}||_2\leq{}G\)</span>) gives</li>
 </ul>
-<script type="math/tex; mode=display">f^{(k)}_{\text{best}}-f^\star\leq\frac{GR}{\sqrt{k}}</script>
+<p><span class="math display">\[f^{(k)}_{\text{best}}-f^\star\leq\frac{GR}{\sqrt{k}}\]</span></p>
+
       
     </div>
     <footer class="article-footer">
@@ -297,7 +326,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Subgradient"><span class="nav-number">1.</span> <span class="nav-text">Subgradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties"><span class="nav-number">1.1.</span> <span class="nav-text">Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subdifferential"><span class="nav-number">1.2.</span> <span class="nav-text">Subdifferential</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monotonicity"><span class="nav-number">1.3.</span> <span class="nav-text">Monotonicity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directional-Derivative"><span class="nav-number">2.</span> <span class="nav-text">Directional Derivative</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">2.2.</span> <span class="nav-text">Definition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof-Existence"><span class="nav-number">2.2.1.</span> <span class="nav-text">Proof:Existence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof-Homogeneous"><span class="nav-number">2.2.2.</span> <span class="nav-text">Proof:Homogeneous</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Directional-derivative-and-subgradients"><span class="nav-number">2.3.</span> <span class="nav-text">Directional derivative and subgradients</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof"><span class="nav-number">2.3.1.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steepest-descent-direction"><span class="nav-number">2.4.</span> <span class="nav-text">Steepest descent direction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma-1"><span class="nav-number">2.5.</span> <span class="nav-text">Lemma 1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof-2"><span class="nav-number">2.5.1.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subgradient-Method"><span class="nav-number">3.</span> <span class="nav-text">Subgradient Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assumptions"><span class="nav-number">3.1.</span> <span class="nav-text">Assumptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">3.2.</span> <span class="nav-text">Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Fixed-step-size-t-i-t"><span class="nav-number">3.2.1.</span> <span class="nav-text">Fixed step size: $t_i=t$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fixed-step-length-t-i-s-g-i-1-2"><span class="nav-number">3.2.2.</span> <span class="nav-text">Fixed step length: $t_i=s/||g^{(i-1)}||_2$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Diminishing-step-size-t-i-rightarrow0"><span class="nav-number">3.2.3.</span> <span class="nav-text">Diminishing step size: $t_i\rightarrow0$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Optimal-step-size-when-f-star-is-known"><span class="nav-number">3.2.4.</span> <span class="nav-text">Optimal step size when $f^\star$ is known</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#subgradient"><span class="nav-number">1.</span> <span class="nav-text">Subgradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#properties"><span class="nav-number">1.1.</span> <span class="nav-text">Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subdifferential"><span class="nav-number">1.2.</span> <span class="nav-text">Subdifferential</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#monotonicity"><span class="nav-number">1.3.</span> <span class="nav-text">Monotonicity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#directional-derivative"><span class="nav-number">2.</span> <span class="nav-text">Directional Derivative</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#definition"><span class="nav-number">2.2.</span> <span class="nav-text">Definition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proofexistence"><span class="nav-number">2.2.1.</span> <span class="nav-text">Proof:Existence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#proofhomogeneous"><span class="nav-number">2.2.2.</span> <span class="nav-text">Proof:Homogeneous</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#directional-derivative-and-subgradients"><span class="nav-number">2.3.</span> <span class="nav-text">Directional derivative and subgradients</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proof"><span class="nav-number">2.3.1.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#steepest-descent-direction"><span class="nav-number">2.4.</span> <span class="nav-text">Steepest descent direction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proof-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lemma-1"><span class="nav-number">2.5.</span> <span class="nav-text">Lemma 1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proof-2"><span class="nav-number">2.5.1.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subgradient-method"><span class="nav-number">3.</span> <span class="nav-text">Subgradient Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#assumptions"><span class="nav-number">3.1.</span> <span class="nav-text">Assumptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#analysis"><span class="nav-number">3.2.</span> <span class="nav-text">Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fixed-step-size-t_it"><span class="nav-number">3.2.1.</span> <span class="nav-text">Fixed step size: \(t_i=t\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fixed-step-length-t_isgi-1_2"><span class="nav-number">3.2.2.</span> <span class="nav-text">Fixed step length: \(t_i=s/||g^{(i-1)}||_2\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#diminishing-step-size-t_irightarrow0"><span class="nav-number">3.2.3.</span> <span class="nav-text">Diminishing step size: \(t_i\rightarrow0\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#optimal-step-size-when-fstar-is-known"><span class="nav-number">3.2.4.</span> <span class="nav-text">Optimal step size when \(f^\star\) is known</span></a></li></ol></li></ol></li></ol>
     
     </div>
   </aside>

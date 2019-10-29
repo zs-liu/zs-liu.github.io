@@ -13,18 +13,18 @@
   
   
   
-  <meta name="description" content="Introduction Single Hop System, $L$ Queues $Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)$ $U_l(t)=\max{0,S_l(t)-A_l(t)-Q_l(t)}$">
+  <meta name="description" content="Introduction  Single Hop System, \(L\) Queues \(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)\) \(U_l(t)=\max\{0,S_l(t)-A_l(t)-Q_l(t)\}\)">
 <meta name="keywords" content="Network Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Heavy Traffic Analysis">
 <meta property="og:url" content="https://zs-liu.github.io/2019/09/23/Heavy Traffic/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Introduction Single Hop System, $L$ Queues $Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)$ $U_l(t)=\max{0,S_l(t)-A_l(t)-Q_l(t)}$">
+<meta property="og:description" content="Introduction  Single Hop System, \(L\) Queues \(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)\) \(U_l(t)=\max\{0,S_l(t)-A_l(t)-Q_l(t)\}\)">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-14T07:21:01.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Heavy Traffic Analysis">
-<meta name="twitter:description" content="Introduction Single Hop System, $L$ Queues $Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)$ $U_l(t)=\max{0,S_l(t)-A_l(t)-Q_l(t)}$">
+<meta name="twitter:description" content="Introduction  Single Hop System, \(L\) Queues \(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)\) \(U_l(t)=\max\{0,S_l(t)-A_l(t)-Q_l(t)\}\)">
   
     <link rel="alternate" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -201,82 +201,114 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
-<li>Single Hop System, $L$ Queues</li>
-<li>$Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)$</li>
-<li>$U_l(t)=\max{0,S_l(t)-A_l(t)-Q_l(t)}$</li>
+        <h2 id="introduction">Introduction</h2>
+<ul>
+<li>Single Hop System, <span class="math inline">\(L\)</span> Queues</li>
+<li><span class="math inline">\(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)\)</span></li>
+<li><span class="math inline">\(U_l(t)=\max\{0,S_l(t)-A_l(t)-Q_l(t)\}\)</span></li>
 </ul>
 <a id="more"></a>
-<h3 id><a href="#" class="headerlink" title="$~$"></a>$~$</h3><h4 id="Lemma-1"><a href="#Lemma-1" class="headerlink" title="Lemma 1"></a>Lemma 1</h4><p>For an aperiodic and irreducible Markov Chain, over a countable state-space, suppose $Z:\mathcal{X}\rightarrow{}R$ is a non-negative Lyapunor function. Define </p>
-<script type="math/tex; mode=display">\Delta(Z(X))=[Z(X[t+1])-Z(X[t])]I(X(t)=x)</script><p>Suppose</p>
+<h3 id="section"><span class="math inline">\(~\)</span></h3>
+<h4 id="lemma-1">Lemma 1</h4>
+<p>For an aperiodic and irreducible Markov Chain, over a countable state-space, suppose <span class="math inline">\(Z:\mathcal{X}\rightarrow{}R\)</span> is a non-negative Lyapunor function. Define</p>
+<p><span class="math display">\[\Delta(Z(X))=[Z(X[t+1])-Z(X[t])]I(X(t)=x)\]</span></p>
+<p>Suppose</p>
 <ul>
-<li>$\exists\eta&gt;0$ and $k&lt;\infty$ s.t.</li>
+<li><span class="math inline">\(\exists\eta&gt;0\)</span> and <span class="math inline">\(k&lt;\infty\)</span> s.t.</li>
 </ul>
-<script type="math/tex; mode=display">\mathbb{E}\{\Delta(Z(X))|X(t)=x\}\leq-\eta\text{ for all }X\in\mathcal{X},Z(X)\geq{}k</script><ul>
-<li>$\exists{}D\leq\infty$ s.t.</li>
-</ul>
-<script type="math/tex; mode=display">Pr\{|\Delta(Z(X))\leq0\}=1,~\forall{}X\in\mathcal{X}</script><p>Then $\exists\theta^<em>&gt;0$ and $c^</em>&lt;\infty$ s.t.</p>
-<script type="math/tex; mode=display">\lim\sup_{t\rightarrow\infty}\mathbb{E}\{\exp\{\theta^*Z(X[t])\}\}\leq{}c^*</script><p>If also $X(t)$ is positive recurrent, then $Z(X(t))$ converges in distribution to $\bar{Z}$ with $\mathbb{E}{\exp{\theta^<em>\bar{Z}}}\leq{}c^</em>$</p>
-<h2 id="Join-the-Shortest-Queue-JSQ"><a href="#Join-the-Shortest-Queue-JSQ" class="headerlink" title="Join the Shortest Queue (JSQ)"></a>Join the Shortest Queue (JSQ)</h2><ul>
-<li>$A_{\Sigma}(t),S_l(t)$ iid</li>
-<li>$A<em>\Sigma(t)\in[0,A</em>\max],S<em>l(t)\in[0,S</em>\max]$</li>
-<li>$\lambda<em>\Sigma=\mathbb{E}{A</em>\Sigma(t)},\sigma<em>\Sigma^2=D{A</em>\Sigma(t)}$</li>
-<li>$\mu_l=\mathbb{E}{S_l(t)},v_l^2=D{S_l(t)}$</li>
-<li>$\mu<em>\Sigma=\sum_l\mu_l,v</em>\Sigma^2=\sum_lv_l^2$</li>
-</ul>
-<p>And the policy is<br>$A(t)=(A_1(t),\cdots,A_L(t))$</p>
-<script type="math/tex; mode=display">A(t)=\text{RAND}\{\arg\min_{A\geq0,\sum_lA_l=A_\Sigma(t)}<A,Q(t)>\}</script><h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><ul>
-<li>$\lambda<em>\Sigma&gt;\mu</em>\Sigma$, unstable</li>
-<li>$\lambda<em>\Sigma&lt;\mu</em>\Sigma$, JSQ stablizes that system ${Q(t)}$ converges in distribution to a random variable $\bar{Q}$ whose all moments are bounded, i.e. $\mathbb{E}{||\bar{Q}||^r}=M_r$</li>
-</ul>
-<h3 id="Analysis-of-Stability"><a href="#Analysis-of-Stability" class="headerlink" title="Analysis of Stability"></a>Analysis of Stability</h3><p>$Z(X)=V(Q)=||Q||$&lt;/br&gt;<br>$W(Q)=||Q||^2$&lt;/br&gt;</p>
-<script type="math/tex; mode=display">e=\mu_\Sigma-\lambda_\Sigma,\frac{e}{L}=\mu_l-\lambda_l</script><script type="math/tex; mode=display">\begin{split}\mathbb{E}\{\Delta(W(Q))|Q\}&=\mathbb{E}\{||Q(t+1)||^2-||Q(t)||^2~|Q\}\\&=\mathbb{E}\{||Q+A-S+U||^2-||Q||^2~|Q\}\\&=\mathbb{E}\{||Q+A-S||^2+2<Q+A_S,U>+||U||^2-||Q||^2~|Q\}\\&\leq{}\mathbb{E}\{||Q+A-S||^2-||Q||^2~|Q\}\\&=\mathbb{E}\{2<Q,A-S>+||A-S||^2~|Q\}\\&=\mathbb{E}\{2<Q,A-S>|Q\}+k_1\\&=2<Q,\mathbb{E}\{A|Q\}-\lambda>-<Q,\mu-\lambda>+k_1\\&=<Q,\mathbb{E}\{A|Q\}-\lambda>-\frac{2e}{L}<Q,1>+k_1\\&=2\mathbb{E}\{A_\Sigma|Q\}Q_\min-2<Q,\lambda>-\frac{2e}{L}||Q||_1+k_1\\&=2\lambda_\Sigma{}Q_\min-2\sum_l\lambda_lQ_l-\frac{2e}{L}||Q||+k_1\\&=-2\sum_l\lambda_l(Q_l-Q_\min)-\frac{2e}{L}||Q||+k_1\\&\leq\frac{2e}{L}||Q||+k_1\end{split}</script><script type="math/tex; mode=display">\begin{split}\mathbb{E}\{\Delta{}V(Q)|Q(t)=Q\}=&\mathbb{E}\{||Q(t+1)||-||Q(t)||~|Q(t)=Q\}\\\leq&\frac{1}{2||Q||}\mathbb{E}\{||Q(t+1)||^2-||Q(t)||^2~|Q(t)=Q\}\\\leq&\frac{e}{L}+\frac{k_1}{2||Q||}\end{split}</script><h3 id="Lower-Bound"><a href="#Lower-Bound" class="headerlink" title="Lower Bound"></a>Lower Bound</h3><p>Consider $Q<em>\Sigma(t)$ and $S</em>\Sigma(t)=\sum{}S_l(t)$ which is a single server, obviously:</p>
-<script type="math/tex; mode=display">Q_\Sigma(t)\leq\sum_lQ_l(t)</script><ul>
-<li>$\alpha(t)&lt;\alpha_\max$</li>
-<li>$\beta(t)&lt;\beta_\max$</li>
-<li>$\Phi(t+1)=[\Phi(t)+\alpha(t)-\beta(t)]^+$</li>
-</ul>
-<h4 id="Lemma-2"><a href="#Lemma-2" class="headerlink" title="Lemma 2"></a>Lemma 2</h4><p>Suppose ${\alpha^e(t)}$ satisfies $e=\beta-\alpha^e$. Let the queue process ${\Phi^e(t)}$. Then</p>
+<p><span class="math display">\[\mathbb{E}\{\Delta(Z(X))|X(t)=x\}\leq-\eta\text{ for all }X\in\mathcal{X},Z(X)\geq{}k\]</span></p>
 <ul>
-<li>${\Phi^e(t)}$ is a positive recurrent Markov Chain and ${\Phi^e(t)}\rightarrow{}\bar{\Phi}^e$ with $\mathbb{E}{||\bar{\Phi}^e||}\leq{}M_r$</li>
-<li><script type="math/tex; mode=display">\mathbb{E}\{\bar{\Phi}^e\}\geq\frac{\xi^e}{2e}-B_1</script></li>
+<li><span class="math inline">\(\exists{}D\leq\infty\)</span> s.t.</li>
 </ul>
-<p>where $\xi^e=\sigma<em>{\alpha^e}^2+\sigma</em>\beta^2+e^2,B<em>1=\frac{\beta</em>\max}{2}$</p>
+<p><span class="math display">\[Pr\{|\Delta(Z(X))\leq0\}=1,~\forall{}X\in\mathcal{X}\]</span></p>
+<p>Then <span class="math inline">\(\exists\theta^*&gt;0\)</span> and <span class="math inline">\(c^*&lt;\infty\)</span> s.t.</p>
+<p><span class="math display">\[\lim\sup_{t\rightarrow\infty}\mathbb{E}\{\exp\{\theta^*Z(X[t])\}\}\leq{}c^*\]</span></p>
+<p>If also <span class="math inline">\(X(t)\)</span> is positive recurrent, then <span class="math inline">\(Z(X(t))\)</span> converges in distribution to <span class="math inline">\(\bar{Z}\)</span> with <span class="math inline">\(\mathbb{E}\{\exp\{\theta^*\bar{Z}\}\}\leq{}c^*\)</span></p>
+<h2 id="join-the-shortest-queue-jsq">Join the Shortest Queue (JSQ)</h2>
 <ul>
-<li>In the heavy traffic limit, $e\rightarrow0$<script type="math/tex; mode=display">\lim_{e\rightarrow0}\inf{}e\mathbb{E}\{||\bar{\Phi}^e||\}\geq\frac{\xi}{2}</script></li>
+<li><span class="math inline">\(A_{\Sigma}(t),S_l(t)\)</span> iid</li>
+<li><span class="math inline">\(A_\Sigma(t)\in[0,A_\max],S_l(t)\in[0,S_\max]\)</span></li>
+<li><span class="math inline">\(\lambda_\Sigma=\mathbb{E}\{A_\Sigma(t)\},\sigma_\Sigma^2=D\{A_\Sigma(t)\}\)</span></li>
+<li><span class="math inline">\(\mu_l=\mathbb{E}\{S_l(t)\},v_l^2=D\{S_l(t)\}\)</span></li>
+<li><span class="math inline">\(\mu_\Sigma=\sum_l\mu_l,v_\Sigma^2=\sum_lv_l^2\)</span></li>
+</ul>
+<p>And the policy is <span class="math inline">\(A(t)=(A_1(t),\cdots,A_L(t))\)</span> <span class="math display">\[A(t)=\text{RAND}\{\arg\min_{A\geq0,\sum_lA_l=A_\Sigma(t)}&lt;A,Q(t)&gt;\}\]</span></p>
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+<li><span class="math inline">\(\lambda_\Sigma&gt;\mu_\Sigma\)</span>, unstable</li>
+<li><span class="math inline">\(\lambda_\Sigma&lt;\mu_\Sigma\)</span>, JSQ stablizes that system <span class="math inline">\(\{Q(t)\}\)</span> converges in distribution to a random variable <span class="math inline">\(\bar{Q}\)</span> whose all moments are bounded, i.e. <span class="math inline">\(\mathbb{E}\{||\bar{Q}||^r\}=M_r\)</span></li>
+</ul>
+<h3 id="analysis-of-stability">Analysis of Stability</h3>
+<p><span class="math inline">\(Z(X)=V(Q)=||Q||\)</span><br> <span class="math inline">\(W(Q)=||Q||^2\)</span><br> <span class="math display">\[e=\mu_\Sigma-\lambda_\Sigma,\frac{e}{L}=\mu_l-\lambda_l\]</span> <span class="math display">\[\begin{split}\mathbb{E}\{\Delta(W(Q))|Q\}&amp;=\mathbb{E}\{||Q(t+1)||^2-||Q(t)||^2~|Q\}\\&amp;=\mathbb{E}\{||Q+A-S+U||^2-||Q||^2~|Q\}\\&amp;=\mathbb{E}\{||Q+A-S||^2+2&lt;Q+A_S,U&gt;+||U||^2-||Q||^2~|Q\}\\&amp;\leq{}\mathbb{E}\{||Q+A-S||^2-||Q||^2~|Q\}\\&amp;=\mathbb{E}\{2&lt;Q,A-S&gt;+||A-S||^2~|Q\}\\&amp;=\mathbb{E}\{2&lt;Q,A-S&gt;|Q\}+k_1\\&amp;=2&lt;Q,\mathbb{E}\{A|Q\}-\lambda&gt;-&lt;Q,\mu-\lambda&gt;+k_1\\&amp;=&lt;Q,\mathbb{E}\{A|Q\}-\lambda&gt;-\frac{2e}{L}&lt;Q,1&gt;+k_1\\&amp;=2\mathbb{E}\{A_\Sigma|Q\}Q_\min-2&lt;Q,\lambda&gt;-\frac{2e}{L}||Q||_1+k_1\\&amp;=2\lambda_\Sigma{}Q_\min-2\sum_l\lambda_lQ_l-\frac{2e}{L}||Q||+k_1\\&amp;=-2\sum_l\lambda_l(Q_l-Q_\min)-\frac{2e}{L}||Q||+k_1\\&amp;\leq\frac{2e}{L}||Q||+k_1\end{split}\]</span></p>
+<p><span class="math display">\[\begin{split}\mathbb{E}\{\Delta{}V(Q)|Q(t)=Q\}=&amp;\mathbb{E}\{||Q(t+1)||-||Q(t)||~|Q(t)=Q\}\\\leq&amp;\frac{1}{2||Q||}\mathbb{E}\{||Q(t+1)||^2-||Q(t)||^2~|Q(t)=Q\}\\\leq&amp;\frac{e}{L}+\frac{k_1}{2||Q||}\end{split}\]</span></p>
+<h3 id="lower-bound">Lower Bound</h3>
+<p>Consider <span class="math inline">\(Q_\Sigma(t)\)</span> and <span class="math inline">\(S_\Sigma(t)=\sum{}S_l(t)\)</span> which is a single server, obviously: <span class="math display">\[Q_\Sigma(t)\leq\sum_lQ_l(t)\]</span></p>
+<ul>
+<li><span class="math inline">\(\alpha(t)&lt;\alpha_\max\)</span></li>
+<li><span class="math inline">\(\beta(t)&lt;\beta_\max\)</span></li>
+<li><span class="math inline">\(\Phi(t+1)=[\Phi(t)+\alpha(t)-\beta(t)]^+\)</span></li>
+</ul>
+<h4 id="lemma-2">Lemma 2</h4>
+<p>Suppose <span class="math inline">\(\{\alpha^e(t)\}\)</span> satisfies <span class="math inline">\(e=\beta-\alpha^e\)</span>. Let the queue process <span class="math inline">\(\{\Phi^e(t)\}\)</span>. Then</p>
+<ul>
+<li><span class="math inline">\(\{\Phi^e(t)\}\)</span> is a positive recurrent Markov Chain and <span class="math inline">\(\{\Phi^e(t)\}\rightarrow{}\bar{\Phi}^e\)</span> with <span class="math inline">\(\mathbb{E}\{||\bar{\Phi}^e||\}\leq{}M_r\)</span></li>
+<li><span class="math display">\[\mathbb{E}\{\bar{\Phi}^e\}\geq\frac{\xi^e}{2e}-B_1\]</span></li>
+</ul>
+<p>where <span class="math inline">\(\xi^e=\sigma_{\alpha^e}^2+\sigma_\beta^2+e^2,B_1=\frac{\beta_\max}{2}\)</span></p>
+<ul>
+<li>In the heavy traffic limit, <span class="math inline">\(e\rightarrow0\)</span> <span class="math display">\[\lim_{e\rightarrow0}\inf{}e\mathbb{E}\{||\bar{\Phi}^e||\}\geq\frac{\xi}{2}\]</span></li>
 </ul>
 <hr>
-<script type="math/tex; mode=display">\begin{split}\Phi(t+1)=\Phi(t)+\alpha(t)-\beta(t)+\chi(t),\chi(t)=-\max\{0,\beta-\alpha-\Phi\}\end{split}</script><script type="math/tex; mode=display">\begin{split}W(\Phi)=||\Phi||^2\end{split}</script><script type="math/tex; mode=display">\begin{split}\mathbb{E}\{\Delta{}W(\Phi)|\Phi(t)\}&=\mathbb{E}\{(\Phi+\alpha-\beta)^2+2(\Phi+\alpha-\beta)\chi+\chi^2-\Phi^2|\Phi)\}\\&=\mathbb{E}\{(\alpha-\beta)^2|\Phi\}+2\Phi{}\mathbb{E}\{(\alpha-\beta)|\Phi\}-\mathbb{E}\{\chi^2|\Phi\}\end{split}</script><p>In steady state, $\mathbb{E}{\Delta{}W}=0$, take expectation of both sides:</p>
-<script type="math/tex; mode=display">\mathbb{E}\{(\alpha-\beta)^2\}+2\mathbb{E}\{\Phi{}\}e-\mathbb{E}\{\chi^2\}=0</script><p>Consider $\mathbb{E}{\chi^2}\leq{}e\beta_\max$</p>
-<h3 id="State-Space-Collapse"><a href="#State-Space-Collapse" class="headerlink" title="State Space Collapse"></a>State Space Collapse</h3><p>Let $\vec{c}&gt;0$ is a vector with unit form. Let $Q<em>{\parallel}=&lt;\vec{c},\vec{Q}&gt;\vec{c}$, $Q</em>{\perp}=Q-Q_{\parallel}$</p>
-<h4 id="Lemma-3"><a href="#Lemma-3" class="headerlink" title="Lemma 3"></a>Lemma 3</h4><p>Define Lyapunov function</p>
-<script type="math/tex; mode=display">V_\perp(Q)=||Q_\perp||,W(Q)=||Q||^2,W_{\parallel}(Q)=||Q_\parallel||^2</script><script type="math/tex; mode=display">\Delta{}V_\perp(Q)=V_\perp(Q(t+1))-V_\perp(Q(t))</script><p>Then:</p>
+<p><span class="math display">\[\begin{split}\Phi(t+1)=\Phi(t)+\alpha(t)-\beta(t)+\chi(t),\chi(t)=-\max\{0,\beta-\alpha-\Phi\}\end{split}\]</span> <span class="math display">\[\begin{split}W(\Phi)=||\Phi||^2\end{split}\]</span> <span class="math display">\[\begin{split}\mathbb{E}\{\Delta{}W(\Phi)|\Phi(t)\}&amp;=\mathbb{E}\{(\Phi+\alpha-\beta)^2+2(\Phi+\alpha-\beta)\chi+\chi^2-\Phi^2|\Phi)\}\\&amp;=\mathbb{E}\{(\alpha-\beta)^2|\Phi\}+2\Phi{}\mathbb{E}\{(\alpha-\beta)|\Phi\}-\mathbb{E}\{\chi^2|\Phi\}\end{split}\]</span></p>
+<p>In steady state, <span class="math inline">\(\mathbb{E}\{\Delta{}W\}=0\)</span>, take expectation of both sides:</p>
+<p><span class="math display">\[\mathbb{E}\{(\alpha-\beta)^2\}+2\mathbb{E}\{\Phi{}\}e-\mathbb{E}\{\chi^2\}=0\]</span></p>
+<p>Consider <span class="math inline">\(\mathbb{E}\{\chi^2\}\leq{}e\beta_\max\)</span></p>
+<h3 id="state-space-collapse">State Space Collapse</h3>
+<p>Let <span class="math inline">\(\vec{c}&gt;0\)</span> is a vector with unit form. Let <span class="math inline">\(Q_{\parallel}=&lt;\vec{c},\vec{Q}&gt;\vec{c}\)</span>, <span class="math inline">\(Q_{\perp}=Q-Q_{\parallel}\)</span></p>
+<h4 id="lemma-3">Lemma 3</h4>
+<p>Define Lyapunov function</p>
+<p><span class="math display">\[V_\perp(Q)=||Q_\perp||,W(Q)=||Q||^2,W_{\parallel}(Q)=||Q_\parallel||^2\]</span> <span class="math display">\[\Delta{}V_\perp(Q)=V_\perp(Q(t+1))-V_\perp(Q(t))\]</span></p>
+<p>Then:</p>
 <ul>
-<li><script type="math/tex; mode=display">\Delta{}V_\perp(Q)\leq\frac{1}{2||Q_\perp||}(\Delta{}W(Q)-\Delta{}W_\parallel(Q))</script></li>
-<li><script type="math/tex; mode=display">|\Delta{}V_\perp(Q)|\leq2\sqrt{L}\max(A_\max,S_\max)</script></li>
+<li><span class="math display">\[\Delta{}V_\perp(Q)\leq\frac{1}{2||Q_\perp||}(\Delta{}W(Q)-\Delta{}W_\parallel(Q))\]</span></li>
+<li><span class="math display">\[|\Delta{}V_\perp(Q)|\leq2\sqrt{L}\max(A_\max,S_\max)\]</span></li>
 </ul>
 <hr>
-<script type="math/tex; mode=display">\begin{split}\Delta{}V_\perp(Q)&=V_\perp(Q(t+1))-V_\perp(Q(t))\\&=\sqrt{V_\perp(Q(t+1))^2}-\sqrt{V_\perp(Q(t))^2}\\&\leq\frac{1}{2||Q_\perp(t)||}(||Q_\perp(t+1)||^2-||Q_\perp(t)||^2)\\&=\frac{1}{2||Q_\perp(t)||}(\Delta{}W(Q)-\Delta{}W_{\parallel}(Q))\end{split}</script><script type="math/tex; mode=display">\begin{split}|\Delta{}V_\perp(Q)|&=|||Q_\perp(t+1)||-||Q_\perp(t)|||\\&\leq||Q_\perp(t+1)-Q_\perp(t)||\\&\leq||Q(t+1)-Q(t)||+||Q_\parallel(t+1)-Q_\parallel(t)||\\&\leq2||Q(t+1)-Q(t)||\\&\leq2\sqrt{L}\max||Q_l(t+1)-Q_l(t)||\end{split}</script><hr>
-<script type="math/tex; mode=display">\vec{c}=\vec{1}\cdot\frac{1}{\sqrt{L}}</script><script type="math/tex; mode=display">Q_\parallel^e=\frac{Q_\Sigma}{L}\vec{1},Q_\perp=[Q_l-\frac{1}{L}Q_\Sigma]_{l=1}^L,Q_\Sigma=\sum_lQ_l</script><h4 id="Proposition"><a href="#Proposition" class="headerlink" title="Proposition"></a>Proposition</h4><p>Consider $\bar{Q}^e$ under JSQ with ${A<em>\Sigma^e}_t$, and $e=\mu</em>\Sigma-\lambda<em>\Sigma^e$. Then, for any $\delta\in(0,\mu</em>\max)$, $\exists{}$ a sequence of ${N_r}$, s.t.</p>
-<script type="math/tex; mode=display">\mathbb{E}\{||\bar{Q}_\perp^2||^r\}\leq{}N_r,\forall{}e\in(0,(\mu_\min-\delta)L)</script><hr>
-<script type="math/tex; mode=display">\begin{split}\mathbb{E}\{\Delta{}W(Q)|Q\}&=\mathbb{E}\{||Q(t+1)||^2-||Q(t)||^2|Q\}\\&\leq{}\mathbb{E}\{||Q+A-S||^2-||Q||^2|Q\}\\&=2\mathbb{E}\{<Q,A-S>|Q\}+K_1\end{split}</script><script type="math/tex; mode=display">\begin{split}\mathbb{E}\{<Q,A-S>|Q\}&=<Q,\mathbb{E}\{A|Q\}-\lambda>-<Q,\mu-\lambda>\\&=\mathbb{E}\{A_\Sigma|Q\}Q_\min-<Q,\lambda>-\frac{e}{\sqrt{L}}<Q,c>\\&=\lambda_\Sigma{}Q_\min-\sum_l\lambda_lQ_l-\frac{e}{\sqrt{L}}||Q_\parallel||\\&=-\sum_l\lambda_l(Q_l-Q_\min)-\frac{e}{\sqrt{L}}||Q_\parallel||\\&\leq\lambda_\min\sum_l|Q_l-Q_\min|-\frac{e}{\sqrt{L}}||Q_\parallel||\\&=-||Q-Q_\min\cdot\vec{1}||\cdot\lambda_\min-\frac{e}{\sqrt{L}}||Q_\parallel||\\&\leq-||Q-Q_\min\cdot\vec{1}||\lambda_\min-\frac{e}{\sqrt{L}}||Q_\parallel||\\&\leq-||Q-\frac{1}{L}Q_\Sigma\cdot\vec{1}||\cdot\lambda_\min-\frac{e}{\sqrt{L}}||Q_\parallel||\\&\leq-\delta||Q_\perp||-\frac{e}{\sqrt{L}}||Q_\parallel||\end{split}</script><script type="math/tex; mode=display">\begin{split}\mathbb{E}\{\Delta{}W_\parallel(Q)|Q\}&=\mathbb{E}\{<c,Q(t+1)>^2-<c,Q(t)>^2|Q\}\\&=\mathbb{E}\{<c,Q+A-S+u>^2-<c,Q>^2|Q\}\\&\cdots\rm{here~I~omit~something}\cdots\\&\geq-\frac{2e}{\sqrt{L}}||Q_\parallel||-K_2\end{split}</script><h2 id="Max-Weight"><a href="#Max-Weight" class="headerlink" title="Max Weight"></a>Max Weight</h2><p>Assumptions:</p>
+<p><span class="math display">\[\begin{split}\Delta{}V_\perp(Q)&amp;=V_\perp(Q(t+1))-V_\perp(Q(t))\\&amp;=\sqrt{V_\perp(Q(t+1))^2}-\sqrt{V_\perp(Q(t))^2}\\&amp;\leq\frac{1}{2||Q_\perp(t)||}(||Q_\perp(t+1)||^2-||Q_\perp(t)||^2)\\&amp;=\frac{1}{2||Q_\perp(t)||}(\Delta{}W(Q)-\Delta{}W_{\parallel}(Q))\end{split}\]</span> <span class="math display">\[\begin{split}|\Delta{}V_\perp(Q)|&amp;=|||Q_\perp(t+1)||-||Q_\perp(t)|||\\&amp;\leq||Q_\perp(t+1)-Q_\perp(t)||\\&amp;\leq||Q(t+1)-Q(t)||+||Q_\parallel(t+1)-Q_\parallel(t)||\\&amp;\leq2||Q(t+1)-Q(t)||\\&amp;\leq2\sqrt{L}\max||Q_l(t+1)-Q_l(t)||\end{split}\]</span></p>
+<hr>
+<p><span class="math display">\[\vec{c}=\vec{1}\cdot\frac{1}{\sqrt{L}}\]</span> <span class="math display">\[Q_\parallel^e=\frac{Q_\Sigma}{L}\vec{1},Q_\perp=[Q_l-\frac{1}{L}Q_\Sigma]_{l=1}^L,Q_\Sigma=\sum_lQ_l\]</span></p>
+<h4 id="proposition">Proposition</h4>
+<p>Consider <span class="math inline">\(\bar{Q}^e\)</span> under JSQ with <span class="math inline">\(\{A_\Sigma^e\}_t\)</span>, and <span class="math inline">\(e=\mu_\Sigma-\lambda_\Sigma^e\)</span>. Then, for any <span class="math inline">\(\delta\in(0,\mu_\max)\)</span>, <span class="math inline">\(\exists{}\)</span> a sequence of <span class="math inline">\(\{N_r\}\)</span>, s.t. <span class="math display">\[\mathbb{E}\{||\bar{Q}_\perp^2||^r\}\leq{}N_r,\forall{}e\in(0,(\mu_\min-\delta)L)\]</span></p>
+<hr>
+<p><span class="math display">\[\begin{split}\mathbb{E}\{\Delta{}W(Q)|Q\}&amp;=\mathbb{E}\{||Q(t+1)||^2-||Q(t)||^2|Q\}\\&amp;\leq{}\mathbb{E}\{||Q+A-S||^2-||Q||^2|Q\}\\&amp;=2\mathbb{E}\{&lt;Q,A-S&gt;|Q\}+K_1\end{split}\]</span> <span class="math display">\[\begin{split}\mathbb{E}\{&lt;Q,A-S&gt;|Q\}&amp;=&lt;Q,\mathbb{E}\{A|Q\}-\lambda&gt;-&lt;Q,\mu-\lambda&gt;\\&amp;=\mathbb{E}\{A_\Sigma|Q\}Q_\min-&lt;Q,\lambda&gt;-\frac{e}{\sqrt{L}}&lt;Q,c&gt;\\&amp;=\lambda_\Sigma{}Q_\min-\sum_l\lambda_lQ_l-\frac{e}{\sqrt{L}}||Q_\parallel||\\&amp;=-\sum_l\lambda_l(Q_l-Q_\min)-\frac{e}{\sqrt{L}}||Q_\parallel||\\&amp;\leq\lambda_\min\sum_l|Q_l-Q_\min|-\frac{e}{\sqrt{L}}||Q_\parallel||\\&amp;=-||Q-Q_\min\cdot\vec{1}||\cdot\lambda_\min-\frac{e}{\sqrt{L}}||Q_\parallel||\\&amp;\leq-||Q-Q_\min\cdot\vec{1}||\lambda_\min-\frac{e}{\sqrt{L}}||Q_\parallel||\\&amp;\leq-||Q-\frac{1}{L}Q_\Sigma\cdot\vec{1}||\cdot\lambda_\min-\frac{e}{\sqrt{L}}||Q_\parallel||\\&amp;\leq-\delta||Q_\perp||-\frac{e}{\sqrt{L}}||Q_\parallel||\end{split}\]</span> <span class="math display">\[\begin{split}\mathbb{E}\{\Delta{}W_\parallel(Q)|Q\}&amp;=\mathbb{E}\{&lt;c,Q(t+1)&gt;^2-&lt;c,Q(t)&gt;^2|Q\}\\&amp;=\mathbb{E}\{&lt;c,Q+A-S+u&gt;^2-&lt;c,Q&gt;^2|Q\}\\&amp;\cdots\rm{here~I~omit~something}\cdots\\&amp;\geq-\frac{2e}{\sqrt{L}}||Q_\parallel||-K_2\end{split}\]</span></p>
+<h2 id="max-weight">Max Weight</h2>
+<p>Assumptions:</p>
 <ul>
-<li>$\vec{S}(t)=(S_l(t))\in\vec{S}$</li>
-<li>$A_l(t)$ independent over $l$</li>
-<li>$A_l(t)$ iid over $t$</li>
-<li>$A<em>l(t)\leq{}A</em>\max,S<em>l(t)\leq{}S</em>\max$</li>
+<li><span class="math inline">\(\vec{S}(t)=(S_l(t))\in\vec{S}\)</span></li>
+<li><span class="math inline">\(A_l(t)\)</span> independent over <span class="math inline">\(l\)</span></li>
+<li><span class="math inline">\(A_l(t)\)</span> iid over <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(A_l(t)\leq{}A_\max,S_l(t)\leq{}S_\max\)</span></li>
 </ul>
 <p>Policy:</p>
-<script type="math/tex; mode=display">\vec{S}(t)=\text{RAND}\{\arg\max_{s\in\vec{S}}<Q(t),S>\}</script><h3 id="Capacity-Region"><a href="#Capacity-Region" class="headerlink" title="Capacity Region"></a>Capacity Region</h3><script type="math/tex; mode=display">\mathcal{R}=\text{conv}(\vec{S})</script><p>Assume finite size and non-negative of $\vec{S}$, then:</p>
-<script type="math/tex; mode=display">\mathcal{R}=\{r\geq0,<c^{(k)},r>\leq{}b^{(k)}\}</script><script type="math/tex; mode=display">\mathcal{H}^{(k)}=\{r:<c^{(k)},r>=b^{(k)}\}</script><script type="math/tex; mode=display">\mathcal{F}^{(k)}=\mathcal{H}^{(k)}\cap{}\mathcal{R}</script><h4 id="Lemma-4"><a href="#Lemma-4" class="headerlink" title="Lemma 4"></a>Lemma 4</h4><ul>
-<li>if $\lambda\notin\mathcal{R}$, it is unstable</li>
-<li>$\lambda\in\text{int}\mathcal{R}$, ${Q_l(t)}\rightarrow\bar{Q}$ with $\mathbb{E}{||Q||^r}\leq{}M_r$</li>
+<p><span class="math display">\[\vec{S}(t)=\text{RAND}\{\arg\max_{s\in\vec{S}}&lt;Q(t),S&gt;\}\]</span></p>
+<h3 id="capacity-region">Capacity Region</h3>
+<p><span class="math display">\[\mathcal{R}=\text{conv}(\vec{S})\]</span></p>
+<p>Assume finite size and non-negative of <span class="math inline">\(\vec{S}\)</span>, then: <span class="math display">\[\mathcal{R}=\{r\geq0,&lt;c^{(k)},r&gt;\leq{}b^{(k)}\}\]</span> <span class="math display">\[\mathcal{H}^{(k)}=\{r:&lt;c^{(k)},r&gt;=b^{(k)}\}\]</span> <span class="math display">\[\mathcal{F}^{(k)}=\mathcal{H}^{(k)}\cap{}\mathcal{R}\]</span></p>
+<h4 id="lemma-4">Lemma 4</h4>
+<ul>
+<li>if <span class="math inline">\(\lambda\notin\mathcal{R}\)</span>, it is unstable</li>
+<li><span class="math inline">\(\lambda\in\text{int}\mathcal{R}\)</span>, <span class="math inline">\(\{Q_l(t)\}\rightarrow\bar{Q}\)</span> with <span class="math inline">\(\mathbb{E}\{||Q||^r\}\leq{}M_r\)</span></li>
 </ul>
-<h3 id="Lower-Bound-1"><a href="#Lower-Bound-1" class="headerlink" title="Lower Bound"></a>Lower Bound</h3><p>Define:</p>
-<script type="math/tex; mode=display">e^{(k)}=\min_{r\in\mathcal{H}}||\lambda-r||</script><script type="math/tex; mode=display">\lambda^{(k)}=\lambda+e^{(k)}c^{(k)}</script><script type="math/tex; mode=display">K_\lambda=\{K\in\{1,\cdots,k\},\lambda^{(k)}\in\mathcal{R}\}</script><script type="math/tex; mode=display">K_\lambda^\circ=\{k\in{}K_\lambda,\lambda^{(k)}\in\rm{int}\mathcal{F}^{(k)}\}</script><script type="math/tex; mode=display">\alpha^{(k)}(t)=<c^{(k)},A(t)>,\beta^{(k)}(t)=b^{(k)}</script><script type="math/tex; mode=display">Q_\parallel^{(k)}=<c^{(k)},Q(t)>c^{(k)},Q_\perp=Q-Q_\parallel^{(k)}</script><h4 id="Lemma-5"><a href="#Lemma-5" class="headerlink" title="Lemma 5"></a>Lemma 5</h4><p>Assume $\lambda\in\rm{int}\mathcal{R}$ with set $e^{(k)}$. Then under MW, for each $k\in{}K<em>\lambda^\circ$, $\exists{}$ finite ${N_r^{(k)}}</em>{k=1,2,\cdots}$ s.t.</p>
-<script type="math/tex; mode=display">\mathbb{E}\{||\bar{Q}_\perp^{(k)}||^r\}\leq{}N_r^{(k)}</script><p>for all $e&gt;0$, each Face $k$ belonging to $K_\lambda^\circ$ as $e\rightarrow0$ and each $r=1,2,\cdots$</p>
+<h3 id="lower-bound-1">Lower Bound</h3>
+<p>Define:</p>
+<p><span class="math display">\[e^{(k)}=\min_{r\in\mathcal{H}}||\lambda-r||\]</span> <span class="math display">\[\lambda^{(k)}=\lambda+e^{(k)}c^{(k)}\]</span> <span class="math display">\[K_\lambda=\{K\in\{1,\cdots,k\},\lambda^{(k)}\in\mathcal{R}\}\]</span> <span class="math display">\[K_\lambda^\circ=\{k\in{}K_\lambda,\lambda^{(k)}\in\rm{int}\mathcal{F}^{(k)}\}\]</span> <span class="math display">\[\alpha^{(k)}(t)=&lt;c^{(k)},A(t)&gt;,\beta^{(k)}(t)=b^{(k)}\]</span> <span class="math display">\[Q_\parallel^{(k)}=&lt;c^{(k)},Q(t)&gt;c^{(k)},Q_\perp=Q-Q_\parallel^{(k)}\]</span></p>
+<h4 id="lemma-5">Lemma 5</h4>
+<p>Assume <span class="math inline">\(\lambda\in\rm{int}\mathcal{R}\)</span> with set <span class="math inline">\(e^{(k)}\)</span>. Then under MW, for each <span class="math inline">\(k\in{}K_\lambda^\circ\)</span>, <span class="math inline">\(\exists{}\)</span> finite <span class="math inline">\(\{N_r^{(k)}\}_{k=1,2,\cdots}\)</span> s.t.</p>
+<p><span class="math display">\[\mathbb{E}\{||\bar{Q}_\perp^{(k)}||^r\}\leq{}N_r^{(k)}\]</span></p>
+<p>for all <span class="math inline">\(e&gt;0\)</span>, each Face <span class="math inline">\(k\)</span> belonging to <span class="math inline">\(K_\lambda^\circ\)</span> as <span class="math inline">\(e\rightarrow0\)</span> and each <span class="math inline">\(r=1,2,\cdots\)</span></p>
 <p>Further proof is available in the reference.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Eryilmaz A, Srikant R. Asymptotically tight steady-state queue length bounds implied by drift conditions[J]. Queueing Systems, 2012, 72(3-4): 311-359.</p>
+<h2 id="reference">Reference</h2>
+<p>[1] Eryilmaz A, Srikant R. Asymptotically tight steady-state queue length bounds implied by drift conditions[J]. Queueing Systems, 2012, 72(3-4): 311-359.</p>
 
       
     </div>
@@ -296,6 +328,15 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/10/29/Google访问指南/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MacOS Google访问指南
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/09/16/Max Weight, Back Pressure and Utility Maximization/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
@@ -313,7 +354,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">$~$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">Lemma 1</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Join-the-Shortest-Queue-JSQ"><span class="nav-number">2.</span> <span class="nav-text">Join the Shortest Queue (JSQ)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">2.1.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-of-Stability"><span class="nav-number">2.2.</span> <span class="nav-text">Analysis of Stability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lower-Bound"><span class="nav-number">2.3.</span> <span class="nav-text">Lower Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">Lemma 2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#State-Space-Collapse"><span class="nav-number">2.4.</span> <span class="nav-text">State Space Collapse</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">Lemma 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proposition"><span class="nav-number">2.4.2.</span> <span class="nav-text">Proposition</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Weight"><span class="nav-number">3.</span> <span class="nav-text">Max Weight</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Capacity-Region"><span class="nav-number">3.1.</span> <span class="nav-text">Capacity Region</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma-4"><span class="nav-number">3.1.1.</span> <span class="nav-text">Lemma 4</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lower-Bound-1"><span class="nav-number">3.2.</span> <span class="nav-text">Lower Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma-5"><span class="nav-number">3.2.1.</span> <span class="nav-text">Lemma 5</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#section"><span class="nav-number">1.1.</span> <span class="nav-text">\(~\)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lemma-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">Lemma 1</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#join-the-shortest-queue-jsq"><span class="nav-number">2.</span> <span class="nav-text">Join the Shortest Queue (JSQ)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-number">2.1.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#analysis-of-stability"><span class="nav-number">2.2.</span> <span class="nav-text">Analysis of Stability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound"><span class="nav-number">2.3.</span> <span class="nav-text">Lower Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lemma-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">Lemma 2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-space-collapse"><span class="nav-number">2.4.</span> <span class="nav-text">State Space Collapse</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lemma-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">Lemma 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#proposition"><span class="nav-number">2.4.2.</span> <span class="nav-text">Proposition</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#max-weight"><span class="nav-number">3.</span> <span class="nav-text">Max Weight</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#capacity-region"><span class="nav-number">3.1.</span> <span class="nav-text">Capacity Region</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lemma-4"><span class="nav-number">3.1.1.</span> <span class="nav-text">Lemma 4</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound-1"><span class="nav-number">3.2.</span> <span class="nav-text">Lower Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lemma-5"><span class="nav-number">3.2.1.</span> <span class="nav-text">Lemma 5</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol>
     
     </div>
   </aside>
