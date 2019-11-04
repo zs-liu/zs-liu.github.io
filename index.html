@@ -218,7 +218,64 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>本文旨在为从事科研/教育行业的学生或教师提供便利。如果您企图使用本文提及的方式出售相关服务，请您注意是否符合当地法律法规！在您阅读本文前，请您仔细阅读网站下方的版权声明及其中的免责内容。</p>
+        <h2 id="声明">声明</h2>
+<p>本文旨在为从事科研/教育行业的学生或教师提供便利。如果您企图使用本文提及的方式出售相关服务，请您注意是否符合当地法律法规！在您阅读本文前，请您仔细阅读网站下方的版权声明及其中的免责内容。 &gt; 在阅读文章前，您应当对于一些基本的 Linux 命令有一定了解。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Multi Armed Bandit"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/10/28/Multi Armed Bandit/">Multi Armed Bandit</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/10/28/Multi Armed Bandit/" class="article-date">
+	  <time datetime="2019-10-28T05:30:00.000Z" itemprop="datePublished">2019-10-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="multi-armed-bandit">Multi Armed Bandit</h2>
+<ul>
+<li><span class="math inline">\(t=1,2,\cdots,N\)</span></li>
+<li><span class="math inline">\(k\)</span> arm</li>
+<li>at <span class="math inline">\(t\)</span>, choose arm <span class="math inline">\(i\)</span>, receive reward <span class="math inline">\(X_{i,t}\sim{}D_i\)</span>(iid unknown distribution)</li>
+<li>Policy: <span class="math inline">\(\pi=\{i(t),t=1,2,\cdots,N\}\)</span></li>
+<li>Goal: <span class="math inline">\(\max\mathbb{E}\{\sum_{t=1}^NX_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm OPT}=N\max_i\mu_i=N\mu,\mu_i=\mathbb{E}\{X_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm Reg}={\rm OPT}-\mathbb{E}\{\sum_{t=1}^NX_{i,t}|\pi\}\)</span></li>
+</ul>
       
     </div>
     <footer class="article-footer">
@@ -641,60 +698,6 @@
 <p><span class="math display">\[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\]</span> <span class="math display">\[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\]</span></p>
 <h3 id="strong-duality">Strong duality</h3>
 <p><span class="math display">\[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]</span></p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-可修复系统的可靠性分析"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/01/可修复系统的可靠性分析/">可修复系统的可靠性分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/01/可修复系统的可靠性分析/" class="article-date">
-	  <time datetime="2019-04-01T05:00:00.000Z" itemprop="datePublished">2019-04-01</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Math/">Math</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="维修性特征量">维修性特征量</h2>
-<h3 id="section"><span class="math inline">\(~\)</span></h3>
-<h4 id="维修分布函数维修度">维修分布函数/维修度</h4>
-<p>产品从故障开始到修理完毕经历的时间 <span class="math inline">\(Y\)</span> <span class="math display">\[M(t)=P(Y\leq{}t)\]</span></p>
-<h4 id="修复率">修复率</h4>
-<p>尚未修复的产品在单位时间内修复完成 <span class="math display">\[\mu(t)=\frac{m(t)}{1-M(t)}\]</span></p>
-<h4 id="平均修复时间">平均修复时间</h4>
-<p><span class="math display">\[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]</span></p>
       
     </div>
     <footer class="article-footer">
