@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="鲈鱼柳的博客">
 <meta property="og:description" content="Text">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-14T09:00:58.875Z">
+<meta property="og:updated_time" content="2020-07-16T12:53:46.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="$\rm \LaTeX$ Manual">
 <meta name="twitter:description" content="Text">
@@ -40,9 +40,9 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <style type="text/css">
-    @font-face{font-family:futura-pt; src:url("css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt-light; src:url("css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt-italic; src:url("css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
 }
 
   </style>
@@ -120,6 +120,8 @@
                   <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
                 
                   <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
                 
                   <li><div id="search-form-wrap">
 
@@ -239,9 +241,15 @@
 <h3 id="two-column-document">Two Column Document</h3>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[UTF8,a4paper,14pt,twocolumn]&#123;ctexart&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">    \twocolumn[</span><br><span class="line">    \begin&#123;@twocolumnfalse&#125;</span><br><span class="line">        % something here may cross two column</span><br><span class="line">    \end&#123;@twocolumnfalse&#125;]</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="hyperlink">Hyperlink</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\usepackage[colorlinks,linkcolor=blue]&#123;hyperref&#125;</span><br><span class="line">% set this command as the final one</span><br><span class="line">\href&#123;https://www.google.com&#125;&#123;Google&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\usepackage[colorlinks,linkcolor=blue]&#123;hyperref&#125;</span><br><span class="line">% include this package as the final one</span><br><span class="line">\href&#123;https://www.google.com&#125;&#123;Google&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="code-display">Code Display</h3>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;listings&#125;</span><br><span class="line">\lstset&#123;numbers=left,</span><br><span class="line">    numberstyle=\tiny,</span><br><span class="line">    basicstyle=\small\ttfamily,</span><br><span class="line">    stringstyle=\color&#123;purple&#125;,</span><br><span class="line">    keywordstyle=\color&#123;red!25!green!33!blue!100&#125;\bfseries,</span><br><span class="line">    commentstyle=\color&#123;olive&#125;,</span><br><span class="line">    %directivestyle=\color&#123;blue&#125;,</span><br><span class="line">    frame=shadowbox,</span><br><span class="line">    framerule=0pt,</span><br><span class="line">    backgroundcolor=\color&#123;red!0.5!green!0.5!blue!0.5!&#125;,</span><br><span class="line">    rulesepcolor=\color&#123;red!20!green!20!blue!20&#125;&#125;</span><br><span class="line">\begin&#123;lstlisting&#125;[language=&#123;[ANSI]C&#125;]</span><br><span class="line">\end&#123;lstlisting&#125;</span><br></pre></td></tr></table></figure>
+<p>or a more convenient way:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;listings&#125;</span><br><span class="line">\usepackage[cache=false]&#123;minted&#125;</span><br><span class="line">\begin&#123;minted&#125;[frame=single, tabsize=4]&#123;js&#125;</span><br><span class="line">print(&quot;\n&quot;)</span><br><span class="line">\end&#123;minted&#125;</span><br><span class="line">\mintinline&#123;python&#125;&#123;print(&quot;\n&quot;)&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tight-list">Tight List</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\providecommand&#123;\tightlist&#125;&#123;%\setlength&#123;\itemsep&#125;&#123;0pt&#125;\setlength&#123;\parskip&#125;&#123;0pt&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="insert-author-info">Insert Author Info</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\usepackage[colorlinks,linkcolor=blue]&#123;hyperref&#125;</span><br><span class="line">\hypersetup&#123;</span><br><span class="line">    pdftitle=&#123;None&#125;,</span><br><span class="line">    pdfauthor=&#123;Nobody&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -287,7 +295,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#text"><span class="nav-number">1.</span> <span class="nav-text">Text</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#figure"><span class="nav-number">2.</span> <span class="nav-text">Figure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-column-figure"><span class="nav-number">2.1.</span> <span class="nav-text">Two Column Figure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#table"><span class="nav-number">3.</span> <span class="nav-text">Table</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-row-table"><span class="nav-number">3.1.</span> <span class="nav-text">Cross Row Table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#newline-in-table"><span class="nav-number">3.2.</span> <span class="nav-text">Newline in Table</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equation"><span class="nav-number">4.</span> <span class="nav-text">Equation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#un-italic"><span class="nav-number">4.1.</span> <span class="nav-text">Un-Italic</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#others"><span class="nav-number">5.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-column-document"><span class="nav-number">5.1.</span> <span class="nav-text">Two Column Document</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperlink"><span class="nav-number">5.2.</span> <span class="nav-text">Hyperlink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-display"><span class="nav-number">5.3.</span> <span class="nav-text">Code Display</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#text"><span class="nav-number">1.</span> <span class="nav-text">Text</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#figure"><span class="nav-number">2.</span> <span class="nav-text">Figure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-column-figure"><span class="nav-number">2.1.</span> <span class="nav-text">Two Column Figure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#table"><span class="nav-number">3.</span> <span class="nav-text">Table</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-row-table"><span class="nav-number">3.1.</span> <span class="nav-text">Cross Row Table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#newline-in-table"><span class="nav-number">3.2.</span> <span class="nav-text">Newline in Table</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equation"><span class="nav-number">4.</span> <span class="nav-text">Equation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#un-italic"><span class="nav-number">4.1.</span> <span class="nav-text">Un-Italic</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#others"><span class="nav-number">5.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-column-document"><span class="nav-number">5.1.</span> <span class="nav-text">Two Column Document</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperlink"><span class="nav-number">5.2.</span> <span class="nav-text">Hyperlink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-display"><span class="nav-number">5.3.</span> <span class="nav-text">Code Display</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tight-list"><span class="nav-number">5.4.</span> <span class="nav-text">Tight List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insert-author-info"><span class="nav-number">5.5.</span> <span class="nav-text">Insert Author Info</span></a></li></ol></li></ol>
     
     </div>
   </aside>
@@ -346,6 +354,8 @@
     <a href="/categories" class="mobile-nav-link">Categories</a>
   
     <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav> -->
     
