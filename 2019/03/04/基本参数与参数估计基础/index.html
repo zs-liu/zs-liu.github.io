@@ -13,18 +13,18 @@
   
   
   
-  <meta name="description" content="基本参数 可靠度与不可靠度  \(n(t)\):在\(0\sim{}t\)时刻的工作时间内产品的累计失效数 \(N_0\):\(t=0\)时在规定条件下进行工作的产品数  \[Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}\] \[Fallibility(t)=F(t)=\frac{n(t)}{N_0}\]">
+  <meta name="description" content="基本参数可靠度与不可靠度 $n(t)$:在$0\sim{}t$时刻的工作时间内产品的累计失效数 $N_0$:$t=0$时在规定条件下进行工作的产品数  Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}Fallibility(t)=F(t)=\frac{n(t)}{N_0}">
 <meta name="keywords" content="Reliability Engineering">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基本参数与参数估计基础">
 <meta property="og:url" content="https://zs-liu.github.io/2019/03/04/基本参数与参数估计基础/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="基本参数 可靠度与不可靠度  \(n(t)\):在\(0\sim{}t\)时刻的工作时间内产品的累计失效数 \(N_0\):\(t=0\)时在规定条件下进行工作的产品数  \[Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}\] \[Fallibility(t)=F(t)=\frac{n(t)}{N_0}\]">
+<meta property="og:description" content="基本参数可靠度与不可靠度 $n(t)$:在$0\sim{}t$时刻的工作时间内产品的累计失效数 $N_0$:$t=0$时在规定条件下进行工作的产品数  Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}Fallibility(t)=F(t)=\frac{n(t)}{N_0}">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-09-26T10:11:16.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本参数与参数估计基础">
-<meta name="twitter:description" content="基本参数 可靠度与不可靠度  \(n(t)\):在\(0\sim{}t\)时刻的工作时间内产品的累计失效数 \(N_0\):\(t=0\)时在规定条件下进行工作的产品数  \[Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}\] \[Fallibility(t)=F(t)=\frac{n(t)}{N_0}\]">
+<meta name="twitter:description" content="基本参数可靠度与不可靠度 $n(t)$:在$0\sim{}t$时刻的工作时间内产品的累计失效数 $N_0$:$t=0$时在规定条件下进行工作的产品数  Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}Fallibility(t)=F(t)=\frac{n(t)}{N_0}">
   
     <link rel="alternate" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -203,82 +203,56 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基本参数">基本参数</h2>
-<h3 id="可靠度与不可靠度">可靠度与不可靠度</h3>
-<ul>
-<li><span class="math inline">\(n(t)\)</span>:在<span class="math inline">\(0\sim{}t\)</span>时刻的工作时间内产品的累计失效数</li>
-<li><span class="math inline">\(N_0\)</span>:<span class="math inline">\(t=0\)</span>时在规定条件下进行工作的产品数</li>
+        <h2 id="基本参数"><a href="#基本参数" class="headerlink" title="基本参数"></a>基本参数</h2><h3 id="可靠度与不可靠度"><a href="#可靠度与不可靠度" class="headerlink" title="可靠度与不可靠度"></a>可靠度与不可靠度</h3><ul>
+<li>$n(t)$:在$0\sim{}t$时刻的工作时间内产品的累计失效数</li>
+<li>$N_0$:$t=0$时在规定条件下进行工作的产品数</li>
 </ul>
-<p><span class="math display">\[Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}\]</span> <span class="math display">\[Fallibility(t)=F(t)=\frac{n(t)}{N_0}\]</span></p>
-<a id="more"></a>
-<h3 id="失效率">失效率</h3>
-<p><span class="math display">\[\lambda(t)=\lim_{\Delta{}t\rightarrow0}\frac{P(t&lt;T\leq{}t+\Delta{}t|T&gt;t)}{\Delta{}t}=\frac{F^{&#39;}(t)}{1-F(t)}=-\frac{R^{&#39;}(t)}{R(t)}\]</span> <span class="math display">\[\hat{\lambda}(t)=\frac{n(t+\Delta{}t)-n(t)}{\Delta{}t(N_0-n(t))}\]</span></p>
-<ul>
-<li>单位:<span class="math inline">\(1Fit=10^{-9}/h\)</span></li>
-<li><span class="math inline">\(R(t)=\exp\{-\int_0^t\lambda(t)dt\}\)</span></li>
-<li><span class="math inline">\(f(t)=\lambda(t)\exp\{-\int_0^t\lambda(t)dt\}\)</span></li>
+<script type="math/tex; mode=display">Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}</script><script type="math/tex; mode=display">Fallibility(t)=F(t)=\frac{n(t)}{N_0}</script><a id="more"></a>
+<h3 id="失效率"><a href="#失效率" class="headerlink" title="失效率"></a>失效率</h3><script type="math/tex; mode=display">\lambda(t)=\lim_{\Delta{}t\rightarrow0}\frac{P(t<T\leq{}t+\Delta{}t|T>t)}{\Delta{}t}=\frac{F^{'}(t)}{1-F(t)}=-\frac{R^{'}(t)}{R(t)}</script><script type="math/tex; mode=display">\hat{\lambda}(t)=\frac{n(t+\Delta{}t)-n(t)}{\Delta{}t(N_0-n(t))}</script><ul>
+<li>单位:$1Fit=10^{-9}/h$</li>
+<li>$R(t)=\exp{-\int_0^t\lambda(t)dt}$</li>
+<li>$f(t)=\lambda(t)\exp{-\int_0^t\lambda(t)dt}$</li>
 </ul>
-<h4 id="浴盆曲线">浴盆曲线</h4>
-<ul>
+<h4 id="浴盆曲线"><a href="#浴盆曲线" class="headerlink" title="浴盆曲线"></a>浴盆曲线</h4><ul>
 <li>大多数产品的失效率随时间的变化曲线形似浴盆</li>
 <li>由于产品失效机理的不同，失效率随时间的变化大致可以分为三个阶段：早期故障、偶然故障和耗损故障</li>
 </ul>
-<h3 id="平均寿命">平均寿命</h3>
-<h4 id="平均故障前时间mttf-mean-time-to-failure">平均故障前时间(MTTF, Mean Time To Failure)</h4>
-<p>设<span class="math inline">\(n\)</span>个不可修复产品在同样条件下进行试验，测得其全部故障时间为<span class="math inline">\(t_1,t_2,...,t_n\)</span>，则其平均故障前时间为: <span class="math display">\[T_{TF}=\frac{1}{n}\sum_{i=1}^nt_i\]</span></p>
-<h4 id="平均故障间隔时间mtbf-mean-time-between-failure">平均故障间隔时间(MTBF, Mean Time Between Failure)</h4>
-<p>设<span class="math inline">\(1\)</span>个可修复产品在使用过程中发生了<span class="math inline">\(n\)</span>次故障，每次故障修复后又重新投入使用，测得其每次工作持续时间为<span class="math inline">\(t_1,t_2,...,t_n\)</span>，则其平均故障间隔时间为： <span class="math display">\[T_{BF}=\frac{1}{n}\sum_{i=1}^nt_i\]</span></p>
-<h4 id="平均寿命-1">平均寿命</h4>
-<p><span class="math display">\[\theta=\int_0^\infty{}tf(t)dt=\int_0^\infty{}R(t)dt\]</span></p>
-<h4 id="可靠寿命">可靠寿命</h4>
-<p><span class="math display">\[t_R=R^{-1}(r)\]</span></p>
-<h3 id="常用的可靠性定量指标">常用的可靠性定量指标</h3>
-<h4 id="指数分布lambdaconst">指数分布:<span class="math inline">\(\lambda=const\)</span></h4>
-<ul>
-<li><span class="math inline">\(R(t)=\exp\{-\lambda{}t\}\)</span></li>
-<li><span class="math inline">\(f(t)=\lambda\exp\{-\lambda{}t\}\)</span></li>
-<li><span class="math inline">\(\theta=MTTF=\lambda^{-1}\)</span></li>
+<h3 id="平均寿命"><a href="#平均寿命" class="headerlink" title="平均寿命"></a>平均寿命</h3><h4 id="平均故障前时间-MTTF-Mean-Time-To-Failure"><a href="#平均故障前时间-MTTF-Mean-Time-To-Failure" class="headerlink" title="平均故障前时间(MTTF, Mean Time To Failure)"></a>平均故障前时间(MTTF, Mean Time To Failure)</h4><p>设$n$个不可修复产品在同样条件下进行试验，测得其全部故障时间为$t_1,t_2,…,t_n$，则其平均故障前时间为:</p>
+<script type="math/tex; mode=display">T_{TF}=\frac{1}{n}\sum_{i=1}^nt_i</script><h4 id="平均故障间隔时间-MTBF-Mean-Time-Between-Failure"><a href="#平均故障间隔时间-MTBF-Mean-Time-Between-Failure" class="headerlink" title="平均故障间隔时间(MTBF, Mean Time Between Failure)"></a>平均故障间隔时间(MTBF, Mean Time Between Failure)</h4><p>设$1$个可修复产品在使用过程中发生了$n$次故障，每次故障修复后又重新投入使用，测得其每次工作持续时间为$t_1,t_2,…,t_n$，则其平均故障间隔时间为：</p>
+<script type="math/tex; mode=display">T_{BF}=\frac{1}{n}\sum_{i=1}^nt_i</script><h4 id="平均寿命-1"><a href="#平均寿命-1" class="headerlink" title="平均寿命"></a>平均寿命</h4><script type="math/tex; mode=display">\theta=\int_0^\infty{}tf(t)dt=\int_0^\infty{}R(t)dt</script><h4 id="可靠寿命"><a href="#可靠寿命" class="headerlink" title="可靠寿命"></a>可靠寿命</h4><script type="math/tex; mode=display">t_R=R^{-1}(r)</script><h3 id="常用的可靠性定量指标"><a href="#常用的可靠性定量指标" class="headerlink" title="常用的可靠性定量指标"></a>常用的可靠性定量指标</h3><h4 id="指数分布-lambda-const"><a href="#指数分布-lambda-const" class="headerlink" title="指数分布:$\lambda=const$"></a>指数分布:$\lambda=const$</h4><ul>
+<li>$R(t)=\exp{-\lambda{}t}$</li>
+<li>$f(t)=\lambda\exp{-\lambda{}t}$</li>
+<li>$\theta=MTTF=\lambda^{-1}$</li>
 </ul>
-<h3 id="常用分布">常用分布</h3>
-<h4 id="对数正态分布">对数正态分布</h4>
-<p><span class="math inline">\(T\)</span>的对数<span class="math inline">\(\ln{}T\)</span>服从正态分布，则<span class="math inline">\(T\)</span>服从对数正态分布，即<span class="math inline">\(X=\ln{}T\sim{}N(\mu,\sigma^2)\)</span> <span class="math display">\[f(t)=\frac{1}{\sigma{}t\sqrt{2\pi}}\exp\{-\frac{(\ln{}t-\mu)^2}{2\sigma^2}\}\]</span></p>
-<ul>
-<li>均值:<span class="math inline">\(E(T)=\exp\{\mu+\frac{\sigma^2}{2}\}\)</span></li>
-<li>方差:<span class="math inline">\(D(T)=\exp\{2(\mu+\frac{\sigma^2}{2})\}(e^{\sigma^2}-1)\)</span></li>
+<h3 id="常用分布"><a href="#常用分布" class="headerlink" title="常用分布"></a>常用分布</h3><h4 id="对数正态分布"><a href="#对数正态分布" class="headerlink" title="对数正态分布"></a>对数正态分布</h4><p>$T$的对数$\ln{}T$服从正态分布，则$T$服从对数正态分布，即$X=\ln{}T\sim{}N(\mu,\sigma^2)$</p>
+<script type="math/tex; mode=display">f(t)=\frac{1}{\sigma{}t\sqrt{2\pi}}\exp\{-\frac{(\ln{}t-\mu)^2}{2\sigma^2}\}</script><ul>
+<li>均值:$E(T)=\exp{\mu+\frac{\sigma^2}{2}}$</li>
+<li>方差:$D(T)=\exp{2(\mu+\frac{\sigma^2}{2})}(e^{\sigma^2}-1)$</li>
 </ul>
-<h4 id="威布尔分布">威布尔分布</h4>
-<p><span class="math display">\[f(t)=\frac{m}{t_0}(t-\gamma)^{m-1}\exp\{-(t-\gamma)\frac{m}{t_0}\}\]</span></p>
-<ul>
-<li>均值:<span class="math inline">\(E(T)=\gamma+t_0^{\frac{1}{m}}\Gamma(1+\frac{1}{m})\)</span></li>
-<li>方差:<span class="math inline">\(D(T)=t_0^{\frac{2}{m}}[\Gamma(1+\frac{2}{m})-\Gamma^2(1+\frac{1}{m})]\)</span></li>
+<h4 id="威布尔分布"><a href="#威布尔分布" class="headerlink" title="威布尔分布"></a>威布尔分布</h4><script type="math/tex; mode=display">f(t)=\frac{m}{t_0}(t-\gamma)^{m-1}\exp\{-(t-\gamma)\frac{m}{t_0}\}</script><ul>
+<li>均值:$E(T)=\gamma+t_0^{\frac{1}{m}}\Gamma(1+\frac{1}{m})$</li>
+<li>方差:$D(T)=t_0^{\frac{2}{m}}[\Gamma(1+\frac{2}{m})-\Gamma^2(1+\frac{1}{m})]$</li>
 </ul>
-<h2 id="参数估计基础">参数估计基础</h2>
-<h3 id="截尾实验">截尾实验</h3>
-<h4 id="无替换定数截尾试验">无替换定数截尾试验</h4>
-<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到出现事先指定的<span class="math inline">\(r\)</span>个产品失效停止试验。</p>
+<h2 id="参数估计基础"><a href="#参数估计基础" class="headerlink" title="参数估计基础"></a>参数估计基础</h2><h3 id="截尾实验"><a href="#截尾实验" class="headerlink" title="截尾实验"></a>截尾实验</h3><h4 id="无替换定数截尾试验"><a href="#无替换定数截尾试验" class="headerlink" title="无替换定数截尾试验"></a>无替换定数截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到出现事先指定的$r$个产品失效停止试验。</p>
 <ul>
-<li>总试验时间:<span class="math display">\[T_r=\sum_{i=1}^rt_i(n-r)t_r\]</span></li>
-<li>点估计:<span class="math inline">\(\lambda=r/T_r\)</span></li>
-<li>区间估计:<span class="math inline">\(2\lambda{}T_r\sim{}\chi^2(2r)\)</span></li>
+<li>总试验时间:<script type="math/tex">T_r=\sum_{i=1}^rt_i(n-r)t_r</script></li>
+<li>点估计:$\lambda=r/T_r$</li>
+<li>区间估计:$2\lambda{}T_r\sim{}\chi^2(2r)$</li>
 </ul>
-<h4 id="有替换定数截尾试验">有替换定数截尾试验</h4>
-<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到规定失效数<span class="math inline">\(r\)</span>时停止试验。<span class="math inline">\(r\)</span>个失效样品的失效时间记为:<span class="math inline">\(t_1\leq{}t_2\leq\dots\leq{}t_r\)</span></p>
+<h4 id="有替换定数截尾试验"><a href="#有替换定数截尾试验" class="headerlink" title="有替换定数截尾试验"></a>有替换定数截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到规定失效数$r$时停止试验。$r$个失效样品的失效时间记为:$t_1\leq{}t_2\leq\dots\leq{}t_r$</p>
 <ul>
-<li>总试验时间:<span class="math inline">\(T_r=nt_r\)</span></li>
+<li>总试验时间:$T_r=nt_r$</li>
 </ul>
-<h4 id="无替换定时截尾试验">无替换定时截尾试验</h4>
-<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到出现事先规定的时间<span class="math inline">\(t_0\)</span>停止试验，共有<span class="math inline">\(r\)</span>个失效</p>
+<h4 id="无替换定时截尾试验"><a href="#无替换定时截尾试验" class="headerlink" title="无替换定时截尾试验"></a>无替换定时截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到出现事先规定的时间$t_0$停止试验，共有$r$个失效</p>
 <ul>
-<li>总试验时间:<span class="math display">\[T_0=\sum_{i=1}^rt_i(n-r)t_0\]</span></li>
-<li>点估计:<span class="math inline">\(\lambda=r/T_0\)</span></li>
+<li>总试验时间:<script type="math/tex">T_0=\sum_{i=1}^rt_i(n-r)t_0</script></li>
+<li>点估计:$\lambda=r/T_0$</li>
 </ul>
-<h4 id="有替换定时截尾试验">有替换定时截尾试验</h4>
-<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到出现事先规定的时间<span class="math inline">\(t_0\)</span>停止试验，共有<span class="math inline">\(r\)</span>个失效</p>
+<h4 id="有替换定时截尾试验"><a href="#有替换定时截尾试验" class="headerlink" title="有替换定时截尾试验"></a>有替换定时截尾试验</h4><p>随机抽取$n$件产品进行寿命试验，试验到出现事先规定的时间$t_0$停止试验，共有$r$个失效</p>
 <ul>
-<li>总试验时间:<span class="math inline">\(T_0=nt_0\)</span></li>
+<li>总试验时间:$T_0=nt_0$</li>
 </ul>
-<h3 id="贝叶斯估计简介">贝叶斯估计简介</h3>
-<p>略</p>
+<h3 id="贝叶斯估计简介"><a href="#贝叶斯估计简介" class="headerlink" title="贝叶斯估计简介"></a>贝叶斯估计简介</h3><p>略</p>
 
       
     </div>
@@ -324,7 +298,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本参数"><span class="nav-number">1.</span> <span class="nav-text">基本参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可靠度与不可靠度"><span class="nav-number">1.1.</span> <span class="nav-text">可靠度与不可靠度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#失效率"><span class="nav-number">1.2.</span> <span class="nav-text">失效率</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浴盆曲线"><span class="nav-number">1.2.1.</span> <span class="nav-text">浴盆曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均寿命"><span class="nav-number">1.3.</span> <span class="nav-text">平均寿命</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#平均故障前时间mttf-mean-time-to-failure"><span class="nav-number">1.3.1.</span> <span class="nav-text">平均故障前时间(MTTF, Mean Time To Failure)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均故障间隔时间mtbf-mean-time-between-failure"><span class="nav-number">1.3.2.</span> <span class="nav-text">平均故障间隔时间(MTBF, Mean Time Between Failure)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均寿命-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">平均寿命</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠寿命"><span class="nav-number">1.3.4.</span> <span class="nav-text">可靠寿命</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的可靠性定量指标"><span class="nav-number">1.4.</span> <span class="nav-text">常用的可靠性定量指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指数分布lambdaconst"><span class="nav-number">1.4.1.</span> <span class="nav-text">指数分布:\(\lambda=const\)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用分布"><span class="nav-number">1.5.</span> <span class="nav-text">常用分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对数正态分布"><span class="nav-number">1.5.1.</span> <span class="nav-text">对数正态分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#威布尔分布"><span class="nav-number">1.5.2.</span> <span class="nav-text">威布尔分布</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数估计基础"><span class="nav-number">2.</span> <span class="nav-text">参数估计基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#截尾实验"><span class="nav-number">2.1.</span> <span class="nav-text">截尾实验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无替换定数截尾试验"><span class="nav-number">2.1.1.</span> <span class="nav-text">无替换定数截尾试验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有替换定数截尾试验"><span class="nav-number">2.1.2.</span> <span class="nav-text">有替换定数截尾试验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无替换定时截尾试验"><span class="nav-number">2.1.3.</span> <span class="nav-text">无替换定时截尾试验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有替换定时截尾试验"><span class="nav-number">2.1.4.</span> <span class="nav-text">有替换定时截尾试验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯估计简介"><span class="nav-number">2.2.</span> <span class="nav-text">贝叶斯估计简介</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本参数"><span class="nav-number">1.</span> <span class="nav-text">基本参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可靠度与不可靠度"><span class="nav-number">1.1.</span> <span class="nav-text">可靠度与不可靠度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#失效率"><span class="nav-number">1.2.</span> <span class="nav-text">失效率</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浴盆曲线"><span class="nav-number">1.2.1.</span> <span class="nav-text">浴盆曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均寿命"><span class="nav-number">1.3.</span> <span class="nav-text">平均寿命</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#平均故障前时间-MTTF-Mean-Time-To-Failure"><span class="nav-number">1.3.1.</span> <span class="nav-text">平均故障前时间(MTTF, Mean Time To Failure)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均故障间隔时间-MTBF-Mean-Time-Between-Failure"><span class="nav-number">1.3.2.</span> <span class="nav-text">平均故障间隔时间(MTBF, Mean Time Between Failure)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均寿命-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">平均寿命</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠寿命"><span class="nav-number">1.3.4.</span> <span class="nav-text">可靠寿命</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的可靠性定量指标"><span class="nav-number">1.4.</span> <span class="nav-text">常用的可靠性定量指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指数分布-lambda-const"><span class="nav-number">1.4.1.</span> <span class="nav-text">指数分布:$\lambda=const$</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用分布"><span class="nav-number">1.5.</span> <span class="nav-text">常用分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对数正态分布"><span class="nav-number">1.5.1.</span> <span class="nav-text">对数正态分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#威布尔分布"><span class="nav-number">1.5.2.</span> <span class="nav-text">威布尔分布</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数估计基础"><span class="nav-number">2.</span> <span class="nav-text">参数估计基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#截尾实验"><span class="nav-number">2.1.</span> <span class="nav-text">截尾实验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无替换定数截尾试验"><span class="nav-number">2.1.1.</span> <span class="nav-text">无替换定数截尾试验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有替换定数截尾试验"><span class="nav-number">2.1.2.</span> <span class="nav-text">有替换定数截尾试验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无替换定时截尾试验"><span class="nav-number">2.1.3.</span> <span class="nav-text">无替换定时截尾试验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有替换定时截尾试验"><span class="nav-number">2.1.4.</span> <span class="nav-text">有替换定时截尾试验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯估计简介"><span class="nav-number">2.2.</span> <span class="nav-text">贝叶斯估计简介</span></a></li></ol></li></ol>
     
     </div>
   </aside>
