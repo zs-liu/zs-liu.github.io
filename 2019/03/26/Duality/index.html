@@ -13,18 +13,18 @@
   
   
   
-  <meta name="description" content="Lagrange dual problemLagrangian\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0variable $x\in{}R^n$, domain $\mathcal{D}$, optimal value $p^\star$ L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\mathcal{D}\time">
+  <meta name="description" content="Lagrange dual problem Lagrangian \[\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0\] variable \(x\in{}R^n\), domain \(\mathcal{D}\), optimal value \(p^\star\) \[L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\">
 <meta name="keywords" content="Convex Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Duality">
 <meta property="og:url" content="https://zs-liu.github.io/2019/03/26/Duality/index.html">
 <meta property="og:site_name" content="鲈鱼柳的博客">
-<meta property="og:description" content="Lagrange dual problemLagrangian\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0variable $x\in{}R^n$, domain $\mathcal{D}$, optimal value $p^\star$ L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\mathcal{D}\time">
+<meta property="og:description" content="Lagrange dual problem Lagrangian \[\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0\] variable \(x\in{}R^n\), domain \(\mathcal{D}\), optimal value \(p^\star\) \[L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-09-26T10:07:42.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Duality">
-<meta name="twitter:description" content="Lagrange dual problemLagrangian\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0variable $x\in{}R^n$, domain $\mathcal{D}$, optimal value $p^\star$ L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\mathcal{D}\time">
+<meta name="twitter:description" content="Lagrange dual problem Lagrangian \[\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0\] variable \(x\in{}R^n\), domain \(\mathcal{D}\), optimal value \(p^\star\) \[L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\">
   
     <link rel="alternate" href="/atom.xml" title="鲈鱼柳的博客" type="application/atom+xml">
   
@@ -203,47 +203,67 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Lagrange-dual-problem"><a href="#Lagrange-dual-problem" class="headerlink" title="Lagrange dual problem"></a>Lagrange dual problem</h2><h3 id="Lagrangian"><a href="#Lagrangian" class="headerlink" title="Lagrangian"></a>Lagrangian</h3><script type="math/tex; mode=display">\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0</script><p>variable $x\in{}R^n$, domain $\mathcal{D}$, optimal value $p^\star$</p>
-<script type="math/tex; mode=display">L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\mathcal{D}\times{}R^m\times{}R^p</script><script type="math/tex; mode=display">L(x,\lambda,\nu)=f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p\nu_ih_i(x)</script><a id="more"></a>
-<h3 id="Lagrange-dual-function"><a href="#Lagrange-dual-function" class="headerlink" title="Lagrange dual function"></a>Lagrange dual function</h3><script type="math/tex; mode=display">g:R^m\times{}R^p\rightarrow{}R</script><script type="math/tex; mode=display">g(\lambda,\nu)=\inf_{x\in{}D}L(x,\lambda,\nu)=\inf_{x\in{}D}(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p\nu_ih_i(x))</script><p>lower bound property: if $\lambda\geq0$, then $g(\lambda,\nu)\leq{}p^\star$</p>
-<h3 id="Lagrange-dual-problem-1"><a href="#Lagrange-dual-problem-1" class="headerlink" title="Lagrange dual problem"></a>Lagrange dual problem</h3><script type="math/tex; mode=display">\max{}g(\lambda,\nu),s.t.\lambda\succeq0</script><p>optimal value $d^\star$</p>
-<h2 id="Weak-and-strong-duality"><a href="#Weak-and-strong-duality" class="headerlink" title="Weak and strong duality"></a>Weak and strong duality</h2><ul>
-<li>weak duality: $d^\star\leq{}p^\star$<ul>
+        <h2 id="lagrange-dual-problem">Lagrange dual problem</h2>
+<h3 id="lagrangian">Lagrangian</h3>
+<p><span class="math display">\[\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0\]</span> variable <span class="math inline">\(x\in{}R^n\)</span>, domain <span class="math inline">\(\mathcal{D}\)</span>, optimal value <span class="math inline">\(p^\star\)</span> <span class="math display">\[L:R^n\times{}R^m\times{}R^p\rightarrow{}R,dom~L=\mathcal{D}\times{}R^m\times{}R^p\]</span> <span class="math display">\[L(x,\lambda,\nu)=f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p\nu_ih_i(x)\]</span></p>
+<a id="more"></a>
+<h3 id="lagrange-dual-function">Lagrange dual function</h3>
+<p><span class="math display">\[g:R^m\times{}R^p\rightarrow{}R\]</span> <span class="math display">\[g(\lambda,\nu)=\inf_{x\in{}D}L(x,\lambda,\nu)=\inf_{x\in{}D}(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p\nu_ih_i(x))\]</span> lower bound property: if <span class="math inline">\(\lambda\geq0\)</span>, then <span class="math inline">\(g(\lambda,\nu)\leq{}p^\star\)</span></p>
+<h3 id="lagrange-dual-problem-1">Lagrange dual problem</h3>
+<p><span class="math display">\[\max{}g(\lambda,\nu),s.t.\lambda\succeq0\]</span> optimal value <span class="math inline">\(d^\star\)</span></p>
+<h2 id="weak-and-strong-duality">Weak and strong duality</h2>
+<ul>
+<li>weak duality: <span class="math inline">\(d^\star\leq{}p^\star\)</span>
+<ul>
 <li>always holds (for convex and nonconvex problems)</li>
+</ul></li>
+<li>strong duality: <span class="math inline">\(d^\star=p^\star\)</span>
+<ul>
+<li>(usually) holds for convex problems</li>
+</ul></li>
 </ul>
-</li>
-<li>strong duality: $d^\star=p^\star$<ul>
-<li>(usually) holds for convex problems </li>
-</ul>
-</li>
-</ul>
-<h3 id="Slater’s-constraint-qualification"><a href="#Slater’s-constraint-qualification" class="headerlink" title="Slater’s constraint qualification"></a>Slater’s constraint qualification</h3><script type="math/tex; mode=display">\text{minimize }f_0(x)</script><script type="math/tex; mode=display">\text{subject to }f_i(x)\leq0,Ax=b</script><p>strong duality holds if it is strictly feasible, i.e.,</p>
-<script type="math/tex; mode=display">\exists{}x\in{}\text{relint }D:~f_i(x)<0,Ax=b</script><ul>
+<h3 id="slaters-constraint-qualification">Slater's constraint qualification</h3>
+<p><span class="math display">\[\text{minimize }f_0(x)\]</span> <span class="math display">\[\text{subject to }f_i(x)\leq0,Ax=b\]</span> strong duality holds if it is strictly feasible, i.e., <span class="math display">\[\exists{}x\in{}\text{relint }D:~f_i(x)&lt;0,Ax=b\]</span></p>
+<ul>
 <li>there exist many other types of constraint qualifications</li>
 </ul>
-<h2 id="Geometric-interpretation"><a href="#Geometric-interpretation" class="headerlink" title="Geometric interpretation"></a>Geometric interpretation</h2><p>Omit</p>
-<h3 id="Complementary-slackness"><a href="#Complementary-slackness" class="headerlink" title="Complementary slackness"></a>Complementary slackness</h3><p>Assume strong duality holds, $x^\star$ is primal optimal, $(\lambda^\star,\nu^\star)$ is dual optimal</p>
+<h2 id="geometric-interpretation">Geometric interpretation</h2>
+<p>Omit</p>
+<h3 id="complementary-slackness">Complementary slackness</h3>
+<p>Assume strong duality holds, <span class="math inline">\(x^\star\)</span> is primal optimal, <span class="math inline">\((\lambda^\star,\nu^\star)\)</span> is dual optimal - <span class="math inline">\(x^\star\)</span> minimizes <span class="math inline">\(L(x,\lambda^\star,\nu^\star)\)</span> - <span class="math inline">\(\lambda_i^\star{}f_i(x^\star)=0\)</span> for <span class="math inline">\(i=1,\dots,m\)</span></p>
+<h3 id="kkt-conditions">KKT conditions</h3>
 <ul>
-<li>$x^\star$ minimizes $L(x,\lambda^\star,\nu^\star)$</li>
-<li>$\lambda_i^\star{}f_i(x^\star)=0$ for $i=1,\dots,m$</li>
+<li>primal constraints: <span class="math inline">\(f_i(x)\leq0,i=1,\dots,m,h_i(x)=0,i=1,\dots,p\)</span></li>
+<li>dual constraints: <span class="math inline">\(\lambda\succeq0\)</span></li>
+<li>complementary slackness: <span class="math inline">\(\lambda_if_i(x)=0\)</span></li>
+<li>gradient of Lagrangian with respect to <span class="math inline">\(x\)</span> vanishes: <span class="math display">\[\nabla{}f_0(x)+\sum_{i=1}^m\lambda_i\nabla{}f_i(x)+\sum_{i=1}^p\nu_i\nabla{}h_i(x)=0\]</span></li>
 </ul>
-<h3 id="KKT-conditions"><a href="#KKT-conditions" class="headerlink" title="KKT conditions"></a>KKT conditions</h3><ul>
-<li>primal constraints: $f_i(x)\leq0,i=1,\dots,m,h_i(x)=0,i=1,\dots,p$</li>
-<li>dual constraints: $\lambda\succeq0$</li>
-<li>complementary slackness: $\lambda_if_i(x)=0$</li>
-<li>gradient of Lagrangian with respect to $x$ vanishes: <script type="math/tex">\nabla{}f_0(x)+\sum_{i=1}^m\lambda_i\nabla{}f_i(x)+\sum_{i=1}^p\nu_i\nabla{}h_i(x)=0</script></li>
-</ul>
-<h3 id="KKT-conditions-for-convex-problem"><a href="#KKT-conditions-for-convex-problem" class="headerlink" title="KKT conditions for convex problem"></a>KKT conditions for convex problem</h3><p>If $\tilde{x},\tilde{\lambda},\tilde{\nu}$ satisfy KKT for a convex problem, then they are optimal.&lt;/br&gt;<br>If Slater’s condition is satisfied, then<br>$x$ is optimal if and only if there exist $\lambda, \nu$ that satisfy KKT conditions.</p>
-<h2 id="Perturbation-and-sensitivity-analysis"><a href="#Perturbation-and-sensitivity-analysis" class="headerlink" title="Perturbation and sensitivity analysis"></a>Perturbation and sensitivity analysis</h2><script type="math/tex; mode=display">f_i(x)\leq0\Rightarrow{}f_i(x)\leq{}u_i</script><script type="math/tex; mode=display">h_i(x)=0\Rightarrow{}h_i(x)=v_i</script><script type="math/tex; mode=display">g(\lambda,\nu)\Rightarrow{}g(\lambda,\nu)-u^T\lambda-v^T\nu</script><hr>
-<script type="math/tex; mode=display">p^\star(u,v)\geq{}g(\lambda^\star,\nu^\star)-u^T\lambda^\star-v^T\nu^\star=p^\star(0,0)-\lambda^\star-\nu^\star</script><h3 id="Local-sensitivity"><a href="#Local-sensitivity" class="headerlink" title="Local sensitivity"></a>Local sensitivity</h3><p>If $p^\star(u,v)$ is differentiable at $(0,0)$, then <script type="math/tex">\lambda_i^\star=-\frac{\partial{}p^\star(0,0)}{\partial{}u_i},\nu_i^\star=-\frac{\partial{}p^\star(0,0)}{\partial{}v_i}</script></p>
-<h2 id="Duality-and-problem-reformulations"><a href="#Duality-and-problem-reformulations" class="headerlink" title="Duality and problem reformulations"></a>Duality and problem reformulations</h2><h3 id="Introducing-new-variables-and-equality-constraints"><a href="#Introducing-new-variables-and-equality-constraints" class="headerlink" title="Introducing new variables and equality constraints"></a>Introducing new variables and equality constraints</h3><script type="math/tex; mode=display">\text{minimize }f_0(Ax+b)</script><ul>
+<h3 id="kkt-conditions-for-convex-problem">KKT conditions for convex problem</h3>
+<p>If <span class="math inline">\(\tilde{x},\tilde{\lambda},\tilde{\nu}\)</span> satisfy KKT for a convex problem, then they are optimal.<br> If Slater’s condition is satisfied, then <span class="math inline">\(x\)</span> is optimal if and only if there exist <span class="math inline">\(\lambda, \nu\)</span> that satisfy KKT conditions.</p>
+<h2 id="perturbation-and-sensitivity-analysis">Perturbation and sensitivity analysis</h2>
+<p><span class="math display">\[f_i(x)\leq0\Rightarrow{}f_i(x)\leq{}u_i\]</span> <span class="math display">\[h_i(x)=0\Rightarrow{}h_i(x)=v_i\]</span> <span class="math display">\[g(\lambda,\nu)\Rightarrow{}g(\lambda,\nu)-u^T\lambda-v^T\nu\]</span></p>
+<hr>
+<p><span class="math display">\[p^\star(u,v)\geq{}g(\lambda^\star,\nu^\star)-u^T\lambda^\star-v^T\nu^\star=p^\star(0,0)-\lambda^\star-\nu^\star\]</span></p>
+<h3 id="local-sensitivity">Local sensitivity</h3>
+<p>If <span class="math inline">\(p^\star(u,v)\)</span> is differentiable at <span class="math inline">\((0,0)\)</span>, then <span class="math display">\[\lambda_i^\star=-\frac{\partial{}p^\star(0,0)}{\partial{}u_i},\nu_i^\star=-\frac{\partial{}p^\star(0,0)}{\partial{}v_i}\]</span></p>
+<h2 id="duality-and-problem-reformulations">Duality and problem reformulations</h2>
+<h3 id="introducing-new-variables-and-equality-constraints">Introducing new variables and equality constraints</h3>
+<p><span class="math display">\[\text{minimize }f_0(Ax+b)\]</span></p>
+<ul>
 <li>dual function is constant</li>
 <li>we have strong duality, but dual is quite useless</li>
 </ul>
-<script type="math/tex; mode=display">\Rightarrow\text{minimize }f_0(y)\text{, subject to }Ax+b-y=0</script><h3 id="Implicit-constraints"><a href="#Implicit-constraints" class="headerlink" title="Implicit constraints"></a>Implicit constraints</h3><script type="math/tex; mode=display">\text{minimize }c^Tx\text{, subject to }Ax=b,-1\preceq{}x\preceq{}1</script><script type="math/tex; mode=display">\Rightarrow\text{minimize }f_0(x)=c^Tx(-1\preceq{}x\preceq{}1),\infty(\text{otherwise})\text{, subject to }Ax=b</script><h3 id="Problems-with-generalized-inequalities"><a href="#Problems-with-generalized-inequalities" class="headerlink" title="Problems with generalized inequalities"></a>Problems with generalized inequalities</h3><script type="math/tex; mode=display">\text{minimize }f_0(x)\text{, subject to }f_i(x)\preceq{}_{K_i}0,h_i(x)=0</script><h3 id="Semidefinite-program"><a href="#Semidefinite-program" class="headerlink" title="Semidefinite program"></a>Semidefinite program</h3><script type="math/tex; mode=display">\text{minimize }c^Tx,\text{, subject to }x_1F_1+\dots+x_nF_n\preceq{}G</script><ul>
-<li>Lagrange multiplier is matrix $Z\in{}S^k$</li>
-<li>Lagranigian <script type="math/tex">L(x,Z)=c^Tx+tr(Z(x_1F_1+\dots+x_nF_n-G))</script></li>
-<li>dual function <script type="math/tex">g(Z)=\inf_xL(x,Z)=-tr(GZ)(\text{for }tr(F_iZ)+c_i=0),-\infty(\text{otherwise})</script></li>
+<p><span class="math display">\[\Rightarrow\text{minimize }f_0(y)\text{, subject to }Ax+b-y=0\]</span></p>
+<h3 id="implicit-constraints">Implicit constraints</h3>
+<p><span class="math display">\[\text{minimize }c^Tx\text{, subject to }Ax=b,-1\preceq{}x\preceq{}1\]</span> <span class="math display">\[\Rightarrow\text{minimize }f_0(x)=c^Tx(-1\preceq{}x\preceq{}1),\infty(\text{otherwise})\text{, subject to }Ax=b\]</span></p>
+<h3 id="problems-with-generalized-inequalities">Problems with generalized inequalities</h3>
+<p><span class="math display">\[\text{minimize }f_0(x)\text{, subject to }f_i(x)\preceq{}_{K_i}0,h_i(x)=0\]</span></p>
+<h3 id="semidefinite-program">Semidefinite program</h3>
+<p><span class="math display">\[\text{minimize }c^Tx,\text{, subject to }x_1F_1+\dots+x_nF_n\preceq{}G\]</span></p>
+<ul>
+<li>Lagrange multiplier is matrix <span class="math inline">\(Z\in{}S^k\)</span></li>
+<li>Lagranigian <span class="math display">\[L(x,Z)=c^Tx+tr(Z(x_1F_1+\dots+x_nF_n-G))\]</span></li>
+<li>dual function <span class="math display">\[g(Z)=\inf_xL(x,Z)=-tr(GZ)(\text{for }tr(F_iZ)+c_i=0),-\infty(\text{otherwise})\]</span></li>
 </ul>
 
       
@@ -290,7 +310,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lagrange-dual-problem"><span class="nav-number">1.</span> <span class="nav-text">Lagrange dual problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lagrangian"><span class="nav-number">1.1.</span> <span class="nav-text">Lagrangian</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lagrange-dual-function"><span class="nav-number">1.2.</span> <span class="nav-text">Lagrange dual function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lagrange-dual-problem-1"><span class="nav-number">1.3.</span> <span class="nav-text">Lagrange dual problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-and-strong-duality"><span class="nav-number">2.</span> <span class="nav-text">Weak and strong duality</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Slater’s-constraint-qualification"><span class="nav-number">2.1.</span> <span class="nav-text">Slater’s constraint qualification</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Geometric-interpretation"><span class="nav-number">3.</span> <span class="nav-text">Geometric interpretation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Complementary-slackness"><span class="nav-number">3.1.</span> <span class="nav-text">Complementary slackness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KKT-conditions"><span class="nav-number">3.2.</span> <span class="nav-text">KKT conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KKT-conditions-for-convex-problem"><span class="nav-number">3.3.</span> <span class="nav-text">KKT conditions for convex problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Perturbation-and-sensitivity-analysis"><span class="nav-number">4.</span> <span class="nav-text">Perturbation and sensitivity analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-sensitivity"><span class="nav-number">4.1.</span> <span class="nav-text">Local sensitivity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Duality-and-problem-reformulations"><span class="nav-number">5.</span> <span class="nav-text">Duality and problem reformulations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-new-variables-and-equality-constraints"><span class="nav-number">5.1.</span> <span class="nav-text">Introducing new variables and equality constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implicit-constraints"><span class="nav-number">5.2.</span> <span class="nav-text">Implicit constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-with-generalized-inequalities"><span class="nav-number">5.3.</span> <span class="nav-text">Problems with generalized inequalities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semidefinite-program"><span class="nav-number">5.4.</span> <span class="nav-text">Semidefinite program</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrange-dual-problem"><span class="nav-number">1.</span> <span class="nav-text">Lagrange dual problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lagrangian"><span class="nav-number">1.1.</span> <span class="nav-text">Lagrangian</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lagrange-dual-function"><span class="nav-number">1.2.</span> <span class="nav-text">Lagrange dual function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lagrange-dual-problem-1"><span class="nav-number">1.3.</span> <span class="nav-text">Lagrange dual problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak-and-strong-duality"><span class="nav-number">2.</span> <span class="nav-text">Weak and strong duality</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slaters-constraint-qualification"><span class="nav-number">2.1.</span> <span class="nav-text">Slater&#39;s constraint qualification</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geometric-interpretation"><span class="nav-number">3.</span> <span class="nav-text">Geometric interpretation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#complementary-slackness"><span class="nav-number">3.1.</span> <span class="nav-text">Complementary slackness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kkt-conditions"><span class="nav-number">3.2.</span> <span class="nav-text">KKT conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kkt-conditions-for-convex-problem"><span class="nav-number">3.3.</span> <span class="nav-text">KKT conditions for convex problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#perturbation-and-sensitivity-analysis"><span class="nav-number">4.</span> <span class="nav-text">Perturbation and sensitivity analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#local-sensitivity"><span class="nav-number">4.1.</span> <span class="nav-text">Local sensitivity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#duality-and-problem-reformulations"><span class="nav-number">5.</span> <span class="nav-text">Duality and problem reformulations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#introducing-new-variables-and-equality-constraints"><span class="nav-number">5.1.</span> <span class="nav-text">Introducing new variables and equality constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#implicit-constraints"><span class="nav-number">5.2.</span> <span class="nav-text">Implicit constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#problems-with-generalized-inequalities"><span class="nav-number">5.3.</span> <span class="nav-text">Problems with generalized inequalities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#semidefinite-program"><span class="nav-number">5.4.</span> <span class="nav-text">Semidefinite program</span></a></li></ol></li></ol>
     
     </div>
   </aside>

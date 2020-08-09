@@ -220,14 +220,15 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Multi-Armed-Bandit"><a href="#Multi-Armed-Bandit" class="headerlink" title="Multi Armed Bandit"></a>Multi Armed Bandit</h2><ul>
-<li>$t=1,2,\cdots,N$</li>
-<li>$k$ arm</li>
-<li>at $t$, choose arm $i$, receive reward $X_{i,t}\sim{}D_i$(iid unknown distribution)</li>
-<li>Policy: $\pi={i(t),t=1,2,\cdots,N}$</li>
-<li>Goal: $\max\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}}$</li>
-<li>${\rm OPT}=N\max<em>i\mu_i=N\mu,\mu_i=\mathbb{E}{X</em>{i,t}}$</li>
-<li>${\rm Reg}={\rm OPT}-\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}|\pi}$</li>
+        <h2 id="multi-armed-bandit">Multi Armed Bandit</h2>
+<ul>
+<li><span class="math inline">\(t=1,2,\cdots,N\)</span></li>
+<li><span class="math inline">\(k\)</span> arm</li>
+<li>at <span class="math inline">\(t\)</span>, choose arm <span class="math inline">\(i\)</span>, receive reward <span class="math inline">\(X_{i,t}\sim{}D_i\)</span>(iid unknown distribution)</li>
+<li>Policy: <span class="math inline">\(\pi=\{i(t),t=1,2,\cdots,N\}\)</span></li>
+<li>Goal: <span class="math inline">\(\max\mathbb{E}\{\sum_{t=1}^NX_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm OPT}=N\max_i\mu_i=N\mu,\mu_i=\mathbb{E}\{X_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm Reg}={\rm OPT}-\mathbb{E}\{\sum_{t=1}^NX_{i,t}|\pi\}\)</span></li>
 </ul>
       
     </div>
@@ -275,10 +276,11 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
-<li>Single Hop System, $L$ Queues</li>
-<li>$Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)$</li>
-<li>$U_l(t)=\max{0,S_l(t)-A_l(t)-Q_l(t)}$</li>
+        <h2 id="introduction">Introduction</h2>
+<ul>
+<li>Single Hop System, <span class="math inline">\(L\)</span> Queues</li>
+<li><span class="math inline">\(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)\)</span></li>
+<li><span class="math inline">\(U_l(t)=\max\{0,S_l(t)-A_l(t)-Q_l(t)\}\)</span></li>
 </ul>
       
     </div>
@@ -326,16 +328,17 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Queue-Control-Problem"><a href="#Queue-Control-Problem" class="headerlink" title="Queue Control Problem"></a>Queue Control Problem</h2><p>$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$</p>
+        <h2 id="queue-control-problem">Queue Control Problem</h2>
+<p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
 <ul>
-<li>$A<em>i(t)$ is iid, $\mathbb{E}{A_i(t)}=\lambda_i$, $A_i(t)\in[0,A</em>{\max}]$</li>
-<li>$S_i(t)$ is condition of link $i$, $S_i(t)\in{0,1}$</li>
-<li>$P_{xy}=P_r{S_1(t)=x,S_2(t)=y}$</li>
-<li>At every time, serve $Q_1(t)$ or $Q_2(t)$</li>
-<li>$\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}$</li>
+<li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(\mathbb{E}\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S_i(t)\)</span> is condition of link <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i(t)\in\{0,1\}\)</span></li>
+<li><span class="math inline">\(P_{xy}=P_r\{S_1(t)=x,S_2(t)=y\}\)</span></li>
+<li>At every time, serve <span class="math inline">\(Q_1(t)\)</span> or <span class="math inline">\(Q_2(t)\)</span></li>
+<li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
 <li>Goal: stabilize both queues</li>
 </ul>
-<p>$~$<br>
+<p><span class="math inline">\(~\)</span>
       
     </div>
     <footer class="article-footer">
@@ -382,13 +385,15 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><ul>
-<li>Arrival: $A(t)$</li>
-<li>Cumulative arrival: <script type="math/tex">X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt</script></li>
-<li>Service: $\mu(t)$</li>
-<li>Cumulative departure: <script type="math/tex">Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt</script></li>
-<li>$Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise$</li>
-<li>$Q(t)=X[0,t]-Y[0,t],Q(0)=0$</li>
+        <h2 id="queue">Queue</h2>
+<h3 id="definition">Definition</h3>
+<ul>
+<li>Arrival: <span class="math inline">\(A(t)\)</span></li>
+<li>Cumulative arrival: <span class="math display">\[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]</span></li>
+<li>Service: <span class="math inline">\(\mu(t)\)</span></li>
+<li>Cumulative departure: <span class="math display">\[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\]</span></li>
+<li><span class="math inline">\(Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise\)</span></li>
+<li><span class="math inline">\(Q(t)=X[0,t]-Y[0,t],Q(0)=0\)</span></li>
 </ul>
       
     </div>
@@ -436,9 +441,9 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Wasserstein-Distance"><a href="#Wasserstein-Distance" class="headerlink" title="Wasserstein Distance"></a>Wasserstein Distance</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Consider, general functions $f$ and $g$, the Wasserstein distance is</p>
-<script type="math/tex; mode=display">\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}</script><p>For $f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+$, the distance can be formulated as</p>
-<script type="math/tex; mode=display">W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}</script><p>where $\mathcal{M}$  is the set of all maps that rearrange the distribution $f$ into $g$.</p>
+        <h2 id="wasserstein-distance">Wasserstein Distance</h2>
+<h3 id="definition">Definition</h3>
+<p>Consider, general functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, the Wasserstein distance is <span class="math display">\[\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}\]</span> For <span class="math inline">\(f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+\)</span>, the distance can be formulated as <span class="math display">\[W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}\]</span> where <span class="math inline">\(\mathcal{M}\)</span> is the set of all maps that rearrange the distribution <span class="math inline">\(f\)</span> into <span class="math inline">\(g\)</span>.</p>
       
     </div>
     <footer class="article-footer">
@@ -485,11 +490,13 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Closed"><a href="#Closed" class="headerlink" title="Closed"></a>Closed</h2><h3 id="Closed-set"><a href="#Closed-set" class="headerlink" title="Closed set"></a>Closed set</h3><p>A set $\mathcal{C}$ is closed if it contains its boundary:</p>
-<script type="math/tex; mode=display">x^k\in\mathcal{C},x^k\rightarrow\bar{x}\Rightarrow\bar{x}\in\mathcal{C}</script><ul>
+        <h2 id="closed">Closed</h2>
+<h3 id="closed-set">Closed set</h3>
+<p>A set <span class="math inline">\(\mathcal{C}\)</span> is closed if it contains its boundary: <span class="math display">\[x^k\in\mathcal{C},x^k\rightarrow\bar{x}\Rightarrow\bar{x}\in\mathcal{C}\]</span></p>
+<ul>
 <li>the intersection of closed sets is closed</li>
 <li>the union of a finite number of closed sets is closed</li>
-<li>inverse under linear mapping <script type="math/tex">\{x|Ax\in\mathcal{C}\}</script> is closed if $\mathcal{C}$ is closed</li>
+<li>inverse under linear mapping <span class="math display">\[\{x|Ax\in\mathcal{C}\}\]</span> is closed if <span class="math inline">\(\mathcal{C}\)</span> is closed</li>
 </ul>
       
     </div>
@@ -537,8 +544,8 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Subgradient"><a href="#Subgradient" class="headerlink" title="Subgradient"></a>Subgradient</h2><p>$g$ is a subgradient of a convex function $f$ at $x\in{}dom~f$ if</p>
-<script type="math/tex; mode=display">f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f</script>
+        <h2 id="subgradient">Subgradient</h2>
+<p><span class="math inline">\(g\)</span> is a subgradient of a convex function <span class="math inline">\(f\)</span> at <span class="math inline">\(x\in{}dom~f\)</span> if <span class="math display">\[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]</span></p>
       
     </div>
     <footer class="article-footer">
@@ -585,13 +592,15 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+        <h2 id="概述">概述</h2>
+<h3 id="定义">定义</h3>
+<ul>
 <li>Failure Mode, Effects and Criticality analysis</li>
-<li>归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每个故障模式的严重程度及发 生概率予以分类。<ul>
+<li>归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每个故障模式的严重程度及发 生概率予以分类。
+<ul>
 <li>一种自下而上的归纳分析方法</li>
 <li>FMEA和CA</li>
-</ul>
-</li>
+</ul></li>
 </ul>
       
     </div>
@@ -639,7 +648,10 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Linear-Programming"><a href="#Linear-Programming" class="headerlink" title="Linear Programming"></a>Linear Programming</h2><script type="math/tex; mode=display">\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0</script><script type="math/tex; mode=display">\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0</script><h3 id="Strong-duality"><a href="#Strong-duality" class="headerlink" title="Strong duality"></a>Strong duality</h3><script type="math/tex; mode=display">c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0</script>
+        <h2 id="linear-programming">Linear Programming</h2>
+<p><span class="math display">\[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\]</span> <span class="math display">\[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c,s\geq0\]</span></p>
+<h3 id="strong-duality">Strong duality</h3>
+<p><span class="math display">\[c^Tx=b^T\Leftrightarrow{}x^Ts=0\Leftrightarrow{}x_is_i=0\]</span></p>
       
     </div>
     <footer class="article-footer">
@@ -686,9 +698,14 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="维修性特征量"><a href="#维修性特征量" class="headerlink" title="维修性特征量"></a>维修性特征量</h2><h3 id><a href="#" class="headerlink" title="$~$"></a>$~$</h3><h4 id="维修分布函数-维修度"><a href="#维修分布函数-维修度" class="headerlink" title="维修分布函数/维修度"></a>维修分布函数/维修度</h4><p>产品从故障开始到修理完毕经历的时间 $Y$</p>
-<script type="math/tex; mode=display">M(t)=P(Y\leq{}t)</script><h4 id="修复率"><a href="#修复率" class="headerlink" title="修复率"></a>修复率</h4><p>尚未修复的产品在单位时间内修复完成</p>
-<script type="math/tex; mode=display">\mu(t)=\frac{m(t)}{1-M(t)}</script><h4 id="平均修复时间"><a href="#平均修复时间" class="headerlink" title="平均修复时间"></a>平均修复时间</h4><script type="math/tex; mode=display">MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)</script>
+        <h2 id="维修性特征量">维修性特征量</h2>
+<h3 id="section"><span class="math inline">\(~\)</span></h3>
+<h4 id="维修分布函数维修度">维修分布函数/维修度</h4>
+<p>产品从故障开始到修理完毕经历的时间 <span class="math inline">\(Y\)</span> <span class="math display">\[M(t)=P(Y\leq{}t)\]</span></p>
+<h4 id="修复率">修复率</h4>
+<p>尚未修复的产品在单位时间内修复完成 <span class="math display">\[\mu(t)=\frac{m(t)}{1-M(t)}\]</span></p>
+<h4 id="平均修复时间">平均修复时间</h4>
+<p><span class="math display">\[MTTR=\int_0^\infty{}tm(t)dt=\int_0^\infty{}tdM(t)\]</span></p>
       
     </div>
     <footer class="article-footer">
