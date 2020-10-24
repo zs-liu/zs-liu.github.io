@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en,zh-CN,zh-HK,zh-TW,default">
-<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4'>
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.4'>
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
@@ -40,19 +40,6 @@
 
   <!-- link -->
   
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
-
-  
-  
-
-  
-
-  
-
-  
-
-  
 
   <!-- import link -->
   
@@ -66,10 +53,14 @@
   
 
   
-  
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/first.css">
 
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
   
 
   <script id="loadcss"></script>
@@ -79,7 +70,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow floatable show" style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -186,6 +177,16 @@
             
           
           
+            
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>Darkmode
+                </a>
+              <li>
+            
+          
+          
 				</ul>
 			</div>
 
@@ -281,6 +282,16 @@
                 </a>
                 
               </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>Darkmode
+                </a>
+              <li>
             
           
             
@@ -465,6 +476,7 @@ Except where otherwise noted, content on this site is licensed under a <a rel="l
   <div>
     <script>
 window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
 /********************脚本懒加载函数********************************/
 function loadScript(src, cb) {
 var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
@@ -533,6 +545,14 @@ var loadCSS = function( href, before, media, attributes ){
 	onloadcssdefined( loadCB );
 	return ss;
 };
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
 </script>
 <!-- required -->
 
@@ -825,7 +845,7 @@ var loadCSS = function( href, before, media, attributes ){
 
   
   
-<script src="/js/valine.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/valine.min.js"></script>
 
 
 <script>
@@ -885,7 +905,7 @@ var loadCSS = function( href, before, media, attributes ){
       highlight: 'true',
       mathJax: 'false',
       enableQQ: 'true',
-      recordIP: '',
+      recordIP: 'false',
       requiredFields: requiredFields,
       emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
       emojiMaps: emojiMaps
@@ -902,14 +922,14 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/app.min.js"></script>
 
 
 
 
   
-    
-<script src="/js/search.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/search.min.js"></script>
 
   
 
@@ -919,13 +939,14 @@ var loadCSS = function( href, before, media, attributes ){
   <script>
 const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
 const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
-(function ($) {
+function listenSearch(){
   
     customSearch = new HexoSearch({
       imagePath: SearchServiceimagePath
     });
   
-})(jQuery);
+}
+document.addEventListener("DOMContentLoaded", listenSearch);
 
 </script>
 
@@ -1150,6 +1171,111 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 
 
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+  try {
+    localStorage.setItem(k, v);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+const removeLS = (k) => {
+  try {
+    localStorage.removeItem(k);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+const getLS = (k) => {
+  try {
+    return localStorage.getItem(k);
+  } catch (e) {
+    console.log(e.message);
+    return null;
+  }
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+function bindToggleButton() {
+	var btn=$("#wrapper .toggle-mode-btn");
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+document.addEventListener("pjax:success", bindToggleButton);
+var now = new Date();
+var hour = now.getHours();
+if (hour < 7 && hour >= 19) {
+	var mode = toggleCustomDarkMode();
+	if (mode === "dark") {
+	  applyCustomDarkModeSettings(mode);
+	}
+}
+</script>
+
+
 
 
 
@@ -1167,6 +1293,8 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
 		
 	  });
     });
@@ -1244,22 +1372,6 @@ document.addEventListener("pjax:success", listennSidebarTOC);
 
 <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
 
-<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
-
-<div class="pjax-animate">
-  
-    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
-    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
-    <script>
-      window.ShowLoading = function() {
-        NProgress.start();
-      };
-      window.HideLoading = function() {
-        NProgress.done();
-      }
-    </script>
-  
-</div>
 
 <script>
     var pjax;
@@ -1309,7 +1421,7 @@ document.addEventListener("pjax:success", listennSidebarTOC);
       $(document).unbind('scroll');
       $(document).unbind('click');
       $('body').unbind('click');
-      window.ShowLoading();
+	  
     });
 
     document.addEventListener('pjax:complete', function () {
@@ -1348,11 +1460,11 @@ document.addEventListener("pjax:success", listennSidebarTOC);
       } catch (e) {
         console.log(e);
       }
-      window.HideLoading();
+	  
     });
 
     document.addEventListener('pjax:error', function (e) {
-      window.HideLoading();
+	  
       window.location.href = e.triggerElement.href;
     });
 </script>
