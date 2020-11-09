@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zs-liu.github.io/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/</loc>
+    
+    <lastmod>2020-11-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zs-liu.github.io/2020/10/14/hello/</loc>
     
     <lastmod>2020-10-14</lastmod>
@@ -179,7 +186,7 @@
 
   <url>
     <loc>https://zs-liu.github.io/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -187,49 +194,56 @@
   
   <url>
     <loc>https://zs-liu.github.io/tags/Convex-Optimization/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/tags/Network-Optimization/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/tags/Latex/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/tags/Operations-Research/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/tags/Privacy-Engineering/</loc>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/tags/Hexo/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/tags/Reliability-Engineering/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/tags/Dynamic-Programming/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -238,21 +252,28 @@
   
   <url>
     <loc>https://zs-liu.github.io/categories/Math/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/categories/Computer/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zs-liu.github.io/categories/Computer-Science/</loc>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zs-liu.github.io/categories/Life/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
