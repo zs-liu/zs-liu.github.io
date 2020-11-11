@@ -26,10 +26,11 @@
 
   
     <meta name="description" content="Multi Armed Bandit
-$t=1,2,\cdots,N$
-$k$ arm
-at $t$, choose arm $i$, receive reward $X_{i,t}\sim{}D_i$(iid unknown distribution)
-Policy: $\pi={i(t),t=1,2,\cdo...">
+
+\(t=1,2,\cdots,N\)
+\(k\) arm
+at \(t\), choose arm \(i\), receive reward \(X_{i,t}\sim{}D_i\)(iid unknown distribution)
+Policy: \(\pi=\{i(...">
   
 
   <!-- feed -->
@@ -418,105 +419,112 @@ Policy: $\pi={i(t),t=1,2,\cdo...">
 
 
   
-  <h2 id="Multi-Armed-Bandit"><a href="#Multi-Armed-Bandit" class="headerlink" title="Multi Armed Bandit"></a>Multi Armed Bandit</h2><ul>
-<li>$t=1,2,\cdots,N$</li>
-<li>$k$ arm</li>
-<li>at $t$, choose arm $i$, receive reward $X_{i,t}\sim{}D_i$(iid unknown distribution)</li>
-<li>Policy: $\pi={i(t),t=1,2,\cdots,N}$</li>
-<li>Goal: $\max\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}}$</li>
-<li>${\rm OPT}=N\max<em>i\mu_i=N\mu,\mu_i=\mathbb{E}{X</em>{i,t}}$</li>
-<li>${\rm Reg}={\rm OPT}-\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}|\pi}$</li>
+  <h2 id="multi-armed-bandit">Multi Armed Bandit</h2>
+<ul>
+<li><span class="math inline">\(t=1,2,\cdots,N\)</span></li>
+<li><span class="math inline">\(k\)</span> arm</li>
+<li>at <span class="math inline">\(t\)</span>, choose arm <span class="math inline">\(i\)</span>, receive reward <span class="math inline">\(X_{i,t}\sim{}D_i\)</span>(iid unknown distribution)</li>
+<li>Policy: <span class="math inline">\(\pi=\{i(t),t=1,2,\cdots,N\}\)</span></li>
+<li>Goal: <span class="math inline">\(\max\mathbb{E}\{\sum_{t=1}^NX_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm OPT}=N\max_i\mu_i=N\mu,\mu_i=\mathbb{E}\{X_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm Reg}={\rm OPT}-\mathbb{E}\{\sum_{t=1}^NX_{i,t}|\pi\}\)</span></li>
 </ul>
 <a id="more"></a>
-<h2 id="UCB-ALG"><a href="#UCB-ALG" class="headerlink" title="UCB ALG"></a>UCB ALG</h2><ul>
+<h2 id="ucb-alg">UCB ALG</h2>
+<ul>
 <li>Initialize: play machine arm once</li>
-<li>Loop: play machine <script type="math/tex">i=\arg\max\bar{x}_j+\sqrt{\frac{2\ln{}n}{n_j}}</script></li>
+<li>Loop: play machine <span class="math display">\[i=\arg\max\bar{x}_j+\sqrt{\frac{2\ln{}n}{n_j}}\]</span></li>
 </ul>
-<p>where $\bar{x}_j={\rm avg}$ reward of arm $j$, $n_j=#$ of times $j$ is played so far</p>
-<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>For all $k&gt;1$, if UCB runs on $k$ arms with distributions $P_1,P_2,\cdots,P_k$ with support $[0,1]$, then the expected regrest after any $n$ is at most:</p>
-<script type="math/tex; mode=display">\delta\sum_{i,\mu_i<\mu}\frac{\ln{}n}{\Delta_i}+(1+\frac{\pi^2}{3})\sum_{j=1}^k\Delta_j</script><p>where $\Delta_i=\mu-\mu_i$</p>
-<hr>
-<p><em>Proof.</em><br><br>Define $C_{t,s}=\sqrt{\frac{2\ln{}t}{s}}$</p>
-<script type="math/tex; mode=display">T_i(n)=1+\sum_{t=k+1}^n\{i(t)=t\}\leq{}l+\sum_{t=k+1}^n\{i(t)=i,T_i(t-1)\geq{}l\}</script><p>After some calculation, we found that</p>
-<script type="math/tex; mode=display">T_i(n)\leq{}l+\sum_{t}\sum_{s=1}^{t-1}\sum_{s_i=l}^{t-1}\{\bar{x}_s^\star+C_{t,s}\leq\bar{x}_i+C_{t,s_i}\}</script><p>Also, it’s true that</p>
-<script type="math/tex; mode=display">\bar{x}_s^\star+C_{t,s}\leq\bar{x}_i+C_{t,s_i}</script><p>holds if at least one of following holds</p>
-<script type="math/tex; mode=display">\bar{x}_s^\star\leq\mu-C_{t,s},\bar{x}_{i,s_i}\geq\mu_i+C_{t,s},\mu<\mu_i+2C_{t,s}</script><p>However, the first two probability can be bound by Chernoff bound and the last one is impossible (probability $= 0$).<br></p>
-<script type="math/tex; mode=display">{\rm Pr}\{\bar{x}_s^\star\leq\mu-C_{t,s}\}\leq{}e^{-4\ln{}t},{\rm Pr}\{\bar{x}_{i,s_i}\geq\mu_i+C_{t,s}\}\leq{}e^{-4\ln{}t}</script><p>Finally, choose</p>
-<script type="math/tex; mode=display">l=\lceil\frac{8\ln{}n}{\Delta_i^2}\rceil</script><script type="math/tex; mode=display">\mathbb{E}\{T_i(n)\}\leq{}l+\sum_{t}\sum_{s=1}^{t-1}\sum_{s_i=l}^{t-1}t^{-4}=l+1+\frac{\pi^2}{3}</script><h2 id="varepsilon-greedy-ALG"><a href="#varepsilon-greedy-ALG" class="headerlink" title="$\varepsilon$-greedy ALG"></a>$\varepsilon$-greedy ALG</h2><ul>
-<li>Parameter: $c&gt;0,0&lt;d&lt;1$</li>
-<li>Initialize: Define <script type="math/tex">\varepsilon_n=\min\{1,\frac{ck}{d^2n}\}</script></li>
-<li>Loop: $\forall{}n=1,2,\cdots$, let $i<em>n=\arg\max_j\bar{x}</em>{j,n}$. Play $i_n$ with probability $1-\varepsilon_n$ and random with probability $\varepsilon_n$</li>
-</ul>
-<h3 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h3><p>For all $k&gt;1$, if $\varepsilon$-greedy runs on $k$ arms with distributions $P<em>1,P_2,\cdots,P_k$ with support $[0,1]$ and $0&lt;d&lt;\min</em>{i,\mu_i&lt;\mu}\Delta_i$. Then, the probability that after $n\geq{}ck/d$ plays, $\varepsilon$-greedy choose a sub-opt $j$ is at most</p>
-<script type="math/tex; mode=display">\mathcal{O}(\frac{c}{d^2n}+o(\frac{1}{n}))</script><p>for $n\rightarrow\infty$ and $c&gt;5$.</p>
-<h2 id="Lower-Bound"><a href="#Lower-Bound" class="headerlink" title="Lower Bound"></a>Lower Bound</h2><p>Consider two $\Theta$ values, i.e., $\Theta=(\theta_1,\theta_2,\cdots,\theta_k)$ with $\mu_1&gt;\mu_2\geq\dots\geq\mu_k$; $\Theta^{\prime}=(\theta_1,\theta_2^\prime,\cdots,\theta_k)$ with $\mu_2^{\prime}&gt;\mu_1\geq\dots\geq\mu_k$. Here we want to prove that it costs about $\ln{}n$ time to tell the difference between this two.<br><br>For a strategy</p>
+<p>where <span class="math inline">\(\bar{x}_j={\rm avg}\)</span> reward of arm <span class="math inline">\(j\)</span>, <span class="math inline">\(n_j=\#\)</span> of times <span class="math inline">\(j\)</span> is played so far</p>
+<h3 id="theorem">Theorem</h3>
+<p>For all <span class="math inline">\(k&gt;1\)</span>, if UCB runs on <span class="math inline">\(k\)</span> arms with distributions <span class="math inline">\(P_1,P_2,\cdots,P_k\)</span> with support <span class="math inline">\([0,1]\)</span>, then the expected regrest after any <span class="math inline">\(n\)</span> is at most:</p>
+<p><span class="math display">\[\delta\sum_{i,\mu_i&lt;\mu}\frac{\ln{}n}{\Delta_i}+(1+\frac{\pi^2}{3})\sum_{j=1}^k\Delta_j\]</span></p>
+<p>where <span class="math inline">\(\Delta_i=\mu-\mu_i\)</span></p>
+<hr />
+<p><em>Proof.</em><br> Define <span class="math inline">\(C_{t,s}=\sqrt{\frac{2\ln{}t}{s}}\)</span> <span class="math display">\[T_i(n)=1+\sum_{t=k+1}^n\{i(t)=t\}\leq{}l+\sum_{t=k+1}^n\{i(t)=i,T_i(t-1)\geq{}l\}\]</span> After some calculation, we found that <span class="math display">\[T_i(n)\leq{}l+\sum_{t}\sum_{s=1}^{t-1}\sum_{s_i=l}^{t-1}\{\bar{x}_s^\star+C_{t,s}\leq\bar{x}_i+C_{t,s_i}\}\]</span> Also, it's true that <span class="math display">\[\bar{x}_s^\star+C_{t,s}\leq\bar{x}_i+C_{t,s_i}\]</span> holds if at least one of following holds <span class="math display">\[\bar{x}_s^\star\leq\mu-C_{t,s},\bar{x}_{i,s_i}\geq\mu_i+C_{t,s},\mu&lt;\mu_i+2C_{t,s}\]</span> However, the first two probability can be bound by Chernoff bound and the last one is impossible (probability <span class="math inline">\(= 0\)</span>).<br> <span class="math display">\[{\rm Pr}\{\bar{x}_s^\star\leq\mu-C_{t,s}\}\leq{}e^{-4\ln{}t},{\rm Pr}\{\bar{x}_{i,s_i}\geq\mu_i+C_{t,s}\}\leq{}e^{-4\ln{}t}\]</span> Finally, choose <span class="math display">\[l=\lceil\frac{8\ln{}n}{\Delta_i^2}\rceil\]</span> <span class="math display">\[\mathbb{E}\{T_i(n)\}\leq{}l+\sum_{t}\sum_{s=1}^{t-1}\sum_{s_i=l}^{t-1}t^{-4}=l+1+\frac{\pi^2}{3}\]</span></p>
+<h2 id="varepsilon-greedy-alg"><span class="math inline">\(\varepsilon\)</span>-greedy ALG</h2>
 <ul>
-<li>$x_{j,s}$: reward for $j$ at $s$-th slot</li>
-<li>$\mathbb{P}$: joint distribution over ${I<em>t,x</em>{j,s}}$ under $\Theta$</li>
-<li>$\mathbb{P}^{\prime}$: joint distribution over ${I<em>t,x</em>{j,s}}$ under $\Theta^\prime$</li>
+<li>Parameter: <span class="math inline">\(c&gt;0,0&lt;d&lt;1\)</span></li>
+<li>Initialize: Define <span class="math display">\[\varepsilon_n=\min\{1,\frac{ck}{d^2n}\}\]</span></li>
+<li>Loop: <span class="math inline">\(\forall{}n=1,2,\cdots\)</span>, let <span class="math inline">\(i_n=\arg\max_j\bar{x}_{j,n}\)</span>. Play <span class="math inline">\(i_n\)</span> with probability <span class="math inline">\(1-\varepsilon_n\)</span> and random with probability <span class="math inline">\(\varepsilon_n\)</span></li>
 </ul>
-<hr>
-<p>Consider $A\subset{T_2(n)=n_2}$</p>
-<script type="math/tex; mode=display">\mathbb{P}(A)=\int_A\prod_{s=1}^{n_2}\frac{d\mathbb{P}_{\theta_2^\prime}}{d\mathbb{P}_{\theta_2}}(x_{2,s})d\mathbb{P}=\int_A\exp\{\sum_{s=1}^{n_2}\ln\frac{d\mathbb{P}_{\theta_2^\prime}}{d\mathbb{P}_{\theta_2}}(x_{2,s})d\mathbb{P}\}=\int_Ae^{-L_{n_2}}d\mathbb{P}</script><script type="math/tex; mode=display">\mathbb{P}^\prime(A)\geq{}e^{-C_n}\mathbb{P}(A)</script><h2 id="Thompson-Sampling-ALG"><a href="#Thompson-Sampling-ALG" class="headerlink" title="Thompson Sampling ALG"></a>Thompson Sampling ALG</h2><p>Here we only consider Bernoulli Bandits with $N=2$, because the overall analysis is really complex.</p>
+<h3 id="theorem-1">Theorem</h3>
+<p>For all <span class="math inline">\(k&gt;1\)</span>, if <span class="math inline">\(\varepsilon\)</span>-greedy runs on <span class="math inline">\(k\)</span> arms with distributions <span class="math inline">\(P_1,P_2,\cdots,P_k\)</span> with support <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(0&lt;d&lt;\min_{i,\mu_i&lt;\mu}\Delta_i\)</span>. Then, the probability that after <span class="math inline">\(n\geq{}ck/d\)</span> plays, <span class="math inline">\(\varepsilon\)</span>-greedy choose a sub-opt <span class="math inline">\(j\)</span> is at most <span class="math display">\[\mathcal{O}(\frac{c}{d^2n}+o(\frac{1}{n}))\]</span> for <span class="math inline">\(n\rightarrow\infty\)</span> and <span class="math inline">\(c&gt;5\)</span>.</p>
+<h2 id="lower-bound">Lower Bound</h2>
+<p>Consider two <span class="math inline">\(\Theta\)</span> values, i.e., <span class="math inline">\(\Theta=(\theta_1,\theta_2,\cdots,\theta_k)\)</span> with <span class="math inline">\(\mu_1&gt;\mu_2\geq\dots\geq\mu_k\)</span>; <span class="math inline">\(\Theta^{\prime}=(\theta_1,\theta_2^\prime,\cdots,\theta_k)\)</span> with <span class="math inline">\(\mu_2^{\prime}&gt;\mu_1\geq\dots\geq\mu_k\)</span>. Here we want to prove that it costs about <span class="math inline">\(\ln{}n\)</span> time to tell the difference between this two.<br> For a strategy - <span class="math inline">\(x_{j,s}\)</span>: reward for <span class="math inline">\(j\)</span> at <span class="math inline">\(s\)</span>-th slot - <span class="math inline">\(\mathbb{P}\)</span>: joint distribution over <span class="math inline">\(\{I_t,x_{j,s}\}\)</span> under <span class="math inline">\(\Theta\)</span> - <span class="math inline">\(\mathbb{P}^{\prime}\)</span>: joint distribution over <span class="math inline">\(\{I_t,x_{j,s}\}\)</span> under <span class="math inline">\(\Theta^\prime\)</span></p>
+<hr />
+<p>Consider <span class="math inline">\(A\subset\{T_2(n)=n_2\}\)</span> <span class="math display">\[\mathbb{P}(A)=\int_A\prod_{s=1}^{n_2}\frac{d\mathbb{P}_{\theta_2^\prime}}{d\mathbb{P}_{\theta_2}}(x_{2,s})d\mathbb{P}=\int_A\exp\{\sum_{s=1}^{n_2}\ln\frac{d\mathbb{P}_{\theta_2^\prime}}{d\mathbb{P}_{\theta_2}}(x_{2,s})d\mathbb{P}\}=\int_Ae^{-L_{n_2}}d\mathbb{P}\]</span> <span class="math display">\[\mathbb{P}^\prime(A)\geq{}e^{-C_n}\mathbb{P}(A)\]</span></p>
+<h2 id="thompson-sampling-alg">Thompson Sampling ALG</h2>
+<p>Here we only consider Bernoulli Bandits with <span class="math inline">\(N=2\)</span>, because the overall analysis is really complex.</p>
 <ul>
-<li>$X_1,X_2\in{0,1}$, $\mu_1\geq\mu_2$</li>
-<li>Initialize: for each $i$, $S_i=F_i=0$</li>
-<li>Loop: $t=1,2,\cdots,d_0$<ul>
-<li>For each $i$, sample $\theta_i(t)\sim{\rm Beta}(S_i+1,F_i+1)$</li>
-<li>Play $i(t)=\arg\max\theta_i(t)$, observe reward $r_t$</li>
-<li>If $r<em>t=1$, $S</em>{i(t)}+=1$, else $F_{i(t)}+=1$</li>
+<li><span class="math inline">\(X_1,X_2\in\{0,1\}\)</span>, <span class="math inline">\(\mu_1\geq\mu_2\)</span></li>
+<li>Initialize: for each <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i=F_i=0\)</span></li>
+<li>Loop: <span class="math inline">\(t=1,2,\cdots,d_0\)</span>
+<ul>
+<li>For each <span class="math inline">\(i\)</span>, sample <span class="math inline">\(\theta_i(t)\sim{\rm Beta}(S_i+1,F_i+1)\)</span></li>
+<li>Play <span class="math inline">\(i(t)=\arg\max\theta_i(t)\)</span>, observe reward <span class="math inline">\(r_t\)</span></li>
+<li>If <span class="math inline">\(r_t=1\)</span>, <span class="math inline">\(S_{i(t)}+=1\)</span>, else <span class="math inline">\(F_{i(t)}+=1\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h3><p>In this $2$ Bernoulli Bandits, TS achieves</p>
-<script type="math/tex; mode=display">\mathbb{E}\{R(T)\}=\mathcal{O}(\frac{\ln{}T}{\Delta}+\frac{1}{\Delta^3})</script><p>where $\Delta=\mu<em>\max-\mu</em>\min$</p>
-<hr>
+<h3 id="theorem-2">Theorem</h3>
+<p>In this <span class="math inline">\(2\)</span> Bernoulli Bandits, TS achieves</p>
+<p><span class="math display">\[\mathbb{E}\{R(T)\}=\mathcal{O}(\frac{\ln{}T}{\Delta}+\frac{1}{\Delta^3})\]</span> where <span class="math inline">\(\Delta=\mu_\max-\mu_\min\)</span></p>
+<hr />
 <p><em>Proof.</em></p>
 <ul>
-<li>Denote $j_0=#$ of plays of arm $1$ until arm $2$ is played $L=24\ln{}T/\Delta^2$ times.</li>
-<li>Let $t<em>j=$ time of the $j^{\rm th}$ play of arm $1$ ($t_0=0$). Also, let $y_j=t_j-t</em>{j-1}-1$, i.e., the interval play time.</li>
-<li>Denote $S(j)=#$ of success in the first $j$ plays of arm $1$</li>
-<li>The expected $#$ of play of arm $2$: <script type="math/tex">\mathbb{E}\{K_2(T)\}\leq{}L+\mathbb{E}\{\sum_{j=j_0}^{T-1}y_j\}</script></li>
-<li>Denote $X(j,s,y)$ to be the $#$ of attempts before we get a sample from ${\rm Beta}(s+1,j-s+1)$ to exceed $y$</li>
+<li>Denote <span class="math inline">\(j_0=\#\)</span> of plays of arm <span class="math inline">\(1\)</span> until arm <span class="math inline">\(2\)</span> is played <span class="math inline">\(L=24\ln{}T/\Delta^2\)</span> times.</li>
+<li>Let <span class="math inline">\(t_j=\)</span> time of the <span class="math inline">\(j^{\rm th}\)</span> play of arm <span class="math inline">\(1\)</span> (<span class="math inline">\(t_0=0\)</span>). Also, let <span class="math inline">\(y_j=t_j-t_{j-1}-1\)</span>, i.e., the interval play time.</li>
+<li>Denote <span class="math inline">\(S(j)=\#\)</span> of success in the first <span class="math inline">\(j\)</span> plays of arm <span class="math inline">\(1\)</span></li>
+<li>The expected <span class="math inline">\(\#\)</span> of play of arm <span class="math inline">\(2\)</span>: <span class="math display">\[\mathbb{E}\{K_2(T)\}\leq{}L+\mathbb{E}\{\sum_{j=j_0}^{T-1}y_j\}\]</span></li>
+<li>Denote <span class="math inline">\(X(j,s,y)\)</span> to be the <span class="math inline">\(\#\)</span> of attempts before we get a sample from <span class="math inline">\({\rm Beta}(s+1,j-s+1)\)</span> to exceed <span class="math inline">\(y\)</span></li>
 </ul>
-<p>It can be seen that $X(j,s,y)$ is Geo with success probability $1-F_{s+1,j-s+1}^{\rm beta}(y)$</p>
-<hr>
-<h4 id="Lemma-1"><a href="#Lemma-1" class="headerlink" title="Lemma 1"></a>Lemma 1</h4><p>For all non-negative $j$ an d $s\leq{}j$ and $y\in[0,1]$</p>
-<script type="math/tex; mode=display">\mathbb{E}\{X(j,s,y)\}=\frac{1}{F_{j+1,y}^{\rm beta}(s)}-1</script><hr>
+<p>It can be seen that <span class="math inline">\(X(j,s,y)\)</span> is Geo with success probability <span class="math inline">\(1-F_{s+1,j-s+1}^{\rm beta}(y)\)</span></p>
+<hr />
+<h4 id="lemma-1">Lemma 1</h4>
+<p>For all non-negative <span class="math inline">\(j\)</span> an d <span class="math inline">\(s\leq{}j\)</span> and <span class="math inline">\(y\in[0,1]\)</span> <span class="math display">\[\mathbb{E}\{X(j,s,y)\}=\frac{1}{F_{j+1,y}^{\rm beta}(s)}-1\]</span></p>
+<hr />
 <ul>
-<li>Consider the $#$ of steps before event ${\theta_1(t)&gt;\mu_2+\Delta/2}$ first happens</li>
-<li>Given $S(j)$, this has the same distribution as $X(j,S(j),\mu_2+\Delta/2)$</li>
-<li>$y<em>j$ can be larger than this $#$ iff at some $t\in(t_j,t</em>{j+1})$, $\theta_2(t)&gt;\mu_2+\Delta/2$</li>
-<li>Thus: <script type="math/tex">\mathbb{E}\{y_j\}\leq\mathbb{E}\{\min(X(j,S(j),\mu_2+\Delta/2),T)\}+\mathbb{E}\{\sum_{t=t_j+1}^{t_{j+1}-1}T\cdot{}I\{\theta_2>\mu_2+\Delta/2\}I\{j>j_0\}\}</script></li>
+<li>Consider the <span class="math inline">\(\#\)</span> of steps before event <span class="math inline">\(\{\theta_1(t)&gt;\mu_2+\Delta/2\}\)</span> first happens</li>
+<li>Given <span class="math inline">\(S(j)\)</span>, this has the same distribution as <span class="math inline">\(X(j,S(j),\mu_2+\Delta/2)\)</span></li>
+<li><span class="math inline">\(y_j\)</span> can be larger than this <span class="math inline">\(\#\)</span> iff at some <span class="math inline">\(t\in(t_j,t_{j+1})\)</span>, <span class="math inline">\(\theta_2(t)&gt;\mu_2+\Delta/2\)</span></li>
+<li>Thus: <span class="math display">\[\mathbb{E}\{y_j\}\leq\mathbb{E}\{\min(X(j,S(j),\mu_2+\Delta/2),T)\}+\mathbb{E}\{\sum_{t=t_j+1}^{t_{j+1}-1}T\cdot{}I\{\theta_2&gt;\mu_2+\Delta/2\}I\{j&gt;j_0\}\}\]</span></li>
 </ul>
-<p>Sum it up from $j=j_0$ to $T-1$ and define event:</p>
-<script type="math/tex; mode=display">E_2(t)=\{\theta_2(t)\leq\mu_2+\Delta/2\lor{}K_2(t)\leq{}L\}</script><hr>
-<h4 id="Lemma-2"><a href="#Lemma-2" class="headerlink" title="Lemma 2"></a>Lemma 2</h4><script type="math/tex; mode=display">\mathbb{P}(E_2(t))\geq1-\frac{2}{T^2}</script><h4 id="Lemma-3"><a href="#Lemma-3" class="headerlink" title="Lemma 3"></a>Lemma 3</h4><p>Consider any $y&lt;\mu_1$, let $\Delta^1=\mu_1y$, let $R=\frac{\mu_1(1-y)}{y(1-\mu_1)}&gt;1$ and $D=D(y||\mu_1)=y\ln\frac{y}{\mu_1}+(1-y)\ln\frac{1-y}{1-\mu_1}$, we have:</p>
-<script type="math/tex; mode=display">\mathbb{E}\{\mathbb{E}\{\min(X(j,S(j),y),T)|S(j)\}\}\leq\frac{16}{T}\quad{\rm for }\quad{}j\geq\frac{4\ln{}T}{(\Delta^1)^2}</script><hr>
-<p>Substitute Lemma 2 and Lemma 3 into the sum-up result (which we omit) and the inequality <script type="math/tex">\mathbb{E}\{K_2(T)\}\leq{}L+\mathbb{E}\{\sum_{j=j_0}^{T-1}y_j\}</script><br>we have (skip lots lots of calculation):</p>
-<script type="math/tex; mode=display">\mathbb{E}\{K_2(T)\}\leq{}\frac{40\ln{}T}{\Delta^2}+\frac{48}{\Delta^4}+18</script><script type="math/tex; mode=display">\mathbb{E}\{R(T)\}=\mathcal{O}(\frac{\ln{}T}{\Delta}+\frac{1}{\Delta^3})</script><h2 id="Non-Stochastic-ALG-EXP3"><a href="#Non-Stochastic-ALG-EXP3" class="headerlink" title="Non Stochastic: ALG EXP3"></a>Non Stochastic: ALG EXP3</h2><ul>
-<li>$K$ actions</li>
-<li>$X(i)=(X_i(1),X_i(2),\cdots),X_i(t)\in[0,1]$</li>
-<li>ALG $=i_1,i_2,\cdots,$</li>
-<li>$G<em>A(T)=\sum</em>{t=1}^TX_{i_t}(t)$</li>
-<li>Regret $=\max<em>j\sum</em>{t=1}^TX_j(t)-G_A(T)$</li>
+<p>Sum it up from <span class="math inline">\(j=j_0\)</span> to <span class="math inline">\(T-1\)</span> and define event:</p>
+<p><span class="math display">\[E_2(t)=\{\theta_2(t)\leq\mu_2+\Delta/2\lor{}K_2(t)\leq{}L\}\]</span></p>
+<hr />
+<h4 id="lemma-2">Lemma 2</h4>
+<p><span class="math display">\[\mathbb{P}(E_2(t))\geq1-\frac{2}{T^2}\]</span></p>
+<h4 id="lemma-3">Lemma 3</h4>
+<p>Consider any <span class="math inline">\(y&lt;\mu_1\)</span>, let <span class="math inline">\(\Delta^1=\mu_1y\)</span>, let <span class="math inline">\(R=\frac{\mu_1(1-y)}{y(1-\mu_1)}&gt;1\)</span> and <span class="math inline">\(D=D(y||\mu_1)=y\ln\frac{y}{\mu_1}+(1-y)\ln\frac{1-y}{1-\mu_1}\)</span>, we have:</p>
+<p><span class="math display">\[\mathbb{E}\{\mathbb{E}\{\min(X(j,S(j),y),T)|S(j)\}\}\leq\frac{16}{T}\quad{\rm for }\quad{}j\geq\frac{4\ln{}T}{(\Delta^1)^2}\]</span></p>
+<hr />
+<p>Substitute Lemma 2 and Lemma 3 into the sum-up result (which we omit) and the inequality <span class="math display">\[\mathbb{E}\{K_2(T)\}\leq{}L+\mathbb{E}\{\sum_{j=j_0}^{T-1}y_j\}\]</span> we have (skip lots lots of calculation): <span class="math display">\[\mathbb{E}\{K_2(T)\}\leq{}\frac{40\ln{}T}{\Delta^2}+\frac{48}{\Delta^4}+18\]</span> <span class="math display">\[\mathbb{E}\{R(T)\}=\mathcal{O}(\frac{\ln{}T}{\Delta}+\frac{1}{\Delta^3})\]</span></p>
+<h2 id="non-stochastic-alg-exp3">Non Stochastic: ALG EXP3</h2>
+<ul>
+<li><span class="math inline">\(K\)</span> actions</li>
+<li><span class="math inline">\(X(i)=(X_i(1),X_i(2),\cdots),X_i(t)\in[0,1]\)</span></li>
+<li>ALG <span class="math inline">\(=i_1,i_2,\cdots,\)</span></li>
+<li><span class="math inline">\(G_A(T)=\sum_{t=1}^TX_{i_t}(t)\)</span></li>
+<li>Regret <span class="math inline">\(=\max_j\sum_{t=1}^TX_j(t)-G_A(T)\)</span></li>
 </ul>
 <p><strong>ALG EXP3</strong></p>
 <ul>
-<li>Parameter: Real $\gamma\in[0,1]$</li>
-<li>Initialize: $w_i(1)=1,\forall{}i=1,2,\cdots,K$</li>
-<li>Loop: for each $t=1,2,\cdots$<ul>
-<li>Set <script type="math/tex">P_i(t)=(1-\gamma)\frac{w_i(t)}{\sum{}w_i(t)}+\frac{\gamma}{K}</script></li>
-<li>Draw $i_t$ randomly $\sim{}P_1(t),\cdots,P_K(t)$</li>
-<li>Get reward $X_{i_t}\in[0,1]$</li>
-<li>For $j=1,2,\cdots,k$</li>
+<li>Parameter: Real <span class="math inline">\(\gamma\in[0,1]\)</span></li>
+<li>Initialize: <span class="math inline">\(w_i(1)=1,\forall{}i=1,2,\cdots,K\)</span></li>
+<li>Loop: for each <span class="math inline">\(t=1,2,\cdots\)</span>
+<ul>
+<li>Set <span class="math display">\[P_i(t)=(1-\gamma)\frac{w_i(t)}{\sum{}w_i(t)}+\frac{\gamma}{K}\]</span></li>
+<li>Draw <span class="math inline">\(i_t\)</span> randomly <span class="math inline">\(\sim{}P_1(t),\cdots,P_K(t)\)</span></li>
+<li>Get reward <span class="math inline">\(X_{i_t}\in[0,1]\)</span></li>
+<li>For <span class="math inline">\(j=1,2,\cdots,k\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<script type="math/tex; mode=display">\hat{X}_j(t)=\left\{\begin{aligned}&\frac{X_j(t)}{P_j(t)}&j=i_t\\&0&\text{otherwise}\end{aligned}\right.\quad\quad{}w_j(t+1)=w_j(t)\exp(\frac{\gamma\hat{X}_j(t)}{K})</script><h3 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem"></a>Theorem</h3><p>For any $K$ and any $\gamma\in[0,1]$, </p>
-<script type="math/tex; mode=display">G_\max-\mathbb{E}\{G_{\rm exp3}\}\leq(e-1)\gamma{}G_\max+\frac{K\ln{}K}{\gamma}</script><p>for any reward assignments </p>
-<h4 id="Corollary"><a href="#Corollary" class="headerlink" title="Corollary"></a>Corollary</h4><p>Assume $g\geq{}G_\max$ and $\gamma=\min{1,\sqrt{\frac{K\ln{}K}{(e-1)g}}}$, then</p>
-<script type="math/tex; mode=display">G_\max-\mathbb{E}\{G_{\rm exp3}\}\leq2.63\sqrt{gK\ln{}K}</script>
+<p><span class="math display">\[\hat{X}_j(t)=\left\{\begin{aligned}&amp;\frac{X_j(t)}{P_j(t)}&amp;j=i_t\\&amp;0&amp;\text{otherwise}\end{aligned}\right.\quad\quad{}w_j(t+1)=w_j(t)\exp(\frac{\gamma\hat{X}_j(t)}{K})\]</span></p>
+<h3 id="theorem-3">Theorem</h3>
+<p>For any <span class="math inline">\(K\)</span> and any <span class="math inline">\(\gamma\in[0,1]\)</span>, <span class="math display">\[G_\max-\mathbb{E}\{G_{\rm exp3}\}\leq(e-1)\gamma{}G_\max+\frac{K\ln{}K}{\gamma}\]</span> for any reward assignments</p>
+<h4 id="corollary">Corollary</h4>
+<p>Assume <span class="math inline">\(g\geq{}G_\max\)</span> and <span class="math inline">\(\gamma=\min\{1,\sqrt{\frac{K\ln{}K}{(e-1)g}}\}\)</span>, then <span class="math display">\[G_\max-\mathbb{E}\{G_{\rm exp3}\}\leq2.63\sqrt{gK\ln{}K}\]</span></p>
+
   
   
     
@@ -586,8 +594,9 @@ Policy: $\pi={i(t),t=1,2,\cdo...">
         <a class='next' href='/2019/09/23/Heavy%20Traffic/'>
           <p class='title'>Heavy Traffic Analysis<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>Introduction
-Single Hop System, $L$ Queues
-$Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t...</p>
+
+Single Hop System, \(L\) Queues
+\(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S...</p>
         </a>
       
     </div>
@@ -683,7 +692,7 @@ $Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-Armed-Bandit"><span class="toc-text">Multi Armed Bandit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UCB-ALG"><span class="toc-text">UCB ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem"><span class="toc-text">Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#varepsilon-greedy-ALG"><span class="toc-text">$\varepsilon$-greedy ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem-1"><span class="toc-text">Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lower-Bound"><span class="toc-text">Lower Bound</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thompson-Sampling-ALG"><span class="toc-text">Thompson Sampling ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem-2"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lemma-1"><span class="toc-text">Lemma 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lemma-2"><span class="toc-text">Lemma 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lemma-3"><span class="toc-text">Lemma 3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Non-Stochastic-ALG-EXP3"><span class="toc-text">Non Stochastic: ALG EXP3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem-3"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Corollary"><span class="toc-text">Corollary</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#multi-armed-bandit"><span class="toc-text">Multi Armed Bandit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ucb-alg"><span class="toc-text">UCB ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem"><span class="toc-text">Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#varepsilon-greedy-alg"><span class="toc-text">\(\varepsilon\)-greedy ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem-1"><span class="toc-text">Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lower-bound"><span class="toc-text">Lower Bound</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thompson-sampling-alg"><span class="toc-text">Thompson Sampling ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem-2"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lemma-1"><span class="toc-text">Lemma 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemma-2"><span class="toc-text">Lemma 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemma-3"><span class="toc-text">Lemma 3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#non-stochastic-alg-exp3"><span class="toc-text">Non Stochastic: ALG EXP3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem-3"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#corollary"><span class="toc-text">Corollary</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -722,28 +731,32 @@ $Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t...</p>
     
       
         
-          <div><p><span id="lc-uv">Visitor: <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>&lt;/span&gt; | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
+          <div><p><span id="lc-uv">Visitor: <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
 </div>
         
       
     
       
         <div class='copyright'>
-        <p><span>Copyright &copy; 2019-2020 鲈鱼柳</span></p>
+        <p><span>Copyright © 2019-2020 鲈鱼柳</span></p>
 
         </div>
       
     
       
         
-          <div><p>Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+          <div><p>
+Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
 </div>
         
       
     
       
         
-          <div><p>除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可</p>
+          <div><p>
+除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可
+</p>
 </div>
         
       

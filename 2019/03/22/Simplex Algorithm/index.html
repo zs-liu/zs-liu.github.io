@@ -25,9 +25,12 @@
   
 
   
-    <meta name="description" content="Convert LP to a Standard Form\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0For Inequality
-$x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0$
-$x+y\leq{}a\rightarrow...">
+    <meta name="description" content="Convert LP to a Standard Form
+\[\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0\]
+For Inequality
+
+\(x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0\)
+\(x+y\leq{}a\...">
   
 
   <!-- feed -->
@@ -416,217 +419,228 @@ $x+y\leq{}a\rightarrow...">
 
 
   
-  <h2 id="Convert-LP-to-a-Standard-Form"><a href="#Convert-LP-to-a-Standard-Form" class="headerlink" title="Convert LP to a Standard Form"></a>Convert LP to a Standard Form</h2><script type="math/tex; mode=display">\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0</script><h3 id="For-Inequality"><a href="#For-Inequality" class="headerlink" title="For Inequality"></a>For Inequality</h3><ul>
-<li>$x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0$</li>
-<li>$x+y\leq{}a\rightarrow{}x+y+s=a,s\geq0$</li>
-<li>Unrestricted $\rightarrow{}x=y-z,y\geq0,z\geq0$</li>
+  <h2 id="convert-lp-to-a-standard-form">Convert LP to a Standard Form</h2>
+<p><span class="math display">\[\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0\]</span></p>
+<h3 id="for-inequality">For Inequality</h3>
+<ul>
+<li><span class="math inline">\(x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0\)</span></li>
+<li><span class="math inline">\(x+y\leq{}a\rightarrow{}x+y+s=a,s\geq0\)</span></li>
+<li>Unrestricted <span class="math inline">\(\rightarrow{}x=y-z,y\geq0,z\geq0\)</span></li>
 </ul>
 <a id="more"></a>
-<h2 id="Preview-of-Simplex-Algorithm"><a href="#Preview-of-Simplex-Algorithm" class="headerlink" title="Preview of Simplex Algorithm"></a>Preview of Simplex Algorithm</h2><h3 id="Basic-solutions"><a href="#Basic-solutions" class="headerlink" title="Basic solutions"></a>Basic solutions</h3><script type="math/tex; mode=display">Ax=b,A\in{}R^{m\times{}n},x\in{}R^n,n\geq{}m</script><p>Set $n-m$ variables to $0$ and solving for the remaining $m$ variables.&lt;/br&gt;<br>The columns for the remaining $m$ variables are linear independent.&lt;/br&gt;</p>
-<script type="math/tex; mode=display">\text{Total number: }C_n^m</script><h3 id="Basic-feasible-solutions"><a href="#Basic-feasible-solutions" class="headerlink" title="Basic feasible solutions"></a>Basic feasible solutions</h3><ul>
+<h2 id="preview-of-simplex-algorithm">Preview of Simplex Algorithm</h2>
+<h3 id="basic-solutions">Basic solutions</h3>
+<p><span class="math display">\[Ax=b,A\in{}R^{m\times{}n},x\in{}R^n,n\geq{}m\]</span> Set <span class="math inline">\(n-m\)</span> variables to <span class="math inline">\(0\)</span> and solving for the remaining <span class="math inline">\(m\)</span> variables.</br> The columns for the remaining <span class="math inline">\(m\)</span> variables are linear independent.</br> <span class="math display">\[\text{Total number: }C_n^m\]</span></p>
+<h3 id="basic-feasible-solutions">Basic feasible solutions</h3>
+<ul>
 <li>Feasible region for any LP problem is a convex set</li>
 <li>If a LP has an optimal solution, there must be an extreme point of the feasible region that is optimal</li>
 </ul>
-<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\text{Suppose }x^\star=\sum_{i=1}^n\alpha_ix_i\text{ is an optimal solution}</script><script type="math/tex; mode=display">c^\top{}x^\star=c^\top{}\sum_{i=1}^n\alpha_ix_i>\sum_{i=1}^n\alpha_ic^\top{}x^\star=c^\top{}x^\star</script><h3 id="Adjacent-Basic-Feasible-Solutions"><a href="#Adjacent-Basic-Feasible-Solutions" class="headerlink" title="Adjacent Basic Feasible Solutions"></a>Adjacent Basic Feasible Solutions</h3><p>Two basic feasible solutions are said to be <em>adjacent</em> if their sets of basic variables have $m-1$ basic variables in common</p>
-<h2 id="General-Description-of-the-Simplex-Algorithm"><a href="#General-Description-of-the-Simplex-Algorithm" class="headerlink" title="General Description of the Simplex Algorithm"></a>General Description of the Simplex Algorithm</h2><ol>
+<h4 id="proof">Proof</h4>
+<p><span class="math display">\[\text{Suppose }x^\star=\sum_{i=1}^n\alpha_ix_i\text{ is an optimal solution}\]</span> <span class="math display">\[c^\top{}x^\star=c^\top{}\sum_{i=1}^n\alpha_ix_i&gt;\sum_{i=1}^n\alpha_ic^\top{}x^\star=c^\top{}x^\star\]</span></p>
+<h3 id="adjacent-basic-feasible-solutions">Adjacent Basic Feasible Solutions</h3>
+<p>Two basic feasible solutions are said to be <em>adjacent</em> if their sets of basic variables have <span class="math inline">\(m-1\)</span> basic variables in common</p>
+<h2 id="general-description-of-the-simplex-algorithm">General Description of the Simplex Algorithm</h2>
+<ol type="1">
 <li>Find an initial bfs of LP</li>
 <li>Change bfs to its adjacent bfs</li>
 <li>Recalculate by Gaussian elimination</li>
-<li>For maximum, until the first row is all nonnegative; For minimum, until the first row is all nonpositive </li>
+<li>For maximum, until the first row is all nonnegative; For minimum, until the first row is all nonpositive</li>
 </ol>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>Standard form:</p>
-<script type="math/tex; mode=display">\max{}z=3x_1+5x_2</script><script type="math/tex; mode=display">\begin{split}
-            \text{subject to }\quad{}x_1+s_1&=8\\
-            2x_2+s_2&=12\\
-            3x_1+4x_2+s_3&=36\\
-            x_1,x_2,s_1,s_2,s_3&\geq0
+<h3 id="example">Example</h3>
+<p>Standard form: <span class="math display">\[\max{}z=3x_1+5x_2\]</span> <span class="math display">\[\begin{split}
+            \text{subject to }\quad{}x_1+s_1&amp;=8\\
+            2x_2+s_2&amp;=12\\
+            3x_1+4x_2+s_3&amp;=36\\
+            x_1,x_2,s_1,s_2,s_3&amp;\geq0
         \end{split}
-            \label{p1s}</script><p>Choose $(s_1,s_2,s_3)$ as BFS, we have table:</p>
-<div class="table-container">
+            \label{p1s}\]</span></p>
+<p>Choose <span class="math inline">\((s_1,s_2,s_3)\)</span> as BFS, we have table:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center">$z$</th>
-<th style="text-align:center">$x_1$</th>
-<th style="text-align:center">$x_2$</th>
-<th style="text-align:center">$s_1$</th>
-<th style="text-align:center">$s_2$</th>
-<th style="text-align:center">$s_3$</th>
-<th style="text-align:center">rhs</th>
-<th style="text-align:center">Basic Variable</th>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_3\)</span></th>
+<th style="text-align: center;">rhs</th>
+<th style="text-align: center;">Basic Variable</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">-3</td>
-<td style="text-align:center">-5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">$z=0$</td>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(z=0\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">$s_1=8$</td>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="math inline">\(s_1=8\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">$s_2=12$</td>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;"><span class="math inline">\(s_2=12\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">36</td>
-<td style="text-align:center">$s_3=36$</td>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;"><span class="math inline">\(s_3=36\)</span></td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>Choose $(s_1,x_2,s_3)$ as BFS, we have table:</p>
-<div class="table-container">
+<p>Choose <span class="math inline">\((s_1,x_2,s_3)\)</span> as BFS, we have table:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center">$z$</th>
-<th style="text-align:center">$x_1$</th>
-<th style="text-align:center">$x_2$</th>
-<th style="text-align:center">$s_1$</th>
-<th style="text-align:center">$s_2$</th>
-<th style="text-align:center">$s_3$</th>
-<th style="text-align:center">rhs</th>
-<th style="text-align:center">Basic Variable</th>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_3\)</span></th>
+<th style="text-align: center;">rhs</th>
+<th style="text-align: center;">Basic Variable</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">2.5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">$z=30$</td>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;"><span class="math inline">\(z=30\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">$s_1=8$</td>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="math inline">\(s_1=8\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0.5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">6</td>
-<td style="text-align:center">$x_2=6$</td>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><span class="math inline">\(x_2=6\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">-2</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">$s_3=12$</td>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;"><span class="math inline">\(s_3=12\)</span></td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>Choose $(s_1,x_2,x_1)$ as BFS, we have table:</p>
-<div class="table-container">
+<p>Choose <span class="math inline">\((s_1,x_2,x_1)\)</span> as BFS, we have table:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center">$z$</th>
-<th style="text-align:center">$x_1$</th>
-<th style="text-align:center">$x_2$</th>
-<th style="text-align:center">$s_1$</th>
-<th style="text-align:center">$s_2$</th>
-<th style="text-align:center">$s_3$</th>
-<th style="text-align:center">rhs</th>
-<th style="text-align:center">Basic Variable</th>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_3\)</span></th>
+<th style="text-align: center;">rhs</th>
+<th style="text-align: center;">Basic Variable</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0.5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">42</td>
-<td style="text-align:center">$z=42$</td>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;"><span class="math inline">\(z=42\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
+<tr class="even">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0.5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">$x_2=6$</td>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;"><span class="math inline">\(x_2=6\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">-2/3</td>
-<td style="text-align:center">1/3</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">$x_1=4$</td>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-2/3</td>
+<td style="text-align: center;">1/3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="math inline">\(x_1=4\)</span></td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>So the final result is <script type="math/tex">x_1=4,x_2=6,z_{max}=42</script></p>
-<h3 id="Degeneracy"><a href="#Degeneracy" class="headerlink" title="Degeneracy"></a>Degeneracy</h3><p>An LP is degenerate if it has at least one basic feasible solution in which a basic feasible variable is equal to $0$</p>
+<p>So the final result is <span class="math display">\[x_1=4,x_2=6,z_{max}=42\]</span></p>
+<h3 id="degeneracy">Degeneracy</h3>
+<p>An LP is degenerate if it has at least one basic feasible solution in which a basic feasible variable is equal to <span class="math inline">\(0\)</span></p>
 <ul>
 <li>pivoting may not improve the objective value</li>
 <li>simplex method may end up in cycles</li>
 </ul>
-<h2 id="Two-BFS-Methods"><a href="#Two-BFS-Methods" class="headerlink" title="Two BFS Methods"></a>Two BFS Methods</h2><h3 id="Big-M-Method"><a href="#Big-M-Method" class="headerlink" title="Big M Method"></a>Big M Method</h3><script type="math/tex; mode=display">\min{}f(x),\text{ subject to }Ax=b(b\succeq0)</script><script type="math/tex; mode=display">\Rightarrow\min{}f(x)+M^\top{}a,\text{ subject to }Ax+Ia=b</script><p>Introduce $a_i$ to every row which has a negative coefficient (on $s$ or $z$), then we can get bfs easily</p>
-<script type="math/tex; mode=display">(x=0,a=b)</script><p>If we can’t reduce all parameters of $a$ to 0, then the original problem is infeasible</p>
-<h3 id="Two-Phase-Method"><a href="#Two-Phase-Method" class="headerlink" title="Two-Phase Method"></a>Two-Phase Method</h3><script type="math/tex; mode=display">\min{}f(x),\text{ subject to }Ax=b(b\succeq0)</script><script type="math/tex; mode=display">\Rightarrow\min{}I^\top{}a,\text{ subject to }Ax+Ia=b,a\succeq0</script><p>If $a^\star\neq0$, then the original problem is infeasible</p>
+<h2 id="two-bfs-methods">Two BFS Methods</h2>
+<h3 id="big-m-method">Big M Method</h3>
+<p><span class="math display">\[\min{}f(x),\text{ subject to }Ax=b(b\succeq0)\]</span> <span class="math display">\[\Rightarrow\min{}f(x)+M^\top{}a,\text{ subject to }Ax+Ia=b\]</span></p>
+<p>Introduce <span class="math inline">\(a_i\)</span> to every row which has a negative coefficient (on <span class="math inline">\(s\)</span> or <span class="math inline">\(z\)</span>), then we can get bfs easily</p>
+<p><span class="math display">\[(x=0,a=b)\]</span></p>
+<p>If we can't reduce all parameters of <span class="math inline">\(a\)</span> to 0, then the original problem is infeasible</p>
+<h3 id="two-phase-method">Two-Phase Method</h3>
+<p><span class="math display">\[\min{}f(x),\text{ subject to }Ax=b(b\succeq0)\]</span> <span class="math display">\[\Rightarrow\min{}I^\top{}a,\text{ subject to }Ax+Ia=b,a\succeq0\]</span> If <span class="math inline">\(a^\star\neq0\)</span>, then the original problem is infeasible</p>
 
   
   
@@ -690,13 +704,16 @@ $x+y\leq{}a\rightarrow...">
       
         <a class='prev' href='/2019/03/26/Duality/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Duality</p>
-          <p class='content'>Lagrange dual problemLagrangian\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0variable $x\in{}R^n$, domain ...</p>
+          <p class='content'>Lagrange dual problem
+Lagrangian
+\[\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0\] variable \(x\in{}R^n\)...</p>
         </a>
       
       
         <a class='next' href='/2019/03/19/Convex%20Optimization%20Problems/'>
           <p class='title'>Convex Optimization Problems<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Optimization problem in standard form\text{minimize }f_0(x)\text{subject to }f_i(x)\leq0\quad{}\l...</p>
+          <p class='content'>Optimization problem in standard form
+\[\text{minimize }f_0(x)\] \[\text{subject to }f_i(x)\leq0\...</p>
         </a>
       
     </div>
@@ -792,7 +809,7 @@ $x+y\leq{}a\rightarrow...">
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Convert-LP-to-a-Standard-Form"><span class="toc-text">Convert LP to a Standard Form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#For-Inequality"><span class="toc-text">For Inequality</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preview-of-Simplex-Algorithm"><span class="toc-text">Preview of Simplex Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-solutions"><span class="toc-text">Basic solutions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-feasible-solutions"><span class="toc-text">Basic feasible solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adjacent-Basic-Feasible-Solutions"><span class="toc-text">Adjacent Basic Feasible Solutions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#General-Description-of-the-Simplex-Algorithm"><span class="toc-text">General Description of the Simplex Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Degeneracy"><span class="toc-text">Degeneracy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Two-BFS-Methods"><span class="toc-text">Two BFS Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Big-M-Method"><span class="toc-text">Big M Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Two-Phase-Method"><span class="toc-text">Two-Phase Method</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#convert-lp-to-a-standard-form"><span class="toc-text">Convert LP to a Standard Form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-inequality"><span class="toc-text">For Inequality</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preview-of-simplex-algorithm"><span class="toc-text">Preview of Simplex Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#basic-solutions"><span class="toc-text">Basic solutions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#basic-feasible-solutions"><span class="toc-text">Basic feasible solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#adjacent-basic-feasible-solutions"><span class="toc-text">Adjacent Basic Feasible Solutions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#general-description-of-the-simplex-algorithm"><span class="toc-text">General Description of the Simplex Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#degeneracy"><span class="toc-text">Degeneracy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#two-bfs-methods"><span class="toc-text">Two BFS Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#big-m-method"><span class="toc-text">Big M Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#two-phase-method"><span class="toc-text">Two-Phase Method</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -831,28 +848,32 @@ $x+y\leq{}a\rightarrow...">
     
       
         
-          <div><p><span id="lc-uv">Visitor: <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>&lt;/span&gt; | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
+          <div><p><span id="lc-uv">Visitor: <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
 </div>
         
       
     
       
         <div class='copyright'>
-        <p><span>Copyright &copy; 2019-2020 鲈鱼柳</span></p>
+        <p><span>Copyright © 2019-2020 鲈鱼柳</span></p>
 
         </div>
       
     
       
         
-          <div><p>Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+          <div><p>
+Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
 </div>
         
       
     
       
         
-          <div><p>除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可</p>
+          <div><p>
+除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可
+</p>
 </div>
         
       

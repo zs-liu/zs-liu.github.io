@@ -25,8 +25,9 @@
   
 
   
-    <meta name="description" content="Wasserstein DistanceDefinitionConsider, general functions $f$ and $g$, the Wasserstein distance is
-\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\...">
+    <meta name="description" content="Wasserstein Distance
+Definition
+Consider, general functions \(f\) and \(g\), the Wasserstein distance is \[\min_{\text{all map }T}\{\sum_{\text{all movements...">
   
 
   <!-- feed -->
@@ -415,17 +416,22 @@
 
 
   
-  <h2 id="Wasserstein-Distance"><a href="#Wasserstein-Distance" class="headerlink" title="Wasserstein Distance"></a>Wasserstein Distance</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Consider, general functions $f$ and $g$, the Wasserstein distance is</p>
-<script type="math/tex; mode=display">\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}</script><p>For $f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+$, the distance can be formulated as</p>
-<script type="math/tex; mode=display">W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}</script><p>where $\mathcal{M}$  is the set of all maps that rearrange the distribution $f$ into $g$.</p>
+  <h2 id="wasserstein-distance">Wasserstein Distance</h2>
+<h3 id="definition">Definition</h3>
+<p>Consider, general functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, the Wasserstein distance is <span class="math display">\[\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}\]</span> For <span class="math inline">\(f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+\)</span>, the distance can be formulated as <span class="math display">\[W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}\]</span> where <span class="math inline">\(\mathcal{M}\)</span> is the set of all maps that rearrange the distribution <span class="math inline">\(f\)</span> into <span class="math inline">\(g\)</span>.</p>
 <a id="more"></a>
-<h3 id="Quadratic-Wasserstein-distance-p-2"><a href="#Quadratic-Wasserstein-distance-p-2" class="headerlink" title="Quadratic Wasserstein distance: $p=2$"></a>Quadratic Wasserstein distance: $p=2$</h3><script type="math/tex; mode=display">W_2^2(f,g)=\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx</script><h2 id="Kantorovich-Problem"><a href="#Kantorovich-Problem" class="headerlink" title="Kantorovich Problem"></a>Kantorovich Problem</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><script type="math/tex; mode=display">\inf_\gamma\left\{\int_{X\times{}Y}c(x,y)d\gamma|\gamma\geq0,\gamma\in\Pi(\mu,\nu)\right\}</script><p>where $\Pi(\mu,\nu)={\gamma\in\mathcal{P}(X\times{}Y)|(P_X)#\gamma=\mu,(P_Y)#\gamma=\nu}$, $P_X$ and $P_Y$ are two projections</p>
-<h3 id="Kantorovich-Dual-Problem"><a href="#Kantorovich-Dual-Problem" class="headerlink" title="Kantorovich Dual Problem"></a>Kantorovich Dual Problem</h3><p>Consider $\varphi\in{}L^1(\mu)$ and $\psi\in{}L^1(\nu)$, the Kantorovich dual problem is formulated as the following:</p>
-<script type="math/tex; mode=display">\sup_{\varphi,\psi}\left(\int_X\varphi{}d\mu+\int_Y\psi{}d\nu\right)</script><p>subject to $\varphi(x)+\psi(y)\leq{}c(x,y)$, for any $(x,y)\in{}X\times{}Y$.&lt;/br&gt;<br>Note that this dual formulation is a linear optimization problem which is solvable by linear programming.</p>
-<h2 id="Dynamic-Formulation"><a href="#Dynamic-Formulation" class="headerlink" title="Dynamic Formulation"></a>Dynamic Formulation</h2><p>The Benamou-Brenier formula identifies the squared quadratic Wasserstein metric between $\mu$ and $\nu$ by:</p>
-<script type="math/tex; mode=display">W_2^2(\mu,\nu)=\inf\int_0^1\int|v(t,x)|^2\rho(t,x)dxdt</script><p>where infimum is taken among all the Borel fields $v(t,x)$ that transports $\mu$ to $\nu$ continuously in time, satisfying the zero flux condition on the boundary:</p>
-<script type="math/tex; mode=display">\begin{split}\frac{\partial\rho}{\partial{}t}+\nabla(v\rho)&=0\\\text{subject to }\rho(0,x)=d\mu,\rho(1,x)&=d\nu\end{split}</script><h2 id="Monge-Ampere-Equation"><a href="#Monge-Ampere-Equation" class="headerlink" title="Monge-Ampere Equation"></a>Monge-Ampere Equation</h2><script type="math/tex; mode=display">\left\{\begin{split}&det(D^2u(x))=f(x)/g(\nabla{}u(x))\\&\nabla{}u:X\rightarrow{}Y\\&u\text{ is convex}\end{split}\right.</script><p>The optimal map is $\nabla{}u$. Thus, the square of the quadratic Wasserstein distance<br>has the form:</p>
-<script type="math/tex; mode=display">W_2^2(f,g)=\int{}|x-\nabla{}u(x)|^2f(x)dx</script>
+<h3 id="quadratic-wasserstein-distance-p2">Quadratic Wasserstein distance: <span class="math inline">\(p=2\)</span></h3>
+<p><span class="math display">\[W_2^2(f,g)=\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\]</span></p>
+<h2 id="kantorovich-problem">Kantorovich Problem</h2>
+<h3 id="definition-1">Definition</h3>
+<p><span class="math display">\[\inf_\gamma\left\{\int_{X\times{}Y}c(x,y)d\gamma|\gamma\geq0,\gamma\in\Pi(\mu,\nu)\right\}\]</span> where <span class="math inline">\(\Pi(\mu,\nu)=\{\gamma\in\mathcal{P}(X\times{}Y)|(P_X)\#\gamma=\mu,(P_Y)\#\gamma=\nu\}\)</span>, <span class="math inline">\(P_X\)</span> and <span class="math inline">\(P_Y\)</span> are two projections</p>
+<h3 id="kantorovich-dual-problem">Kantorovich Dual Problem</h3>
+<p>Consider <span class="math inline">\(\varphi\in{}L^1(\mu)\)</span> and <span class="math inline">\(\psi\in{}L^1(\nu)\)</span>, the Kantorovich dual problem is formulated as the following: <span class="math display">\[\sup_{\varphi,\psi}\left(\int_X\varphi{}d\mu+\int_Y\psi{}d\nu\right)\]</span> subject to <span class="math inline">\(\varphi(x)+\psi(y)\leq{}c(x,y)\)</span>, for any <span class="math inline">\((x,y)\in{}X\times{}Y\)</span>.</br> Note that this dual formulation is a linear optimization problem which is solvable by linear programming.</p>
+<h2 id="dynamic-formulation">Dynamic Formulation</h2>
+<p>The Benamou-Brenier formula identifies the squared quadratic Wasserstein metric between <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\nu\)</span> by: <span class="math display">\[W_2^2(\mu,\nu)=\inf\int_0^1\int|v(t,x)|^2\rho(t,x)dxdt\]</span> where infimum is taken among all the Borel fields <span class="math inline">\(v(t,x)\)</span> that transports <span class="math inline">\(\mu\)</span> to <span class="math inline">\(\nu\)</span> continuously in time, satisfying the zero flux condition on the boundary: <span class="math display">\[\begin{split}\frac{\partial\rho}{\partial{}t}+\nabla(v\rho)&amp;=0\\\text{subject to }\rho(0,x)=d\mu,\rho(1,x)&amp;=d\nu\end{split}\]</span></p>
+<h2 id="monge-ampere-equation">Monge-Ampere Equation</h2>
+<p><span class="math display">\[\left\{\begin{split}&amp;det(D^2u(x))=f(x)/g(\nabla{}u(x))\\&amp;\nabla{}u:X\rightarrow{}Y\\&amp;u\text{ is convex}\end{split}\right.\]</span> The optimal map is <span class="math inline">\(\nabla{}u\)</span>. Thus, the square of the quadratic Wasserstein distance has the form: <span class="math display">\[W_2^2(f,g)=\int{}|x-\nabla{}u(x)|^2f(x)dx\]</span></p>
+
   
   
     
@@ -488,17 +494,20 @@
       
         <a class='prev' href='/2019/09/09/Introduction%20to%20Queue%20and%20Lyapunov%20Analysis/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Introduction to Queue and Lyapunov Analysis</p>
-          <p class='content'>QueueDefinition
-Arrival: $A(t)$
-Cumulative arrival: X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt
-Service: $\...</p>
+          <p class='content'>Queue
+Definition
+
+Arrival: \(A(t)\)
+Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]
+Ser...</p>
         </a>
       
       
         <a class='next' href='/2019/04/25/Proximal%20Mapping/'>
           <p class='title'>Proximal Mapping<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>ClosedClosed setA set $\mathcal{C}$ is closed if it contains its boundary:
-x^k\in\mathcal{C},x^k\...</p>
+          <p class='content'>Closed
+Closed set
+A set \(\mathcal{C}\) is closed if it contains its boundary: \[x^k\in\mathcal{C...</p>
         </a>
       
     </div>
@@ -594,7 +603,7 @@ x^k\in\mathcal{C},x^k\...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Wasserstein-Distance"><span class="toc-text">Wasserstein Distance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quadratic-Wasserstein-distance-p-2"><span class="toc-text">Quadratic Wasserstein distance: $p&#x3D;2$</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kantorovich-Problem"><span class="toc-text">Kantorovich Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-1"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kantorovich-Dual-Problem"><span class="toc-text">Kantorovich Dual Problem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dynamic-Formulation"><span class="toc-text">Dynamic Formulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Monge-Ampere-Equation"><span class="toc-text">Monge-Ampere Equation</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#wasserstein-distance"><span class="toc-text">Wasserstein Distance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#quadratic-wasserstein-distance-p2"><span class="toc-text">Quadratic Wasserstein distance: \(p&#x3D;2\)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kantorovich-problem"><span class="toc-text">Kantorovich Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition-1"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kantorovich-dual-problem"><span class="toc-text">Kantorovich Dual Problem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dynamic-formulation"><span class="toc-text">Dynamic Formulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#monge-ampere-equation"><span class="toc-text">Monge-Ampere Equation</span></a></li></ol>
     </div>
   </section>
 
@@ -633,28 +642,32 @@ x^k\in\mathcal{C},x^k\...</p>
     
       
         
-          <div><p><span id="lc-uv">Visitor: <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>&lt;/span&gt; | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
+          <div><p><span id="lc-uv">Visitor: <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
 </div>
         
       
     
       
         <div class='copyright'>
-        <p><span>Copyright &copy; 2019-2020 鲈鱼柳</span></p>
+        <p><span>Copyright © 2019-2020 鲈鱼柳</span></p>
 
         </div>
       
     
       
         
-          <div><p>Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+          <div><p>
+Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
 </div>
         
       
     
       
         
-          <div><p>除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可</p>
+          <div><p>
+除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可
+</p>
 </div>
         
       

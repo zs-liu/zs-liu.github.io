@@ -25,7 +25,8 @@
   
 
   
-    <meta name="description" content="Optimization problem in standard form\text{minimize }f_0(x)\text{subject to }f_i(x)\leq0\quad{}\land{}\quad{}Ax=b">
+    <meta name="description" content="Optimization problem in standard form
+\[\text{minimize }f_0(x)\] \[\text{subject to }f_i(x)\leq0\quad{}\land{}\quad{}Ax=b\]">
   
 
   <!-- feed -->
@@ -414,34 +415,66 @@
 
 
   
-  <h2 id="Optimization-problem-in-standard-form"><a href="#Optimization-problem-in-standard-form" class="headerlink" title="Optimization problem in standard form"></a>Optimization problem in standard form</h2><script type="math/tex; mode=display">\text{minimize }f_0(x)</script><script type="math/tex; mode=display">\text{subject to }f_i(x)\leq0\quad{}\land{}\quad{}Ax=b</script><a id="more"></a>
-<h3 id="Theorem-Optimal-and-locally-optimal-options"><a href="#Theorem-Optimal-and-locally-optimal-options" class="headerlink" title="Theorem: Optimal and locally optimal options"></a>Theorem: Optimal and locally optimal options</h3><p>Any locally optimal point of a convex problem is (globally) optimal.</p>
-<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><p>Suppose $x$ is locally optimal, but there exists a feasible $y$ with<br>$f_0(y)&lt;f_0(x)$, for $z$ in the small neighbour of $x$, contradiction must exist</p>
-<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>$x$ is optimal if and only if it is feasible and</p>
-<script type="math/tex; mode=display">\nabla{}f_0(x)^T(y-x)\geq0\quad\text{for all feasible }y</script><h4 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">f_0(y)\geq{}f_0(x)+\nabla{}f_0(x)^T(y-x)\geq{}f_0(x)</script><hr>
-<script type="math/tex; mode=display">\text{Suppose }\exists{}y,~s.t.~\nabla{}f_0(x)^T(y-x)<0</script><script type="math/tex; mode=display">g(t)=f(x+y(y-x)),g^{'}(0)=\nabla{}f_0(x)^T(y-x)<0</script><script type="math/tex; mode=display">\exists{}\bar{t},g(\bar{t})<g(0)=f_0(x)</script><p>Also, we can view this with Taylor expansion</p>
-<h3 id="Equivalent-convex-problems"><a href="#Equivalent-convex-problems" class="headerlink" title="Equivalent convex problems"></a>Equivalent convex problems</h3><h4 id="Eliminating-equality-constrains"><a href="#Eliminating-equality-constrains" class="headerlink" title="Eliminating equality constrains"></a>Eliminating equality constrains</h4><script type="math/tex; mode=display">Ax=b\rightarrow{}x=Fz+x_0~\text{for some }z</script><h4 id="Introducing-equality-constraints"><a href="#Introducing-equality-constraints" class="headerlink" title="Introducing equality constraints"></a>Introducing equality constraints</h4><script type="math/tex; mode=display">y_i=A_ix+b</script><h4 id="Introducing-slack-variables"><a href="#Introducing-slack-variables" class="headerlink" title="Introducing slack variables"></a>Introducing slack variables</h4><script type="math/tex; mode=display">a_i^Tx\leq{}b_i\rightarrow{}a_i^Tx+s_i=b_i\land{}s_i\geq0</script><h2 id="Quasiconvex-optimization"><a href="#Quasiconvex-optimization" class="headerlink" title="Quasiconvex optimization"></a>Quasiconvex optimization</h2><p>If $f_0$ is quasiconvex, there exists a family of functions $\phi_t$ such that:</p>
+  <h2 id="optimization-problem-in-standard-form">Optimization problem in standard form</h2>
+<p><span class="math display">\[\text{minimize }f_0(x)\]</span> <span class="math display">\[\text{subject to }f_i(x)\leq0\quad{}\land{}\quad{}Ax=b\]</span></p>
+<a id="more"></a>
+<h3 id="theorem-optimal-and-locally-optimal-options">Theorem: Optimal and locally optimal options</h3>
+<p>Any locally optimal point of a convex problem is (globally) optimal. #### Proof Suppose <span class="math inline">\(x\)</span> is locally optimal, but there exists a feasible <span class="math inline">\(y\)</span> with <span class="math inline">\(f_0(y)&lt;f_0(x)\)</span>, for <span class="math inline">\(z\)</span> in the small neighbour of <span class="math inline">\(x\)</span>, contradiction must exist</p>
+<h3 id="theorem">Theorem</h3>
+<p><span class="math inline">\(x\)</span> is optimal if and only if it is feasible and <span class="math display">\[\nabla{}f_0(x)^T(y-x)\geq0\quad\text{for all feasible }y\]</span></p>
+<h4 id="proof">Proof</h4>
+<p><span class="math display">\[f_0(y)\geq{}f_0(x)+\nabla{}f_0(x)^T(y-x)\geq{}f_0(x)\]</span></p>
+<hr />
+<p><span class="math display">\[\text{Suppose }\exists{}y,~s.t.~\nabla{}f_0(x)^T(y-x)&lt;0\]</span> <span class="math display">\[g(t)=f(x+y(y-x)),g^{&#39;}(0)=\nabla{}f_0(x)^T(y-x)&lt;0\]</span> <span class="math display">\[\exists{}\bar{t},g(\bar{t})&lt;g(0)=f_0(x)\]</span></p>
+<p>Also, we can view this with Taylor expansion</p>
+<h3 id="equivalent-convex-problems">Equivalent convex problems</h3>
+<h4 id="eliminating-equality-constrains">Eliminating equality constrains</h4>
+<p><span class="math display">\[Ax=b\rightarrow{}x=Fz+x_0~\text{for some }z\]</span></p>
+<h4 id="introducing-equality-constraints">Introducing equality constraints</h4>
+<p><span class="math display">\[y_i=A_ix+b\]</span></p>
+<h4 id="introducing-slack-variables">Introducing slack variables</h4>
+<p><span class="math display">\[a_i^Tx\leq{}b_i\rightarrow{}a_i^Tx+s_i=b_i\land{}s_i\geq0\]</span></p>
+<h2 id="quasiconvex-optimization">Quasiconvex optimization</h2>
+<p>If <span class="math inline">\(f_0\)</span> is quasiconvex, there exists a family of functions <span class="math inline">\(\phi_t\)</span> such that:</p>
 <ul>
-<li>$\phi_t(x)$ is convex in $x$ for fixed $t$</li>
-<li>t-sublevel set of $f_0$ is 0-sublevel set of $\phi_t$, i.e. <script type="math/tex">f_0(x)\leq{}t\leftrightarrow{}\phi_t(x)\leq0</script></li>
+<li><span class="math inline">\(\phi_t(x)\)</span> is convex in <span class="math inline">\(x\)</span> for fixed <span class="math inline">\(t\)</span></li>
+<li>t-sublevel set of <span class="math inline">\(f_0\)</span> is 0-sublevel set of <span class="math inline">\(\phi_t\)</span>, i.e. <span class="math display">\[f_0(x)\leq{}t\leftrightarrow{}\phi_t(x)\leq0\]</span></li>
 </ul>
-<h2 id="Linear-program-LP"><a href="#Linear-program-LP" class="headerlink" title="Linear program (LP)"></a>Linear program (LP)</h2><script type="math/tex; mode=display">\text{minimize }c^Tx+d</script><script type="math/tex; mode=display">\text{subject to }Gx\leq{}h\land{}Ax=b</script><ul>
+<h2 id="linear-program-lp">Linear program (LP)</h2>
+<p><span class="math display">\[\text{minimize }c^Tx+d\]</span> <span class="math display">\[\text{subject to }Gx\leq{}h\land{}Ax=b\]</span></p>
+<ul>
 <li>convex problem with affine objective and constraint functions</li>
 <li>feasible set is a polyhedron</li>
 </ul>
-<h3 id="Linear-fractional-program"><a href="#Linear-fractional-program" class="headerlink" title="Linear fractional program"></a>Linear fractional program</h3><script type="math/tex; mode=display">\text{minimize }f_0(x)</script><script type="math/tex; mode=display">\text{subject to }Gx\leq{}h\land{}Ax=b</script><script type="math/tex; mode=display">f_0(x)=\frac{c^Tx+d}{c^Tx+f}, dom~f_0(x)=\{c^Tx+f>0\}</script><ul>
+<h3 id="linear-fractional-program">Linear fractional program</h3>
+<p><span class="math display">\[\text{minimize }f_0(x)\]</span> <span class="math display">\[\text{subject to }Gx\leq{}h\land{}Ax=b\]</span> <span class="math display">\[f_0(x)=\frac{c^Tx+d}{c^Tx+f}, dom~f_0(x)=\{c^Tx+f&gt;0\}\]</span></p>
+<ul>
 <li>a quasiconvex optimization problem; can be solved by bisection</li>
-<li>also equivalent to the LP (variables $y$, $z$)</li>
+<li>also equivalent to the LP (variables <span class="math inline">\(y\)</span>, <span class="math inline">\(z\)</span>)</li>
 </ul>
-<script type="math/tex; mode=display">\text{minimize }c^Ty+dz</script><script type="math/tex; mode=display">\text{subject to }Gy\leq{}hz,Ay=bz,e^Ty+fz=1,z\geq0</script><h4 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\forall{}x\in{}X_1,y=\frac{x}{e^Tx+f},z=\frac{1}{e^Tx+f}\rightarrow{}(y,z)\in{}X_2\rightarrow{}p_1^*\geq{}p_2^*</script><hr>
-<script type="math/tex; mode=display">\forall{}(y,z)\in{}X_2, z\neq0,x=\frac{y}{z}\in{}X_1</script><script type="math/tex; mode=display">\forall{}(y,z)\in{}X_2, z=0,\text{Choose }x_0\in{}X_1,x_0+ty\in{}X_1(t\geq0)</script><script type="math/tex; mode=display">\lim_{t\rightarrow\infty}\frac{c^T(x_0+ty)+d}{e^T(x_0+ty)+f}=c^Ty,p_2^*\geq{}p_1^*</script><h2 id="Quadratic-program-QP"><a href="#Quadratic-program-QP" class="headerlink" title="Quadratic program (QP)"></a>Quadratic program (QP)</h2><script type="math/tex; mode=display">A\in{}R^{m\times{}n},A=U\Sigma{}V^T,\Sigma=diag(\lambda_1,...,\lambda_r,0,...)</script><script type="math/tex; mode=display">A^\dagger=V\Sigma^\dagger{}U^T,\Sigma^\dagger=diag(1/\lambda_1,...,1/\lambda_r,0,...)</script><h2 id="Quadratically-constrained-quadratic-program-QCQP"><a href="#Quadratically-constrained-quadratic-program-QCQP" class="headerlink" title="Quadratically constrained quadratic program (QCQP)"></a>Quadratically constrained quadratic program (QCQP)</h2><script type="math/tex; mode=display">\text{minimize }(1/2)x^TP_0x+q_0^Tx+r_0</script><script type="math/tex; mode=display">\text{subject to }(1/2)x^TP_ix+q_i^Tx+r_i\leq0, Ax=b</script><ul>
-<li>$P<em>i\in{}S</em>{+}^{n}$ </li>
+<p><span class="math display">\[\text{minimize }c^Ty+dz\]</span> <span class="math display">\[\text{subject to }Gy\leq{}hz,Ay=bz,e^Ty+fz=1,z\geq0\]</span></p>
+<h4 id="proof-1">Proof</h4>
+<p><span class="math display">\[\forall{}x\in{}X_1,y=\frac{x}{e^Tx+f},z=\frac{1}{e^Tx+f}\rightarrow{}(y,z)\in{}X_2\rightarrow{}p_1^*\geq{}p_2^*\]</span></p>
+<hr />
+<p><span class="math display">\[\forall{}(y,z)\in{}X_2, z\neq0,x=\frac{y}{z}\in{}X_1\]</span> <span class="math display">\[\forall{}(y,z)\in{}X_2, z=0,\text{Choose }x_0\in{}X_1,x_0+ty\in{}X_1(t\geq0)\]</span> <span class="math display">\[\lim_{t\rightarrow\infty}\frac{c^T(x_0+ty)+d}{e^T(x_0+ty)+f}=c^Ty,p_2^*\geq{}p_1^*\]</span></p>
+<h2 id="quadratic-program-qp">Quadratic program (QP)</h2>
+<p><span class="math display">\[A\in{}R^{m\times{}n},A=U\Sigma{}V^T,\Sigma=diag(\lambda_1,...,\lambda_r,0,...)\]</span> <span class="math display">\[A^\dagger=V\Sigma^\dagger{}U^T,\Sigma^\dagger=diag(1/\lambda_1,...,1/\lambda_r,0,...)\]</span></p>
+<h2 id="quadratically-constrained-quadratic-program-qcqp">Quadratically constrained quadratic program (QCQP)</h2>
+<p><span class="math display">\[\text{minimize }(1/2)x^TP_0x+q_0^Tx+r_0\]</span> <span class="math display">\[\text{subject to }(1/2)x^TP_ix+q_i^Tx+r_i\leq0, Ax=b\]</span></p>
+<ul>
+<li><span class="math inline">\(P_i\in{}S_{+}^{n}\)</span></li>
 <li>objective and constraints are convex quadratic</li>
 </ul>
-<h3 id="Least-squares"><a href="#Least-squares" class="headerlink" title="Least squares"></a>Least squares</h3><script type="math/tex; mode=display">\text{minimize }||Ax-b||_2^2</script><ul>
-<li>analytical solution $x^\star=A^\dagger{}b$</li>
+<h3 id="least-squares">Least squares</h3>
+<p><span class="math display">\[\text{minimize }||Ax-b||_2^2\]</span></p>
+<ul>
+<li>analytical solution <span class="math inline">\(x^\star=A^\dagger{}b\)</span></li>
 </ul>
-<h2 id="Robust-linear-program"><a href="#Robust-linear-program" class="headerlink" title="Robust linear program"></a>Robust linear program</h2><script type="math/tex; mode=display">\text{minimize }c^Tx</script><script type="math/tex; mode=display">\text{subject to }prob(a_i^Tx\leq{}b_i)\geq\eta,i=1,...,m</script><h2 id="Semidefinite-program-SDP"><a href="#Semidefinite-program-SDP" class="headerlink" title="Semidefinite program (SDP)"></a>Semidefinite program (SDP)</h2><script type="math/tex; mode=display">\text{minimize }c^Tx</script><script type="math/tex; mode=display">\text{subject to }x_1F_1+x_2F_2+\dots+x_nF_n+G\preceq0,Ax=b</script><ul>
+<h2 id="robust-linear-program">Robust linear program</h2>
+<p><span class="math display">\[\text{minimize }c^Tx\]</span> <span class="math display">\[\text{subject to }prob(a_i^Tx\leq{}b_i)\geq\eta,i=1,...,m\]</span></p>
+<h2 id="semidefinite-program-sdp">Semidefinite program (SDP)</h2>
+<p><span class="math display">\[\text{minimize }c^Tx\]</span> <span class="math display">\[\text{subject to }x_1F_1+x_2F_2+\dots+x_nF_n+G\preceq0,Ax=b\]</span></p>
+<ul>
 <li>inequality constraint is called linear matrix inequality (LMI)</li>
 <li>includes problems with multiple LMI constraints</li>
 </ul>
@@ -508,19 +541,23 @@
       
         <a class='prev' href='/2019/03/22/Simplex%20Algorithm/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Simplex Algorithm</p>
-          <p class='content'>Convert LP to a Standard Form\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0For Inequality
-$x...</p>
+          <p class='content'>Convert LP to a Standard Form
+\[\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0\]
+For Inequal...</p>
         </a>
       
       
         <a class='next' href='/2019/03/18/%E4%B8%8D%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/'>
           <p class='title'>不可修复系统的可靠性分析<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>可靠性逻辑框图系统可靠性
+          <p class='content'>可靠性逻辑框图
+系统可靠性
+
 在元件故障数据和系统结构已知的情况下，预测系统的可靠性
 硬件可靠性/人员操作可靠性/软件可靠性
 
 
-系统可靠性框图描述系统与其组成单元之间的故障逻辑关系，以系统工程图为...</p>
+系统可靠性框图
+描述系统与其组成单元之间的故障逻辑关系，以系统工...</p>
         </a>
       
     </div>
@@ -616,7 +653,7 @@ $x...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimization-problem-in-standard-form"><span class="toc-text">Optimization problem in standard form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem-Optimal-and-locally-optimal-options"><span class="toc-text">Theorem: Optimal and locally optimal options</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-1"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Equivalent-convex-problems"><span class="toc-text">Equivalent convex problems</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Eliminating-equality-constrains"><span class="toc-text">Eliminating equality constrains</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introducing-equality-constraints"><span class="toc-text">Introducing equality constraints</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introducing-slack-variables"><span class="toc-text">Introducing slack variables</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quasiconvex-optimization"><span class="toc-text">Quasiconvex optimization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linear-program-LP"><span class="toc-text">Linear program (LP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linear-fractional-program"><span class="toc-text">Linear fractional program</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof-2"><span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quadratic-program-QP"><span class="toc-text">Quadratic program (QP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quadratically-constrained-quadratic-program-QCQP"><span class="toc-text">Quadratically constrained quadratic program (QCQP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Least-squares"><span class="toc-text">Least squares</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Robust-linear-program"><span class="toc-text">Robust linear program</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Semidefinite-program-SDP"><span class="toc-text">Semidefinite program (SDP)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#optimization-problem-in-standard-form"><span class="toc-text">Optimization problem in standard form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem-optimal-and-locally-optimal-options"><span class="toc-text">Theorem: Optimal and locally optimal options</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equivalent-convex-problems"><span class="toc-text">Equivalent convex problems</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#eliminating-equality-constrains"><span class="toc-text">Eliminating equality constrains</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#introducing-equality-constraints"><span class="toc-text">Introducing equality constraints</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#introducing-slack-variables"><span class="toc-text">Introducing slack variables</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quasiconvex-optimization"><span class="toc-text">Quasiconvex optimization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linear-program-lp"><span class="toc-text">Linear program (LP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-fractional-program"><span class="toc-text">Linear fractional program</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof-1"><span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quadratic-program-qp"><span class="toc-text">Quadratic program (QP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quadratically-constrained-quadratic-program-qcqp"><span class="toc-text">Quadratically constrained quadratic program (QCQP)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#least-squares"><span class="toc-text">Least squares</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robust-linear-program"><span class="toc-text">Robust linear program</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#semidefinite-program-sdp"><span class="toc-text">Semidefinite program (SDP)</span></a></li></ol>
     </div>
   </section>
 
@@ -655,28 +692,32 @@ $x...</p>
     
       
         
-          <div><p><span id="lc-uv">Visitor: <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>&lt;/span&gt; | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
+          <div><p><span id="lc-uv">Visitor: <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
 </div>
         
       
     
       
         <div class='copyright'>
-        <p><span>Copyright &copy; 2019-2020 鲈鱼柳</span></p>
+        <p><span>Copyright © 2019-2020 鲈鱼柳</span></p>
 
         </div>
       
     
       
         
-          <div><p>Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+          <div><p>
+Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
 </div>
         
       
     
       
         
-          <div><p>除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可</p>
+          <div><p>
+除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可
+</p>
 </div>
         
       
