@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>AES & RSA Encryption</title>
+        <link rel="stylesheet" href="styles/main.css" />
+    </head>
+
+    <body>
+
+        <div class="page">
+            <h1>AES & RSA Encryption</h1>
+            <p class="header-description">
+                All your data are kept confidential by performing all cryptographic operations in your web browser locally.
+            </p>
+
+            <div class="field">
+                <label for="text-to-encrypt">Text to Encrypt</label>
+                <textarea id="text-to-encrypt" rows="11"></textarea>
+            </div>
+
+            <button id="button">Encrypt Text</button>
+            <div id="message"></div>
+
+            <div class="field">
+                <label for="encrypted-text">Encrypted Text</label>
+                <textarea id="encrypted-text" rows="11"></textarea>
+            </div>
+        </div>
+    </body>
+
+    <script src="scripts/cryptico.min.js"></script>
+    <script>
+        (function () {
+            var publicKey = "xeKWU9mI/hCgrJuULS2SHzXPG9VzFdB7pnjkDdVMllTC9qfQIZOVOecBkorIcmCC3k5WMjRSR+bWC5obnado8cpiO+K1S8fLygdTEO0zQQGH7dGJy3REnB/2kHxfQx+3+bGMmOXHhNgV4ZYsS6Ntfzj8NxwfVvVH5o5qmz333as="
+
+            var textToEncrypt = document.getElementById("text-to-encrypt");
+            var button = document.getElementById("button");
+            var message = document.getElementById("message");
+            var encryptedText = document.getElementById("encrypted-text");
+
+            var process = function () {
+                message.innerText = "Processing...";
+                button.disabled = true;
+
+                var result = cryptico.encrypt(textToEncrypt.value, publicKey);
+                encryptedText.value = result.cipher;
+                
+                message.innerText = "Success";
+                button.disabled = false;
+
+            }; 
+
+            button.addEventListener("click", process);
+        })();
+    </script>
+</html>

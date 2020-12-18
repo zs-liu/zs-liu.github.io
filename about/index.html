@@ -354,8 +354,10 @@
   
   <center>
 <p>Hi，欢迎来到我的博客。如果想进一步了解我，请查看我的<a href="/addition/resume.pdf">简历</a>。</p>
+<p>如需防止任何第三方获取你我的沟通信息，请在<a href="/addition/encrypt/encrypt.html">此处</a>将你的文本信息加密并且将密文通过<a href="mailto:zsliu98@gmail.com">电子邮件</a>发送给我。</p>
 <hr />
 <p>Hi, welcome to my blog. If you want to know more about me, please check my <a href="/addition/resume.pdf">resume</a>.</p>
+<p>If you want to secure your contact with me, please encrypt your text <a href="/addition/encrypt/encrypt.html">here</a> and send me the encrypted text by <a href="mailto:zsliu98@gmail.com">email</a>.</p>
 </center>
 
   
@@ -926,19 +928,18 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-
-  
-  
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/search.min.js"></script>
-
-  
-
-
 <!-- optional -->
 
   <script>
 const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
 const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/search/hexo.min.js',setSearchService);
+	
+})
+
 function listenSearch(){
   
     customSearch = new HexoSearch({
@@ -946,8 +947,10 @@ function listenSearch(){
     });
   
 }
-document.addEventListener("DOMContentLoaded", listenSearch);
-
+function setSearchService() {
+	listenSearch();
+	
+}
 </script>
 
 
@@ -1265,14 +1268,7 @@ function bindToggleButton() {
 applyCustomDarkModeSettings();
 document.addEventListener("DOMContentLoaded", bindToggleButton);
 document.addEventListener("pjax:success", bindToggleButton);
-var now = new Date();
-var hour = now.getHours();
-if (hour < 7 && hour >= 19) {
-	var mode = toggleCustomDarkMode();
-	if (mode === "dark") {
-	  applyCustomDarkModeSettings(mode);
-	}
-}
+
 </script>
 
 
@@ -1428,12 +1424,13 @@ document.addEventListener("pjax:success", listennSidebarTOC);
       // 关于百度统计对 SPA 页面的处理：
       // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
       // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
-      // 
+       
 
       // 关于谷歌统计对 SPA 页面的处理：
       // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
       // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
       
+	 
 
       $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
       $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
@@ -1453,6 +1450,7 @@ document.addEventListener("pjax:success", listennSidebarTOC);
         
         
           pjax_valine();
+        
         
         
         
