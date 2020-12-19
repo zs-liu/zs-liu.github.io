@@ -43,7 +43,7 @@
                 message.innerText = "Processing...";
                 button.disabled = true;
 
-                var result = cryptico.encrypt(textToEncrypt.value, publicKey);
+                var result = cryptico.encrypt(encodeURIComponent(textToEncrypt.value), publicKey);
                 encryptedText.value = result.cipher;
                 
                 message.innerText = "Success";

@@ -375,9 +375,9 @@
   
   <div class='md'>
     
-      <h2 id="wasserstein-distance">Wasserstein Distance</h2>
-<h3 id="definition">Definition</h3>
-<p>Consider, general functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, the Wasserstein distance is <span class="math display">\[\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}\]</span> For <span class="math inline">\(f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+\)</span>, the distance can be formulated as <span class="math display">\[W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}\]</span> where <span class="math inline">\(\mathcal{M}\)</span> is the set of all maps that rearrange the distribution <span class="math inline">\(f\)</span> into <span class="math inline">\(g\)</span>.</p>
+      <h2 id="Wasserstein-Distance"><a href="#Wasserstein-Distance" class="headerlink" title="Wasserstein Distance"></a>Wasserstein Distance</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Consider, general functions $f$ and $g$, the Wasserstein distance is</p>
+<script type="math/tex; mode=display">\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}</script><p>For $f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+$, the distance can be formulated as</p>
+<script type="math/tex; mode=display">W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}</script><p>where $\mathcal{M}$  is the set of all maps that rearrange the distribution $f$ into $g$.</p>
     
   </div>
   
@@ -421,13 +421,10 @@
   
   <div class='md'>
     
-      <h2 id="convert-lp-to-a-standard-form">Convert LP to a Standard Form</h2>
-<p><span class="math display">\[\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0\]</span></p>
-<h3 id="for-inequality">For Inequality</h3>
-<ul>
-<li><span class="math inline">\(x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0\)</span></li>
-<li><span class="math inline">\(x+y\leq{}a\rightarrow{}x+y+s=a,s\geq0\)</span></li>
-<li>Unrestricted <span class="math inline">\(\rightarrow{}x=y-z,y\geq0,z\geq0\)</span></li>
+      <h2 id="Convert-LP-to-a-Standard-Form"><a href="#Convert-LP-to-a-Standard-Form" class="headerlink" title="Convert LP to a Standard Form"></a>Convert LP to a Standard Form</h2><script type="math/tex; mode=display">\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0</script><h3 id="For-Inequality"><a href="#For-Inequality" class="headerlink" title="For Inequality"></a>For Inequality</h3><ul>
+<li>$x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0$</li>
+<li>$x+y\leq{}a\rightarrow{}x+y+s=a,s\geq0$</li>
+<li>Unrestricted $\rightarrow{}x=y-z,y\geq0,z\geq0$</li>
 </ul>
     
   </div>

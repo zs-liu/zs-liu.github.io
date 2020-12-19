@@ -412,97 +412,81 @@
 
 
   
-  <h2 id="mpc-multi-party-computation">MPC (Multi-party Computation)</h2>
-<h3 id="definition">Definition</h3>
-<p>Given <span class="math inline">\(n\)</span> parties, design a protocol which computes a public function <span class="math inline">\(f\)</span> over inputs from each party such that the inputs remain private unless they would be revealed by the function anyway.</p>
-<h3 id="character">Character</h3>
-<ul>
+  <h2 id="MPC-Multi-party-Computation"><a href="#MPC-Multi-party-Computation" class="headerlink" title="MPC (Multi-party Computation)"></a>MPC (Multi-party Computation)</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Given $n$ parties, design a protocol which computes a public function $f$ over inputs from each party such that the inputs remain private unless they would be revealed by the function anyway.</p>
+<h3 id="Character"><a href="#Character" class="headerlink" title="Character"></a>Character</h3><ul>
 <li>Typically, all parties will receive the <strong>same</strong> output when the calculation finishes</li>
 <li>MPC is typically considered when parties don’t trust either the others or a 3rd party</li>
 <li>An MPC protocol can be shown equivalent to a protocol uses a trusted 3rd party</li>
 </ul>
-<p>There are many setups that can be used for MPC. However, in this post, we'll only take a look at <em>Secret Sharing</em> and its application <em>BGW protocol</em>.</p>
-<h3 id="adversarial-models">Adversarial Models</h3>
-<ul>
+<p>There are many setups that can be used for MPC. However, in this post, we’ll only take a look at <em>Secret Sharing</em> and its application <em>BGW protocol</em>.</p>
+<h3 id="Adversarial-Models"><a href="#Adversarial-Models" class="headerlink" title="Adversarial Models"></a>Adversarial Models</h3><ul>
 <li><strong>Honest-but-curious, Semi-Honest, Passive</strong>: Parties follow protocol, but are interested (i.e. curious) in breaking privacy of other parties. Also know as <strong>corrupt</strong> parties.</li>
 <li><strong>Malicious, Byzantine, Active</strong>: Parties can deviate from the protocol e.g. lie about inputs, quit protocol early.</li>
 </ul>
-<h3 id="secure-type">Secure Type</h3>
-<ul>
+<h3 id="Secure-Type"><a href="#Secure-Type" class="headerlink" title="Secure Type"></a>Secure Type</h3><ul>
 <li><strong>Information theoretically secure</strong>: system cannot be broken even if adversary has unlimited computational power. Also known as <strong>Perfect security</strong> and <strong>Unconditional security</strong>.</li>
 <li><strong>Computationally secure</strong>: adversary would require an unreasonably large amount of computational power to break the system.</li>
 </ul>
-<h3 id="theoretical-limit-of-adversary-and-security">Theoretical Limit of Adversary and Security</h3>
-<ul>
-<li>Honest-but-curious adversary, Information theoretically secure: tolerate up to <span class="math inline">\(n/2\)</span> corrupt parties</li>
-<li>Honest-but-curious adversary, Computationally secure: tolerate up to <span class="math inline">\(n-1\)</span> corrupt parties</li>
-<li>Malicious adversary, Information theoretically secure: tolerate up to <span class="math inline">\(n/3\)</span> adversaries</li>
-<li>Malicious adversary, Computationally secure: tolerate up to <span class="math inline">\(n/2\)</span> adversaries (unfair/un-robust protocol can tolerate up to <span class="math inline">\(n-1\)</span> adversaries)</li>
+<h3 id="Theoretical-Limit-of-Adversary-and-Security"><a href="#Theoretical-Limit-of-Adversary-and-Security" class="headerlink" title="Theoretical Limit of Adversary and Security"></a>Theoretical Limit of Adversary and Security</h3><ul>
+<li>Honest-but-curious adversary, Information theoretically secure: tolerate up to $n/2$ corrupt parties</li>
+<li>Honest-but-curious adversary, Computationally secure: tolerate up to $n-1$ corrupt parties</li>
+<li>Malicious adversary, Information theoretically secure: tolerate up to $n/3$ adversaries</li>
+<li>Malicious adversary, Computationally secure: tolerate up to $n/2$ adversaries (unfair/un-robust protocol can tolerate up to $n-1$ adversaries)</li>
 </ul>
-<h2 id="lagrange-interpolation">Lagrange Interpolation</h2>
-<h3 id="distribution-and-recombination">Distribution and Recombination</h3>
-<ul>
-<li>A polynomial <span class="math inline">\(P(x)\)</span> of degree <span class="math inline">\(T\)</span> can be uniquely determined by a set of <span class="math inline">\(T + 1\)</span> (or more) distinct points on the polynomial curve <span class="math inline">\(P(x)\)</span>.</li>
-<li>A polynominal <span class="math inline">\(P(x)\)</span> of degree upto at most <span class="math inline">\(N − 1\)</span> there exist coefficients <span class="math inline">\(r = (r_1,\cdots,r_N )\)</span> (called the <em>recombination vector</em>) such that:</li>
+<h2 id="Lagrange-Interpolation"><a href="#Lagrange-Interpolation" class="headerlink" title="Lagrange Interpolation"></a>Lagrange Interpolation</h2><h3 id="Distribution-and-Recombination"><a href="#Distribution-and-Recombination" class="headerlink" title="Distribution and Recombination"></a>Distribution and Recombination</h3><ul>
+<li>A polynomial $P(x)$ of degree $T$ can be uniquely determined by a set of $T + 1$ (or more) distinct points on the polynomial curve $P(x)$.</li>
+<li>A polynominal $P(x)$ of degree upto at most $N − 1$ there exist coefficients $r = (r_1,\cdots,r_N )$ (called the <em>recombination vector</em>) such that:</li>
 </ul>
-<p><span class="math display">\[P(0)=\sum_{i=1}^Nr_iP(i)\]</span></p>
-<h3 id="lagrange-interpolation-1">Lagrange Interpolation</h3>
-<p>Given <span class="math inline">\(T\)</span> points <span class="math inline">\((x_1,P(x_1)),\cdots,(x_n,P(x_n))\)</span>, the <strong>unique</strong> Lagrange Interpolation Polynomial of degree T is:</p>
-<p><span class="math display">\[P(x)=\sum_{i=1}^{T+1}\delta_i(x)P(x_i),~\delta_i(x)=\prod_{j=1,j\neq i}^{T+1}\frac{x-x_j}{x_i-x_j}\]</span></p>
-<p>We also have:</p>
-<p><span class="math display">\[P(0)=\sum_{i=1}^{T+1}\delta_i(0)P(x_i)=\sum_{i=1}^{T+1}r_iP(x_i)\Rightarrow r_i=\prod_{j=1,j\neq i}^{T+1}\frac{x_j}{x_j-x_i}\]</span></p>
-<p>And when <span class="math inline">\(x_i=i\)</span>:</p>
-<p><span class="math display">\[r_i=\prod_{j=1,j\neq i}^{T+1}\frac{j}{j-i}\]</span></p>
-<h3 id="secret-share">Secret Share</h3>
-<p>You may have already noticed that <em>Lagrange Interpolation</em> can be used to share(split) secret. For example, if someone have a secret <span class="math inline">\(a_0\)</span>, and he randomly choose coefficients <span class="math inline">\(a_1,\cdots,a_T\)</span>, we obtain a polynomial <span class="math inline">\(P(x)=a_0+\sum_{i=1}^Ta_ix^i\)</span>. And if he sends <em>shares</em> <span class="math inline">\(P(1),\cdots,P(N)\)</span> to <span class="math inline">\(N\)</span> parties, then the only way to recover the secret is perform <em>recombination</em> on at least <span class="math inline">\(T+1\)</span> <em>shares</em> (from at least <span class="math inline">\(T+1\)</span> parties).</p>
-<h2 id="bgw-protocol">BGW Protocol</h2>
-<p>From the definition of MPC, we need to calculate a public function <span class="math inline">\(f\)</span>. For convenience, we consider <span class="math inline">\(f:\mathcal{N^*}\rightarrow\mathcal{N}\)</span> which is a polynomial over a finite field modulo a prime <span class="math inline">\(p\)</span>. Thus, we can only consider two gates(operations): <strong>Add</strong>(addition) and <strong>Mul</strong>(multiplication). In this post, we'll only take a look at the honest-but-curious version.</p>
+<script type="math/tex; mode=display">P(0)=\sum_{i=1}^Nr_iP(i)</script><h3 id="Lagrange-Interpolation-1"><a href="#Lagrange-Interpolation-1" class="headerlink" title="Lagrange Interpolation"></a>Lagrange Interpolation</h3><p>Given $T$ points $(x_1,P(x_1)),\cdots,(x_n,P(x_n))$, the <strong>unique</strong> Lagrange Interpolation Polynomial of degree T is:</p>
+<script type="math/tex; mode=display">P(x)=\sum_{i=1}^{T+1}\delta_i(x)P(x_i),~\delta_i(x)=\prod_{j=1,j\neq i}^{T+1}\frac{x-x_j}{x_i-x_j}</script><p>We also have:</p>
+<script type="math/tex; mode=display">P(0)=\sum_{i=1}^{T+1}\delta_i(0)P(x_i)=\sum_{i=1}^{T+1}r_iP(x_i)\Rightarrow r_i=\prod_{j=1,j\neq i}^{T+1}\frac{x_j}{x_j-x_i}</script><p>And when $x_i=i$:</p>
+<script type="math/tex; mode=display">r_i=\prod_{j=1,j\neq i}^{T+1}\frac{j}{j-i}</script><h3 id="Secret-Share"><a href="#Secret-Share" class="headerlink" title="Secret Share"></a>Secret Share</h3><p>You may have already noticed that <em>Lagrange Interpolation</em> can be used to share(split) secret. For example, if someone have a secret $a<em>0$, and he randomly choose coefficients $a_1,\cdots,a_T$, we obtain a polynomial $P(x)=a_0+\sum</em>{i=1}^Ta_ix^i$. And if he sends <em>shares</em> $P(1),\cdots,P(N)$ to $N$ parties, then the only way to recover the secret is perform <em>recombination</em> on at least $T+1$ <em>shares</em> (from at least $T+1$ parties).</p>
+<h2 id="BGW-Protocol"><a href="#BGW-Protocol" class="headerlink" title="BGW Protocol"></a>BGW Protocol</h2><p>From the definition of MPC, we need to calculate a public function $f$. For convenience, we consider $f:\mathcal{N^<em>}\rightarrow\mathcal{N}$ which is a polynomial over a finite field modulo a prime $p$. Thus, we can only consider two gates(operations): <strong>Add</strong>(addition) and <em>*Mul</em></em>(multiplication). In this post, we’ll only take a look at the honest-but-curious version.</p>
 <blockquote>
-<p>Arithmetic over a finite field rules out the possibility of 'guessing' the secret. It makes us impossible to determine the range of the secret with less than <span class="math inline">\(T+1\)</span> shares. See <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing">wikipedia</a> for more details.</p>
+<p>Arithmetic over a finite field rules out the possibility of ‘guessing’ the secret. It makes us impossible to determine the range of the secret with less than $T+1$ shares. See <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing">wikipedia</a> for more details.</p>
 </blockquote>
-<p>We will look at a three-party example. Three parties are <span class="math inline">\((p_1,p_2,p_3)\)</span> and their secrets(private values) are <span class="math inline">\((x_1,x_2,x_3)=(10,20,30)\)</span>. They want to calculate <span class="math inline">\((x_1+x_2)\times x_3\)</span>. They choose prime <span class="math inline">\(p=101\)</span> and degree <span class="math inline">\(T=1\)</span>. We also need <span class="math inline">\(2T\leq N-1\)</span>, the reason of which is lied in the <strong>Mul</strong> gate.</p>
-<h3 id="distribution">Distribution</h3>
-<p>At first, each party needs to distribute it secret into <span class="math inline">\(N\)</span> shares and send them to <span class="math inline">\(N\)</span> parties (also include saving his own share).</p>
+<p>We will look at a three-party example. Three parties are $(p_1,p_2,p_3)$ and their secrets(private values) are $(x_1,x_2,x_3)=(10,20,30)$. They want to calculate $(x_1+x_2)\times x_3$. They choose prime $p=101$ and degree $T=1$. We also need $2T\leq N-1$, the reason of which is lied in the <strong>Mul</strong> gate.</p>
+<h3 id="Distribution"><a href="#Distribution" class="headerlink" title="Distribution"></a>Distribution</h3><p>At first, each party needs to distribute it secret into $N$ shares and send them to $N$ parties (also include saving his own share).</p>
 <ul>
-<li>For <span class="math inline">\(p_1\)</span>, he chooses polynomial <span class="math inline">\(3x+10\)</span>, and the shares are <span class="math inline">\(13, 16, 19\)</span>.</li>
-<li>For <span class="math inline">\(p_2\)</span>, he chooses polynomial <span class="math inline">\(2x+20\)</span>, and the shares are <span class="math inline">\(22, 24, 26\)</span>.</li>
-<li>For <span class="math inline">\(p_3\)</span>, he chooses polynomial <span class="math inline">\(1x+30\)</span>, and the shares are <span class="math inline">\(31, 32, 33\)</span>.</li>
+<li>For $p_1$, he chooses polynomial $3x+10$, and the shares are $13, 16, 19$.</li>
+<li>For $p_2$, he chooses polynomial $2x+20$, and the shares are $22, 24, 26$.</li>
+<li>For $p_3$, he chooses polynomial $1x+30$, and the shares are $31, 32, 33$.</li>
 </ul>
 <p>After distribution</p>
 <ul>
-<li><span class="math inline">\(p_1\)</span> has shares <span class="math inline">\(13,22,31\)</span></li>
-<li><span class="math inline">\(p_2\)</span> has shares <span class="math inline">\(16,24,32\)</span></li>
-<li><span class="math inline">\(p_3\)</span> has shares <span class="math inline">\(19,26,33\)</span></li>
+<li>$p_1$ has shares $13,22,31$</li>
+<li>$p_2$ has shares $16,24,32$</li>
+<li>$p_3$ has shares $19,26,33$</li>
 </ul>
-<h3 id="add-gate">Add Gate</h3>
-<p>Suppose we have two secrets <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> which are shared using the polynomials: <span class="math display">\[f(x)=a+f_1x+\cdots,f_tx^T,g(x)=b+g_1x+\cdots,g_tx^T\]</span> Each of our parties has a share <span class="math inline">\(a^{(i)}=f(i)\)</span> and <span class="math inline">\(b^{(i)}=g(i)\)</span>. Now consider the polynomial: <span class="math display">\[h(x)=f(x)+g(x)\]</span> This polynomial provides a sharing of the sum <span class="math inline">\(c = a + b\)</span>, and we have <span class="math display">\[c^{(i)}=h(i)=f(i)+g(i)=a^{(i)}+b^{(i)}\]</span></p>
-<p>Let's go into the example. We want to calculate <span class="math inline">\(x_1+x_2\)</span> first. And for each party, he needs to add the share from <span class="math inline">\(p_1\)</span> and the share from <span class="math inline">\(p_2\)</span>.</p>
+<h3 id="Add-Gate"><a href="#Add-Gate" class="headerlink" title="Add Gate"></a>Add Gate</h3><p>Suppose we have two secrets $a$ and $b$ which are shared using the polynomials:</p>
+<script type="math/tex; mode=display">f(x)=a+f_1x+\cdots,f_tx^T,g(x)=b+g_1x+\cdots,g_tx^T</script><p>Each of our parties has a share $a^{(i)}=f(i)$ and $b^{(i)}=g(i)$. Now consider the polynomial:</p>
+<script type="math/tex; mode=display">h(x)=f(x)+g(x)</script><p>This polynomial provides a sharing of the sum $c = a + b$, and we have</p>
+<script type="math/tex; mode=display">c^{(i)}=h(i)=f(i)+g(i)=a^{(i)}+b^{(i)}</script><p>Let’s go into the example. We want to calculate $x_1+x_2$ first. And for each party, he needs to add the share from $p_1$ and the share from $p_2$.</p>
 <ul>
-<li><span class="math inline">\(p_1\)</span> calculates <span class="math inline">\(a^{(1)}+b^{(1)}=13+22=35\)</span></li>
-<li><span class="math inline">\(p_2\)</span> calculates <span class="math inline">\(a^{(2)}+b^{(2)}=16+24=40\)</span></li>
-<li><span class="math inline">\(p_3\)</span> calculates <span class="math inline">\(a^{(3)}+b^{(3)}=19+26=45\)</span></li>
+<li>$p_1$ calculates $a^{(1)}+b^{(1)}=13+22=35$</li>
+<li>$p_2$ calculates $a^{(2)}+b^{(2)}=16+24=40$</li>
+<li>$p_3$ calculates $a^{(3)}+b^{(3)}=19+26=45$</li>
 </ul>
-<p>And you can see if we combine these values together by using the <em>recombination vector</em>, we have <span class="math inline">\([3,-3,1][35,40,45]^\top=30\)</span>, which equals to the 'true' value <span class="math inline">\(x_1+x_2=30\)</span>.</p>
-<h3 id="multiplication-gate">Multiplication Gate</h3>
-<p>To compute the Multiplication gate we perform the following four steps:</p>
+<p>And you can see if we combine these values together by using the <em>recombination vector</em>, we have $[3,-3,1][35,40,45]^\top=30$, which equals to the ‘true’ value $x_1+x_2=30$.</p>
+<h3 id="Multiplication-Gate"><a href="#Multiplication-Gate" class="headerlink" title="Multiplication Gate"></a>Multiplication Gate</h3><p>To compute the Multiplication gate we perform the following four steps:</p>
 <ul>
-<li>Each party <span class="math inline">\(i\)</span> locally computes <span class="math inline">\(d^{(i)}=a^{(i)}\times b^{(i)}\)</span></li>
-<li>Each party <span class="math inline">\(i\)</span> perform <em>distribution</em> of <span class="math inline">\(d^{(i)}\)</span> (party <span class="math inline">\(j\)</span> receives the sub-share <span class="math inline">\(d_{i,j}\)</span> from party <span class="math inline">\(i\)</span>) by polynomial <span class="math inline">\(\delta_i(x)\)</span> of degree <span class="math inline">\(T\)</span></li>
-<li>Each party <span class="math inline">\(j\)</span> recombination the sub-shares as <span class="math inline">\(c^{(j)}=\sum_{i=1}^Nr_i\times d_{i,j}\)</span></li>
+<li>Each party $i$ locally computes $d^{(i)}=a^{(i)}\times b^{(i)}$</li>
+<li>Each party $i$ perform <em>distribution</em> of $d^{(i)}$ (party $j$ receives the sub-share $d_{i,j}$ from party $i$) by polynomial $\delta_i(x)$ of degree $T$</li>
+<li>Each party $j$ recombination the sub-shares as $c^{(j)}=\sum<em>{i=1}^Nr_i\times d</em>{i,j}$</li>
 </ul>
-<p>So why does this work? Consider the first step; here we are actually computing a polynomial of degree <span class="math inline">\(2T\)</span>. Hence, we need to 'reduce' the degree of this polynomial. Thus, we produce <span class="math inline">\(\delta_i(x)\)</span> in the second step. Consider what happens when we recombine them using the recombination vector, i.e. let: <span class="math display">\[h(x)=\sum_{i=1}^Nr_i\delta_i(x)\]</span> Then we have <span class="math display">\[h(0)=\sum_{i=1}^Nr_i\delta_i(0)=\sum_{i=1}^Nr_id^{(i)}=c\]</span> <span class="math display">\[h(j)=\sum_{i=1}^Nr_i\delta_i(j)=\sum_{i=1}^Nr_id_{i,j}=c^{(j)}\]</span> Thus, <span class="math inline">\(h(x)\)</span> is a polynomial which could be used to share the value of the product and underlies the sharing produced in the final step.</p>
-<p>Let's take a look at the example.</p>
+<p>So why does this work? Consider the first step; here we are actually computing a polynomial of degree $2T$. Hence, we need to ‘reduce’ the degree of this polynomial. Thus, we produce $\delta_i(x)$ in the second step. Consider what happens when we recombine them using the recombination vector, i.e. let:</p>
+<script type="math/tex; mode=display">h(x)=\sum_{i=1}^Nr_i\delta_i(x)</script><p>Then we have</p>
+<script type="math/tex; mode=display">h(0)=\sum_{i=1}^Nr_i\delta_i(0)=\sum_{i=1}^Nr_id^{(i)}=c</script><script type="math/tex; mode=display">h(j)=\sum_{i=1}^Nr_i\delta_i(j)=\sum_{i=1}^Nr_id_{i,j}=c^{(j)}</script><p>Thus, $h(x)$ is a polynomial which could be used to share the value of the product and underlies the sharing produced in the final step.</p>
+<p>Let’s take a look at the example. </p>
 <ul>
-<li><span class="math inline">\(p_1,p_2,p_3\)</span> calculates <span class="math inline">\(d^{(1)}=35\times31=75,d^{(2)}=68,d^{(3)}=71\)</span></li>
-<li><span class="math inline">\(p_1\)</span> distributes <span class="math inline">\(78,81,84\)</span>, <span class="math inline">\(p_2\)</span> distributes <span class="math inline">\(70,72,74\)</span>, <span class="math inline">\(p_3\)</span> distributes <span class="math inline">\(72,73,74\)</span></li>
-<li><span class="math inline">\(p_1\)</span> has shares <span class="math inline">\(78,70,72\)</span>, <span class="math inline">\(p_2\)</span> has shares <span class="math inline">\(81,72,73\)</span>, <span class="math inline">\(p_3\)</span> has shares <span class="math inline">\(84,74,74\)</span></li>
-<li><span class="math inline">\(p_1,p_2,p_3\)</span> recombines as <span class="math inline">\(c^{(1)}=[3,-3,1][78,70,72]^\top=96,c^{(2)}=100,c^{(3)}=3\)</span></li>
+<li>$p_1,p_2,p_3$ calculates $d^{(1)}=35\times31=75,d^{(2)}=68,d^{(3)}=71$</li>
+<li>$p_1$ distributes $78,81,84$, $p_2$ distributes $70,72,74$, $p_3$ distributes $72,73,74$</li>
+<li>$p_1$ has shares $78,70,72$, $p_2$ has shares $81,72,73$, $p_3$ has shares $84,74,74$</li>
+<li>$p_1,p_2,p_3$ recombines as $c^{(1)}=[3,-3,1][78,70,72]^\top=96,c^{(2)}=100,c^{(3)}=3$</li>
 </ul>
-<h3 id="recombination">Recombination</h3>
-<p>Each party <strong>broadcasts</strong> its value, and performs recombination.</p>
-<p>As the end of the example, each party obtains <span class="math inline">\(96,100,3\)</span> and calculates the result as <span class="math inline">\([3,-3,1][96,100,3]^\top=92\)</span>, which equals to the 'true' value <span class="math inline">\((x_1+x_2)\times x_3=92\)</span>.</p>
-<h2 id="reference">Reference</h2>
-<p>Smart, Nigel P. Cryptography made simple. Springer, 2016.</p>
+<h3 id="Recombination"><a href="#Recombination" class="headerlink" title="Recombination"></a>Recombination</h3><p>Each party <strong>broadcasts</strong> its value, and performs recombination.</p>
+<p>As the end of the example, each party obtains $96,100,3$ and calculates the result as $[3,-3,1][96,100,3]^\top=92$, which equals to the ‘true’ value $(x_1+x_2)\times x_3=92$.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Smart, Nigel P. Cryptography made simple. Springer, 2016.</p>
 
   
   
@@ -567,8 +551,7 @@
       
         <a class='next' href='/2020/10/19/Data%20Pseudonymization%20and%20Anonymization/'>
           <p class='title'>Data Pseudonymization and Anonymization<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Pseudonymization
-To remove all direct identifiers, e.g. name, phone number, address, social secur...</p>
+          <p class='content'>PseudonymizationTo remove all direct identifiers, e.g. name, phone number, address, social securi...</p>
         </a>
       
     </div>
@@ -664,7 +647,7 @@ To remove all direct identifiers, e.g. name, phone number, address, social secur
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mpc-multi-party-computation"><span class="toc-text">MPC (Multi-party Computation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#character"><span class="toc-text">Character</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#adversarial-models"><span class="toc-text">Adversarial Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#secure-type"><span class="toc-text">Secure Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theoretical-limit-of-adversary-and-security"><span class="toc-text">Theoretical Limit of Adversary and Security</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lagrange-interpolation"><span class="toc-text">Lagrange Interpolation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#distribution-and-recombination"><span class="toc-text">Distribution and Recombination</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lagrange-interpolation-1"><span class="toc-text">Lagrange Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#secret-share"><span class="toc-text">Secret Share</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bgw-protocol"><span class="toc-text">BGW Protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#distribution"><span class="toc-text">Distribution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add-gate"><span class="toc-text">Add Gate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multiplication-gate"><span class="toc-text">Multiplication Gate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recombination"><span class="toc-text">Recombination</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-text">Reference</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MPC-Multi-party-Computation"><span class="toc-text">MPC (Multi-party Computation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Character"><span class="toc-text">Character</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adversarial-Models"><span class="toc-text">Adversarial Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secure-Type"><span class="toc-text">Secure Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theoretical-Limit-of-Adversary-and-Security"><span class="toc-text">Theoretical Limit of Adversary and Security</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lagrange-Interpolation"><span class="toc-text">Lagrange Interpolation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Distribution-and-Recombination"><span class="toc-text">Distribution and Recombination</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lagrange-Interpolation-1"><span class="toc-text">Lagrange Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secret-Share"><span class="toc-text">Secret Share</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BGW-Protocol"><span class="toc-text">BGW Protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Distribution"><span class="toc-text">Distribution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Gate"><span class="toc-text">Add Gate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiplication-Gate"><span class="toc-text">Multiplication Gate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recombination"><span class="toc-text">Recombination</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
     </div>
   </section>
 

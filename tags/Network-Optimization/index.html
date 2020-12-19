@@ -379,15 +379,14 @@
   
   <div class='md'>
     
-      <h2 id="multi-armed-bandit">Multi Armed Bandit</h2>
-<ul>
-<li><span class="math inline">\(t=1,2,\cdots,N\)</span></li>
-<li><span class="math inline">\(k\)</span> arm</li>
-<li>at <span class="math inline">\(t\)</span>, choose arm <span class="math inline">\(i\)</span>, receive reward <span class="math inline">\(X_{i,t}\sim{}D_i\)</span>(iid unknown distribution)</li>
-<li>Policy: <span class="math inline">\(\pi=\{i(t),t=1,2,\cdots,N\}\)</span></li>
-<li>Goal: <span class="math inline">\(\max\mathbb{E}\{\sum_{t=1}^NX_{i,t}\}\)</span></li>
-<li><span class="math inline">\({\rm OPT}=N\max_i\mu_i=N\mu,\mu_i=\mathbb{E}\{X_{i,t}\}\)</span></li>
-<li><span class="math inline">\({\rm Reg}={\rm OPT}-\mathbb{E}\{\sum_{t=1}^NX_{i,t}|\pi\}\)</span></li>
+      <h2 id="Multi-Armed-Bandit"><a href="#Multi-Armed-Bandit" class="headerlink" title="Multi Armed Bandit"></a>Multi Armed Bandit</h2><ul>
+<li>$t=1,2,\cdots,N$</li>
+<li>$k$ arm</li>
+<li>at $t$, choose arm $i$, receive reward $X_{i,t}\sim{}D_i$(iid unknown distribution)</li>
+<li>Policy: $\pi={i(t),t=1,2,\cdots,N}$</li>
+<li>Goal: $\max\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}}$</li>
+<li>${\rm OPT}=N\max<em>i\mu_i=N\mu,\mu_i=\mathbb{E}{X</em>{i,t}}$</li>
+<li>${\rm Reg}={\rm OPT}-\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}|\pi}$</li>
 </ul>
     
   </div>
@@ -432,11 +431,10 @@
   
   <div class='md'>
     
-      <h2 id="introduction">Introduction</h2>
-<ul>
-<li>Single Hop System, <span class="math inline">\(L\)</span> Queues</li>
-<li><span class="math inline">\(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)\)</span></li>
-<li><span class="math inline">\(U_l(t)=\max\{0,S_l(t)-A_l(t)-Q_l(t)\}\)</span></li>
+      <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>Single Hop System, $L$ Queues</li>
+<li>$Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S_l(t)+U_l(t)$</li>
+<li>$U_l(t)=\max{0,S_l(t)-A_l(t)-Q_l(t)}$</li>
 </ul>
     
   </div>
@@ -481,17 +479,16 @@
   
   <div class='md'>
     
-      <h2 id="queue-control-problem">Queue Control Problem</h2>
-<p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
+      <h2 id="Queue-Control-Problem"><a href="#Queue-Control-Problem" class="headerlink" title="Queue Control Problem"></a>Queue Control Problem</h2><p>$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$</p>
 <ul>
-<li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(\mathbb{E}\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
-<li><span class="math inline">\(S_i(t)\)</span> is condition of link <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i(t)\in\{0,1\}\)</span></li>
-<li><span class="math inline">\(P_{xy}=P_r\{S_1(t)=x,S_2(t)=y\}\)</span></li>
-<li>At every time, serve <span class="math inline">\(Q_1(t)\)</span> or <span class="math inline">\(Q_2(t)\)</span></li>
-<li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
+<li>$A<em>i(t)$ is iid, $\mathbb{E}{A_i(t)}=\lambda_i$, $A_i(t)\in[0,A</em>{\max}]$</li>
+<li>$S_i(t)$ is condition of link $i$, $S_i(t)\in{0,1}$</li>
+<li>$P_{xy}=P_r{S_1(t)=x,S_2(t)=y}$</li>
+<li>At every time, serve $Q_1(t)$ or $Q_2(t)$</li>
+<li>$\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}$</li>
 <li>Goal: stabilize both queues</li>
 </ul>
-<p><span class="math inline">\(~\)</span>
+<p>$~$<br>
     
   </div>
   
@@ -535,15 +532,13 @@
   
   <div class='md'>
     
-      <h2 id="queue">Queue</h2>
-<h3 id="definition">Definition</h3>
-<ul>
-<li>Arrival: <span class="math inline">\(A(t)\)</span></li>
-<li>Cumulative arrival: <span class="math display">\[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]</span></li>
-<li>Service: <span class="math inline">\(\mu(t)\)</span></li>
-<li>Cumulative departure: <span class="math display">\[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\]</span></li>
-<li><span class="math inline">\(Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise\)</span></li>
-<li><span class="math inline">\(Q(t)=X[0,t]-Y[0,t],Q(0)=0\)</span></li>
+      <h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li>Arrival: $A(t)$</li>
+<li>Cumulative arrival: <script type="math/tex">X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt</script></li>
+<li>Service: $\mu(t)$</li>
+<li>Cumulative departure: <script type="math/tex">Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt</script></li>
+<li>$Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise$</li>
+<li>$Q(t)=X[0,t]-Y[0,t],Q(0)=0$</li>
 </ul>
     
   </div>
