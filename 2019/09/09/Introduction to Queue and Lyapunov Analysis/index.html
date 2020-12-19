@@ -25,11 +25,13 @@
   
 
   
-    <meta name="description" content="QueueDefinition
-Arrival: $A(t)$
-Cumulative arrival: X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt
-Service: $\mu(t)$
-Cumulative departure: Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)...">
+    <meta name="description" content="Queue
+Definition
+
+Arrival: \(A(t)\)
+Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]
+Service: \(\mu(t)\)
+Cumulative departure: \[Y[t_1,t_2]=\int_{t_...">
   
 
   <!-- feed -->
@@ -418,44 +420,57 @@ Cumulative departure: Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)...">
 
 
   
-  <h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><ul>
-<li>Arrival: $A(t)$</li>
-<li>Cumulative arrival: <script type="math/tex">X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt</script></li>
-<li>Service: $\mu(t)$</li>
-<li>Cumulative departure: <script type="math/tex">Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt</script></li>
-<li>$Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise$</li>
-<li>$Q(t)=X[0,t]-Y[0,t],Q(0)=0$</li>
+  <h2 id="queue">Queue</h2>
+<h3 id="definition">Definition</h3>
+<ul>
+<li>Arrival: <span class="math inline">\(A(t)\)</span></li>
+<li>Cumulative arrival: <span class="math display">\[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]</span></li>
+<li>Service: <span class="math inline">\(\mu(t)\)</span></li>
+<li>Cumulative departure: <span class="math display">\[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\]</span></li>
+<li><span class="math inline">\(Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise\)</span></li>
+<li><span class="math inline">\(Q(t)=X[0,t]-Y[0,t],Q(0)=0\)</span></li>
 </ul>
 <a id="more"></a>
-<h3 id="Interval-and-Conserving"><a href="#Interval-and-Conserving" class="headerlink" title="Interval and Conserving"></a>Interval and Conserving</h3><ul>
-<li>Def: An interval $I=[t_1,t_2]$ is a busy period if $Y(t)&gt;0,\forall{}t\in{}I$ and $Y(t_1^-)=Y(t_2^+)=0$</li>
-<li>Def: A work conserving single server system is one where $Y(t)=\mu(t)$ wherever $Q(t)&gt;0$</li>
-</ul>
-<p>If we start from an empty system, and $Q(t)&gt;0$, then </p>
-<script type="math/tex; mode=display">\exists{}t^* \text{ with } Q(t^*)=0 \text{ s.t. } Q(t)=X[t^*,t]-\int_{t^*}^t\mu(t)dt</script><h3 id="Stability"><a href="#Stability" class="headerlink" title="Stability"></a>Stability</h3><ul>
-<li>Def: $X[0,t]$ has a rate $\lambda$ if $\lim_{t\rightarrow\infty}\frac{X[0,t]}{t}=\lambda$ w.p.1</li>
-<li>Def: $\mu(t)$ has rate $\mu$ if $\lim_{t\rightarrow\infty}\frac{\int_0^t\mu(t)}{t}=\mu$ w.p.1</li>
-<li>Def: $Q(t)$ is rate stable if $\lim_{t\rightarrow\infty}\frac{Q(t)}{t}=0$ w.p.1</li>
-<li>Def: $Q(t)$ is mean rate stable if $\lim_{t\rightarrow\infty}\frac{E[Q(t)]}{t}=0$</li>
-</ul>
-<h4 id="Theorem-Rate-Stability"><a href="#Theorem-Rate-Stability" class="headerlink" title="Theorem-Rate Stability"></a>Theorem-Rate Stability</h4><p>Suppose $Q(t)=X[0,t]-Y[0,t]$, and $X[0,t]$ has rate $\lambda$ and $\mu(t)$ has rate $\mu$, then $Q(t)$ is rate stable <strong>if and only if</strong> $\lambda\leq\mu$</p>
-<hr>
-<script type="math/tex; mode=display">Q(t)\text{ stable } \rightarrow\lambda\leq\mu</script><script type="math/tex; mode=display">\frac{Q(t)}{t}=\frac{X[0,t]}{t}-\frac{Y[0,t]}{t}\geq\frac{X[0,t]}{t}-\frac{\int_0^t\mu(t)}{t}</script><hr>
-<script type="math/tex; mode=display">Q(t)\text{ stable } \leftarrow\lambda\leq\mu</script><h3 id="Little’s-law"><a href="#Little’s-law" class="headerlink" title="Little’s law"></a>Little’s law</h3><script type="math/tex; mode=display">Q_{av}=\lim_{t\rightarrow\infty}\frac{1}{t}\int_{\tau=0}^tQ(\tau)d\tau,D_{av}=\lim_{k\rightarrow\infty}\frac{1}{k}\sum_{k=1}^kD_k</script><script type="math/tex; mode=display">\Rightarrow{}Q_{av}=\lambda{}D_{av}</script><h2 id="Lyapunov-Analysis"><a href="#Lyapunov-Analysis" class="headerlink" title="Lyapunov Analysis"></a>Lyapunov Analysis</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><p>Denote $\vec{Q}(t)=(Q_1(t),\dots,Q_k(t))$, Def $L(\vec{Q}(t))$ is a Lyapunov-function if </p>
+<h3 id="interval-and-conserving">Interval and Conserving</h3>
 <ul>
-<li>$L(\vec{Q}(t))\geq0$</li>
-<li>$L(0)=0$</li>
+<li>Def: An interval <span class="math inline">\(I=[t_1,t_2]\)</span> is a busy period if <span class="math inline">\(Y(t)&gt;0,\forall{}t\in{}I\)</span> and <span class="math inline">\(Y(t_1^-)=Y(t_2^+)=0\)</span></li>
+<li>Def: A work conserving single server system is one where <span class="math inline">\(Y(t)=\mu(t)\)</span> wherever <span class="math inline">\(Q(t)&gt;0\)</span></li>
 </ul>
-<p>Define one-slot conditional Lyapunov drift <script type="math/tex">\Delta(t)=E\{L(\vec{Q}(t+1))-L(\vec{Q}(t))|\vec{Q}(t)\}</script></p>
-<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>Suppose $L(\vec{Q}(t))$ is a Lyapunov function and satisifes $\Delta(t)\leq{}B-e\sum_kQ_k(t)$ and $L(\vec{Q}(0))&lt;\infty$, then</p>
+<p>If we start from an empty system, and <span class="math inline">\(Q(t)&gt;0\)</span>, then <span class="math display">\[\exists{}t^* \text{ with } Q(t^*)=0 \text{ s.t. } Q(t)=X[t^*,t]-\int_{t^*}^t\mu(t)dt\]</span></p>
+<h3 id="stability">Stability</h3>
 <ul>
-<li>$e&gt;0\rightarrow{}Q(t)$ is strongly stable <script type="math/tex">\lim_{T\rightarrow\infty}\sup\frac{1}{T}\sum_{t=0}^{T-1}\sum_kE\{Q_k(t)\}\leq\frac{B}{e}</script></li>
-<li>$e\geq0$ and $L(\vec{Q})=\sum<em>k{}w_kQ_k$, then $$\lim</em>{t\rightarrow\infty}\frac{E{Q_k(t)}}{t}=0,\forall{}k$$</li>
+<li>Def: <span class="math inline">\(X[0,t]\)</span> has a rate <span class="math inline">\(\lambda\)</span> if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{X[0,t]}{t}=\lambda\)</span> w.p.1</li>
+<li>Def: <span class="math inline">\(\mu(t)\)</span> has rate <span class="math inline">\(\mu\)</span> if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{\int_0^t\mu(t)}{t}=\mu\)</span> w.p.1</li>
+<li>Def: <span class="math inline">\(Q(t)\)</span> is rate stable if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{Q(t)}{t}=0\)</span> w.p.1</li>
+<li>Def: <span class="math inline">\(Q(t)\)</span> is mean rate stable if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{E[Q(t)]}{t}=0\)</span></li>
 </ul>
-<hr>
-<p>Proof is made by list the inequality from $t=0$ to $t=T$ and sum them up. For the first one, divide by $T$ then is obvious. For the second one, put exception into square, the left side is $O(\sqrt{T})$.</p>
-<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>$A(t), \mu(t), \sim{}Bernoulli~\lambda,\mu$</p>
-<script type="math/tex; mode=display">Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)</script><script type="math/tex; mode=display">\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}-Q(t)(\mu-\lambda)</script><script type="math/tex; mode=display">\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}</script>
+<h4 id="theorem-rate-stability">Theorem-Rate Stability</h4>
+<p>Suppose <span class="math inline">\(Q(t)=X[0,t]-Y[0,t]\)</span>, and <span class="math inline">\(X[0,t]\)</span> has rate <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu(t)\)</span> has rate <span class="math inline">\(\mu\)</span>, then <span class="math inline">\(Q(t)\)</span> is rate stable <strong>if and only if</strong> <span class="math inline">\(\lambda\leq\mu\)</span></p>
+<hr />
+<p><span class="math display">\[Q(t)\text{ stable } \rightarrow\lambda\leq\mu\]</span> <span class="math display">\[\frac{Q(t)}{t}=\frac{X[0,t]}{t}-\frac{Y[0,t]}{t}\geq\frac{X[0,t]}{t}-\frac{\int_0^t\mu(t)}{t}\]</span></p>
+<hr />
+<p><span class="math display">\[Q(t)\text{ stable } \leftarrow\lambda\leq\mu\]</span></p>
+<h3 id="littles-law">Little's law</h3>
+<p><span class="math display">\[Q_{av}=\lim_{t\rightarrow\infty}\frac{1}{t}\int_{\tau=0}^tQ(\tau)d\tau,D_{av}=\lim_{k\rightarrow\infty}\frac{1}{k}\sum_{k=1}^kD_k\]</span> <span class="math display">\[\Rightarrow{}Q_{av}=\lambda{}D_{av}\]</span></p>
+<h2 id="lyapunov-analysis">Lyapunov Analysis</h2>
+<h3 id="definition-1">Definition</h3>
+<p>Denote <span class="math inline">\(\vec{Q}(t)=(Q_1(t),\dots,Q_k(t))\)</span>, Def <span class="math inline">\(L(\vec{Q}(t))\)</span> is a Lyapunov-function if</p>
+<ul>
+<li><span class="math inline">\(L(\vec{Q}(t))\geq0\)</span></li>
+<li><span class="math inline">\(L(0)=0\)</span></li>
+</ul>
+<p>Define one-slot conditional Lyapunov drift <span class="math display">\[\Delta(t)=E\{L(\vec{Q}(t+1))-L(\vec{Q}(t))|\vec{Q}(t)\}\]</span></p>
+<h3 id="theorem">Theorem</h3>
+<p>Suppose <span class="math inline">\(L(\vec{Q}(t))\)</span> is a Lyapunov function and satisifes <span class="math inline">\(\Delta(t)\leq{}B-e\sum_kQ_k(t)\)</span> and <span class="math inline">\(L(\vec{Q}(0))&lt;\infty\)</span>, then</p>
+<ul>
+<li><span class="math inline">\(e&gt;0\rightarrow{}Q(t)\)</span> is strongly stable <span class="math display">\[\lim_{T\rightarrow\infty}\sup\frac{1}{T}\sum_{t=0}^{T-1}\sum_kE\{Q_k(t)\}\leq\frac{B}{e}\]</span></li>
+<li><span class="math inline">\(e\geq0\)</span> and <span class="math inline">\(L(\vec{Q})=\sum_k{}w_kQ_k\)</span>, then <span class="math display">\[\lim_{t\rightarrow\infty}\frac{E\{Q_k(t)\}}{t}=0,\forall{}k\]</span></li>
+</ul>
+<hr />
+<p>Proof is made by list the inequality from <span class="math inline">\(t=0\)</span> to <span class="math inline">\(t=T\)</span> and sum them up. For the first one, divide by <span class="math inline">\(T\)</span> then is obvious. For the second one, put exception into square, the left side is <span class="math inline">\(O(\sqrt{T})\)</span>.</p>
+<h4 id="example">Example</h4>
+<p><span class="math inline">\(A(t), \mu(t), \sim{}Bernoulli~\lambda,\mu\)</span> <span class="math display">\[Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)\]</span> <span class="math display">\[\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}-Q(t)(\mu-\lambda)\]</span> <span class="math display">\[\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}\]</span></p>
+
   
   
     
@@ -518,15 +533,18 @@ Cumulative departure: Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)...">
       
         <a class='prev' href='/2019/09/16/Max%20Weight,%20Back%20Pressure%20and%20Utility%20Maximization/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Max Weight, Back Pressure and Utility Maximization</p>
-          <p class='content'>Queue Control Problem$A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)$
+          <p class='content'>Queue Control Problem
+\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)
 
-$Ai(t)$ is iid, $\mathbb{E}...</p>
+\(A_i(t)\) is iid, \(\ma...</p>
         </a>
       
       
         <a class='next' href='/2019/05/25/Optimal%20Transport/'>
           <p class='title'>Optimal Transport<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Wasserstein DistanceDefinitionConsider, general functions $f$ and $g$, the Wasserstein distance i...</p>
+          <p class='content'>Wasserstein Distance
+Definition
+Consider, general functions \(f\) and \(g\), the Wasserstein dist...</p>
         </a>
       
     </div>
@@ -622,7 +640,7 @@ $Ai(t)$ is iid, $\mathbb{E}...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Queue"><span class="toc-text">Queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Interval-and-Conserving"><span class="toc-text">Interval and Conserving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stability"><span class="toc-text">Stability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theorem-Rate-Stability"><span class="toc-text">Theorem-Rate Stability</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Little%E2%80%99s-law"><span class="toc-text">Little’s law</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lyapunov-Analysis"><span class="toc-text">Lyapunov Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-1"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-text">Queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interval-and-conserving"><span class="toc-text">Interval and Conserving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stability"><span class="toc-text">Stability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#theorem-rate-stability"><span class="toc-text">Theorem-Rate Stability</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#littles-law"><span class="toc-text">Little&#39;s law</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lyapunov-analysis"><span class="toc-text">Lyapunov Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition-1"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 

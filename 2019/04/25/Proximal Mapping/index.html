@@ -25,9 +25,11 @@
   
 
   
-    <meta name="description" content="ClosedClosed setA set $\mathcal{C}$ is closed if it contains its boundary:
-x^k\in\mathcal{C},x^k\rightarrow\bar{x}\Rightarrow\bar{x}\in\mathcal{C}
-the inters...">
+    <meta name="description" content="Closed
+Closed set
+A set \(\mathcal{C}\) is closed if it contains its boundary: \[x^k\in\mathcal{C},x^k\rightarrow\bar{x}\Rightarrow\bar{x}\in\mathcal{C}\]
+
+t...">
   
 
   <!-- feed -->
@@ -416,56 +418,95 @@ the inters...">
 
 
   
-  <h2 id="Closed"><a href="#Closed" class="headerlink" title="Closed"></a>Closed</h2><h3 id="Closed-set"><a href="#Closed-set" class="headerlink" title="Closed set"></a>Closed set</h3><p>A set $\mathcal{C}$ is closed if it contains its boundary:</p>
-<script type="math/tex; mode=display">x^k\in\mathcal{C},x^k\rightarrow\bar{x}\Rightarrow\bar{x}\in\mathcal{C}</script><ul>
+  <h2 id="closed">Closed</h2>
+<h3 id="closed-set">Closed set</h3>
+<p>A set <span class="math inline">\(\mathcal{C}\)</span> is closed if it contains its boundary: <span class="math display">\[x^k\in\mathcal{C},x^k\rightarrow\bar{x}\Rightarrow\bar{x}\in\mathcal{C}\]</span></p>
+<ul>
 <li>the intersection of closed sets is closed</li>
 <li>the union of a finite number of closed sets is closed</li>
-<li>inverse under linear mapping <script type="math/tex">\{x|Ax\in\mathcal{C}\}</script> is closed if $\mathcal{C}$ is closed</li>
+<li>inverse under linear mapping <span class="math display">\[\{x|Ax\in\mathcal{C}\}\]</span> is closed if <span class="math inline">\(\mathcal{C}\)</span> is closed</li>
 </ul>
 <a id="more"></a>
-<h3 id="Closed-function"><a href="#Closed-function" class="headerlink" title="Closed function"></a>Closed function</h3><p>a function is closed if its epigraph is a closed set or if all its<br>sublevel set is a closed set</p>
+<h3 id="closed-function">Closed function</h3>
+<p>a function is closed if its epigraph is a closed set or if all its sublevel set is a closed set</p>
 <ul>
-<li>If $f$ is continuous and $dom~f$ is closed, then $f$ is closed</li>
-<li>If $f$ is continuous and $dom~f$ is open, then $f$ is closed iff it converges to $\infty$ along every sequence converging to a boundary point of $dom~f$</li>
+<li>If <span class="math inline">\(f\)</span> is continuous and <span class="math inline">\(dom~f\)</span> is closed, then <span class="math inline">\(f\)</span> is closed</li>
+<li>If <span class="math inline">\(f\)</span> is continuous and <span class="math inline">\(dom~f\)</span> is open, then <span class="math inline">\(f\)</span> is closed iff it converges to <span class="math inline">\(\infty\)</span> along every sequence converging to a boundary point of <span class="math inline">\(dom~f\)</span></li>
 </ul>
-<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><ul>
-<li>sublevel sets: $f$ is closed iff all its subsevel sets are closed</li>
-<li>minimum: if $f$ is closed with bounded sublevel sets then it has a minimizer</li>
+<h3 id="properties">Properties</h3>
+<ul>
+<li>sublevel sets: <span class="math inline">\(f\)</span> is closed iff all its subsevel sets are closed</li>
+<li>minimum: if <span class="math inline">\(f\)</span> is closed with bounded sublevel sets then it has a minimizer</li>
 </ul>
-<h2 id="Conjugate-function"><a href="#Conjugate-function" class="headerlink" title="Conjugate function"></a>Conjugate function</h2><h3 id="Conjugate-functions-recall"><a href="#Conjugate-functions-recall" class="headerlink" title="Conjugate functions: recall"></a>Conjugate functions: recall</h3><ul>
-<li>the conjugate of a function $f$ is always closed and convex</li>
-<li>The indicator function of convex set $\mathcal{C}$: conjugate is support function of $\mathcal{C}$</li>
+<h2 id="conjugate-function">Conjugate function</h2>
+<h3 id="conjugate-functions-recall">Conjugate functions: recall</h3>
+<ul>
+<li>the conjugate of a function <span class="math inline">\(f\)</span> is always closed and convex</li>
+<li>The indicator function of convex set <span class="math inline">\(\mathcal{C}\)</span>: conjugate is support function of <span class="math inline">\(\mathcal{C}\)</span></li>
 <li>Norm: conjugate is indicator of unit dual norm ball</li>
 </ul>
-<h3 id="Second-conjugate"><a href="#Second-conjugate" class="headerlink" title="Second conjugate"></a>Second conjugate</h3><script type="math/tex; mode=display">f^{**}(x)=\sup_{y\in{}dom~f^*}(x^\top{}y-f^*(y)))</script><ul>
-<li>$f^{**}$ is closed and convex</li>
-<li>$f^{**}\leq{}f(x)$</li>
-<li>if $f$ is closed and convex, then $f^{**}\leq{}f(x)$</li>
+<h3 id="second-conjugate">Second conjugate</h3>
+<p><span class="math display">\[f^{**}(x)=\sup_{y\in{}dom~f^*}(x^\top{}y-f^*(y)))\]</span></p>
+<ul>
+<li><span class="math inline">\(f^{**}\)</span> is closed and convex</li>
+<li><span class="math inline">\(f^{**}\leq{}f(x)\)</span></li>
+<li>if <span class="math inline">\(f\)</span> is closed and convex, then <span class="math inline">\(f^{**}\leq{}f(x)\)</span></li>
 </ul>
-<h3 id="Calculus-rules"><a href="#Calculus-rules" class="headerlink" title="Calculus rules"></a>Calculus rules</h3><h4 id="Separable-sum"><a href="#Separable-sum" class="headerlink" title="Separable sum"></a>Separable sum</h4><script type="math/tex; mode=display">f(x_1,x_2)=g(x_1)+h(x_2),f^*(y_1,y_2)=g^*(y_1)+h^*(y_2)</script><h4 id="Scalar-multiplication"><a href="#Scalar-multiplication" class="headerlink" title="Scalar multiplication"></a>Scalar multiplication</h4><script type="math/tex; mode=display">\alpha{}>0,f(x)=\alpha{}g(x),f^*(y)=\alpha{}g^*(y/\alpha{})</script><h4 id="Addition-to-affine-function"><a href="#Addition-to-affine-function" class="headerlink" title="Addition to affine function"></a>Addition to affine function</h4><script type="math/tex; mode=display">f(x)=g(x)+a^\top+b,f^*(y)=g^*(y-a)-b</script><h4 id="Infimal-convolution"><a href="#Infimal-convolution" class="headerlink" title="Infimal convolution"></a>Infimal convolution</h4><script type="math/tex; mode=display">f(x)=\inf_{u+v=x}(g(u)+h(v)),f^*(y)=g^*(y)+h^*(y)</script><h2 id="Proximal-mapping"><a href="#Proximal-mapping" class="headerlink" title="Proximal mapping"></a>Proximal mapping</h2><p>Definition: the proximal mapping of a closed convex function $f$ is:</p>
-<script type="math/tex; mode=display">\text{prox}_f(x)=\arg\min_u\left(f(u)+\frac{1}{2}||u-x||_2^2\right)</script><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><script type="math/tex; mode=display">u=\text{prox}_f(x)\Leftrightarrow{}0\in\partial{}f(u)+u-x\Leftrightarrow{}x-u\in\partial{}f(u)\Leftrightarrow{}f(z)\geq{}f(u)+(x-u)^\top(z-u)</script><p>If $f(x)=\delta_C(x)$, $C$ is closed and convex $\Rightarrow{}(x-u)^\top(z-u)\leq0$</p>
-<h3 id="Calculus-rules-1"><a href="#Calculus-rules-1" class="headerlink" title="Calculus rules"></a>Calculus rules</h3><script type="math/tex; mode=display">f(x)=\lambda{}g(x/\lambda)\Rightarrow{}\text{prox}_f(x)=\lambda\text{prox}_{\lambda^{-1}g}(x/\lambda)</script><h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><script type="math/tex; mode=display">\text{prox}_f(x)=\arg\min_y\{f(y)+\frac{1}{2}||y-x||^2\}=\arg\min_{y,z}\{\lambda{}g(z)+\frac{1}{2}||\lambda{}z-x||_2^2\left|z=\frac{y}{\lambda}\}\right.</script><script type="math/tex; mode=display">L(y,z;\mu)=\lambda{}g(z)+\frac{1}{2}||\lambda{}z-x||_2^2+<\lambda{}z-y,\mu></script><script type="math/tex; mode=display">\partial_yL=0,\partial_zL=0\Rightarrow{}z=\text{prox}_{\lambda^{-1}g}(x/\lambda)</script><h3 id="Moreau-decomposition"><a href="#Moreau-decomposition" class="headerlink" title="Moreau decomposition"></a>Moreau decomposition</h3><script type="math/tex; mode=display">x=\text{prox}_f(x)+\text{prox}_{f^*}(x)\quad{}\text{for all }x</script><h3 id="Composition-with-affine-mapping"><a href="#Composition-with-affine-mapping" class="headerlink" title="Composition with affine mapping"></a>Composition with affine mapping</h3><ul>
-<li>for general $A$, prox-operator of $f$ does not follow easily from prox-operator of $g$</li>
-<li>however, if $AA^\top=(1/\alpha)I$</li>
+<h3 id="calculus-rules">Calculus rules</h3>
+<h4 id="separable-sum">Separable sum</h4>
+<p><span class="math display">\[f(x_1,x_2)=g(x_1)+h(x_2),f^*(y_1,y_2)=g^*(y_1)+h^*(y_2)\]</span></p>
+<h4 id="scalar-multiplication">Scalar multiplication</h4>
+<p><span class="math display">\[\alpha{}&gt;0,f(x)=\alpha{}g(x),f^*(y)=\alpha{}g^*(y/\alpha{})\]</span></p>
+<h4 id="addition-to-affine-function">Addition to affine function</h4>
+<p><span class="math display">\[f(x)=g(x)+a^\top+b,f^*(y)=g^*(y-a)-b\]</span></p>
+<h4 id="infimal-convolution">Infimal convolution</h4>
+<p><span class="math display">\[f(x)=\inf_{u+v=x}(g(u)+h(v)),f^*(y)=g^*(y)+h^*(y)\]</span></p>
+<h2 id="proximal-mapping">Proximal mapping</h2>
+<p>Definition: the proximal mapping of a closed convex function <span class="math inline">\(f\)</span> is: <span class="math display">\[\text{prox}_f(x)=\arg\min_u\left(f(u)+\frac{1}{2}||u-x||_2^2\right)\]</span></p>
+<h4 id="example">Example</h4>
+<p><span class="math display">\[u=\text{prox}_f(x)\Leftrightarrow{}0\in\partial{}f(u)+u-x\Leftrightarrow{}x-u\in\partial{}f(u)\Leftrightarrow{}f(z)\geq{}f(u)+(x-u)^\top(z-u)\]</span> If <span class="math inline">\(f(x)=\delta_C(x)\)</span>, <span class="math inline">\(C\)</span> is closed and convex <span class="math inline">\(\Rightarrow{}(x-u)^\top(z-u)\leq0\)</span></p>
+<h3 id="calculus-rules-1">Calculus rules</h3>
+<p><span class="math display">\[f(x)=\lambda{}g(x/\lambda)\Rightarrow{}\text{prox}_f(x)=\lambda\text{prox}_{\lambda^{-1}g}(x/\lambda)\]</span></p>
+<h4 id="proof">Proof</h4>
+<p><span class="math display">\[\text{prox}_f(x)=\arg\min_y\{f(y)+\frac{1}{2}||y-x||^2\}=\arg\min_{y,z}\{\lambda{}g(z)+\frac{1}{2}||\lambda{}z-x||_2^2\left|z=\frac{y}{\lambda}\}\right.\]</span> <span class="math display">\[L(y,z;\mu)=\lambda{}g(z)+\frac{1}{2}||\lambda{}z-x||_2^2+&lt;\lambda{}z-y,\mu&gt;\]</span> <span class="math display">\[\partial_yL=0,\partial_zL=0\Rightarrow{}z=\text{prox}_{\lambda^{-1}g}(x/\lambda)\]</span></p>
+<h3 id="moreau-decomposition">Moreau decomposition</h3>
+<p><span class="math display">\[x=\text{prox}_f(x)+\text{prox}_{f^*}(x)\quad{}\text{for all }x\]</span></p>
+<h3 id="composition-with-affine-mapping">Composition with affine mapping</h3>
+<ul>
+<li>for general <span class="math inline">\(A\)</span>, prox-operator of <span class="math inline">\(f\)</span> does not follow easily from prox-operator of <span class="math inline">\(g\)</span></li>
+<li>however, if <span class="math inline">\(AA^\top=(1/\alpha)I\)</span></li>
 </ul>
-<script type="math/tex; mode=display">f(x)=g(Ax+b)\Rightarrow{}\text{prox}_f(x)=x-\alpha{}A^\top(Ax+b-\text{prob}_{\alpha^{-1}g}(Ax+b))</script><h2 id="Projections"><a href="#Projections" class="headerlink" title="Projections"></a>Projections</h2><h3 id="Affine-sets"><a href="#Affine-sets" class="headerlink" title="Affine sets"></a>Affine sets</h3><p>$C={x|Ax=b}$, with $A\in{}R^{p\times{}n}$ and $\textbf{rank}(A)=p$</p>
-<script type="math/tex; mode=display">P_C(x)=x+A^\top(AA^\top)^{-1}(b-Ax)</script><p>inexpensive if $p\ll{}n$, or $AA^\top=I$</p>
-<h3 id="Simple-polyhedral-sets"><a href="#Simple-polyhedral-sets" class="headerlink" title="Simple polyhedral sets"></a>Simple polyhedral sets</h3><h4 id="Halfspace"><a href="#Halfspace" class="headerlink" title="Halfspace"></a>Halfspace</h4><p>$C={x|a^\top{}x\leq{}b}$</p>
-<script type="math/tex; mode=display">P_C(x)=x+\frac{b-a^\top{}x}{||a||_2^2}a\quad\text{if }a^\top{}x>b,\quad{}P_C(x)=x\quad\text{if }a^\top{}x\leq{}b</script><h4 id="Probability-simplex"><a href="#Probability-simplex" class="headerlink" title="Probability simplex"></a>Probability simplex</h4><p>$C={x|\textbf{1}^\top{}x=1,x\succeq0}$</p>
-<script type="math/tex; mode=display">P_C(x)=(x-\lambda\textbf{1})_{+}</script><p>where $\lambda$ is the solution of the equation</p>
-<script type="math/tex; mode=display">\textbf{1}^\top(x-\lambda\textbf{1})_{+}=\sum_{i=1}^n\max\{0,x_k-\lambda\}=1</script><h2 id="Support-function-Norm-and-Distance"><a href="#Support-function-Norm-and-Distance" class="headerlink" title="Support function, Norm and Distance"></a>Support function, Norm and Distance</h2><h3 id="Support-function"><a href="#Support-function" class="headerlink" title="Support function"></a>Support function</h3><ul>
+<p><span class="math display">\[f(x)=g(Ax+b)\Rightarrow{}\text{prox}_f(x)=x-\alpha{}A^\top(Ax+b-\text{prob}_{\alpha^{-1}g}(Ax+b))\]</span></p>
+<h2 id="projections">Projections</h2>
+<h3 id="affine-sets">Affine sets</h3>
+<p><span class="math inline">\(C=\{x|Ax=b\}\)</span>, with <span class="math inline">\(A\in{}R^{p\times{}n}\)</span> and <span class="math inline">\(\textbf{rank}(A)=p\)</span> <span class="math display">\[P_C(x)=x+A^\top(AA^\top)^{-1}(b-Ax)\]</span> inexpensive if <span class="math inline">\(p\ll{}n\)</span>, or <span class="math inline">\(AA^\top=I\)</span></p>
+<h3 id="simple-polyhedral-sets">Simple polyhedral sets</h3>
+<h4 id="halfspace">Halfspace</h4>
+<p><span class="math inline">\(C=\{x|a^\top{}x\leq{}b\}\)</span> <span class="math display">\[P_C(x)=x+\frac{b-a^\top{}x}{||a||_2^2}a\quad\text{if }a^\top{}x&gt;b,\quad{}P_C(x)=x\quad\text{if }a^\top{}x\leq{}b\]</span></p>
+<h4 id="probability-simplex">Probability simplex</h4>
+<p><span class="math inline">\(C=\{x|\textbf{1}^\top{}x=1,x\succeq0\}\)</span> <span class="math display">\[P_C(x)=(x-\lambda\textbf{1})_{+}\]</span> where <span class="math inline">\(\lambda\)</span> is the solution of the equation <span class="math display">\[\textbf{1}^\top(x-\lambda\textbf{1})_{+}=\sum_{i=1}^n\max\{0,x_k-\lambda\}=1\]</span></p>
+<h2 id="support-function-norm-and-distance">Support function, Norm and Distance</h2>
+<h3 id="support-function">Support function</h3>
+<ul>
 <li>conjugate of support function of closed convex set is indicator function</li>
 </ul>
-<script type="math/tex; mode=display">f(x)=\sup_{y\in{}C}x^\top{}y,f^*(y)=\delta_C(y)</script><ul>
+<p><span class="math display">\[f(x)=\sup_{y\in{}C}x^\top{}y,f^*(y)=\delta_C(y)\]</span></p>
+<ul>
 <li>prox-operator of support function follows from Moreau decomposition</li>
 </ul>
-<script type="math/tex; mode=display">\text{prox}_{tf}(x)=x-t\text{prox}_{t^{-1}f^*}(x/t)=x-tP_C(x/t)</script><h3 id="Norm"><a href="#Norm" class="headerlink" title="Norm"></a>Norm</h3><ul>
+<p><span class="math display">\[\text{prox}_{tf}(x)=x-t\text{prox}_{t^{-1}f^*}(x/t)=x-tP_C(x/t)\]</span></p>
+<h3 id="norm">Norm</h3>
+<ul>
 <li>conjugate of norm is indicator function of dual norm</li>
 </ul>
-<script type="math/tex; mode=display">f(x)=||x||,f^*(y)=\delta_B(y),B=\{y|~||y||_*\leq1\}</script><ul>
+<p><span class="math display">\[f(x)=||x||,f^*(y)=\delta_B(y),B=\{y|~||y||_*\leq1\}\]</span></p>
+<ul>
 <li>prox-operator of norm follows from Moreau decomposition</li>
 </ul>
-<script type="math/tex; mode=display">\text{prox}_{tf}(x)=-P_{tB}(x)</script><h3 id="Euclidean-distance-to-a-set"><a href="#Euclidean-distance-to-a-set" class="headerlink" title="Euclidean distance to a set"></a>Euclidean distance to a set</h3><script type="math/tex; mode=display">d(x)=\inf_{y\in{}C}||x-y||_2</script><script type="math/tex; mode=display">\text{prox}_{td}(x)=\left\{\begin{aligned}&x+\frac{t}{d(x)}(P_C(x)-x)&d(x)\geq{}t\\&P_C(x)&~\text{otherwise}\end{aligned}\right.</script>
+<p><span class="math display">\[\text{prox}_{tf}(x)=-P_{tB}(x)\]</span></p>
+<h3 id="euclidean-distance-to-a-set">Euclidean distance to a set</h3>
+<p><span class="math display">\[d(x)=\inf_{y\in{}C}||x-y||_2\]</span> <span class="math display">\[\text{prox}_{td}(x)=\left\{\begin{aligned}&amp;x+\frac{t}{d(x)}(P_C(x)-x)&amp;d(x)\geq{}t\\&amp;P_C(x)&amp;~\text{otherwise}\end{aligned}\right.\]</span></p>
+
   
   
     
@@ -528,14 +569,16 @@ the inters...">
       
         <a class='prev' href='/2019/05/25/Optimal%20Transport/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Optimal Transport</p>
-          <p class='content'>Wasserstein DistanceDefinitionConsider, general functions $f$ and $g$, the Wasserstein distance i...</p>
+          <p class='content'>Wasserstein Distance
+Definition
+Consider, general functions \(f\) and \(g\), the Wasserstein dist...</p>
         </a>
       
       
         <a class='next' href='/2019/04/16/Subgradient%20Method/'>
           <p class='title'>Subgradient Method<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Subgradient$g$ is a subgradient of a convex function $f$ at $x\in{}dom~f$ if
-f(y)\geq{}f(x)+g^\to...</p>
+          <p class='content'>Subgradient
+\(g\) is a subgradient of a convex function \(f\) at \(x\in{}dom~f\) if \[f(y)\geq{}f...</p>
         </a>
       
     </div>
@@ -631,7 +674,7 @@ f(y)\geq{}f(x)+g^\to...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Closed"><span class="toc-text">Closed</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Closed-set"><span class="toc-text">Closed set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Closed-function"><span class="toc-text">Closed function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties"><span class="toc-text">Properties</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conjugate-function"><span class="toc-text">Conjugate function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conjugate-functions-recall"><span class="toc-text">Conjugate functions: recall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-conjugate"><span class="toc-text">Second conjugate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Calculus-rules"><span class="toc-text">Calculus rules</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Separable-sum"><span class="toc-text">Separable sum</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalar-multiplication"><span class="toc-text">Scalar multiplication</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Addition-to-affine-function"><span class="toc-text">Addition to affine function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Infimal-convolution"><span class="toc-text">Infimal convolution</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proximal-mapping"><span class="toc-text">Proximal mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Calculus-rules-1"><span class="toc-text">Calculus rules</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Moreau-decomposition"><span class="toc-text">Moreau decomposition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Composition-with-affine-mapping"><span class="toc-text">Composition with affine mapping</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Projections"><span class="toc-text">Projections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Affine-sets"><span class="toc-text">Affine sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Simple-polyhedral-sets"><span class="toc-text">Simple polyhedral sets</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Halfspace"><span class="toc-text">Halfspace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Probability-simplex"><span class="toc-text">Probability simplex</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Support-function-Norm-and-Distance"><span class="toc-text">Support function, Norm and Distance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Support-function"><span class="toc-text">Support function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Norm"><span class="toc-text">Norm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Euclidean-distance-to-a-set"><span class="toc-text">Euclidean distance to a set</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#closed"><span class="toc-text">Closed</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#closed-set"><span class="toc-text">Closed set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#closed-function"><span class="toc-text">Closed function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conjugate-function"><span class="toc-text">Conjugate function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#conjugate-functions-recall"><span class="toc-text">Conjugate functions: recall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#second-conjugate"><span class="toc-text">Second conjugate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calculus-rules"><span class="toc-text">Calculus rules</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#separable-sum"><span class="toc-text">Separable sum</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#scalar-multiplication"><span class="toc-text">Scalar multiplication</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#addition-to-affine-function"><span class="toc-text">Addition to affine function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#infimal-convolution"><span class="toc-text">Infimal convolution</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proximal-mapping"><span class="toc-text">Proximal mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calculus-rules-1"><span class="toc-text">Calculus rules</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#moreau-decomposition"><span class="toc-text">Moreau decomposition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#composition-with-affine-mapping"><span class="toc-text">Composition with affine mapping</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#projections"><span class="toc-text">Projections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#affine-sets"><span class="toc-text">Affine sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#simple-polyhedral-sets"><span class="toc-text">Simple polyhedral sets</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#halfspace"><span class="toc-text">Halfspace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#probability-simplex"><span class="toc-text">Probability simplex</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#support-function-norm-and-distance"><span class="toc-text">Support function, Norm and Distance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#support-function"><span class="toc-text">Support function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#norm"><span class="toc-text">Norm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#euclidean-distance-to-a-set"><span class="toc-text">Euclidean distance to a set</span></a></li></ol></li></ol>
     </div>
   </section>
 

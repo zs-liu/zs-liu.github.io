@@ -371,14 +371,15 @@
   
   <div class='md'>
     
-      <h2 id="Multi-Armed-Bandit"><a href="#Multi-Armed-Bandit" class="headerlink" title="Multi Armed Bandit"></a>Multi Armed Bandit</h2><ul>
-<li>$t=1,2,\cdots,N$</li>
-<li>$k$ arm</li>
-<li>at $t$, choose arm $i$, receive reward $X_{i,t}\sim{}D_i$(iid unknown distribution)</li>
-<li>Policy: $\pi={i(t),t=1,2,\cdots,N}$</li>
-<li>Goal: $\max\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}}$</li>
-<li>${\rm OPT}=N\max<em>i\mu_i=N\mu,\mu_i=\mathbb{E}{X</em>{i,t}}$</li>
-<li>${\rm Reg}={\rm OPT}-\mathbb{E}{\sum<em>{t=1}^NX</em>{i,t}|\pi}$</li>
+      <h2 id="multi-armed-bandit">Multi Armed Bandit</h2>
+<ul>
+<li><span class="math inline">\(t=1,2,\cdots,N\)</span></li>
+<li><span class="math inline">\(k\)</span> arm</li>
+<li>at <span class="math inline">\(t\)</span>, choose arm <span class="math inline">\(i\)</span>, receive reward <span class="math inline">\(X_{i,t}\sim{}D_i\)</span>(iid unknown distribution)</li>
+<li>Policy: <span class="math inline">\(\pi=\{i(t),t=1,2,\cdots,N\}\)</span></li>
+<li>Goal: <span class="math inline">\(\max\mathbb{E}\{\sum_{t=1}^NX_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm OPT}=N\max_i\mu_i=N\mu,\mu_i=\mathbb{E}\{X_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm Reg}={\rm OPT}-\mathbb{E}\{\sum_{t=1}^NX_{i,t}|\pi\}\)</span></li>
 </ul>
     
   </div>
