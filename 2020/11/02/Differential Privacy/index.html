@@ -19,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>About - 鲈鱼柳的博客</title>
+  <title>Differential Privacy - 鲈鱼柳的博客</title>
+  
+    <meta name="keywords" content="Privacy Engineering">
   
 
   
@@ -77,6 +79,8 @@
       <p class="title"></p>
       <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
         <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
       </ul>
     </div>
@@ -307,7 +311,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper docs dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -338,8 +342,8 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-<div class='l_main no_sidebar'>
-  <article class="article post white-box reveal md shadow article-type-docs" id="docs" itemscope itemprop="blogPost">
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
 
 
@@ -348,17 +352,113 @@
     
     
     
+      <h1 class="title">
+        Differential Privacy
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="addition/me.png">
+    <p>鲈鱼柳</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Nov 2, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Differential Privacy" data-path="/2020/11/02/Differential%20Privacy/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
   </div>
 
 
   
-  <center>
-<p>Hi，欢迎来到我的博客。如果想进一步了解我，请查看我的<a href="/addition/resume.pdf">简历</a>。</p>
-<p>如需防止任何第三方获取你我的沟通信息，请在<a href="/addition/encrypt/encrypt.html">此处</a>将你的文本信息加密并且将密文通过<a href="mailto:zsliu98@gmail.com">电子邮件</a>发送给我。</p>
-<hr />
-<p>Hi, welcome to my blog. If you want to know more about me, please check my <a href="/addition/resume.pdf">resume</a>.</p>
-<p>If you want to secure your contact with me, please encrypt your text <a href="/addition/encrypt/encrypt.html">here</a> and send me the encrypted text by <a href="mailto:zsliu98@gmail.com">email</a>.</p>
-</center>
+  <h2 id="definition">Definition</h2>
+<h3 id="neighboring-dataset">Neighboring dataset</h3>
+<p>For any dataset <span class="math inline">\(D,D^{\prime}\in\mathcal{D}\)</span>, <span class="math inline">\(D,D^{\prime}\)</span> are neighboring datasets if and only if one of the following two statements is true:</p>
+<ul>
+<li><span class="math inline">\(\exists x\in D^{\prime}\)</span>, s.t. <span class="math inline">\(D^{\prime}=D\cup\{x\}\)</span></li>
+<li><span class="math inline">\(\exists x\in D\)</span>, s.t. <span class="math inline">\(D=D^{\prime}\cup\{x\}\)</span></li>
+</ul>
+<p>Two neighboring datasets always have different sizes, i.e. <span class="math inline">\(|D_1|-|D_2|=\pm1\)</span></p>
+<h3 id="differential-privacy">Differential privacy</h3>
+<p>Let <span class="math inline">\(M:\mathcal{D}\rightarrow Y\)</span> be a randomized mechanism. <span class="math inline">\(M\)</span> is <span class="math inline">\(\varepsilon\)</span>-<strong>differentially private</strong> if, for any neighboring datasets <span class="math inline">\(D,D^{\prime}\in\mathcal{D}\)</span> and any <span class="math inline">\(S\subset \text{ran }M\)</span>, we have:</p>
+<p><span class="math display">\[\text{Pr}[M(D)\in S]\leq e^{\varepsilon}\text{Pr}[M(D^{\prime})\in S]\]</span></p>
+<p>Differential privacy guarantees that the result of a certain query on the dataset must be essentially the same irrespective of the presence of any single individual in the dataset.</p>
+<h2 id="laplace-mechanism">Laplace mechanism</h2>
+<h3 id="global-sensitivity">Global sensitivity</h3>
+<p>Let <span class="math inline">\(f:\mathcal{D}\rightarrow \mathbb{R}^k\)</span>, with <span class="math inline">\(f(D)=(f_1(D),f_2(D),\cdots,f_k(D))\)</span>. The global sensitivity of <span class="math inline">\(f\)</span> is:</p>
+<p><span class="math display">\[\Delta f=\max_{D_1,D_2}||f(D_1)-f(D_2)||_1=\max_{D_1,D_2}\sum_{i=1}^k|f_i(D_1)-f_i(D_2)|\]</span></p>
+<p>where <span class="math inline">\(D_1,D_2\)</span> can be any arbitrary neighboring datasets in <span class="math inline">\(\mathcal{D}~\)</span>.</p>
+<h3 id="laplace-mechanism-1">Laplace mechanism</h3>
+<p>For any <span class="math inline">\(f:\mathcal{D}\rightarrow\mathbb{R}^k\)</span>, the mechanism <span class="math inline">\(M:\mathcal{D}\rightarrow\mathbb{R}\)</span> defined by</p>
+<p><span class="math display">\[M(D)=f(D)+\text{Lap}(\Delta f/\varepsilon)\]</span></p>
+<p>is <span class="math inline">\(\varepsilon\)</span>-DP. This is called the Laplace mechanism.</p>
+<p>When <span class="math inline">\(\Delta f\)</span> is unbounded (or very large), we cannot apply the simple Laplace mechanism without destroying utility. Fortunately, in many cases it is still possible to use other mechanisms.</p>
+<h3 id="composition-theorem">Composition Theorem</h3>
+<p>Let <span class="math inline">\(M_1,\cdots,M_k\)</span> be such that every <span class="math inline">\(M_i\)</span> is an <span class="math inline">\(\varepsilon_i\)</span>-DP mechanism. Then <span class="math inline">\((M_1,\cdots,M_k)\)</span> is an <span class="math inline">\(\sum_{i=1}^k\varepsilon_i\)</span>-DP mechanism.</p>
+<p>This theorem is a corollary from the global sensitivity definition. Actually, we can decide on an <span class="math inline">\(\varepsilon\)</span>, called the privacy budget, which then defines the total number of queries anyone can run on the dataset and the noise added to the query results. For example, 10 queries at <span class="math inline">\(\varepsilon_i=0.1\)</span> can protect privacy as good as 2 queries at <span class="math inline">\(\varepsilon_i=0.5\)</span>, because they both have budget <span class="math inline">\(\varepsilon=1\)</span>.</p>
+<h3 id="optimized-mechanism-for-histograms">Optimized mechanism for histograms</h3>
+<p>A histogram consists of queries</p>
+<p><span class="math display">\[\text{COUNT } Q_i: x\in X_i\]</span></p>
+<p>where <span class="math inline">\(\cap_{i=1}^kX_i=\varnothing\)</span> .</p>
+<p>If we add <span class="math inline">\(\text{Lap}(1/\varepsilon)\)</span> noise to each query result, then the whole mechanism is <span class="math inline">\(\varepsilon\)</span>-DP. This optimization is a corollary from the global sensitivity definiton.</p>
+<h2 id="group-privacy">Group privacy</h2>
+<p>Any <span class="math inline">\(\varepsilon\)</span>-DP mechanism <span class="math inline">\(M\)</span> is <span class="math inline">\(k\varepsilon\)</span>-DL for groups of size <span class="math inline">\(k\)</span>. This means that it's "<span class="math inline">\(k\varepsilon\)</span> hard" to determine whether any entire group of <span class="math inline">\(k\)</span> individuals belongs to the dataset, based on the output of <span class="math inline">\(M\)</span>.</p>
+<h2 id="local-differential-privacy">Local differential privacy</h2>
+<h3 id="introduction">Introduction</h3>
+<p>In local differential privacy, every user “adds noise” to his own data (locally) and then shares the “privatized” data with the analyst. The analyst can then run any computation on these privatized data.</p>
+<h3 id="local-differential-privacy-1">Local differential privacy</h3>
+<p>Let <span class="math inline">\(R\)</span> be a set of responses. A randomized algorithm <span class="math inline">\(M:R\rightarrow Y\)</span> is <span class="math inline">\(\varepsilon\)</span>-<strong>local differentially private</strong> if, for responses <span class="math inline">\(r_1,r_2\in R\)</span> and any <span class="math inline">\(S\subset \text{ran }M\)</span>, we have:</p>
+<p><span class="math display">\[\text{Pr}[M(r_1)\in S]\leq e^{\varepsilon}\text{Pr}[M(r_2)\in S]\]</span></p>
+<h3 id="example">Example</h3>
+<p>Suppose a professor wants to conduct a survey among students asking the question: “Have you cheated at the exam?”. Every student is asked to answer YES or NO, following these steps:</p>
+<ol type="1">
+<li>Flip a biased coin, with probability of tails <span class="math inline">\(p &gt; 0.5\)</span></li>
+<li>If tails, then respond truthfully</li>
+<li>If heads, then lie.</li>
+</ol>
+<p>For this mechanism</p>
+<p><span class="math display">\[\varepsilon=\log(\frac{p}{1-p})\]</span></p>
 
   
   
@@ -366,6 +466,16 @@
     <div class='footer'>
       
       
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/02/Differential%20Privacy/>https://zs-liu.github.io/2020/11/02/Differential%20Privacy/</a></p>
+              
+            
+          </blockquote>
+        </div>
       
       
     </div>
@@ -377,6 +487,29 @@
   <div class='article-meta' id="bottom">
     <div class='new-meta-box'>
       
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-20T23:00:57+00:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Dec 21, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
     </div>
   </div>
 
@@ -384,6 +517,25 @@
   
   
 
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Shamir Secret Sharing and BGW Protocol</p>
+          <p class='content'>MPC (Multi-party Computation)
+Definition
+Given \(n\) parties, design a protocol which computes a ...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/10/26/Query-based%20System/'>
+          <p class='title'>Query-based System<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Introduction
+
+Query-based systems aim at giving researchers and organizations anonymous access to...</p>
+        </a>
+      
+    </div>
   
 </article>
 
@@ -403,10 +555,86 @@
 
 
 
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
 
 </div>
 <aside class='l_side'>
   
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>Content</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#neighboring-dataset"><span class="toc-text">Neighboring dataset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#differential-privacy"><span class="toc-text">Differential privacy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#laplace-mechanism"><span class="toc-text">Laplace mechanism</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#global-sensitivity"><span class="toc-text">Global sensitivity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#laplace-mechanism-1"><span class="toc-text">Laplace mechanism</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#composition-theorem"><span class="toc-text">Composition Theorem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#optimized-mechanism-for-histograms"><span class="toc-text">Optimized mechanism for histograms</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#group-privacy"><span class="toc-text">Group privacy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#local-differential-privacy"><span class="toc-text">Local differential privacy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#local-differential-privacy-1"><span class="toc-text">Local differential privacy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
 
 </aside>
 
@@ -419,8 +647,8 @@
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Differential Privacy";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
