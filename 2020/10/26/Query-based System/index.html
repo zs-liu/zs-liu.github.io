@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -21,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Category: Computer - 鲈鱼柳的博客</title>
+  <title>Query-based System - 鲈鱼柳的博客</title>
+  
+    <meta name="keywords" content="Privacy Engineering">
   
 
   
@@ -311,7 +311,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -342,74 +342,294 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        Query-based System
+      </h1>
+      <div class='new-meta-box'>
         
           
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="addition/me.png">
+    <p>鲈鱼柳</p>
+  </a>
+</div>
+
+          
         
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2019/01/22/Latex%20Manual/">
-        $\rm \LaTeX$ Manual
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <h2 id="text">Text</h2>
-    
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2019-01-22</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 26, 2020</p>
+  </a>
+</div>
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Computer/">Computer</a>
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Query-based System" data-path="/2020/10/26/Query-based%20System/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  <h2 id="introduction">Introduction</h2>
+<ul>
+<li>Query-based systems aim at giving researchers and organizations anonymous access to the data without sharing with them the individual-level data</li>
+<li>This can be through online interfaces, SQL queries, verified algorithms, etc. which would only return aggregated data</li>
+<li>In this post, we only consider <code>COUNT</code> interface</li>
+</ul>
+<h2 id="query-size-restriction-qsr">Query size restriction (QSR)</h2>
+<h3 id="definition">Definition</h3>
+<p>A query <span class="math inline">\(Q\)</span> is a logical formula that selects a specific set of rows. Define:</p>
+<p><span class="math display">\[Q= C_1\land \cdots \land C_h\]</span></p>
+<p><span class="math display">\[\{Q\}_D=\{x|x\in D,Q(x)=\text{True}\}\]</span></p>
+<p>where <span class="math inline">\(C_i\)</span> is an expression of the form "attribute ? value".</p>
+<p>QSR imposes that every query such that <span class="math inline">\(|\{Q\}_D|\leq t\)</span> is blocked where <span class="math inline">\(t\)</span> is the threshold made by the data curator.</p>
+<h3 id="intersection-attack">Intersection Attack</h3>
+<blockquote>
+<p>COUNT Q1: students in DoC AND code with Notepad?</p>
+<p>COUNT Q2: students in DoC AND born on 1994-09-23 AND code with Notepad?</p>
+</blockquote>
+<p>Counting <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(Q_2\)</span> are likely to have answers <span class="math inline">\(A_1,A_2&gt;t\)</span>, so they won’t be blocked by the query set size restriction. However, if <span class="math inline">\(A_1-A_2=0\)</span>, we will know that the person born on 1994-09-23 doesn’t code with Notepad.</p>
+<p>Intersection attack uses the answers of multiple queries to learn information about a single individual. It has been shown that detecting any intersection attacks is an NP-hard problem.</p>
+<h2 id="unbiased-noise-addition">Unbiased noise addition</h2>
+<h3 id="bounded-noise">Bounded noise</h3>
+<p>Bounded noise will leak information if the attacker knows the noise mechanism. For example, noise <span class="math inline">\(u\sim U[-2,2]\)</span> is added to the above intersection attack query. If we obtain the result <span class="math inline">\(\hat{A_1}=A_1+2=586,\hat{A_2}=A_2-2=581\)</span> and we know that only Bob born on that day, we will know <span class="math inline">\(A_1=584,A_2=583\)</span> <strong>with certainty</strong> because <span class="math inline">\(A_1,A_2\)</span> differs at most <span class="math inline">\(1\)</span>.</p>
+<h3 id="unbounded-noise">Unbounded noise</h3>
+<ul>
+<li>Centered at 0, as to not introduce biases</li>
+<li>Large perturbations are possible but unlikely</li>
+</ul>
+<h3 id="averaging-attack">Averaging attack</h3>
+<p>Averaging attack asks the same question several times and takes the average to find the right value. Formally, this can be done in two ways (frequentist and Bayesian):</p>
+<ul>
+<li>Compute the average of the samples and apply the central limit theorem (CLT). CLT says that this average converges to the mean (i.e. the true value)</li>
+<li>Use Bayes’ rule with multiple observations. This method immediately gives not only the most likely value (the average), but also a full posterior distribution</li>
+</ul>
+<blockquote>
+<p>Assume Gaussian noise <span class="math inline">\(N(0,\sigma^2)\)</span> is added. We can conclude that if the attacker wants to decide whether Bob is in the dataset and his query number <span class="math inline">\(n\geq 4\sigma^2z_{\alpha}^2\)</span>, the attacker will have confidence (probability of making an incorrect prediction) <span class="math inline">\(\alpha\)</span> .</p>
+</blockquote>
+<h2 id="consistent-noise-addition">Consistent noise addition</h2>
+<p>If our noises were to be consistent, we wouldn’t learn anything by asking the same question again. Consistent noise can be achieved through:</p>
+<ul>
+<li>Caching, basically making sure that we cache the noisy result of every query and return this if the same question is asked again</li>
+<li>Seeded pseudorandom number generator (PRNG): in short, we seed our noise generator to ensure that when the query is the same, the exact same noise is added. The seed could e.g. be the hash of all the parameters of the query</li>
+</ul>
+<h3 id="semantic-attack">Semantic attack</h3>
+<p>Tf the query language we use is expressive enough, there often exist multiple ways to ask the same questions:</p>
+<blockquote>
+<p>COUNT Q1: students in DoC AND code with Notepad AND born between 1994-09-23 00:00 and 1994-09-24 00:00?</p>
+<p>COUNT Q2: students in DoC AND code with Notepad AND born between 1994-09-23 00:01 and 1994-09-24 00:01?</p>
+</blockquote>
+<p>When we get a great number of answers, we are able to cancel out the consistent noise by taking average.</p>
+<h2 id="diffixs-sticky-noise">Diffix's sticky noise</h2>
+<p>Diffix's output of counting <span class="math inline">\(Q\)</span> is:</p>
+<p><span class="math display">\[\text{COUNT }\tilde{Q}(D)=\text{COUNT }Q(D)+\sum_{i=1}^h\text{static}[C_i]+\sum_{i=1}^h\text{dynamic}_Q[C_i]\]</span></p>
+<h3 id="static-noise">Static noise</h3>
+<p>For each condition <span class="math inline">\(C_i\)</span>, the noise value <span class="math inline">\(\text{static}[C_i]\)</span> is generated by drawing a random value from <span class="math inline">\(N(0,1)\)</span>. The random value is generated using a PRNG seeded with:</p>
+<p><span class="math display">\[\text{static_seed}_{C_i}=\text{hash}(C_i,\text{salt})\]</span></p>
+<h3 id="dynamic-noise">Dynamic noise</h3>
+<p>For each condition <span class="math inline">\(C_i\)</span>, the noise value <span class="math inline">\(\text{dynamic}_Q[C_i]\)</span> is generated by drawing a random value from <span class="math inline">\(N(0,1)\)</span>. The random value is generated using a PRNG seeded with:</p>
+<p><span class="math display">\[\text{dynamic_seed}_{C_i,Q}=\text{hash}(\text{static_seed}_{C_i},\{Q\}_D)\]</span></p>
+<h3 id="bucket-suppression">Bucket suppression</h3>
+<p>Besides sticky noise, Diffix includes another protection. This is called bucket suppression, and it is a more sophisticated version of QSR.</p>
+<p>The idea is the same: block any query that selects a set of users with size smaller than a certain threshold. However, the threshold is not fixed, but noisy as well:</p>
+<p>if <span class="math inline">\(|\{Q\}_D|\leq1\)</span>, the query gets suppressed; if <span class="math inline">\(|\{Q\}_D|&gt;1\)</span>, it draws a noisy threshold <span class="math inline">\(t\)</span> from <span class="math inline">\(N(4,1/2)\)</span> by the seed:</p>
+<p><span class="math display">\[\text{threshold_seed}=\text{hash}(\{Q\}_D,salt)\]</span></p>
+<h3 id="safe">Safe?</h3>
+<p>Dynamic noise helps protect against many sophisticated attacks, see <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1806.02075">here</a>. However, the developers of Diffix do not have a mathematical proof that their system protects against any attack. And they acknowledge that.</p>
+<p>In October 2018, Aloni Cohen and Kobbi Nissim published a report on their attack on Diffix. This attack is an adaptation of a reconstruction attack, proposed in 2003 by Dinur and Nissim.</p>
+<p>In October 2018, some researchers from UCL and EPFL published a <a target="_blank" rel="noopener" href="https://www.benthamsgaze.org/2018/10/02/on-location-time-and-membership-studying-how-aggregate-location-data-can-harm-users-privacy/">blogpost</a> about their attack on Diffix, based on a previous paper. There is no technical report available for this attack yet.</p>
+<p>In April 2018, researchers from Imperial College London designed an attack to infer a user’s attribute with high accuracy, see [here] (https://cpg.doc.ic.ac.uk/blog/aircloak-diffix-signal-is-in-the-noise/). They called it a noise-exploitation attack.</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2019/01/22/Latex%20Manual/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/10/26/Query-based%20System/>https://zs-liu.github.io/2020/10/26/Query-based%20System/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-20T18:24:11+00:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Dec 21, 2020</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
 
 
-    
+        
+      
+        
+          
+
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Shamir Secret Sharing and BGW Protocol</p>
+          <p class='content'>MPC (Multi-party Computation)
+Definition
+Given \(n\) parties, design a protocol which computes a ...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/10/19/Data%20Pseudonymization%20and%20Anonymization/'>
+          <p class='title'>Data Pseudonymization and Anonymization<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Pseudonymization
+To remove all direct identifiers, e.g. name, phone number, address, social secur...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -417,134 +637,28 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <div class='avatar'>
-          <img no-lazy src='addition/bird.png'/>
-        </div>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>LUYU LIU</h2>
-        
-        
-          <p>为学日益 为道日损</p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:zsliu98@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/zs-liu"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://www.zhihu.com/people/zsliu98"
-              class="social fab fa-zhihu flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>Content</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Computer-Science/" href="/categories/Computer-Science/"
-            id="categoriesComputer-Science"
-            ><div class='name'>Computer Science</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Computer/" href="/categories/Computer/"
-            id="categoriesComputer"
-            ><div class='name'>Computer</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Life/" href="/categories/Life/"
-            id="categoriesLife"
-            ><div class='name'>Life</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Math/" href="/categories/Math/"
-            id="categoriesMath"
-            ><div class='name'>Math</div><div class='badge'>(17)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#query-size-restriction-qsr"><span class="toc-text">Query size restriction (QSR)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intersection-attack"><span class="toc-text">Intersection Attack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unbiased-noise-addition"><span class="toc-text">Unbiased noise addition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bounded-noise"><span class="toc-text">Bounded noise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unbounded-noise"><span class="toc-text">Unbounded noise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#averaging-attack"><span class="toc-text">Averaging attack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#consistent-noise-addition"><span class="toc-text">Consistent noise addition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#semantic-attack"><span class="toc-text">Semantic attack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diffixs-sticky-noise"><span class="toc-text">Diffix&#39;s sticky noise</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#static-noise"><span class="toc-text">Static noise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dynamic-noise"><span class="toc-text">Dynamic noise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bucket-suppression"><span class="toc-text">Bucket suppression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#safe"><span class="toc-text">Safe?</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tagcloud</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Convex-Optimization/" style="font-size: 24px; color: #555">Convex Optimization</a> <a href="/tags/Dynamic-Programming/" style="font-size: 14px; color: #999">Dynamic Programming</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Latex/" style="font-size: 14px; color: #999">Latex</a> <a href="/tags/Network-Optimization/" style="font-size: 21.5px; color: #666">Network Optimization</a> <a href="/tags/Operations-Research/" style="font-size: 16.5px; color: #888">Operations Research</a> <a href="/tags/Privacy-Engineering/" style="font-size: 19px; color: #777">Privacy Engineering</a> <a href="/tags/Reliability-Engineering/" style="font-size: 21.5px; color: #666">Reliability Engineering</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
         
@@ -554,8 +668,8 @@
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Query-based System";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
