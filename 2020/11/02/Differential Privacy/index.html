@@ -421,7 +421,7 @@
 </ul>
 <p>Two neighboring datasets always have different sizes, i.e. <span class="math inline">\(|D_1|-|D_2|=\pm1\)</span></p>
 <h3 id="differential-privacy">Differential privacy</h3>
-<p>Let <span class="math inline">\(M:\mathcal{D}\rightarrow Y\)</span> be a randomized mechanism. <span class="math inline">\(M\)</span> is <span class="math inline">\(\varepsilon\)</span>-<strong>differentially private</strong> if, for any neighboring datasets <span class="math inline">\(D,D^{\prime}\in\mathcal{D}\)</span> and any <span class="math inline">\(S\subset \text{ran }M\)</span>, we have:</p>
+<p>Let <span class="math inline">\(M:\mathcal{D}\rightarrow Y\)</span> be a randomized mechanism. <span class="math inline">\(M\)</span> is <span class="math inline">\(\varepsilon\)</span>-<strong>differentially private</strong> if, for any neighboring datasets <span class="math inline">\(D,D^{\prime}\in\mathcal{D}\)</span> and any <span class="math inline">\(S\subset \text{img }M\)</span>, we have:</p>
 <p><span class="math display">\[\text{Pr}[M(D)\in S]\leq e^{\varepsilon}\text{Pr}[M(D^{\prime})\in S]\]</span></p>
 <p>Differential privacy guarantees that the result of a certain query on the dataset must be essentially the same irrespective of the presence of any single individual in the dataset.</p>
 <h2 id="laplace-mechanism">Laplace mechanism</h2>
@@ -448,7 +448,7 @@
 <h3 id="introduction">Introduction</h3>
 <p>In local differential privacy, every user “adds noise” to his own data (locally) and then shares the “privatized” data with the analyst. The analyst can then run any computation on these privatized data.</p>
 <h3 id="local-differential-privacy-1">Local differential privacy</h3>
-<p>Let <span class="math inline">\(R\)</span> be a set of responses. A randomized algorithm <span class="math inline">\(M:R\rightarrow Y\)</span> is <span class="math inline">\(\varepsilon\)</span>-<strong>local differentially private</strong> if, for responses <span class="math inline">\(r_1,r_2\in R\)</span> and any <span class="math inline">\(S\subset \text{ran }M\)</span>, we have:</p>
+<p>Let <span class="math inline">\(R\)</span> be a set of responses. A randomized algorithm <span class="math inline">\(M:R\rightarrow Y\)</span> is <span class="math inline">\(\varepsilon\)</span>-<strong>local differentially private</strong> if, for responses <span class="math inline">\(r_1,r_2\in R\)</span> and any <span class="math inline">\(S\subset \text{img }M\)</span>, we have:</p>
 <p><span class="math display">\[\text{Pr}[M(r_1)\in S]\leq e^{\varepsilon}\text{Pr}[M(r_2)\in S]\]</span></p>
 <h3 id="example">Example</h3>
 <p>Suppose a professor wants to conduct a survey among students asking the question: “Have you cheated at the exam?”. Every student is asked to answer YES or NO, following these steps:</p>
@@ -488,10 +488,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-20T23:00:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-21T20:39:22+00:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 21, 2020</p>
+    <p>更新于：Dec 22, 2020</p>
   </a>
 </div>
 
@@ -667,28 +667,32 @@ Query-based systems aim at giving researchers and organizations anonymous access
     
       
         
-          <div><p><span id="lc-uv">Visitor: <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>&lt;/span&gt; | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
+          <div><p><span id="lc-uv">Visitor: <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> | <span>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank">Volantis</a></span></p>
 </div>
         
       
     
       
         <div class='copyright'>
-        <p><span>Copyright &copy; 2019-2020 鲈鱼柳</span></p>
+        <p><span>Copyright © 2019-2020 鲈鱼柳</span></p>
 
         </div>
       
     
       
         
-          <div><p>Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+          <div><p>
+Except where otherwise noted, content on this site is licensed under a <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
 </div>
         
       
     
       
         
-          <div><p>除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可</p>
+          <div><p>
+除另有标注处，本网站内容按照<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> 知识共享署名-相同方式共享 4.0 国际许可协议 </a>进行许可
+</p>
 </div>
         
       
