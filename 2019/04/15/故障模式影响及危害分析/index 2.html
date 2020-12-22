@@ -19,11 +19,22 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>故障模式影响及危害分析 - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Reliability Engineering">
   
 
+  
+    <meta name="description" content="概述
+定义
+
+Failure Mode, Effects and Criticality analysis
+归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每个故障模式的严重程度及发 生概率予以分类。
+
+一种自下而上的归纳分析方法
+FMEA和CA
+
+">
   
 
   <!-- feed -->
@@ -353,7 +364,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        故障模式影响及危害分析
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +384,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +395,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Apr 15, 2019</p>
   </a>
 </div>
 
@@ -395,7 +406,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="故障模式影响及危害分析" data-path="/2019/04/15/%E6%95%85%E9%9A%9C%E6%A8%A1%E5%BC%8F%E5%BD%B1%E5%93%8D%E5%8F%8A%E5%8D%B1%E5%AE%B3%E5%88%86%E6%9E%90/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,99 +423,127 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="概述">概述</h2>
+<h3 id="定义">定义</h3>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li>Failure Mode, Effects and Criticality analysis</li>
+<li>归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每个故障模式的严重程度及发 生概率予以分类。
+<ul>
+<li>一种自下而上的归纳分析方法</li>
+<li>FMEA和CA</li>
+</ul></li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<a id="more"></a>
+<h3 id="目的">目的</h3>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li>在设计、生产和使用阶段发现影响系统可靠性的各薄弱环节</li>
+<li>对薄弱环节提出改进措施，提高系统可靠性水平</li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<h2 id="步骤">步骤</h2>
+<h3 id="系统定义">系统定义</h3>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>确定系统中进行FMECA的设备范围</li>
+<li>系统功能任务的描述</li>
+<li>确定系统及设备的故障判据</li>
+</ul>
+<h3 id="fmea">FMEA</h3>
+<ul>
+<li>代码：采用统一的编码体系对每个设备的每个故障模式进行编码</li>
+<li>设备或功能标识：记录被分析设备或功能的名称标识</li>
+<li>功能：简要描述设备的主要功能</li>
+<li>故障模式：故障的表现形式，每一个产品有可能具有多种故障模式
+<ul>
+<li>损坏型、退化型、松脱型、失调型、堵塞或渗漏型、功能型等</li>
+</ul></li>
+<li>故障原因
+<ul>
+<li>直接原因：导致设备功能故障的设备自身的那些物理、化学或生物变化过程等</li>
+<li>间接原因：其他设备故障、环境因素和人为因素等外部原因</li>
+</ul></li>
+<li>任务阶段与工作方式
+<ul>
+<li>任务可能包含多个阶段，设备可能需要参与一个或多个阶段</li>
+<li>工作方式：可替换、有冗余等</li>
+</ul></li>
+<li>故障影响
+<ul>
+<li>局部影响：某设备的故障模式对自身和与其所在约定层次相同的其他设备的使用、功能或状态的影响</li>
+<li>高一层次影响：某设备的故障模式对其所在约定层次的高一层次设备的使用、功能或状态的影响。</li>
+<li>最终影响：指系统中某设备的故障模式对初始约定层次设备的使用、功能或状态的影响。</li>
+</ul></li>
+<li>严酷度等级
+<ul>
+<li>严酷度：设备故障模式所产生后果的严重程度</li>
+<li>严酷度等级：应考虑故障造成的最坏潜在后果，根据最终可能出现的人员伤亡、系统损坏或经济损失的程度等来确定。</li>
+</ul></li>
+<li>故障检测方法
+<ul>
+<li>包括事前检测与事后检测</li>
+<li>目视检查、离机检测、原位测试等手段</li>
+</ul></li>
+<li>补偿措施
+<ul>
+<li>设计补偿措施
+<ul>
+<li>设备发生故障时，能继续工作的冗余设备</li>
+<li>安全或保险装置(如监控及报警装置)</li>
+<li>可替换的工作方式(如备用或辅助设备)</li>
+<li>可以消除或减轻故障影响的设计或工艺改进</li>
+</ul></li>
+<li>操作人员补偿措施
+<ul>
+<li>特殊的使用和维护规程，尽量避免或预防故障的发生</li>
+<li>一旦出现某故障后操作人员应采取的最恰当的补救措施</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="ca">CA</h3>
+<ul>
+<li>危害性分析CA：按每个故障模式的严重程度及其发生概率所产生的综合影响对系统中的设备分级</li>
+<li>分析方法
+<ul>
+<li>风险优先数法</li>
+<li>危害性矩阵法</li>
+</ul></li>
+</ul>
+<h4 id="风险优先数法">风险优先数法</h4>
+<p><span class="math display">\[RPN=OPR\times{}ESR\]</span></p>
+<ul>
+<li><span class="math inline">\(OPR\)</span>：发生概率等级</li>
+<li><span class="math inline">\(ESR\)</span>：影响严酷度等级</li>
+</ul>
+<h4 id="危害性矩阵法">危害性矩阵法</h4>
+<ul>
+<li>故障模式频数比 <span class="math inline">\(\alpha\)</span>：设备某故障模式占其全部故障模式的百分比率</li>
+<li>故障影响概率 <span class="math inline">\(\beta\)</span>：某故障模式发生后，导致确定的严酷度等级的最终影响的条件概率</li>
+<li>故障模式危害度：评价设备单一故障模式危害性</li>
+</ul>
+<p><span class="math display">\[C_m(j)=\alpha\beta\lambda{}pt\]</span></p>
+<ul>
+<li>设备危害度：评价设备的危害性</li>
+</ul>
+<p><span class="math display">\[C_r(j)=\sum{}C_{mi}(j)\]</span></p>
+<h3 id="结果呈现">结果呈现</h3>
+<ul>
+<li>可靠性关键设备清单
+<ul>
+<li>RPN 值大于某规定值的设备</li>
+<li>危害性矩阵中落在某一规定区域之内的设备</li>
+</ul></li>
+<li>严重故障模式清单
+<ul>
+<li>严酷度为 Ⅰ、Ⅱ 类的故障模式</li>
+<li>故障影响严重程度被评为 9-10 分的故障模式</li>
+</ul></li>
+<li>单点故障模式清单
+<ul>
+<li>某一设备或故障模式发生后将直接导致系统故障</li>
+</ul></li>
+</ul>
+<h2 id="小结">小结</h2>
+<ul>
+<li>FMECA 中各故障模式的相关数据是定量化分析的基础</li>
+<li>FMECA 是静态的、单一因素的分析方法，在动态方面还很不完善</li>
 </ul>
 
   
@@ -518,7 +557,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/04/15/%E6%95%85%E9%9A%9C%E6%A8%A1%E5%BC%8F%E5%BD%B1%E5%93%8D%E5%8F%8A%E5%8D%B1%E5%AE%B3%E5%88%86%E6%9E%90/>https://zs-liu.github.io/2019/04/15/%E6%95%85%E9%9A%9C%E6%A8%A1%E5%BC%8F%E5%BD%B1%E5%93%8D%E5%8F%8A%E5%8D%B1%E5%AE%B3%E5%88%86%E6%9E%90/</a></p>
               
             
           </blockquote>
@@ -535,10 +574,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:03:04+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +586,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Reliability-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Reliability Engineering</p></a></div>
 
 
         
@@ -567,12 +606,17 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2019/04/16/Subgradient%20Method/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Subgradient Method</p>
+          <p class='content'>Subgradient
+\(g\) is a subgradient of a convex function \(f\) at \(x\in{}dom~f\) if \[f(y)\geq{}f...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
-Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+      
+        <a class='next' href='/2019/04/02/LP,%20SDP%20and%20SOCP/'>
+          <p class='title'>LP, SOP and SOCP<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Linear Programming
+\[\text{(P) }\min_xc^Tx,s.t.Ax=b,x\geq0\] \[\text{(D) }\min_yb^Ty,s.t.A^Ty+s=c...</p>
         </a>
       
     </div>
@@ -668,7 +712,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-text">目的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89"><span class="toc-text">系统定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fmea"><span class="toc-text">FMEA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ca"><span class="toc-text">CA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E4%BC%98%E5%85%88%E6%95%B0%E6%B3%95"><span class="toc-text">风险优先数法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B1%E5%AE%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E6%B3%95"><span class="toc-text">危害性矩阵法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E5%91%88%E7%8E%B0"><span class="toc-text">结果呈现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol>
     </div>
   </section>
 
@@ -688,7 +732,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="故障模式影响及危害分析";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

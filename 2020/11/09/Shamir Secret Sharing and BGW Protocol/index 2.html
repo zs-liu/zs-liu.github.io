@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>Shamir Secret Sharing and BGW Protocol - 鲈鱼柳的博客</title>
   
     <meta name="keywords" content="Privacy Engineering">
   
@@ -353,7 +353,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        Shamir Secret Sharing and BGW Protocol
       </h1>
       <div class='new-meta-box'>
         
@@ -384,7 +384,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Nov 9, 2020</p>
   </a>
 </div>
 
@@ -395,7 +395,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="Shamir Secret Sharing and BGW Protocol" data-path="/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +412,97 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="mpc-multi-party-computation">MPC (Multi-party Computation)</h2>
+<h3 id="definition">Definition</h3>
+<p>Given <span class="math inline">\(n\)</span> parties, design a protocol which computes a public function <span class="math inline">\(f\)</span> over inputs from each party such that the inputs remain private unless they would be revealed by the function anyway.</p>
+<h3 id="character">Character</h3>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li>Typically, all parties will receive the <strong>same</strong> output when the calculation finishes</li>
+<li>MPC is typically considered when parties don’t trust either the others or a 3rd party</li>
+<li>An MPC protocol can be shown equivalent to a protocol uses a trusted 3rd party</li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<p>There are many setups that can be used for MPC. However, in this post, we'll only take a look at <em>Secret Sharing</em> and its application <em>BGW protocol</em>.</p>
+<h3 id="adversarial-models">Adversarial Models</h3>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li><strong>Honest-but-curious, Semi-Honest, Passive</strong>: Parties follow protocol, but are interested (i.e. curious) in breaking privacy of other parties. Also know as <strong>corrupt</strong> parties.</li>
+<li><strong>Malicious, Byzantine, Active</strong>: Parties can deviate from the protocol e.g. lie about inputs, quit protocol early.</li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<h3 id="secure-type">Secure Type</h3>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li><strong>Information theoretically secure</strong>: system cannot be broken even if adversary has unlimited computational power. Also known as <strong>Perfect security</strong> and <strong>Unconditional security</strong>.</li>
+<li><strong>Computationally secure</strong>: adversary would require an unreasonably large amount of computational power to break the system.</li>
 </ul>
+<h3 id="theoretical-limit-of-adversary-and-security">Theoretical Limit of Adversary and Security</h3>
+<ul>
+<li>Honest-but-curious adversary, Information theoretically secure: tolerate up to <span class="math inline">\(n/2\)</span> corrupt parties</li>
+<li>Honest-but-curious adversary, Computationally secure: tolerate up to <span class="math inline">\(n-1\)</span> corrupt parties</li>
+<li>Malicious adversary, Information theoretically secure: tolerate up to <span class="math inline">\(n/3\)</span> adversaries</li>
+<li>Malicious adversary, Computationally secure: tolerate up to <span class="math inline">\(n/2\)</span> adversaries (unfair/un-robust protocol can tolerate up to <span class="math inline">\(n-1\)</span> adversaries)</li>
+</ul>
+<h2 id="lagrange-interpolation">Lagrange Interpolation</h2>
+<h3 id="distribution-and-recombination">Distribution and Recombination</h3>
+<ul>
+<li>A polynomial <span class="math inline">\(P(x)\)</span> of degree <span class="math inline">\(T\)</span> can be uniquely determined by a set of <span class="math inline">\(T + 1\)</span> (or more) distinct points on the polynomial curve <span class="math inline">\(P(x)\)</span>.</li>
+<li>A polynominal <span class="math inline">\(P(x)\)</span> of degree upto at most <span class="math inline">\(N − 1\)</span> there exist coefficients <span class="math inline">\(r = (r_1,\cdots,r_N )\)</span> (called the <em>recombination vector</em>) such that:</li>
+</ul>
+<p><span class="math display">\[P(0)=\sum_{i=1}^Nr_iP(i)\]</span></p>
+<h3 id="lagrange-interpolation-1">Lagrange Interpolation</h3>
+<p>Given <span class="math inline">\(T\)</span> points <span class="math inline">\((x_1,P(x_1)),\cdots,(x_n,P(x_n))\)</span>, the <strong>unique</strong> Lagrange Interpolation Polynomial of degree T is:</p>
+<p><span class="math display">\[P(x)=\sum_{i=1}^{T+1}\delta_i(x)P(x_i),~\delta_i(x)=\prod_{j=1,j\neq i}^{T+1}\frac{x-x_j}{x_i-x_j}\]</span></p>
+<p>We also have:</p>
+<p><span class="math display">\[P(0)=\sum_{i=1}^{T+1}\delta_i(0)P(x_i)=\sum_{i=1}^{T+1}r_iP(x_i)\Rightarrow r_i=\prod_{j=1,j\neq i}^{T+1}\frac{x_j}{x_j-x_i}\]</span></p>
+<p>And when <span class="math inline">\(x_i=i\)</span>:</p>
+<p><span class="math display">\[r_i=\prod_{j=1,j\neq i}^{T+1}\frac{j}{j-i}\]</span></p>
+<h3 id="secret-share">Secret Share</h3>
+<p>You may have already noticed that <em>Lagrange Interpolation</em> can be used to share(split) secret. For example, if someone have a secret <span class="math inline">\(a_0\)</span>, and he randomly choose coefficients <span class="math inline">\(a_1,\cdots,a_T\)</span>, we obtain a polynomial <span class="math inline">\(P(x)=a_0+\sum_{i=1}^Ta_ix^i\)</span>. And if he sends <em>shares</em> <span class="math inline">\(P(1),\cdots,P(N)\)</span> to <span class="math inline">\(N\)</span> parties, then the only way to recover the secret is perform <em>recombination</em> on at least <span class="math inline">\(T+1\)</span> <em>shares</em> (from at least <span class="math inline">\(T+1\)</span> parties).</p>
+<h2 id="bgw-protocol">BGW Protocol</h2>
+<p>From the definition of MPC, we need to calculate a public function <span class="math inline">\(f\)</span>. For convenience, we consider <span class="math inline">\(f:\mathcal{N^*}\rightarrow\mathcal{N}\)</span> which is a polynomial over a finite field modulo a prime <span class="math inline">\(p\)</span>. Thus, we can only consider two gates(operations): <strong>Add</strong>(addition) and <strong>Mul</strong>(multiplication). In this post, we'll only take a look at the honest-but-curious version.</p>
+<blockquote>
+<p>Arithmetic over a finite field rules out the possibility of 'guessing' the secret. It makes us impossible to determine the range of the secret with less than <span class="math inline">\(T+1\)</span> shares. See <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing">wikipedia</a> for more details.</p>
+</blockquote>
+<p>We will look at a three-party example. Three parties are <span class="math inline">\((p_1,p_2,p_3)\)</span> and their secrets(private values) are <span class="math inline">\((x_1,x_2,x_3)=(10,20,30)\)</span>. They want to calculate <span class="math inline">\((x_1+x_2)\times x_3\)</span>. They choose prime <span class="math inline">\(p=101\)</span> and degree <span class="math inline">\(T=1\)</span>. We also need <span class="math inline">\(2T\leq N-1\)</span>, the reason of which is lied in the <strong>Mul</strong> gate.</p>
+<h3 id="distribution">Distribution</h3>
+<p>At first, each party needs to distribute it secret into <span class="math inline">\(N\)</span> shares and send them to <span class="math inline">\(N\)</span> parties (also include saving his own share).</p>
+<ul>
+<li>For <span class="math inline">\(p_1\)</span>, he chooses polynomial <span class="math inline">\(3x+10\)</span>, and the shares are <span class="math inline">\(13, 16, 19\)</span>.</li>
+<li>For <span class="math inline">\(p_2\)</span>, he chooses polynomial <span class="math inline">\(2x+20\)</span>, and the shares are <span class="math inline">\(22, 24, 26\)</span>.</li>
+<li>For <span class="math inline">\(p_3\)</span>, he chooses polynomial <span class="math inline">\(1x+30\)</span>, and the shares are <span class="math inline">\(31, 32, 33\)</span>.</li>
+</ul>
+<p>After distribution</p>
+<ul>
+<li><span class="math inline">\(p_1\)</span> has shares <span class="math inline">\(13,22,31\)</span></li>
+<li><span class="math inline">\(p_2\)</span> has shares <span class="math inline">\(16,24,32\)</span></li>
+<li><span class="math inline">\(p_3\)</span> has shares <span class="math inline">\(19,26,33\)</span></li>
+</ul>
+<h3 id="add-gate">Add Gate</h3>
+<p>Suppose we have two secrets <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> which are shared using the polynomials: <span class="math display">\[f(x)=a+f_1x+\cdots,f_tx^T,g(x)=b+g_1x+\cdots,g_tx^T\]</span> Each of our parties has a share <span class="math inline">\(a^{(i)}=f(i)\)</span> and <span class="math inline">\(b^{(i)}=g(i)\)</span>. Now consider the polynomial: <span class="math display">\[h(x)=f(x)+g(x)\]</span> This polynomial provides a sharing of the sum <span class="math inline">\(c = a + b\)</span>, and we have <span class="math display">\[c^{(i)}=h(i)=f(i)+g(i)=a^{(i)}+b^{(i)}\]</span></p>
+<p>Let's go into the example. We want to calculate <span class="math inline">\(x_1+x_2\)</span> first. And for each party, he needs to add the share from <span class="math inline">\(p_1\)</span> and the share from <span class="math inline">\(p_2\)</span>.</p>
+<ul>
+<li><span class="math inline">\(p_1\)</span> calculates <span class="math inline">\(a^{(1)}+b^{(1)}=13+22=35\)</span></li>
+<li><span class="math inline">\(p_2\)</span> calculates <span class="math inline">\(a^{(2)}+b^{(2)}=16+24=40\)</span></li>
+<li><span class="math inline">\(p_3\)</span> calculates <span class="math inline">\(a^{(3)}+b^{(3)}=19+26=45\)</span></li>
+</ul>
+<p>And you can see if we combine these values together by using the <em>recombination vector</em>, we have <span class="math inline">\([3,-3,1][35,40,45]^\top=30\)</span>, which equals to the 'true' value <span class="math inline">\(x_1+x_2=30\)</span>.</p>
+<h3 id="multiplication-gate">Multiplication Gate</h3>
+<p>To compute the Multiplication gate we perform the following four steps:</p>
+<ul>
+<li>Each party <span class="math inline">\(i\)</span> locally computes <span class="math inline">\(d^{(i)}=a^{(i)}\times b^{(i)}\)</span></li>
+<li>Each party <span class="math inline">\(i\)</span> perform <em>distribution</em> of <span class="math inline">\(d^{(i)}\)</span> (party <span class="math inline">\(j\)</span> receives the sub-share <span class="math inline">\(d_{i,j}\)</span> from party <span class="math inline">\(i\)</span>) by polynomial <span class="math inline">\(\delta_i(x)\)</span> of degree <span class="math inline">\(T\)</span></li>
+<li>Each party <span class="math inline">\(j\)</span> recombination the sub-shares as <span class="math inline">\(c^{(j)}=\sum_{i=1}^Nr_i\times d_{i,j}\)</span></li>
+</ul>
+<p>So why does this work? Consider the first step; here we are actually computing a polynomial of degree <span class="math inline">\(2T\)</span>. Hence, we need to 'reduce' the degree of this polynomial. Thus, we produce <span class="math inline">\(\delta_i(x)\)</span> in the second step. Consider what happens when we recombine them using the recombination vector, i.e. let: <span class="math display">\[h(x)=\sum_{i=1}^Nr_i\delta_i(x)\]</span> Then we have <span class="math display">\[h(0)=\sum_{i=1}^Nr_i\delta_i(0)=\sum_{i=1}^Nr_id^{(i)}=c\]</span> <span class="math display">\[h(j)=\sum_{i=1}^Nr_i\delta_i(j)=\sum_{i=1}^Nr_id_{i,j}=c^{(j)}\]</span> Thus, <span class="math inline">\(h(x)\)</span> is a polynomial which could be used to share the value of the product and underlies the sharing produced in the final step.</p>
+<p>Let's take a look at the example.</p>
+<ul>
+<li><span class="math inline">\(p_1,p_2,p_3\)</span> calculates <span class="math inline">\(d^{(1)}=35\times31=75,d^{(2)}=68,d^{(3)}=71\)</span></li>
+<li><span class="math inline">\(p_1\)</span> distributes <span class="math inline">\(78,81,84\)</span>, <span class="math inline">\(p_2\)</span> distributes <span class="math inline">\(70,72,74\)</span>, <span class="math inline">\(p_3\)</span> distributes <span class="math inline">\(72,73,74\)</span></li>
+<li><span class="math inline">\(p_1\)</span> has shares <span class="math inline">\(78,70,72\)</span>, <span class="math inline">\(p_2\)</span> has shares <span class="math inline">\(81,72,73\)</span>, <span class="math inline">\(p_3\)</span> has shares <span class="math inline">\(84,74,74\)</span></li>
+<li><span class="math inline">\(p_1,p_2,p_3\)</span> recombines as <span class="math inline">\(c^{(1)}=[3,-3,1][78,70,72]^\top=96,c^{(2)}=100,c^{(3)}=3\)</span></li>
+</ul>
+<h3 id="recombination">Recombination</h3>
+<p>Each party <strong>broadcasts</strong> its value, and performs recombination.</p>
+<p>As the end of the example, each party obtains <span class="math inline">\(96,100,3\)</span> and calculates the result as <span class="math inline">\([3,-3,1][96,100,3]^\top=92\)</span>, which equals to the 'true' value <span class="math inline">\((x_1+x_2)\times x_3=92\)</span>.</p>
+<h2 id="reference">Reference</h2>
+<p>Smart, Nigel P. Cryptography made simple. Springer, 2016.</p>
 
   
   
@@ -518,7 +515,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/>https://zs-liu.github.io/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/</a></p>
               
             
           </blockquote>
@@ -535,10 +532,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-08T21:39:38+00:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Dec 9, 2020</p>
   </a>
 </div>
 
@@ -568,11 +565,11 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class="prev-next">
       
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
-Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+        <a class='next' href='/2020/11/02/Differential%20Privacy/'>
+          <p class='title'>Differential Privacy<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Definition
+Neighboring dataset
+For any dataset \(D,D^{\prime}\in\mathcal{D}\), \(D,D^{\prime}\) a...</p>
         </a>
       
     </div>
@@ -668,7 +665,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mpc-multi-party-computation"><span class="toc-text">MPC (Multi-party Computation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#character"><span class="toc-text">Character</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#adversarial-models"><span class="toc-text">Adversarial Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#secure-type"><span class="toc-text">Secure Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theoretical-limit-of-adversary-and-security"><span class="toc-text">Theoretical Limit of Adversary and Security</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lagrange-interpolation"><span class="toc-text">Lagrange Interpolation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#distribution-and-recombination"><span class="toc-text">Distribution and Recombination</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lagrange-interpolation-1"><span class="toc-text">Lagrange Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#secret-share"><span class="toc-text">Secret Share</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bgw-protocol"><span class="toc-text">BGW Protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#distribution"><span class="toc-text">Distribution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add-gate"><span class="toc-text">Add Gate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multiplication-gate"><span class="toc-text">Multiplication Gate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recombination"><span class="toc-text">Recombination</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-text">Reference</span></a></li></ol>
     </div>
   </section>
 
@@ -688,7 +685,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="Shamir Secret Sharing and BGW Protocol";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

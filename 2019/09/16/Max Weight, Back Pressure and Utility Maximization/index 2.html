@@ -19,11 +19,17 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>Max Weight, Back Pressure and Utility Maximization - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Network Optimization">
   
 
+  
+    <meta name="description" content="Queue Control Problem
+\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)
+
+\(A_i(t)\) is iid, \(\mathbb{E}\{A_i(t)\}=\lambda_i\), \(A_i(t)\in[0,A_{\max}]\)
+\(S...">
   
 
   <!-- feed -->
@@ -353,7 +359,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        Max Weight, Back Pressure and Utility Maximization
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +379,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +390,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Sep 16, 2019</p>
   </a>
 </div>
 
@@ -395,7 +401,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="Max Weight, Back Pressure and Utility Maximization" data-path="/2019/09/16/Max%20Weight,%20Back%20Pressure%20and%20Utility%20Maximization/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +418,110 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="queue-control-problem">Queue Control Problem</h2>
+<p><span class="math inline">\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)</span></p>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li><span class="math inline">\(A_i(t)\)</span> is iid, <span class="math inline">\(\mathbb{E}\{A_i(t)\}=\lambda_i\)</span>, <span class="math inline">\(A_i(t)\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S_i(t)\)</span> is condition of link <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i(t)\in\{0,1\}\)</span></li>
+<li><span class="math inline">\(P_{xy}=P_r\{S_1(t)=x,S_2(t)=y\}\)</span></li>
+<li>At every time, serve <span class="math inline">\(Q_1(t)\)</span> or <span class="math inline">\(Q_2(t)\)</span></li>
+<li><span class="math inline">\(\mu_i(t)=1\text{ if } S_i(t)=1,Q_i(t)&gt;0\quad0\text{ otherwise}\)</span></li>
+<li>Goal: stabilize both queues</li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<p><span class="math inline">\(~\)</span> <a id="more"></a></p>
+<h3 id="linear-program">Linear Program</h3>
+<p><span class="math display">\[\max~e\]</span> <span class="math display">\[\begin{split}s.t.~\lambda_1+e&amp;\leq{}P_{10}+P_{11}\theta\\\lambda_2+e&amp;\leq{}P_{01}+(1-\theta)P_{11}\end{split}\]</span></p>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li>optimal value <span class="math inline">\(e^\star&gt;0\)</span></li>
+<li>LP policy is obvious</li>
+<li>If we know all <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\(P_{xy}\)</span></li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<h3 id="alg-max-weight">ALG Max-Weight</h3>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>Policy is simple
+<ul>
+<li><span class="math inline">\(S(t)=\{1,0\}\)</span>, serve <span class="math inline">\(Q_1\)</span></li>
+<li><span class="math inline">\(S(t)=\{0,1\}\)</span>, serve <span class="math inline">\(Q_2\)</span></li>
+<li><span class="math inline">\(S(t)=\{1,1\}\)</span>, serve <span class="math inline">\(\max\{Q_1,Q_2\}\)</span></li>
+</ul></li>
+<li>Without any infomation</li>
 </ul>
+<hr />
+<p><span class="math display">\[L(t)=\frac{1}{2}Q_1^2(t)+\frac{1}{2}Q_2^2(t)\]</span> <span class="math display">\[Q_i(t+1)=(Q_i(t)-\mu_i(t)+A_i(t))^+\]</span> <span class="math display">\[\begin{split}\Delta(t)&amp;=\mathbb{E}\{L(t+1)-L(t)|Q(t)\}\\&amp;=\frac{1}{2}\mathbb{E}\{Q_1^2(t+1)-Q_1^2(t)+Q_2^2(t+1)-Q_2^2(t)|Q(t)\}\\&amp;\leq{}B-\mathbb{E}\{Q_1(t)[\mu_1(t)-A_1(t)]+Q_2(t)[\mu_2(t)-A_2(t)]|Q(t)\}\\&amp;=B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-\mathbb{E}\{Q_1(t)\mu_1(t)+Q_2(t)\mu_2(t)|Q(t)\}\\&amp;\leq{}B+\lambda_1Q_1(t)+\lambda_2Q_2(t)-Q_1(t)[P_{10}+P_{11}\theta]-Q_2(t)[P_{01}+P_{11}(1-\theta)]\\&amp;=B-eQ_1(t)-eQ_2(t)\end{split}\]</span></p>
+<h3 id="capacity-region">Capacity Region</h3>
+<p><span class="math inline">\(\lambda=(\lambda_1,\lambda_2,\dots,\lambda_n)\)</span></p>
+<ul>
+<li>Def: The capacity region <span class="math inline">\(\Lambda\)</span> is the closure of <span class="math inline">\(\lambda\)</span> under which exists an algorithm that can stabilize the system</li>
+<li>Claim: <span class="math inline">\(\Lambda=\{(\lambda_1,\lambda_2,\dots,\lambda_n)\text{ s.t. }e(\lambda)\geq0\}\)</span></li>
+<li>Corollary: Max-weight stabilizes the system whenever <span class="math inline">\(\exists{}e\geq0\text{ s.t. } \lambda+e\in\Lambda\)</span></li>
+<li>So, in some way, Max-weight is "Throughput Optimal"</li>
+</ul>
+<h3 id="caratheodorys-theorem">Caratheodory's Theorem</h3>
+<p>Let <span class="math inline">\(X\)</span> be a subset of <span class="math inline">\(R^d\)</span>. If <span class="math inline">\(x\in\text{conv}(X)\)</span>, then <span class="math inline">\(\exists~d+1\)</span> points in <span class="math inline">\(X\)</span> (i.e. <span class="math inline">\(x_1,\dots,x_{d+1}\)</span>), s.t. <span class="math display">\[x=\sum_{i=1}^{d+1}\alpha_ix_i,\alpha_i\geq0,\sum_{i=1}^{d+1}\alpha_i=1\]</span></p>
+<h2 id="multi-hop">Multi-Hop</h2>
+<ul>
+<li><span class="math inline">\(V=\{1,2,\dots,7\}\)</span></li>
+<li><span class="math inline">\(E\)</span> are linkes</li>
+<li><span class="math inline">\(A_n^{(k)(t)}\)</span> is packages entering <span class="math inline">\(n\)</span> for destination <span class="math inline">\(k\)</span>, <span class="math inline">\(\mathbb{E}\{A_n^{(k)}(t)\}=\lambda_n^{(k)}\in[0,A_{\max}]\)</span></li>
+<li><span class="math inline">\(S(t)=(S_{nm}(t),[n,m]\in{}E)\)</span>, <span class="math inline">\(S_{n,m}\in\{0,1\}\)</span>, iid</li>
+<li><span class="math inline">\(\mu_{nm}(t)=1\text{ if }S_{nm}(t)=1\text{ and use link }[n,m]\quad0\text{ otherwise}\)</span></li>
+<li>No interference</li>
+<li>Queueing: <span class="math inline">\(Q_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(Q_n^{(k)}(t+1)\leq{}(Q_n^{(k)}(t)-\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t))^+{}+\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)+A_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(Q_n^{(0)}(t)=0\)</span></li>
+<li>Goal: stabilize all queues</li>
+</ul>
+<h3 id="back-pressure">Back Pressure</h3>
+<p>At time <span class="math inline">\(t\)</span>, observe <span class="math inline">\(Q_n^{(k)}(t)\)</span> for all <span class="math inline">\(n,k\)</span></p>
+<ul>
+<li>For each <span class="math inline">\([n,m]\)</span>, define weight <span class="math inline">\(W_{nm}(t)=\max_k[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\)</span> and let <span class="math inline">\(k^\star=\arg\max{}W_{nm}^{(k)}(t)\)</span></li>
+<li>If <span class="math inline">\(W_{nm}(t)&gt;0\)</span>, <span class="math inline">\(\mu_{nm}^{(k)}(t)=\mu_{nm}(t)\text{ if }k=k^\star\quad0\text{ otherwise}\)</span></li>
+<li>If <span class="math inline">\(W_{nm}(t)=0\)</span>, <span class="math inline">\(\mu_{nm}^{(k)}(t)=0\)</span></li>
+</ul>
+<h3 id="analysis">Analysis</h3>
+<p><span class="math inline">\(Q(t)=(Q_n^{(k)}(t)),L(Q(t))=\frac{1}{2}\sum_{n,k}Q_n^{(k)}(t)^2\)</span> <span class="math display">\[\begin{split}\Delta(t)&amp;=\mathbb{E}\{L(t+1)-L(t)|Q(t)\}\\&amp;\leq{}B-\mathbb{E}\{\sum_{n,k}Q_n^{(k)}(t)[\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t)-\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)-A_n^{(k)}(t)]|Q(t)\}\\&amp;=B-\sum_{n,m,k}\mathbb{E}\{\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]|Q(t)\}+\sum_{n,k}Q_n^{(k)}(t)\lambda_n^{(k)}\\&amp;\leq{}B-e\sum_{nm}Q_n^{(k)}(t)\end{split}\]</span></p>
+<hr />
+<p><span class="math display">\[\max{}e\]</span> <span class="math display">\[\begin{split}s.t.~\lambda_n^{(k)}+e+\sum_{[a,n]}f_{an}^{(k)}&amp;\leq\sum_{[n,m]}f_{nm}^{(k)}\\\sum_kf_{nm}^{(k)}&amp;\leq\mu_{nm}\\f_{nm}^{(k)}&amp;\geq0\end{split}\]</span></p>
+<h3 id="interference-problem">Interference Problem</h3>
+<p><span class="math display">\[\max~\sum_{n,m,k}\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\]</span> <span class="math display">\[s.t.~\sum_k\mu_{nm}^{(k)}(t)\leq\mu_{nm}(I(t),S(t)),I(t)\text{ feasible}\]</span></p>
+<h2 id="utility-maximization-in-networks">Utility Maximization in Networks</h2>
+<ul>
+<li><span class="math inline">\(A_n^{(k)}(t)\)</span>: # of pkts arrivals to <span class="math inline">\(n\)</span> for <span class="math inline">\(k\)</span> at t</li>
+<li><span class="math inline">\(R_n^{(k)}(t)\)</span>: # of pkts admitted (admission control), <span class="math inline">\(0\leq{}R_n^{(k)}(t)\leq{}R_{\max}\)</span></li>
+<li><span class="math inline">\(S(t)=(S_{nm}(t),[n,m]\in{}E)\)</span>, <span class="math inline">\(S_{n,m}\in\{0,1\}\)</span>, iid</li>
+<li><span class="math inline">\(Q_n^{(k)}(t+1)\leq{}(Q_n^{(k)}(t)-\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t))^+{}+\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)+R_n^{(k)}(t)\)</span></li>
+<li><span class="math inline">\(\bar{r}_n^{(k)}=\lim_{T\rightarrow\infty}\frac{1}{T}\sum_{t=0}^{T-1}\mathbb{E}\{R_n^{(k)}(t)\}\)</span></li>
+<li><span class="math inline">\(g_n^{(k)}(\cdot)\)</span> is utility function which is usually concave increasing</li>
+<li>Goal: <span class="math display">\[\max\sum_{n,k}g_n^{(k)}(\bar{r}_n^{(k)}),\text{ s.t. stability}\]</span></li>
+</ul>
+<h3 id="lyapunov-function">Lyapunov function</h3>
+<p><span class="math display">\[L(Q(t))=\frac{1}{2}\sum_{n,k}Q_n^{(k)}(t)^2\]</span> <span class="math display">\[\begin{split}\Delta(t)&amp;\leq{}B-\mathbb{E}\{\sum_{n,k}Q_n^{(k)}(t)[\sum_{[n,m]\in{}E}\mu_{nm}^{(k)}(t)-\sum_{[a,n]\in{}E}\mu_{an}^{(k)}(t)-R_n^{(k)}(t)]|Q(t)\}\\\text{subtract from both sides the term}&amp; \\ &amp;V\sum_{n,k}\mathbb{E}\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}\\\Delta(t)-V\sum_{n,k}\mathbb{E}\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}&amp; \leq{}B-\sum_{n,k}\mathbb{E}\{Vg_n^{(k)}(R_n^{(k)}(t))-Q_n^{(k)}(t)R_n^{(k)}(t)|Q(t)\}\\&amp;-\sum_{n,m,k}\mathbb{E}\{\mu_{nm}^{(k)}(t)[Q_n^{(k)}(t)-Q_m^{(k)}(t)]|Q(t)\}\end{split}\]</span></p>
+<h3 id="cross-longer-control">Cross-Longer Control</h3>
+<p>At time <span class="math inline">\(t\)</span>, observe <span class="math inline">\(S(t)\)</span> and <span class="math inline">\(Q(t)\)</span></p>
+<ul>
+<li>Admission control (Application): Choose <span class="math inline">\(R_n^{(k)}(t)\)</span></li>
+</ul>
+<p><span class="math display">\[\max{}Vg_n^{(k)}(R_n^{(k)}(t))-Q_n^{(k)}(t)R_n^{(k)}(t),\text{ s.t. }0\leq{}R_n^{(k)}(t)\leq{}R_{\max}\]</span></p>
+<ul>
+<li>Scheduling and Routing (Transport): Define <span class="math inline">\(W_{nm}(t)=\max_k[Q_n^{(k)}(t)-Q_m^{(k)}(t)]^+\)</span>, choose</li>
+</ul>
+<p><span class="math display">\[\mu_{nm}^{(k)}(t)=\mu_{nm}(t)\text{ if }k=k^\star\quad0\text{ otherwise}\]</span></p>
+<ul>
+<li>Resource Allocation (Physical): Choose <span class="math inline">\(\mu(t)\)</span></li>
+</ul>
+<p><span class="math display">\[\max\sum_{n,m}W_{nm}(t)\mu_{nm}(t),\text{ s.t. }\mu(t)\text{ is feasible}\]</span></p>
+<h3 id="queue-independent-policy">Queue Independent Policy</h3>
+<p><span class="math display">\[\begin{split}\max&amp;\sum_{n,k}g_n^{(k)}(r_n^{(k)})\\\text{s.t. }r_n^{(k)}+\sum_{a,n}f_{an}^{(k)}&amp;\leq{}f_{nm}^{(k)}\\\sum_kf_{nm}^{(k)}&amp;\leq\mu_{nm}\\\mu=(\mu_{nm},[n,m]\in{}E)&amp;\in\sum_{S}\beta_S\text{conv}(\Gamma_S)\end{split}\]</span></p>
+<p><span class="math inline">\(r_n^{(k)\star}\)</span>, <span class="math inline">\(f_{nm}^{(k)\star}\)</span>, <span class="math inline">\(\mu_{nm}^{(k)\star}\)</span> refers to a stationary randomized policy</p>
+<p><span class="math display">\[\Rightarrow{}\Delta-V\sum_{n,k}\mathbb{E}\{g_n^{(k)}(R_n^{(k)}(t))|Q_n(t)\}\leq{}B-V\cdot\text{opt}\]</span></p>
+<p>Sum over <span class="math inline">\(t=0,\cdots,T-1\)</span>, take expectation</p>
+<p><span class="math display">\[\begin{split}\mathbb{E}\{L(t)\}-\mathbb{E}\{L(0)\}-\sum_tV\sum_{n,k}\mathbb{E}\{g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&amp;\leq{}BT-VT\cdot{}\text{opt}\\\sum_tV\sum_{n,k}\mathbb{E}\{g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&amp;\geq{}-BT+VT\cdot{}\text{opt}-\mathbb{E}\{L(0)\}\end{split}\]</span></p>
+<p>If consider <span class="math inline">\(g_n^{(k)}(\cdot)\)</span> as concave increasing, we can use Jensen Inequality to put the expectation sign inside.</p>
+<h4 id="utility-performance">Utility Performance</h4>
+<p><span class="math display">\[\sum_{n,k}g_n^{(k)}(r_n^{(k)}(t))\geq{}\text{opt}-\frac{B}{V}\]</span></p>
+<h3 id="delay-bound">Delay Bound</h3>
+<p>Assume <span class="math inline">\(r_n^{(k)\star}\geq{}e&gt;0\)</span></p>
+<p><span class="math display">\[r_n^{(k)&#39;}=r_n^{(k)\star}-e,~f_{nm}^{(k)&#39;}=f_{nm}^{(k)\star}\]</span> <span class="math display">\[\begin{split}\Delta(t)-V\mathbb{E}\{\sum_{n,k}g_n^{(k)}(R_n^{(k)}(t))|Q(t)\}&amp;\leq{}B-e\sum_{n,k}Q_n^{(k)}(t)\\\Delta(t)&amp;\leq{}B+Vg_{\max}-e\sum_{n,k}Q_n^{(k)}(t)\\\bar{Q}(t)&amp;\leq\frac{B+Vg_{\max}}{e}\sim\mathcal{O}(V)\end{split}\]</span></p>
 
   
   
@@ -518,7 +534,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/09/16/Max%20Weight,%20Back%20Pressure%20and%20Utility%20Maximization/>https://zs-liu.github.io/2019/09/16/Max%20Weight,%20Back%20Pressure%20and%20Utility%20Maximization/</a></p>
               
             
           </blockquote>
@@ -535,10 +551,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:05:50+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +563,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Network-Optimization/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Network Optimization</p></a></div>
 
 
         
@@ -567,12 +583,23 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2019/09/23/Heavy%20Traffic/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Heavy Traffic Analysis</p>
+          <p class='content'>Introduction
+
+Single Hop System, \(L\) Queues
+\(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
+      
+        <a class='next' href='/2019/09/09/Introduction%20to%20Queue%20and%20Lyapunov%20Analysis/'>
+          <p class='title'>Introduction to Queue and Lyapunov Analysis<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Queue
 Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+
+Arrival: \(A(t)\)
+Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]
+Ser...</p>
         </a>
       
     </div>
@@ -668,7 +695,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#queue-control-problem"><span class="toc-text">Queue Control Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-program"><span class="toc-text">Linear Program</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alg-max-weight"><span class="toc-text">ALG Max-Weight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capacity-region"><span class="toc-text">Capacity Region</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#caratheodorys-theorem"><span class="toc-text">Caratheodory&#39;s Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multi-hop"><span class="toc-text">Multi-Hop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#back-pressure"><span class="toc-text">Back Pressure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interference-problem"><span class="toc-text">Interference Problem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#utility-maximization-in-networks"><span class="toc-text">Utility Maximization in Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lyapunov-function"><span class="toc-text">Lyapunov function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cross-longer-control"><span class="toc-text">Cross-Longer Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#queue-independent-policy"><span class="toc-text">Queue Independent Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#utility-performance"><span class="toc-text">Utility Performance</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delay-bound"><span class="toc-text">Delay Bound</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +715,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="Max Weight, Back Pressure and Utility Maximization";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

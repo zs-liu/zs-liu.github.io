@@ -19,11 +19,18 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>Simplex Algorithm - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Operations Research">
   
 
+  
+    <meta name="description" content="Convert LP to a Standard Form
+\[\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0\]
+For Inequality
+
+\(x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0\)
+\(x+y\leq{}a\...">
   
 
   <!-- feed -->
@@ -353,7 +360,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        Simplex Algorithm
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +380,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +391,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Mar 22, 2019</p>
   </a>
 </div>
 
@@ -395,7 +402,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="Simplex Algorithm" data-path="/2019/03/22/Simplex%20Algorithm/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +419,228 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="convert-lp-to-a-standard-form">Convert LP to a Standard Form</h2>
+<p><span class="math display">\[\min{}c^\top{}x,\text{subject to }Ax=b\land{}x\geq0\]</span></p>
+<h3 id="for-inequality">For Inequality</h3>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li><span class="math inline">\(x+y\geq{}a\rightarrow{}x+y-z=a,z\geq0\)</span></li>
+<li><span class="math inline">\(x+y\leq{}a\rightarrow{}x+y+s=a,s\geq0\)</span></li>
+<li>Unrestricted <span class="math inline">\(\rightarrow{}x=y-z,y\geq0,z\geq0\)</span></li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<a id="more"></a>
+<h2 id="preview-of-simplex-algorithm">Preview of Simplex Algorithm</h2>
+<h3 id="basic-solutions">Basic solutions</h3>
+<p><span class="math display">\[Ax=b,A\in{}R^{m\times{}n},x\in{}R^n,n\geq{}m\]</span> Set <span class="math inline">\(n-m\)</span> variables to <span class="math inline">\(0\)</span> and solving for the remaining <span class="math inline">\(m\)</span> variables.</br> The columns for the remaining <span class="math inline">\(m\)</span> variables are linear independent.</br> <span class="math display">\[\text{Total number: }C_n^m\]</span></p>
+<h3 id="basic-feasible-solutions">Basic feasible solutions</h3>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li>Feasible region for any LP problem is a convex set</li>
+<li>If a LP has an optimal solution, there must be an extreme point of the feasible region that is optimal</li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
+<h4 id="proof">Proof</h4>
+<p><span class="math display">\[\text{Suppose }x^\star=\sum_{i=1}^n\alpha_ix_i\text{ is an optimal solution}\]</span> <span class="math display">\[c^\top{}x^\star=c^\top{}\sum_{i=1}^n\alpha_ix_i&gt;\sum_{i=1}^n\alpha_ic^\top{}x^\star=c^\top{}x^\star\]</span></p>
+<h3 id="adjacent-basic-feasible-solutions">Adjacent Basic Feasible Solutions</h3>
+<p>Two basic feasible solutions are said to be <em>adjacent</em> if their sets of basic variables have <span class="math inline">\(m-1\)</span> basic variables in common</p>
+<h2 id="general-description-of-the-simplex-algorithm">General Description of the Simplex Algorithm</h2>
+<ol type="1">
+<li>Find an initial bfs of LP</li>
+<li>Change bfs to its adjacent bfs</li>
+<li>Recalculate by Gaussian elimination</li>
+<li>For maximum, until the first row is all nonnegative; For minimum, until the first row is all nonpositive</li>
+</ol>
 <h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
+<p>Standard form: <span class="math display">\[\max{}z=3x_1+5x_2\]</span> <span class="math display">\[\begin{split}
+            \text{subject to }\quad{}x_1+s_1&amp;=8\\
+            2x_2+s_2&amp;=12\\
+            3x_1+4x_2+s_3&amp;=36\\
+            x_1,x_2,s_1,s_2,s_3&amp;\geq0
+        \end{split}
+            \label{p1s}\]</span></p>
+<p>Choose <span class="math inline">\((s_1,s_2,s_3)\)</span> as BFS, we have table:</p>
 <table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_3\)</span></th>
+<th style="text-align: center;">rhs</th>
+<th style="text-align: center;">Basic Variable</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(z=0\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="math inline">\(s_1=8\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;"><span class="math inline">\(s_2=12\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;"><span class="math inline">\(s_3=36\)</span></td>
 </tr>
 </tbody>
 </table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<p>Choose <span class="math inline">\((s_1,x_2,s_3)\)</span> as BFS, we have table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_3\)</span></th>
+<th style="text-align: center;">rhs</th>
+<th style="text-align: center;">Basic Variable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;"><span class="math inline">\(z=30\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="math inline">\(s_1=8\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><span class="math inline">\(x_2=6\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;"><span class="math inline">\(s_3=12\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Choose <span class="math inline">\((s_1,x_2,x_1)\)</span> as BFS, we have table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_3\)</span></th>
+<th style="text-align: center;">rhs</th>
+<th style="text-align: center;">Basic Variable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;"><span class="math inline">\(z=42\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;"><span class="math inline">\(x_2=6\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-2/3</td>
+<td style="text-align: center;">1/3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="math inline">\(x_1=4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>So the final result is <span class="math display">\[x_1=4,x_2=6,z_{max}=42\]</span></p>
+<h3 id="degeneracy">Degeneracy</h3>
+<p>An LP is degenerate if it has at least one basic feasible solution in which a basic feasible variable is equal to <span class="math inline">\(0\)</span></p>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>pivoting may not improve the objective value</li>
+<li>simplex method may end up in cycles</li>
 </ul>
+<h2 id="two-bfs-methods">Two BFS Methods</h2>
+<h3 id="big-m-method">Big M Method</h3>
+<p><span class="math display">\[\min{}f(x),\text{ subject to }Ax=b(b\succeq0)\]</span> <span class="math display">\[\Rightarrow\min{}f(x)+M^\top{}a,\text{ subject to }Ax+Ia=b\]</span></p>
+<p>Introduce <span class="math inline">\(a_i\)</span> to every row which has a negative coefficient (on <span class="math inline">\(s\)</span> or <span class="math inline">\(z\)</span>), then we can get bfs easily</p>
+<p><span class="math display">\[(x=0,a=b)\]</span></p>
+<p>If we can't reduce all parameters of <span class="math inline">\(a\)</span> to 0, then the original problem is infeasible</p>
+<h3 id="two-phase-method">Two-Phase Method</h3>
+<p><span class="math display">\[\min{}f(x),\text{ subject to }Ax=b(b\succeq0)\]</span> <span class="math display">\[\Rightarrow\min{}I^\top{}a,\text{ subject to }Ax+Ia=b,a\succeq0\]</span> If <span class="math inline">\(a^\star\neq0\)</span>, then the original problem is infeasible</p>
 
   
   
@@ -518,7 +653,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/03/22/Simplex%20Algorithm/>https://zs-liu.github.io/2019/03/22/Simplex%20Algorithm/</a></p>
               
             
           </blockquote>
@@ -535,10 +670,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:06:11+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +682,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Operations-Research/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Operations Research</p></a></div>
 
 
         
@@ -567,12 +702,18 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2019/03/26/Duality/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Duality</p>
+          <p class='content'>Lagrange dual problem
+Lagrangian
+\[\min{}f_0(x),s.t.f_i(x)\leq0,h_i(x)=0\] variable \(x\in{}R^n\)...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
-Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+      
+        <a class='next' href='/2019/03/19/Convex%20Optimization%20Problems/'>
+          <p class='title'>Convex Optimization Problems<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Optimization problem in standard form
+\[\text{minimize }f_0(x)\] \[\text{subject to }f_i(x)\leq0\...</p>
         </a>
       
     </div>
@@ -668,7 +809,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#convert-lp-to-a-standard-form"><span class="toc-text">Convert LP to a Standard Form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-inequality"><span class="toc-text">For Inequality</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preview-of-simplex-algorithm"><span class="toc-text">Preview of Simplex Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#basic-solutions"><span class="toc-text">Basic solutions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#basic-feasible-solutions"><span class="toc-text">Basic feasible solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#adjacent-basic-feasible-solutions"><span class="toc-text">Adjacent Basic Feasible Solutions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#general-description-of-the-simplex-algorithm"><span class="toc-text">General Description of the Simplex Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#degeneracy"><span class="toc-text">Degeneracy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#two-bfs-methods"><span class="toc-text">Two BFS Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#big-m-method"><span class="toc-text">Big M Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#two-phase-method"><span class="toc-text">Two-Phase Method</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +829,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="Simplex Algorithm";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

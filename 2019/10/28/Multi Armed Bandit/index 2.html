@@ -19,11 +19,18 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>Multi Armed Bandit - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Network Optimization">
   
 
+  
+    <meta name="description" content="Multi Armed Bandit
+
+\(t=1,2,\cdots,N\)
+\(k\) arm
+at \(t\), choose arm \(i\), receive reward \(X_{i,t}\sim{}D_i\)(iid unknown distribution)
+Policy: \(\pi=\{i(...">
   
 
   <!-- feed -->
@@ -353,7 +360,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        Multi Armed Bandit
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +380,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +391,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Oct 28, 2019</p>
   </a>
 </div>
 
@@ -395,7 +402,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="Multi Armed Bandit" data-path="/2019/10/28/Multi%20Armed%20Bandit/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +419,111 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="multi-armed-bandit">Multi Armed Bandit</h2>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li><span class="math inline">\(t=1,2,\cdots,N\)</span></li>
+<li><span class="math inline">\(k\)</span> arm</li>
+<li>at <span class="math inline">\(t\)</span>, choose arm <span class="math inline">\(i\)</span>, receive reward <span class="math inline">\(X_{i,t}\sim{}D_i\)</span>(iid unknown distribution)</li>
+<li>Policy: <span class="math inline">\(\pi=\{i(t),t=1,2,\cdots,N\}\)</span></li>
+<li>Goal: <span class="math inline">\(\max\mathbb{E}\{\sum_{t=1}^NX_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm OPT}=N\max_i\mu_i=N\mu,\mu_i=\mathbb{E}\{X_{i,t}\}\)</span></li>
+<li><span class="math inline">\({\rm Reg}={\rm OPT}-\mathbb{E}\{\sum_{t=1}^NX_{i,t}|\pi\}\)</span></li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<a id="more"></a>
+<h2 id="ucb-alg">UCB ALG</h2>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li>Initialize: play machine arm once</li>
+<li>Loop: play machine <span class="math display">\[i=\arg\max\bar{x}_j+\sqrt{\frac{2\ln{}n}{n_j}}\]</span></li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<p>where <span class="math inline">\(\bar{x}_j={\rm avg}\)</span> reward of arm <span class="math inline">\(j\)</span>, <span class="math inline">\(n_j=\#\)</span> of times <span class="math inline">\(j\)</span> is played so far</p>
+<h3 id="theorem">Theorem</h3>
+<p>For all <span class="math inline">\(k&gt;1\)</span>, if UCB runs on <span class="math inline">\(k\)</span> arms with distributions <span class="math inline">\(P_1,P_2,\cdots,P_k\)</span> with support <span class="math inline">\([0,1]\)</span>, then the expected regrest after any <span class="math inline">\(n\)</span> is at most:</p>
+<p><span class="math display">\[\delta\sum_{i,\mu_i&lt;\mu}\frac{\ln{}n}{\Delta_i}+(1+\frac{\pi^2}{3})\sum_{j=1}^k\Delta_j\]</span></p>
+<p>where <span class="math inline">\(\Delta_i=\mu-\mu_i\)</span></p>
+<hr />
+<p><em>Proof.</em><br> Define <span class="math inline">\(C_{t,s}=\sqrt{\frac{2\ln{}t}{s}}\)</span> <span class="math display">\[T_i(n)=1+\sum_{t=k+1}^n\{i(t)=t\}\leq{}l+\sum_{t=k+1}^n\{i(t)=i,T_i(t-1)\geq{}l\}\]</span> After some calculation, we found that <span class="math display">\[T_i(n)\leq{}l+\sum_{t}\sum_{s=1}^{t-1}\sum_{s_i=l}^{t-1}\{\bar{x}_s^\star+C_{t,s}\leq\bar{x}_i+C_{t,s_i}\}\]</span> Also, it's true that <span class="math display">\[\bar{x}_s^\star+C_{t,s}\leq\bar{x}_i+C_{t,s_i}\]</span> holds if at least one of following holds <span class="math display">\[\bar{x}_s^\star\leq\mu-C_{t,s},\bar{x}_{i,s_i}\geq\mu_i+C_{t,s},\mu&lt;\mu_i+2C_{t,s}\]</span> However, the first two probability can be bound by Chernoff bound and the last one is impossible (probability <span class="math inline">\(= 0\)</span>).<br> <span class="math display">\[{\rm Pr}\{\bar{x}_s^\star\leq\mu-C_{t,s}\}\leq{}e^{-4\ln{}t},{\rm Pr}\{\bar{x}_{i,s_i}\geq\mu_i+C_{t,s}\}\leq{}e^{-4\ln{}t}\]</span> Finally, choose <span class="math display">\[l=\lceil\frac{8\ln{}n}{\Delta_i^2}\rceil\]</span> <span class="math display">\[\mathbb{E}\{T_i(n)\}\leq{}l+\sum_{t}\sum_{s=1}^{t-1}\sum_{s_i=l}^{t-1}t^{-4}=l+1+\frac{\pi^2}{3}\]</span></p>
+<h2 id="varepsilon-greedy-alg"><span class="math inline">\(\varepsilon\)</span>-greedy ALG</h2>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>Parameter: <span class="math inline">\(c&gt;0,0&lt;d&lt;1\)</span></li>
+<li>Initialize: Define <span class="math display">\[\varepsilon_n=\min\{1,\frac{ck}{d^2n}\}\]</span></li>
+<li>Loop: <span class="math inline">\(\forall{}n=1,2,\cdots\)</span>, let <span class="math inline">\(i_n=\arg\max_j\bar{x}_{j,n}\)</span>. Play <span class="math inline">\(i_n\)</span> with probability <span class="math inline">\(1-\varepsilon_n\)</span> and random with probability <span class="math inline">\(\varepsilon_n\)</span></li>
 </ul>
+<h3 id="theorem-1">Theorem</h3>
+<p>For all <span class="math inline">\(k&gt;1\)</span>, if <span class="math inline">\(\varepsilon\)</span>-greedy runs on <span class="math inline">\(k\)</span> arms with distributions <span class="math inline">\(P_1,P_2,\cdots,P_k\)</span> with support <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(0&lt;d&lt;\min_{i,\mu_i&lt;\mu}\Delta_i\)</span>. Then, the probability that after <span class="math inline">\(n\geq{}ck/d\)</span> plays, <span class="math inline">\(\varepsilon\)</span>-greedy choose a sub-opt <span class="math inline">\(j\)</span> is at most <span class="math display">\[\mathcal{O}(\frac{c}{d^2n}+o(\frac{1}{n}))\]</span> for <span class="math inline">\(n\rightarrow\infty\)</span> and <span class="math inline">\(c&gt;5\)</span>.</p>
+<h2 id="lower-bound">Lower Bound</h2>
+<p>Consider two <span class="math inline">\(\Theta\)</span> values, i.e., <span class="math inline">\(\Theta=(\theta_1,\theta_2,\cdots,\theta_k)\)</span> with <span class="math inline">\(\mu_1&gt;\mu_2\geq\dots\geq\mu_k\)</span>; <span class="math inline">\(\Theta^{\prime}=(\theta_1,\theta_2^\prime,\cdots,\theta_k)\)</span> with <span class="math inline">\(\mu_2^{\prime}&gt;\mu_1\geq\dots\geq\mu_k\)</span>. Here we want to prove that it costs about <span class="math inline">\(\ln{}n\)</span> time to tell the difference between this two.<br> For a strategy - <span class="math inline">\(x_{j,s}\)</span>: reward for <span class="math inline">\(j\)</span> at <span class="math inline">\(s\)</span>-th slot - <span class="math inline">\(\mathbb{P}\)</span>: joint distribution over <span class="math inline">\(\{I_t,x_{j,s}\}\)</span> under <span class="math inline">\(\Theta\)</span> - <span class="math inline">\(\mathbb{P}^{\prime}\)</span>: joint distribution over <span class="math inline">\(\{I_t,x_{j,s}\}\)</span> under <span class="math inline">\(\Theta^\prime\)</span></p>
+<hr />
+<p>Consider <span class="math inline">\(A\subset\{T_2(n)=n_2\}\)</span> <span class="math display">\[\mathbb{P}(A)=\int_A\prod_{s=1}^{n_2}\frac{d\mathbb{P}_{\theta_2^\prime}}{d\mathbb{P}_{\theta_2}}(x_{2,s})d\mathbb{P}=\int_A\exp\{\sum_{s=1}^{n_2}\ln\frac{d\mathbb{P}_{\theta_2^\prime}}{d\mathbb{P}_{\theta_2}}(x_{2,s})d\mathbb{P}\}=\int_Ae^{-L_{n_2}}d\mathbb{P}\]</span> <span class="math display">\[\mathbb{P}^\prime(A)\geq{}e^{-C_n}\mathbb{P}(A)\]</span></p>
+<h2 id="thompson-sampling-alg">Thompson Sampling ALG</h2>
+<p>Here we only consider Bernoulli Bandits with <span class="math inline">\(N=2\)</span>, because the overall analysis is really complex.</p>
+<ul>
+<li><span class="math inline">\(X_1,X_2\in\{0,1\}\)</span>, <span class="math inline">\(\mu_1\geq\mu_2\)</span></li>
+<li>Initialize: for each <span class="math inline">\(i\)</span>, <span class="math inline">\(S_i=F_i=0\)</span></li>
+<li>Loop: <span class="math inline">\(t=1,2,\cdots,d_0\)</span>
+<ul>
+<li>For each <span class="math inline">\(i\)</span>, sample <span class="math inline">\(\theta_i(t)\sim{\rm Beta}(S_i+1,F_i+1)\)</span></li>
+<li>Play <span class="math inline">\(i(t)=\arg\max\theta_i(t)\)</span>, observe reward <span class="math inline">\(r_t\)</span></li>
+<li>If <span class="math inline">\(r_t=1\)</span>, <span class="math inline">\(S_{i(t)}+=1\)</span>, else <span class="math inline">\(F_{i(t)}+=1\)</span></li>
+</ul></li>
+</ul>
+<h3 id="theorem-2">Theorem</h3>
+<p>In this <span class="math inline">\(2\)</span> Bernoulli Bandits, TS achieves</p>
+<p><span class="math display">\[\mathbb{E}\{R(T)\}=\mathcal{O}(\frac{\ln{}T}{\Delta}+\frac{1}{\Delta^3})\]</span> where <span class="math inline">\(\Delta=\mu_\max-\mu_\min\)</span></p>
+<hr />
+<p><em>Proof.</em></p>
+<ul>
+<li>Denote <span class="math inline">\(j_0=\#\)</span> of plays of arm <span class="math inline">\(1\)</span> until arm <span class="math inline">\(2\)</span> is played <span class="math inline">\(L=24\ln{}T/\Delta^2\)</span> times.</li>
+<li>Let <span class="math inline">\(t_j=\)</span> time of the <span class="math inline">\(j^{\rm th}\)</span> play of arm <span class="math inline">\(1\)</span> (<span class="math inline">\(t_0=0\)</span>). Also, let <span class="math inline">\(y_j=t_j-t_{j-1}-1\)</span>, i.e., the interval play time.</li>
+<li>Denote <span class="math inline">\(S(j)=\#\)</span> of success in the first <span class="math inline">\(j\)</span> plays of arm <span class="math inline">\(1\)</span></li>
+<li>The expected <span class="math inline">\(\#\)</span> of play of arm <span class="math inline">\(2\)</span>: <span class="math display">\[\mathbb{E}\{K_2(T)\}\leq{}L+\mathbb{E}\{\sum_{j=j_0}^{T-1}y_j\}\]</span></li>
+<li>Denote <span class="math inline">\(X(j,s,y)\)</span> to be the <span class="math inline">\(\#\)</span> of attempts before we get a sample from <span class="math inline">\({\rm Beta}(s+1,j-s+1)\)</span> to exceed <span class="math inline">\(y\)</span></li>
+</ul>
+<p>It can be seen that <span class="math inline">\(X(j,s,y)\)</span> is Geo with success probability <span class="math inline">\(1-F_{s+1,j-s+1}^{\rm beta}(y)\)</span></p>
+<hr />
+<h4 id="lemma-1">Lemma 1</h4>
+<p>For all non-negative <span class="math inline">\(j\)</span> an d <span class="math inline">\(s\leq{}j\)</span> and <span class="math inline">\(y\in[0,1]\)</span> <span class="math display">\[\mathbb{E}\{X(j,s,y)\}=\frac{1}{F_{j+1,y}^{\rm beta}(s)}-1\]</span></p>
+<hr />
+<ul>
+<li>Consider the <span class="math inline">\(\#\)</span> of steps before event <span class="math inline">\(\{\theta_1(t)&gt;\mu_2+\Delta/2\}\)</span> first happens</li>
+<li>Given <span class="math inline">\(S(j)\)</span>, this has the same distribution as <span class="math inline">\(X(j,S(j),\mu_2+\Delta/2)\)</span></li>
+<li><span class="math inline">\(y_j\)</span> can be larger than this <span class="math inline">\(\#\)</span> iff at some <span class="math inline">\(t\in(t_j,t_{j+1})\)</span>, <span class="math inline">\(\theta_2(t)&gt;\mu_2+\Delta/2\)</span></li>
+<li>Thus: <span class="math display">\[\mathbb{E}\{y_j\}\leq\mathbb{E}\{\min(X(j,S(j),\mu_2+\Delta/2),T)\}+\mathbb{E}\{\sum_{t=t_j+1}^{t_{j+1}-1}T\cdot{}I\{\theta_2&gt;\mu_2+\Delta/2\}I\{j&gt;j_0\}\}\]</span></li>
+</ul>
+<p>Sum it up from <span class="math inline">\(j=j_0\)</span> to <span class="math inline">\(T-1\)</span> and define event:</p>
+<p><span class="math display">\[E_2(t)=\{\theta_2(t)\leq\mu_2+\Delta/2\lor{}K_2(t)\leq{}L\}\]</span></p>
+<hr />
+<h4 id="lemma-2">Lemma 2</h4>
+<p><span class="math display">\[\mathbb{P}(E_2(t))\geq1-\frac{2}{T^2}\]</span></p>
+<h4 id="lemma-3">Lemma 3</h4>
+<p>Consider any <span class="math inline">\(y&lt;\mu_1\)</span>, let <span class="math inline">\(\Delta^1=\mu_1y\)</span>, let <span class="math inline">\(R=\frac{\mu_1(1-y)}{y(1-\mu_1)}&gt;1\)</span> and <span class="math inline">\(D=D(y||\mu_1)=y\ln\frac{y}{\mu_1}+(1-y)\ln\frac{1-y}{1-\mu_1}\)</span>, we have:</p>
+<p><span class="math display">\[\mathbb{E}\{\mathbb{E}\{\min(X(j,S(j),y),T)|S(j)\}\}\leq\frac{16}{T}\quad{\rm for }\quad{}j\geq\frac{4\ln{}T}{(\Delta^1)^2}\]</span></p>
+<hr />
+<p>Substitute Lemma 2 and Lemma 3 into the sum-up result (which we omit) and the inequality <span class="math display">\[\mathbb{E}\{K_2(T)\}\leq{}L+\mathbb{E}\{\sum_{j=j_0}^{T-1}y_j\}\]</span> we have (skip lots lots of calculation): <span class="math display">\[\mathbb{E}\{K_2(T)\}\leq{}\frac{40\ln{}T}{\Delta^2}+\frac{48}{\Delta^4}+18\]</span> <span class="math display">\[\mathbb{E}\{R(T)\}=\mathcal{O}(\frac{\ln{}T}{\Delta}+\frac{1}{\Delta^3})\]</span></p>
+<h2 id="non-stochastic-alg-exp3">Non Stochastic: ALG EXP3</h2>
+<ul>
+<li><span class="math inline">\(K\)</span> actions</li>
+<li><span class="math inline">\(X(i)=(X_i(1),X_i(2),\cdots),X_i(t)\in[0,1]\)</span></li>
+<li>ALG <span class="math inline">\(=i_1,i_2,\cdots,\)</span></li>
+<li><span class="math inline">\(G_A(T)=\sum_{t=1}^TX_{i_t}(t)\)</span></li>
+<li>Regret <span class="math inline">\(=\max_j\sum_{t=1}^TX_j(t)-G_A(T)\)</span></li>
+</ul>
+<p><strong>ALG EXP3</strong></p>
+<ul>
+<li>Parameter: Real <span class="math inline">\(\gamma\in[0,1]\)</span></li>
+<li>Initialize: <span class="math inline">\(w_i(1)=1,\forall{}i=1,2,\cdots,K\)</span></li>
+<li>Loop: for each <span class="math inline">\(t=1,2,\cdots\)</span>
+<ul>
+<li>Set <span class="math display">\[P_i(t)=(1-\gamma)\frac{w_i(t)}{\sum{}w_i(t)}+\frac{\gamma}{K}\]</span></li>
+<li>Draw <span class="math inline">\(i_t\)</span> randomly <span class="math inline">\(\sim{}P_1(t),\cdots,P_K(t)\)</span></li>
+<li>Get reward <span class="math inline">\(X_{i_t}\in[0,1]\)</span></li>
+<li>For <span class="math inline">\(j=1,2,\cdots,k\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[\hat{X}_j(t)=\left\{\begin{aligned}&amp;\frac{X_j(t)}{P_j(t)}&amp;j=i_t\\&amp;0&amp;\text{otherwise}\end{aligned}\right.\quad\quad{}w_j(t+1)=w_j(t)\exp(\frac{\gamma\hat{X}_j(t)}{K})\]</span></p>
+<h3 id="theorem-3">Theorem</h3>
+<p>For any <span class="math inline">\(K\)</span> and any <span class="math inline">\(\gamma\in[0,1]\)</span>, <span class="math display">\[G_\max-\mathbb{E}\{G_{\rm exp3}\}\leq(e-1)\gamma{}G_\max+\frac{K\ln{}K}{\gamma}\]</span> for any reward assignments</p>
+<h4 id="corollary">Corollary</h4>
+<p>Assume <span class="math inline">\(g\geq{}G_\max\)</span> and <span class="math inline">\(\gamma=\min\{1,\sqrt{\frac{K\ln{}K}{(e-1)g}}\}\)</span>, then <span class="math display">\[G_\max-\mathbb{E}\{G_{\rm exp3}\}\leq2.63\sqrt{gK\ln{}K}\]</span></p>
 
   
   
@@ -518,7 +536,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/10/28/Multi%20Armed%20Bandit/>https://zs-liu.github.io/2019/10/28/Multi%20Armed%20Bandit/</a></p>
               
             
           </blockquote>
@@ -535,10 +553,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:05:57+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +565,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Network-Optimization/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Network Optimization</p></a></div>
 
 
         
@@ -567,12 +585,18 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2020/10/14/hello/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>好久不见</p>
+          <p class='content'>许久不见啦！去年十月开始我忙于申请，然后紧接着又是毕业的相关事宜，以致我许久没有更新。我正在着手写一点关于我在清华四年的东西，希望能尽快发上来。与此同时，我也可能发一些我在IC的笔记（和以前一样...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
-Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+      
+        <a class='next' href='/2019/09/23/Heavy%20Traffic/'>
+          <p class='title'>Heavy Traffic Analysis<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Introduction
+
+Single Hop System, \(L\) Queues
+\(Q_l(t=1)=(Q_l(t)+A_l(t)-S_l(t))^+=Q_l(t)+A_l(t)-S...</p>
         </a>
       
     </div>
@@ -668,7 +692,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#multi-armed-bandit"><span class="toc-text">Multi Armed Bandit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ucb-alg"><span class="toc-text">UCB ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem"><span class="toc-text">Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#varepsilon-greedy-alg"><span class="toc-text">\(\varepsilon\)-greedy ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem-1"><span class="toc-text">Theorem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lower-bound"><span class="toc-text">Lower Bound</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thompson-sampling-alg"><span class="toc-text">Thompson Sampling ALG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem-2"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lemma-1"><span class="toc-text">Lemma 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemma-2"><span class="toc-text">Lemma 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemma-3"><span class="toc-text">Lemma 3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#non-stochastic-alg-exp3"><span class="toc-text">Non Stochastic: ALG EXP3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem-3"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#corollary"><span class="toc-text">Corollary</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +712,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="Multi Armed Bandit";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

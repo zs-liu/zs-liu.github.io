@@ -19,11 +19,19 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>基本参数与参数估计基础 - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Reliability Engineering">
   
 
+  
+    <meta name="description" content="基本参数
+可靠度与不可靠度
+
+\(n(t)\):在\(0\sim{}t\)时刻的工作时间内产品的累计失效数
+\(N_0\):\(t=0\)时在规定条件下进行工作的产品数
+
+\[Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}\] \[Fallibility(t)=F(t)=\fra...">
   
 
   <!-- feed -->
@@ -353,7 +361,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        基本参数与参数估计基础
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +381,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +392,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Mar 4, 2019</p>
   </a>
 </div>
 
@@ -395,7 +403,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="基本参数与参数估计基础" data-path="/2019/03/04/%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1%E5%9F%BA%E7%A1%80/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +420,82 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="基本参数">基本参数</h2>
+<h3 id="可靠度与不可靠度">可靠度与不可靠度</h3>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li><span class="math inline">\(n(t)\)</span>:在<span class="math inline">\(0\sim{}t\)</span>时刻的工作时间内产品的累计失效数</li>
+<li><span class="math inline">\(N_0\)</span>:<span class="math inline">\(t=0\)</span>时在规定条件下进行工作的产品数</li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<p><span class="math display">\[Reliability(t)=R(t)=\frac{N_0-n(t)}{N_0}\]</span> <span class="math display">\[Fallibility(t)=F(t)=\frac{n(t)}{N_0}\]</span></p>
+<a id="more"></a>
+<h3 id="失效率">失效率</h3>
+<p><span class="math display">\[\lambda(t)=\lim_{\Delta{}t\rightarrow0}\frac{P(t&lt;T\leq{}t+\Delta{}t|T&gt;t)}{\Delta{}t}=\frac{F^{&#39;}(t)}{1-F(t)}=-\frac{R^{&#39;}(t)}{R(t)}\]</span> <span class="math display">\[\hat{\lambda}(t)=\frac{n(t+\Delta{}t)-n(t)}{\Delta{}t(N_0-n(t))}\]</span></p>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li>单位:<span class="math inline">\(1Fit=10^{-9}/h\)</span></li>
+<li><span class="math inline">\(R(t)=\exp\{-\int_0^t\lambda(t)dt\}\)</span></li>
+<li><span class="math inline">\(f(t)=\lambda(t)\exp\{-\int_0^t\lambda(t)dt\}\)</span></li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<h4 id="浴盆曲线">浴盆曲线</h4>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>大多数产品的失效率随时间的变化曲线形似浴盆</li>
+<li>由于产品失效机理的不同，失效率随时间的变化大致可以分为三个阶段：早期故障、偶然故障和耗损故障</li>
 </ul>
+<h3 id="平均寿命">平均寿命</h3>
+<h4 id="平均故障前时间mttf-mean-time-to-failure">平均故障前时间(MTTF, Mean Time To Failure)</h4>
+<p>设<span class="math inline">\(n\)</span>个不可修复产品在同样条件下进行试验，测得其全部故障时间为<span class="math inline">\(t_1,t_2,...,t_n\)</span>，则其平均故障前时间为: <span class="math display">\[T_{TF}=\frac{1}{n}\sum_{i=1}^nt_i\]</span></p>
+<h4 id="平均故障间隔时间mtbf-mean-time-between-failure">平均故障间隔时间(MTBF, Mean Time Between Failure)</h4>
+<p>设<span class="math inline">\(1\)</span>个可修复产品在使用过程中发生了<span class="math inline">\(n\)</span>次故障，每次故障修复后又重新投入使用，测得其每次工作持续时间为<span class="math inline">\(t_1,t_2,...,t_n\)</span>，则其平均故障间隔时间为： <span class="math display">\[T_{BF}=\frac{1}{n}\sum_{i=1}^nt_i\]</span></p>
+<h4 id="平均寿命-1">平均寿命</h4>
+<p><span class="math display">\[\theta=\int_0^\infty{}tf(t)dt=\int_0^\infty{}R(t)dt\]</span></p>
+<h4 id="可靠寿命">可靠寿命</h4>
+<p><span class="math display">\[t_R=R^{-1}(r)\]</span></p>
+<h3 id="常用的可靠性定量指标">常用的可靠性定量指标</h3>
+<h4 id="指数分布lambdaconst">指数分布:<span class="math inline">\(\lambda=const\)</span></h4>
+<ul>
+<li><span class="math inline">\(R(t)=\exp\{-\lambda{}t\}\)</span></li>
+<li><span class="math inline">\(f(t)=\lambda\exp\{-\lambda{}t\}\)</span></li>
+<li><span class="math inline">\(\theta=MTTF=\lambda^{-1}\)</span></li>
+</ul>
+<h3 id="常用分布">常用分布</h3>
+<h4 id="对数正态分布">对数正态分布</h4>
+<p><span class="math inline">\(T\)</span>的对数<span class="math inline">\(\ln{}T\)</span>服从正态分布，则<span class="math inline">\(T\)</span>服从对数正态分布，即<span class="math inline">\(X=\ln{}T\sim{}N(\mu,\sigma^2)\)</span> <span class="math display">\[f(t)=\frac{1}{\sigma{}t\sqrt{2\pi}}\exp\{-\frac{(\ln{}t-\mu)^2}{2\sigma^2}\}\]</span></p>
+<ul>
+<li>均值:<span class="math inline">\(E(T)=\exp\{\mu+\frac{\sigma^2}{2}\}\)</span></li>
+<li>方差:<span class="math inline">\(D(T)=\exp\{2(\mu+\frac{\sigma^2}{2})\}(e^{\sigma^2}-1)\)</span></li>
+</ul>
+<h4 id="威布尔分布">威布尔分布</h4>
+<p><span class="math display">\[f(t)=\frac{m}{t_0}(t-\gamma)^{m-1}\exp\{-(t-\gamma)\frac{m}{t_0}\}\]</span></p>
+<ul>
+<li>均值:<span class="math inline">\(E(T)=\gamma+t_0^{\frac{1}{m}}\Gamma(1+\frac{1}{m})\)</span></li>
+<li>方差:<span class="math inline">\(D(T)=t_0^{\frac{2}{m}}[\Gamma(1+\frac{2}{m})-\Gamma^2(1+\frac{1}{m})]\)</span></li>
+</ul>
+<h2 id="参数估计基础">参数估计基础</h2>
+<h3 id="截尾实验">截尾实验</h3>
+<h4 id="无替换定数截尾试验">无替换定数截尾试验</h4>
+<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到出现事先指定的<span class="math inline">\(r\)</span>个产品失效停止试验。</p>
+<ul>
+<li>总试验时间:<span class="math display">\[T_r=\sum_{i=1}^rt_i(n-r)t_r\]</span></li>
+<li>点估计:<span class="math inline">\(\lambda=r/T_r\)</span></li>
+<li>区间估计:<span class="math inline">\(2\lambda{}T_r\sim{}\chi^2(2r)\)</span></li>
+</ul>
+<h4 id="有替换定数截尾试验">有替换定数截尾试验</h4>
+<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到规定失效数<span class="math inline">\(r\)</span>时停止试验。<span class="math inline">\(r\)</span>个失效样品的失效时间记为:<span class="math inline">\(t_1\leq{}t_2\leq\dots\leq{}t_r\)</span></p>
+<ul>
+<li>总试验时间:<span class="math inline">\(T_r=nt_r\)</span></li>
+</ul>
+<h4 id="无替换定时截尾试验">无替换定时截尾试验</h4>
+<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到出现事先规定的时间<span class="math inline">\(t_0\)</span>停止试验，共有<span class="math inline">\(r\)</span>个失效</p>
+<ul>
+<li>总试验时间:<span class="math display">\[T_0=\sum_{i=1}^rt_i(n-r)t_0\]</span></li>
+<li>点估计:<span class="math inline">\(\lambda=r/T_0\)</span></li>
+</ul>
+<h4 id="有替换定时截尾试验">有替换定时截尾试验</h4>
+<p>随机抽取<span class="math inline">\(n\)</span>件产品进行寿命试验，试验到出现事先规定的时间<span class="math inline">\(t_0\)</span>停止试验，共有<span class="math inline">\(r\)</span>个失效</p>
+<ul>
+<li>总试验时间:<span class="math inline">\(T_0=nt_0\)</span></li>
+</ul>
+<h3 id="贝叶斯估计简介">贝叶斯估计简介</h3>
+<p>略</p>
 
   
   
@@ -518,7 +508,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/03/04/%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1%E5%9F%BA%E7%A1%80/>https://zs-liu.github.io/2019/03/04/%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1%E5%9F%BA%E7%A1%80/</a></p>
               
             
           </blockquote>
@@ -535,10 +525,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:03:09+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +537,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Reliability-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Reliability Engineering</p></a></div>
 
 
         
@@ -567,12 +557,19 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
-      
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
+        <a class='prev' href='/2019/03/07/Convex%20Functions/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Convex Functions</p>
+          <p class='content'>Basic properties and examples
 Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+\(f:R^n\rightarrow{}R\) is convex if dom\(f\) is a conve...</p>
+        </a>
+      
+      
+        <a class='next' href='/2019/01/24/%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98/'>
+          <p class='title'>无限阶段折扣问题<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>引言——成本总和的最小化
+无限阶段问题的成本总和
+定义非时变离散时间动态系统： \[x_{k+1}=f(x_k,u_k,w_k)\] \[x_k\in{}S,u_k\in{}U(x_k)\sub...</p>
         </a>
       
     </div>
@@ -668,7 +665,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="toc-text">基本参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E5%BA%A6%E4%B8%8E%E4%B8%8D%E5%8F%AF%E9%9D%A0%E5%BA%A6"><span class="toc-text">可靠度与不可靠度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B1%E6%95%88%E7%8E%87"><span class="toc-text">失效率</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%B4%E7%9B%86%E6%9B%B2%E7%BA%BF"><span class="toc-text">浴盆曲线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E5%AF%BF%E5%91%BD"><span class="toc-text">平均寿命</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E6%95%85%E9%9A%9C%E5%89%8D%E6%97%B6%E9%97%B4mttf-mean-time-to-failure"><span class="toc-text">平均故障前时间(MTTF, Mean Time To Failure)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E6%95%85%E9%9A%9C%E9%97%B4%E9%9A%94%E6%97%B6%E9%97%B4mtbf-mean-time-between-failure"><span class="toc-text">平均故障间隔时间(MTBF, Mean Time Between Failure)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E5%AF%BF%E5%91%BD-1"><span class="toc-text">平均寿命</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E5%AF%BF%E5%91%BD"><span class="toc-text">可靠寿命</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%AE%9A%E9%87%8F%E6%8C%87%E6%A0%87"><span class="toc-text">常用的可靠性定量指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83lambdaconst"><span class="toc-text">指数分布:\(\lambda&#x3D;const\)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%88%86%E5%B8%83"><span class="toc-text">常用分布</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E6%95%B0%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="toc-text">对数正态分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A8%81%E5%B8%83%E5%B0%94%E5%88%86%E5%B8%83"><span class="toc-text">威布尔分布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1%E5%9F%BA%E7%A1%80"><span class="toc-text">参数估计基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E5%B0%BE%E5%AE%9E%E9%AA%8C"><span class="toc-text">截尾实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%9B%BF%E6%8D%A2%E5%AE%9A%E6%95%B0%E6%88%AA%E5%B0%BE%E8%AF%95%E9%AA%8C"><span class="toc-text">无替换定数截尾试验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%9B%BF%E6%8D%A2%E5%AE%9A%E6%95%B0%E6%88%AA%E5%B0%BE%E8%AF%95%E9%AA%8C"><span class="toc-text">有替换定数截尾试验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%9B%BF%E6%8D%A2%E5%AE%9A%E6%97%B6%E6%88%AA%E5%B0%BE%E8%AF%95%E9%AA%8C"><span class="toc-text">无替换定时截尾试验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%9B%BF%E6%8D%A2%E5%AE%9A%E6%97%B6%E6%88%AA%E5%B0%BE%E8%AF%95%E9%AA%8C"><span class="toc-text">有替换定时截尾试验</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%B0%E8%AE%A1%E7%AE%80%E4%BB%8B"><span class="toc-text">贝叶斯估计简介</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +685,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="基本参数与参数估计基础";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

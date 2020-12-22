@@ -19,11 +19,14 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>Subgradient Method - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Convex Optimization">
   
 
+  
+    <meta name="description" content="Subgradient
+\(g\) is a subgradient of a convex function \(f\) at \(x\in{}dom~f\) if \[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]">
   
 
   <!-- feed -->
@@ -353,7 +356,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        Subgradient Method
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +376,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +387,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Apr 16, 2019</p>
   </a>
 </div>
 
@@ -395,7 +398,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="Subgradient Method" data-path="/2019/04/16/Subgradient%20Method/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +415,86 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="subgradient">Subgradient</h2>
+<p><span class="math inline">\(g\)</span> is a subgradient of a convex function <span class="math inline">\(f\)</span> at <span class="math inline">\(x\in{}dom~f\)</span> if <span class="math display">\[f(y)\geq{}f(x)+g^\top(y-x)\quad\text{for all }y\in{}dom~f\]</span></p>
+<a id="more"></a>
+<h3 id="properties">Properties</h3>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li><span class="math inline">\(f(x)+g^\top(y-x)\)</span> is a global lower bound on <span class="math inline">\(f(y)\)</span></li>
+<li><span class="math inline">\(g\)</span> defines non-vertical supporting hyperplane to <span class="math inline">\(epi~f\)</span> at <span class="math inline">\((x, f (x))\)</span></li>
+<li>if <span class="math inline">\(f\)</span> is convex and differentiable, then <span class="math inline">\(\nabla{}f(x)\)</span> is a subgradient of <span class="math inline">\(g\)</span> at <span class="math inline">\(x\)</span></li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<h3 id="subdifferential">Subdifferential</h3>
+<p>the subdifferential <span class="math inline">\(\partial{}f(x)\)</span> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> is the set of all subgradients: <span class="math display">\[\partial{}f(x)=\{g|g^\top(y-x)\leq{}f(y)-f(x),\forall{}y\in{}dom~f\}\]</span></p>
+<h3 id="monotonicity">Monotonicity</h3>
+<p>the subdifferential of a convex function is a monotone operator: <span class="math display">\[(u-v)^\top(x-y)\geq0,\text{for all }x,y,u\in\partial{}f(x),v\in\partial{}f(y)\]</span></p>
+<h2 id="directional-derivative">Directional Derivative</h2>
+<h3 id="introduction">Introduction</h3>
+<p><span class="math display">\[f(x+d)=f(x)+\nabla{}f(x)^\top{}d\]</span> <span class="math display">\[\text{If }\nabla{}f(x)^\top{}d&lt;0,d\text{ is a descent direction}\]</span></p>
+<h3 id="definition">Definition</h3>
+<p>The directional derivative of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> in the direction <span class="math inline">\(y\)</span> is <span class="math display">\[f^{&#39;}(x;y)=\lim_{a\searrow{}0}\frac{f(x+\alpha{}y)-f(x)}{\alpha}=\lim_{t\rightarrow\infty}(tf(x+\frac{y}{t})-tf(x))\]</span></p>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li><span class="math inline">\(f^{&#39;}(x;y)\)</span> is the right derivative of <span class="math inline">\(g(\alpha)=f(x+\alpha{}y)\)</span> at <span class="math inline">\(\alpha=0\)</span></li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<h4 id="proofexistence">Proof:Existence</h4>
+<p><span class="math display">\[h(\alpha)=\frac{f(x+\alpha{}y)-f(x)}{\alpha}\]</span> <span class="math display">\[x+\alpha_1{}y=x+\frac{\alpha_1}{\alpha_2}x-\frac{\alpha_1}{\alpha_2}x+\frac{\alpha_1}{\alpha_2}\alpha_2y=(1-\frac{\alpha_1}{\alpha_2})x+\frac{\alpha_1}{\alpha_2}(x+\alpha_2y)\]</span> <span class="math display">\[f(x+\alpha_1{}y)\leq(1-\frac{\alpha_1}{\alpha_2})f(x)+\frac{\alpha_1}{\alpha_2}f(x+\alpha_2y)\text{ (convex)}\]</span> <span class="math display">\[h(\alpha_1)\leq{}h(\alpha_2)\]</span></p>
+<h4 id="proofhomogeneous">Proof:Homogeneous</h4>
+<p><span class="math display">\[\text{If }x\in\text{int dom}f\Rightarrow{}\text{dom}f^{&#39;}(x,y)=R^n\]</span> <span class="math display">\[\text{Let }\beta=\alpha\lambda,\text{ it is easy to prove}\]</span></p>
+<h3 id="directional-derivative-and-subgradients">Directional derivative and subgradients</h3>
+<p>For convex <span class="math inline">\(f\)</span> and <span class="math inline">\(x\in\text{int dom}f\)</span>: <span class="math display">\[f^{&#39;}(x;y)=\sup_{g\in\partial{}f(x)}g^\top{}y\]</span></p>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>generalize <span class="math inline">\(f^{&#39;}(x;y)\)</span> for differentiable functions</li>
+<li>implies that <span class="math inline">\(f^{&#39;}(x;y)\)</span> exists for all <span class="math inline">\(x\in\text{int dom}f\)</span>, all <span class="math inline">\(y\)</span></li>
 </ul>
+<h4 id="proof">Proof</h4>
+<p><span class="math display">\[f^{&#39;}(x;y)=\lim_{a\searrow{}0}\frac{f(x+\alpha{}y)-f(x)}{\alpha}\geq\lim_{a\searrow{}0}\frac{}{}\]</span></p>
+<hr />
+<p><span class="math display">\[\text{Let }\hat{g}\in\partial_yf^{&#39;}(x;y)\]</span> <span class="math display">\[\lambda{}f^{&#39;}(x;v)=f^{&#39;}(x,\lambda{}v)\geq{}f^{&#39;}(x;y)+\hat{g}^\top(\lambda{}v-y)\]</span><span class="math display">\[\Leftrightarrow{}\lambda(f^{&#39;}(x,v)-\hat{g}^\top{}v)\geq{}f^{&#39;}(x;y)-\hat{g}^\top{}y\]</span> <span class="math display">\[\Leftrightarrow{}^{\lambda\rightarrow\infty}f^{&#39;}(x,v)\geq\hat{h}^\top{}v\]</span> <span class="math display">\[\Leftrightarrow{}f(x,v)\geq{}f(x)+f^{&#39;}(x,v)\geq{}f(x)+\hat{g}^\top{}v\Rightarrow{}\hat{g}\in\partial{}f(x)\]</span> <span class="math display">\[\Leftrightarrow{}^{\lambda\rightarrow0}f^{&#39;}(x,y)\leq{}g^\top{}y\]</span></p>
+<h3 id="steepest-descent-direction">Steepest descent direction</h3>
+<p>Steepest descent direction at <span class="math inline">\(x\in\text{int dom} f\)</span> is <span class="math display">\[\Delta{}x_{nsd}=\arg\min_{||y||_2\leq1}f^{&#39;}(x;y)\]</span> <span class="math display">\[\text{(P) }\min_yf^{&#39;}(x;y),s.t.||y||_2\leq1\]</span> <span class="math display">\[\text{(D) }\max_g-||g||_2,s.t.g\in\partial{}f(x)\]</span></p>
+<h4 id="proof-1">Proof</h4>
+<p>if <span class="math inline">\(f\)</span> is convex, <span class="math inline">\(f(y)&lt;f(x),g\in\partial{}f(x)\)</span>, then for small <span class="math inline">\(t&gt;0\)</span>: <span class="math display">\[||x-tg-y||_2^2=||x-y||_2^2-2tg^\top(x-y)+t^2||g||_2^2\leq||x-y||_2^2-2t(f(x)-f(y))+t^2||g||_2^2&lt;||x-y||_2^2\]</span> <span class="math display">\[f^\star(x^\star)=\min{}f(x),x_{k+1}=x_k-tg_k,g_k\in\partial{}f(x_k)\]</span> <span class="math display">\[f(x_k)&gt;f(x^\star),\text{but }||x_{k+1}-x^\star||&lt;||x_k-x^\star||\]</span></p>
+<h3 id="lemma-1">Lemma 1</h3>
+<p>Let <span class="math inline">\(x_0\in{}int~dom~f\)</span>, then <span class="math display">\[f \text{ is convex }\Rightarrow{}f\text{ is continuous at }x_0\]</span></p>
+<h4 id="proof-2">Proof</h4>
+<p><span class="math display">\[g(x)=f(x_0+x)-f(x_0), g(0)=0, g\text{ is convex}, 0\in~int~dom~g\]</span> <span class="math display">\[\exists\alpha~s.t.~x_0+\alpha{}y_i\in~dom~f\]</span> <span class="math display">\[\{y_1,\dots,y_{2n}\}=\{e_1,\dots,e_n,-e_1,\dots,-e_n\}\]</span> ......</p>
+<h2 id="subgradient-method">Subgradient Method</h2>
+<p>to minimize a nondifferentiable convex function <span class="math inline">\(f\)</span>: choose <span class="math inline">\(x^{(0)}\)</span> and repeat <span class="math display">\[x^{(k)}=x^{(k-1)}-t_kg^{(k-1)},k=1,2,\dots\]</span> <span class="math inline">\(g^{(k-1)}\)</span> is any subgradient of <span class="math inline">\(f\)</span> at <span class="math inline">\(x^{(k−1)}\)</span></p>
+<h3 id="assumptions">Assumptions</h3>
+<ul>
+<li><span class="math inline">\(f\)</span> has finite optimal value <span class="math inline">\(f^\star\)</span>, minimizer <span class="math inline">\(x^\star\)</span></li>
+<li><span class="math inline">\(f\)</span> is convex, <span class="math inline">\(dom~f = R^n\)</span></li>
+<li><span class="math inline">\(f\)</span> is Lipschitz continuous with constant <span class="math inline">\(G &gt; 0\)</span></li>
+</ul>
+<p><span class="math display">\[|f(x)-f(y)|\leq{}G||x-y||_2\quad\forall{}x,y\]</span> this is equivalent to <span class="math inline">\(||g||_2\leq{}G\)</span> for all <span class="math inline">\(x\)</span> and <span class="math inline">\(g\in\partial{}f(x)\)</span></p>
+<h3 id="analysis">Analysis</h3>
+<ul>
+<li>the subgradient method is not a descent method</li>
+<li>the key quantity in the analysis is the distance to the optimal set</li>
+</ul>
+<p>with <span class="math inline">\(x^+=x^{(i)},x=x^{(i-1)},g=g^{(i-1)},t=t_i\)</span>: <span class="math display">\[||x^+-x^\star||_2^2=||x-tg-x^\star||_2^2\]</span> <span class="math display">\[=||x-x^\star||_2^2-2tg^\top(x-x^\star)+t^2||g_2^2||\leq||x-x^\star||_2^2-2t(f(x)-f^\star)+t^2||g_2^2||\]</span> combine inequalities for <span class="math inline">\(i=1,\dots,k\)</span>, and define <span class="math inline">\(f^{(k)}_{\text{best}}=\min_{0\leq{}i\leq{}k}f(x^{(i)})\)</span> <span class="math display">\[(f^{(k)}_{\text{best}}-f^\star)\leq\frac{||x^{(0)}-x^\star||_2^2+\sum_{i=1}^kt_i^2||g^{(i-1)}||_2^2}{2\sum_{i=1}^kt_i}\]</span></p>
+<h4 id="fixed-step-size-t_it">Fixed step size: <span class="math inline">\(t_i=t\)</span></h4>
+<p><span class="math display">\[f^{(k)}_{\text{best}}-f^\star\leq\frac{||x^{(0)}-x^\star||_2^2}{2kt}+\frac{G^2t}{2}\]</span></p>
+<ul>
+<li>does not guarantee convergence of <span class="math inline">\(f^{(k)}_{\text{best}}\)</span></li>
+</ul>
+<h4 id="fixed-step-length-t_isgi-1_2">Fixed step length: <span class="math inline">\(t_i=s/||g^{(i-1)}||_2\)</span></h4>
+<p><span class="math display">\[f^{(k)}_{\text{best}}-f^\star\leq\frac{G||x^{(0)}-x^\star||_2^2}{2ks}+\frac{Gs}{2}\]</span></p>
+<ul>
+<li>does not guarantee convergence of <span class="math inline">\(f^{(k)}_{\text{best}}\)</span></li>
+</ul>
+<h4 id="diminishing-step-size-t_irightarrow0">Diminishing step size: <span class="math inline">\(t_i\rightarrow0\)</span></h4>
+<ul>
+<li><span class="math inline">\(f^{(k)}_{\text{best}}\)</span> converges to <span class="math inline">\(f^\star\)</span></li>
+<li>currently we don't know the speed of convergence</li>
+<li>large <span class="math inline">\(t_i\)</span> may converge fast at first, but then smaller <span class="math inline">\(t_i\)</span> should be used</li>
+</ul>
+<h4 id="optimal-step-size-when-fstar-is-known">Optimal step size when <span class="math inline">\(f^\star\)</span> is known</h4>
+<p><span class="math display">\[t_i=\frac{f(x^{(i-1)})-f^\star}{||g^{(i-1)}||_2^2}\]</span></p>
+<ul>
+<li>applying recursively (with <span class="math inline">\(||x^{(0)}-x^\star||_2\leq{}R\)</span> and <span class="math inline">\(||g^{(i)}||_2\leq{}G\)</span>) gives</li>
+</ul>
+<p><span class="math display">\[f^{(k)}_{\text{best}}-f^\star\leq\frac{GR}{\sqrt{k}}\]</span></p>
 
   
   
@@ -518,7 +507,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/04/16/Subgradient%20Method/>https://zs-liu.github.io/2019/04/16/Subgradient%20Method/</a></p>
               
             
           </blockquote>
@@ -535,10 +524,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:06:16+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +536,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Convex-Optimization/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Convex Optimization</p></a></div>
 
 
         
@@ -567,12 +556,21 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2019/04/25/Proximal%20Mapping/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Proximal Mapping</p>
+          <p class='content'>Closed
+Closed set
+A set \(\mathcal{C}\) is closed if it contains its boundary: \[x^k\in\mathcal{C...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
-Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+      
+        <a class='next' href='/2019/04/15/%E6%95%85%E9%9A%9C%E6%A8%A1%E5%BC%8F%E5%BD%B1%E5%93%8D%E5%8F%8A%E5%8D%B1%E5%AE%B3%E5%88%86%E6%9E%90/'>
+          <p class='title'>故障模式影响及危害分析<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>概述
+定义
+
+Failure Mode, Effects and Criticality analysis
+归纳分析方法：分析系统中每个设备所有可能的故障模式及对 系统造成的所有可能影响，并按每...</p>
         </a>
       
     </div>
@@ -668,7 +666,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#subgradient"><span class="toc-text">Subgradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#subdifferential"><span class="toc-text">Subdifferential</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#monotonicity"><span class="toc-text">Monotonicity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#directional-derivative"><span class="toc-text">Directional Derivative</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proofexistence"><span class="toc-text">Proof:Existence</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#proofhomogeneous"><span class="toc-text">Proof:Homogeneous</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#directional-derivative-and-subgradients"><span class="toc-text">Directional derivative and subgradients</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#steepest-descent-direction"><span class="toc-text">Steepest descent direction</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof-1"><span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lemma-1"><span class="toc-text">Lemma 1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#proof-2"><span class="toc-text">Proof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#subgradient-method"><span class="toc-text">Subgradient Method</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#assumptions"><span class="toc-text">Assumptions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fixed-step-size-t_it"><span class="toc-text">Fixed step size: \(t_i&#x3D;t\)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fixed-step-length-t_isgi-1_2"><span class="toc-text">Fixed step length: \(t_i&#x3D;s&#x2F;||g^{(i-1)}||_2\)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#diminishing-step-size-t_irightarrow0"><span class="toc-text">Diminishing step size: \(t_i\rightarrow0\)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#optimal-step-size-when-fstar-is-known"><span class="toc-text">Optimal step size when \(f^\star\) is known</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +686,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="Subgradient Method";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

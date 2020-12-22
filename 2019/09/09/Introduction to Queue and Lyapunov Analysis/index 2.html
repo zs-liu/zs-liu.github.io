@@ -19,11 +19,19 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>Introduction to Queue and Lyapunov Analysis - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Network Optimization">
   
 
+  
+    <meta name="description" content="Queue
+Definition
+
+Arrival: \(A(t)\)
+Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]
+Service: \(\mu(t)\)
+Cumulative departure: \[Y[t_1,t_2]=\int_{t_...">
   
 
   <!-- feed -->
@@ -353,7 +361,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        Introduction to Queue and Lyapunov Analysis
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +381,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +392,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Sep 9, 2019</p>
   </a>
 </div>
 
@@ -395,7 +403,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="Introduction to Queue and Lyapunov Analysis" data-path="/2019/09/09/Introduction%20to%20Queue%20and%20Lyapunov%20Analysis/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +420,56 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="queue">Queue</h2>
+<h3 id="definition">Definition</h3>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li>Arrival: <span class="math inline">\(A(t)\)</span></li>
+<li>Cumulative arrival: <span class="math display">\[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]</span></li>
+<li>Service: <span class="math inline">\(\mu(t)\)</span></li>
+<li>Cumulative departure: <span class="math display">\[Y[t_1,t_2]=\int_{t_1}^{t_2}Y(t)dt\leq\int_{t_1}^{t_2}\mu(t)dt\]</span></li>
+<li><span class="math inline">\(Y(t)=Q(t)~if~Q(t)&gt;0\quad0~otherwise\)</span></li>
+<li><span class="math inline">\(Q(t)=X[0,t]-Y[0,t],Q(0)=0\)</span></li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<a id="more"></a>
+<h3 id="interval-and-conserving">Interval and Conserving</h3>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
+<li>Def: An interval <span class="math inline">\(I=[t_1,t_2]\)</span> is a busy period if <span class="math inline">\(Y(t)&gt;0,\forall{}t\in{}I\)</span> and <span class="math inline">\(Y(t_1^-)=Y(t_2^+)=0\)</span></li>
+<li>Def: A work conserving single server system is one where <span class="math inline">\(Y(t)=\mu(t)\)</span> wherever <span class="math inline">\(Q(t)&gt;0\)</span></li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<p>If we start from an empty system, and <span class="math inline">\(Q(t)&gt;0\)</span>, then <span class="math display">\[\exists{}t^* \text{ with } Q(t^*)=0 \text{ s.t. } Q(t)=X[t^*,t]-\int_{t^*}^t\mu(t)dt\]</span></p>
+<h3 id="stability">Stability</h3>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>Def: <span class="math inline">\(X[0,t]\)</span> has a rate <span class="math inline">\(\lambda\)</span> if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{X[0,t]}{t}=\lambda\)</span> w.p.1</li>
+<li>Def: <span class="math inline">\(\mu(t)\)</span> has rate <span class="math inline">\(\mu\)</span> if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{\int_0^t\mu(t)}{t}=\mu\)</span> w.p.1</li>
+<li>Def: <span class="math inline">\(Q(t)\)</span> is rate stable if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{Q(t)}{t}=0\)</span> w.p.1</li>
+<li>Def: <span class="math inline">\(Q(t)\)</span> is mean rate stable if <span class="math inline">\(\lim_{t\rightarrow\infty}\frac{E[Q(t)]}{t}=0\)</span></li>
 </ul>
+<h4 id="theorem-rate-stability">Theorem-Rate Stability</h4>
+<p>Suppose <span class="math inline">\(Q(t)=X[0,t]-Y[0,t]\)</span>, and <span class="math inline">\(X[0,t]\)</span> has rate <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu(t)\)</span> has rate <span class="math inline">\(\mu\)</span>, then <span class="math inline">\(Q(t)\)</span> is rate stable <strong>if and only if</strong> <span class="math inline">\(\lambda\leq\mu\)</span></p>
+<hr />
+<p><span class="math display">\[Q(t)\text{ stable } \rightarrow\lambda\leq\mu\]</span> <span class="math display">\[\frac{Q(t)}{t}=\frac{X[0,t]}{t}-\frac{Y[0,t]}{t}\geq\frac{X[0,t]}{t}-\frac{\int_0^t\mu(t)}{t}\]</span></p>
+<hr />
+<p><span class="math display">\[Q(t)\text{ stable } \leftarrow\lambda\leq\mu\]</span></p>
+<h3 id="littles-law">Little's law</h3>
+<p><span class="math display">\[Q_{av}=\lim_{t\rightarrow\infty}\frac{1}{t}\int_{\tau=0}^tQ(\tau)d\tau,D_{av}=\lim_{k\rightarrow\infty}\frac{1}{k}\sum_{k=1}^kD_k\]</span> <span class="math display">\[\Rightarrow{}Q_{av}=\lambda{}D_{av}\]</span></p>
+<h2 id="lyapunov-analysis">Lyapunov Analysis</h2>
+<h3 id="definition-1">Definition</h3>
+<p>Denote <span class="math inline">\(\vec{Q}(t)=(Q_1(t),\dots,Q_k(t))\)</span>, Def <span class="math inline">\(L(\vec{Q}(t))\)</span> is a Lyapunov-function if</p>
+<ul>
+<li><span class="math inline">\(L(\vec{Q}(t))\geq0\)</span></li>
+<li><span class="math inline">\(L(0)=0\)</span></li>
+</ul>
+<p>Define one-slot conditional Lyapunov drift <span class="math display">\[\Delta(t)=E\{L(\vec{Q}(t+1))-L(\vec{Q}(t))|\vec{Q}(t)\}\]</span></p>
+<h3 id="theorem">Theorem</h3>
+<p>Suppose <span class="math inline">\(L(\vec{Q}(t))\)</span> is a Lyapunov function and satisifes <span class="math inline">\(\Delta(t)\leq{}B-e\sum_kQ_k(t)\)</span> and <span class="math inline">\(L(\vec{Q}(0))&lt;\infty\)</span>, then</p>
+<ul>
+<li><span class="math inline">\(e&gt;0\rightarrow{}Q(t)\)</span> is strongly stable <span class="math display">\[\lim_{T\rightarrow\infty}\sup\frac{1}{T}\sum_{t=0}^{T-1}\sum_kE\{Q_k(t)\}\leq\frac{B}{e}\]</span></li>
+<li><span class="math inline">\(e\geq0\)</span> and <span class="math inline">\(L(\vec{Q})=\sum_k{}w_kQ_k\)</span>, then <span class="math display">\[\lim_{t\rightarrow\infty}\frac{E\{Q_k(t)\}}{t}=0,\forall{}k\]</span></li>
+</ul>
+<hr />
+<p>Proof is made by list the inequality from <span class="math inline">\(t=0\)</span> to <span class="math inline">\(t=T\)</span> and sum them up. For the first one, divide by <span class="math inline">\(T\)</span> then is obvious. For the second one, put exception into square, the left side is <span class="math inline">\(O(\sqrt{T})\)</span>.</p>
+<h4 id="example">Example</h4>
+<p><span class="math inline">\(A(t), \mu(t), \sim{}Bernoulli~\lambda,\mu\)</span> <span class="math display">\[Q(t+1)=(Q(t)-\mu(t)+A(t))^+,L(Q(t))=\frac{1}{2}Q^2(t)\]</span> <span class="math display">\[\Delta(t)=\frac{1}{2}E\{Q^2(t+1)-Q^2(t)|Q(t)\}\leq\cdots=E\{\frac{1}{2}(\mu(t)-A(t))^2-Q(t)(\mu(t)-A(t))|Q(t)\}\leq\frac{1}{2}-Q(t)(\mu-\lambda)\]</span> <span class="math display">\[\bar{Q}(t)\leq\frac{1}{2(\mu-\lambda)}\]</span></p>
 
   
   
@@ -518,7 +482,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/09/09/Introduction%20to%20Queue%20and%20Lyapunov%20Analysis/>https://zs-liu.github.io/2019/09/09/Introduction%20to%20Queue%20and%20Lyapunov%20Analysis/</a></p>
               
             
           </blockquote>
@@ -535,10 +499,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:05:33+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +511,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Network-Optimization/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Network Optimization</p></a></div>
 
 
         
@@ -567,12 +531,20 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2019/09/16/Max%20Weight,%20Back%20Pressure%20and%20Utility%20Maximization/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Max Weight, Back Pressure and Utility Maximization</p>
+          <p class='content'>Queue Control Problem
+\(A_1(t),A_2(t),Q_1(t),Q_2(t),\mu_1(t),\mu_2(t)\)
+
+\(A_i(t)\) is iid, \(\ma...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
+      
+        <a class='next' href='/2019/05/25/Optimal%20Transport/'>
+          <p class='title'>Optimal Transport<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Wasserstein Distance
 Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+Consider, general functions \(f\) and \(g\), the Wasserstein dist...</p>
         </a>
       
     </div>
@@ -668,7 +640,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-text">Queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interval-and-conserving"><span class="toc-text">Interval and Conserving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stability"><span class="toc-text">Stability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#theorem-rate-stability"><span class="toc-text">Theorem-Rate Stability</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#littles-law"><span class="toc-text">Little&#39;s law</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lyapunov-analysis"><span class="toc-text">Lyapunov Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition-1"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theorem"><span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +660,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="Introduction to Queue and Lyapunov Analysis";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

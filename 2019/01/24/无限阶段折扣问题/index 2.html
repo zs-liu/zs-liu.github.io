@@ -19,11 +19,15 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>无限阶段折扣问题 - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Dynamic Programming">
   
 
+  
+    <meta name="description" content="引言——成本总和的最小化
+无限阶段问题的成本总和
+定义非时变离散时间动态系统： \[x_{k+1}=f(x_k,u_k,w_k)\] \[x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)\]">
   
 
   <!-- feed -->
@@ -353,7 +357,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        无限阶段折扣问题
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +377,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +388,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Jan 24, 2019</p>
   </a>
 </div>
 
@@ -395,7 +399,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="无限阶段折扣问题" data-path="/2019/01/24/%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +416,37 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
-<ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
-</ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
-<ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
-</ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
-<ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
-</ul>
+  <h2 id="引言成本总和的最小化">引言——成本总和的最小化</h2>
+<h3 id="无限阶段问题的成本总和">无限阶段问题的成本总和</h3>
+<p>定义非时变离散时间动态系统： <span class="math display">\[x_{k+1}=f(x_k,u_k,w_k)\]</span> <span class="math display">\[x_k\in{}S,u_k\in{}U(x_k)\subset{}C,w_k\sim{}P(\cdot{}|x_k,u_k)\]</span></p>
+<a id="more"></a>
+<p>给定初始状态<span class="math inline">\(x_0\)</span>，成本函数<span class="math inline">\(g(\cdot,\cdot,\cdot):S\times{}C\times{}D\rightarrow\mathcal{R}\)</span>和折扣因子<span class="math inline">\(\alpha\)</span>，现需要找到<span class="math inline">\(\pi=\{\mu_0,\mu_1,...\},\mu_k\in{}U(x_k)\)</span>，使得如下定义的成本最小： <span class="math display">\[J_\pi(x_0)=\lim_{N\rightarrow{}\infty}E_{w_k}\{\sum_{k=0}^{N-1}\alpha^kg(x_k,\mu_k(x_k),w_k)\}\]</span> <br/>对于所有合法的<span class="math inline">\(\pi\)</span>构成的集合记为<span class="math inline">\(\Pi\)</span>，则记最优成本函数为：</br> <span class="math display">\[J^*(x)=\min_{\pi\in\Pi}J_\pi(x)\quad{}x\in{}S\]</span> <br/>如果对于所有初始状态，其最优策略相同，则称该问题为稳定问题，该最优策略为最优稳定策略：</br> <span class="math display">\[J_\mu(x)=J^*(x)\]</span></p>
+<h3 id="有限阶段问题的dp算法">有限阶段问题的DP算法</h3>
+<p>对于<span class="math inline">\(N\)</span>个阶段的成本问题，DP算法为： <span class="math display">\[J_{N-k}(x)=\min_{u\in{}U(x)}E\{\alpha^{N-k}g(x,u,w)+J_{N-k+1}(f(x,u,w))\}\]</span> <span class="math display">\[J_N(x)=\alpha^NJ(x)\]</span> 重新作如下记号： <span class="math display">\[V_k(x)=\frac{J_{N-k}(x)}{\alpha^{N-k}},\quad{}V_0(x)=J(x)\]</span> <span class="math display">\[V_{k+1}(x)=\min_{u\in{}U(x)}E\{g(x,u,w)+\alpha{}V_k(f(x,u,w))\}\]</span></p>
+<h3 id="简记与单调性">简记与单调性</h3>
+<p>对于<span class="math inline">\(J:S\rightarrow\mathcal{R}\)</span>，采用<span class="math inline">\(TJ\)</span>记对<span class="math inline">\(J\)</span>应用DP算法： <span class="math display">\[(TJ)(x)=\min_{u\in{}U(x)}E\{g(x,u,w)+\alpha{}J(f(x,u,w))\}\]</span> 我们视<span class="math inline">\(T\)</span>为<span class="math inline">\(S\)</span>上函数<span class="math inline">\(J\)</span>到<span class="math inline">\(TJ\)</span>的映射。 同样，有如下简记： <span class="math display">\[(T_\mu{}J)(x)=E\{g(x,\mu(x),w)+\alpha{}J(f(x,\mu(x),w))\}\]</span> <span class="math display">\[(T^kJ)(x)=(T(T^{k-1}J))(x),\quad{}(T^0J)(x)=J(x)\]</span></p>
+<h4 id="引理-1.1.1-单调性引理">引理 1.1.1: 单调性引理</h4>
+<p>对于任何函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>和<span class="math inline">\(J^{&#39;}:S\rightarrow\mathcal{R}\)</span> <span class="math display">\[J(x)\leq{}J^{&#39;}(x)\quad{}\text{for all }x\in{}S\]</span> 对于任何稳定策略<span class="math inline">\(\mu:S\rightarrow{}C\)</span>： <span class="math display">\[(T^kJ)(x)\leq{}(T^kJ^{&#39;})(x)\quad{}\text{for all }x\in{}S,k=1,2,...,\]</span> <span class="math display">\[(T_\mu^kJ)(x)\leq{}(T_\mu^kJ^{&#39;})(x)\quad{}\text{for all }x\in{}S,k=1,2,...,\]</span></p>
+<h4 id="引理-1.1.2">引理 1.1.2</h4>
+<p>定义单位函数为<span class="math inline">\(e(x)\equiv1(\forall{}x\in{}S)\)</span>，则对于任何函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>，稳定策略<span class="math inline">\(\mu:S\rightarrow{}C\)</span>，标量<span class="math inline">\(r\)</span>： <span class="math display">\[(T^k(J+re))(x)=(T^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S\]</span> <span class="math display">\[(T_\mu^k(J+re))(x)=(T_\mu^kJ)(x)+\alpha^kr\quad{}\text{for all }x\in{}S\]</span></p>
+<h3 id="随机的过去依赖策略">随机的过去依赖策略</h3>
+<h4 id="命题-1.1.1-markov策略的合理性">命题 1.1.1： Markov策略的合理性</h4>
+<p>假设策略集合是可数的，初始状态是可数集合上的分布。则每对<span class="math inline">\((x_k,u_k)\)</span>以及与随机的过去依赖策略相对应的每阶段的期望成本，同样可以以随机Markov策略获得。</p>
+<h2 id="有界的阶段成本的折扣问题">有界的阶段成本的折扣问题</h2>
+<h4 id="假设d-折扣成本-有界的阶段成本">假设D： 折扣成本-有界的阶段成本</h4>
+<p>存在标量<span class="math inline">\(M\)</span>使阶段成本<span class="math inline">\(g\)</span>满足 <span class="math display">\[|g(x,u,w)|\leq{}M,\quad\text{for all }(x,u,w)\in{}S\times{}C\times{}D\]</span></p>
+<h4 id="命题-1.2.1-dp算法的收敛性">命题 1.2.1： DP算法的收敛性</h4>
+<p>对于有界函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R}\)</span>，最优成本函数满足： <span class="math display">\[J^*(x)=\lim_{N\rightarrow\infty}(T^NJ)(x)\quad\text{for all }x\in{}S\]</span></p>
+<h4 id="推论-1.2.1.1">推论 1.2.1.1</h4>
+<p>对于稳定策略<span class="math inline">\(\mu\)</span>，相关联的成本函数满足： <span class="math display">\[J_{\mu}(x)=\lim_{N\rightarrow\infty}(T_{\mu}^NJ)(x)\quad\text{for all }x\in{}S\]</span></p>
+<h4 id="命题-1.2.2贝尔曼方程">命题 1.2.2：贝尔曼方程</h4>
+<p>最优成本函数满足： <span class="math display">\[J^*=TJ^*\]</span> 此外，<span class="math inline">\(J^*\)</span>也是有界成本函数中满足这一方程的唯一解</p>
+<h4 id="推论-1.2.2.1">推论 1.2.2.1</h4>
+<p>对于稳定策略<span class="math inline">\(\mu\)</span>，相关联的成本函数满足： <span class="math display">\[J_{\mu}=T_{\mu}J_{\mu}\]</span> 此外，<span class="math inline">\(J_{\mu}\)</span>也是有界成本函数中满足这一方程的唯一解</p>
+<h4 id="命题-1.2.3最优的充要条件">命题 1.2.3：最优的充要条件</h4>
+<p>稳定策略<span class="math inline">\(\mu\)</span>是最优的当且仅当对于<span class="math inline">\(\forall{}x\in{}S\)</span>，<span class="math inline">\(\mu(x)\)</span>取得了贝尔曼方程的最小值，即： <span class="math display">\[TJ^*=T_{\mu}J^*\]</span></p>
+<h4 id="命题-1.2.4">命题 1.2.4</h4>
+<p>对于任意两个有界函数<span class="math inline">\(J:S\rightarrow{}\mathcal{R},J^{&#39;}:S\rightarrow{}\mathcal{R}\)</span>，有： <span class="math display">\[(\forall{}k)~\max_{x\in{}S}|(T^kJ(x)-(T^kJ^{&#39;})(x))|\leq\alpha^k\max_{x\in{}S}|J(x)-J^{&#39;}(x)|\]</span></p>
 
   
   
@@ -518,7 +459,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/01/24/%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98/>https://zs-liu.github.io/2019/01/24/%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98/</a></p>
               
             
           </blockquote>
@@ -535,10 +476,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:03:19+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +488,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Dynamic-Programming/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Dynamic Programming</p></a></div>
 
 
         
@@ -567,12 +508,25 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2019/03/04/%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1%E5%9F%BA%E7%A1%80/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>基本参数与参数估计基础</p>
+          <p class='content'>基本参数
+可靠度与不可靠度
+
+\(n(t)\):在\(0\sim{}t\)时刻的工作时间内产品的累计失效数
+\(N_0\):\(t=0\)时在规定条件下进行工作的产品数
+
+\[Reliabili...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
-Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+      
+        <a class='next' href='/2019/01/22/Latex%20Manual/'>
+          <p class='title'>$\rm \LaTeX$ Manual<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Text
+
+Figure
+Two Column Figure
+12345678\begin&#123;figure&#125;[htbp]    \begin&#123;minipage&#12...</p>
         </a>
       
     </div>
@@ -668,7 +622,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%E6%88%90%E6%9C%AC%E6%80%BB%E5%92%8C%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="toc-text">引言——成本总和的最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E9%99%90%E9%98%B6%E6%AE%B5%E9%97%AE%E9%A2%98%E7%9A%84%E6%88%90%E6%9C%AC%E6%80%BB%E5%92%8C"><span class="toc-text">无限阶段问题的成本总和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E9%98%B6%E6%AE%B5%E9%97%AE%E9%A2%98%E7%9A%84dp%E7%AE%97%E6%B3%95"><span class="toc-text">有限阶段问题的DP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%AE%B0%E4%B8%8E%E5%8D%95%E8%B0%83%E6%80%A7"><span class="toc-text">简记与单调性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86-1.1.1-%E5%8D%95%E8%B0%83%E6%80%A7%E5%BC%95%E7%90%86"><span class="toc-text">引理 1.1.1: 单调性引理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86-1.1.2"><span class="toc-text">引理 1.1.2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E7%9A%84%E8%BF%87%E5%8E%BB%E4%BE%9D%E8%B5%96%E7%AD%96%E7%95%A5"><span class="toc-text">随机的过去依赖策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%98-1.1.1-markov%E7%AD%96%E7%95%A5%E7%9A%84%E5%90%88%E7%90%86%E6%80%A7"><span class="toc-text">命题 1.1.1： Markov策略的合理性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E7%95%8C%E7%9A%84%E9%98%B6%E6%AE%B5%E6%88%90%E6%9C%AC%E7%9A%84%E6%8A%98%E6%89%A3%E9%97%AE%E9%A2%98"><span class="toc-text">有界的阶段成本的折扣问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%81%87%E8%AE%BEd-%E6%8A%98%E6%89%A3%E6%88%90%E6%9C%AC-%E6%9C%89%E7%95%8C%E7%9A%84%E9%98%B6%E6%AE%B5%E6%88%90%E6%9C%AC"><span class="toc-text">假设D： 折扣成本-有界的阶段成本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%98-1.2.1-dp%E7%AE%97%E6%B3%95%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-text">命题 1.2.1： DP算法的收敛性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-1.2.1.1"><span class="toc-text">推论 1.2.1.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%98-1.2.2%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%96%B9%E7%A8%8B"><span class="toc-text">命题 1.2.2：贝尔曼方程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-1.2.2.1"><span class="toc-text">推论 1.2.2.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%98-1.2.3%E6%9C%80%E4%BC%98%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">命题 1.2.3：最优的充要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%98-1.2.4"><span class="toc-text">命题 1.2.4</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +642,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="无限阶段折扣问题";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

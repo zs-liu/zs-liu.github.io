@@ -19,11 +19,15 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>Optimal Transport - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Operations Research">
   
 
+  
+    <meta name="description" content="Wasserstein Distance
+Definition
+Consider, general functions \(f\) and \(g\), the Wasserstein distance is \[\min_{\text{all map }T}\{\sum_{\text{all movements...">
   
 
   <!-- feed -->
@@ -353,7 +357,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        Optimal Transport
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +377,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +388,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：May 25, 2019</p>
   </a>
 </div>
 
@@ -395,7 +399,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="Optimal Transport" data-path="/2019/05/25/Optimal%20Transport/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +416,21 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
-<ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
-</ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
-<ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
-</ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
-</ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
-<ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
-</ul>
+  <h2 id="wasserstein-distance">Wasserstein Distance</h2>
+<h3 id="definition">Definition</h3>
+<p>Consider, general functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, the Wasserstein distance is <span class="math display">\[\min_{\text{all map }T}\{\sum_{\text{all movements of }T}\text{distance moved}\times\text{amount moved}\}\]</span> For <span class="math inline">\(f:X\rightarrow{}R^+,g:Y\rightarrow{}R^+\)</span>, the distance can be formulated as <span class="math display">\[W_p(f,g)=\left(\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\right)^{1/p}\]</span> where <span class="math inline">\(\mathcal{M}\)</span> is the set of all maps that rearrange the distribution <span class="math inline">\(f\)</span> into <span class="math inline">\(g\)</span>.</p>
+<a id="more"></a>
+<h3 id="quadratic-wasserstein-distance-p2">Quadratic Wasserstein distance: <span class="math inline">\(p=2\)</span></h3>
+<p><span class="math display">\[W_2^2(f,g)=\inf_{T\in\mathcal{M}}\int{}|x-T(x)|^pf(x)dx\]</span></p>
+<h2 id="kantorovich-problem">Kantorovich Problem</h2>
+<h3 id="definition-1">Definition</h3>
+<p><span class="math display">\[\inf_\gamma\left\{\int_{X\times{}Y}c(x,y)d\gamma|\gamma\geq0,\gamma\in\Pi(\mu,\nu)\right\}\]</span> where <span class="math inline">\(\Pi(\mu,\nu)=\{\gamma\in\mathcal{P}(X\times{}Y)|(P_X)\#\gamma=\mu,(P_Y)\#\gamma=\nu\}\)</span>, <span class="math inline">\(P_X\)</span> and <span class="math inline">\(P_Y\)</span> are two projections</p>
+<h3 id="kantorovich-dual-problem">Kantorovich Dual Problem</h3>
+<p>Consider <span class="math inline">\(\varphi\in{}L^1(\mu)\)</span> and <span class="math inline">\(\psi\in{}L^1(\nu)\)</span>, the Kantorovich dual problem is formulated as the following: <span class="math display">\[\sup_{\varphi,\psi}\left(\int_X\varphi{}d\mu+\int_Y\psi{}d\nu\right)\]</span> subject to <span class="math inline">\(\varphi(x)+\psi(y)\leq{}c(x,y)\)</span>, for any <span class="math inline">\((x,y)\in{}X\times{}Y\)</span>.</br> Note that this dual formulation is a linear optimization problem which is solvable by linear programming.</p>
+<h2 id="dynamic-formulation">Dynamic Formulation</h2>
+<p>The Benamou-Brenier formula identifies the squared quadratic Wasserstein metric between <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\nu\)</span> by: <span class="math display">\[W_2^2(\mu,\nu)=\inf\int_0^1\int|v(t,x)|^2\rho(t,x)dxdt\]</span> where infimum is taken among all the Borel fields <span class="math inline">\(v(t,x)\)</span> that transports <span class="math inline">\(\mu\)</span> to <span class="math inline">\(\nu\)</span> continuously in time, satisfying the zero flux condition on the boundary: <span class="math display">\[\begin{split}\frac{\partial\rho}{\partial{}t}+\nabla(v\rho)&amp;=0\\\text{subject to }\rho(0,x)=d\mu,\rho(1,x)&amp;=d\nu\end{split}\]</span></p>
+<h2 id="monge-ampere-equation">Monge-Ampere Equation</h2>
+<p><span class="math display">\[\left\{\begin{split}&amp;det(D^2u(x))=f(x)/g(\nabla{}u(x))\\&amp;\nabla{}u:X\rightarrow{}Y\\&amp;u\text{ is convex}\end{split}\right.\]</span> The optimal map is <span class="math inline">\(\nabla{}u\)</span>. Thus, the square of the quadratic Wasserstein distance has the form: <span class="math display">\[W_2^2(f,g)=\int{}|x-\nabla{}u(x)|^2f(x)dx\]</span></p>
 
   
   
@@ -518,7 +443,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/05/25/Optimal%20Transport/>https://zs-liu.github.io/2019/05/25/Optimal%20Transport/</a></p>
               
             
           </blockquote>
@@ -535,10 +460,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:06:02+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +472,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Operations-Research/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Operations Research</p></a></div>
 
 
         
@@ -567,12 +492,22 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
-      
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
+        <a class='prev' href='/2019/09/09/Introduction%20to%20Queue%20and%20Lyapunov%20Analysis/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Introduction to Queue and Lyapunov Analysis</p>
+          <p class='content'>Queue
 Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+
+Arrival: \(A(t)\)
+Cumulative arrival: \[X[t_1,t_2]=\int_{t_1}^{t_2}A(t)dt\]
+Ser...</p>
+        </a>
+      
+      
+        <a class='next' href='/2019/04/25/Proximal%20Mapping/'>
+          <p class='title'>Proximal Mapping<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Closed
+Closed set
+A set \(\mathcal{C}\) is closed if it contains its boundary: \[x^k\in\mathcal{C...</p>
         </a>
       
     </div>
@@ -668,7 +603,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#wasserstein-distance"><span class="toc-text">Wasserstein Distance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#quadratic-wasserstein-distance-p2"><span class="toc-text">Quadratic Wasserstein distance: \(p&#x3D;2\)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kantorovich-problem"><span class="toc-text">Kantorovich Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#definition-1"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kantorovich-dual-problem"><span class="toc-text">Kantorovich Dual Problem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dynamic-formulation"><span class="toc-text">Dynamic Formulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#monge-ampere-equation"><span class="toc-text">Monge-Ampere Equation</span></a></li></ol>
     </div>
   </section>
 
@@ -688,7 +623,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="Optimal Transport";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

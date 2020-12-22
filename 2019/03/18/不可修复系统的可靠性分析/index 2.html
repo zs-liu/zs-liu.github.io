@@ -19,11 +19,18 @@
 
   <!-- 页面元数据 -->
   
-  <title>Garbled Circuits - 鲈鱼柳的博客</title>
+  <title>不可修复系统的可靠性分析 - 鲈鱼柳的博客</title>
   
-    <meta name="keywords" content="Privacy Engineering">
+    <meta name="keywords" content="Reliability Engineering">
   
 
+  
+    <meta name="description" content="可靠性逻辑框图
+系统可靠性
+
+在元件故障数据和系统结构已知的情况下，预测系统的可靠性
+硬件可靠性/人员操作可靠性/软件可靠性
+">
   
 
   <!-- feed -->
@@ -353,7 +360,7 @@
     
     
       <h1 class="title">
-        Garbled Circuits
+        不可修复系统的可靠性分析
       </h1>
       <div class='new-meta-box'>
         
@@ -373,7 +380,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+      <a class="category-link" href="/categories/Math/">Math</a>
     </a>
   </div>
 
@@ -384,7 +391,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 16, 2020</p>
+    <p>发布于：Mar 18, 2019</p>
   </a>
 </div>
 
@@ -395,7 +402,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Garbled Circuits" data-path="/2020/11/16/Garbled%20Circuits/">
+      <div id="lc-pv" data-title="不可修复系统的可靠性分析" data-path="/2019/03/18/%E4%B8%8D%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -412,100 +419,111 @@
 
 
   
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="可靠性逻辑框图">可靠性逻辑框图</h2>
+<h3 id="系统可靠性">系统可靠性</h3>
 <ul>
-<li>Gabled circuits express the function to be computed as an “encrypted” boolean circuit, e.g. with ANDs, ORs, XORs, etc</li>
-<li>Garbled circuits are more efficient than for 2-party joint processing setups. They get too complex for more parties.</li>
-<li>In this post, we will look at <strong>Yao's Garbled Circuits</strong></li>
+<li>在<strong>元件故障数据和系统结构已知</strong>的情况下，预测系统的可靠性</li>
+<li>硬件可靠性/人员操作可靠性/软件可靠性</li>
 </ul>
-<p>Given two parties computations, Alice and Bob, they want to compute a function <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(x\)</span> is Alice's input and <span class="math inline">\(y\)</span> is Bob's input. After the computation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> remain private unless revealed by the function <span class="math inline">\(f\)</span>.</p>
-<h2 id="one-gate-garbled-circuit">One Gate Garbled Circuit</h2>
-<p>WLOG, we consider a <span class="math inline">\(\text{AND}\)</span> gate in this section, i.e., <span class="math inline">\(f(x,y)=x\land y\)</span>. Alice will be the circuit garbler, and Bob will be the circuit evaluator. Denote the input bit of Alice and Bob as <span class="math inline">\(a,b\)</span>.</p>
-<h3 id="step-by-step">Step by step</h3>
-<ol type="1">
-<li>Alice compiles <span class="math inline">\(f\)</span>. into an acyclic boolean circuit, composed of logic gates like AND, OR, XOR etc.</li>
-<li>Alice generates random keys <span class="math inline">\(k[A,0]\)</span>, <span class="math inline">\(k[A,1]\)</span>, <span class="math inline">\(k[B,0]\)</span>, <span class="math inline">\(k[B,1]\)</span>, <span class="math inline">\(k[C,0]\)</span>, <span class="math inline">\(k[C,1]\)</span>, each of which corresponds to a bit of a wire.
+<a id="more"></a>
+<h3 id="系统可靠性框图">系统可靠性框图</h3>
+<p>描述系统与其组成单元之间的<strong>故障逻辑</strong>关系，以系统工程图为基础。</p>
 <ul>
-<li>For example, <span class="math inline">\(k[A,0]\)</span> for wire A, bit <span class="math inline">\(0\)</span>; <span class="math inline">\(k[C,1]\)</span> for wire C, bit <span class="math inline">\(1\)</span></li>
+<li>方框:单元或功能</li>
+<li>逻辑关系:功能布局</li>
+<li>连线:系统功能流程的方向</li>
+<li>节点(节点可以在需要时才加以标注)
+<ul>
+<li>输入节点:系统功能流程的起点</li>
+<li>输出节点:系统功能流程的终点</li>
+<li>中间节点</li>
 </ul></li>
-<li>Alice garbles the circuit to produce a garbled circuit, essentially each gate will carry out its operation on encrypted input bits producing an encrypted output bit.
-<ul>
-<li>For example, the AND garbled truth table entry for wire A input <span class="math inline">\(1\)</span> and wire B input <span class="math inline">\(0\)</span>, is key <span class="math inline">\(k[C,0]\)</span> doubly-encrypted by <span class="math inline">\(k[A,1]\)</span> and <span class="math inline">\(k[B,0]\)</span> <span class="math display">\[\text{GT}[1,0]=E_{k[A,1],k[B,0]}(k[C,\text{AND}(1,0)])=E_{k[A,1],k[B,0]}(k[C,0])\]</span></li>
-</ul></li>
-<li>Alice randomly permutates the the entries of the Garbled Table, since the truth-table order will leak information that could be used to learn Alice’s input.</li>
-<li>Alice sends the permutated garbled gate table plus the encrypted bits for its input and a decryption mapping table that allows Bob to map the encrypted output of the circuit to its plaintext.
-<ul>
-<li>For example, if <span class="math inline">\(a=1\)</span>, Alice will send <span class="math inline">\(k[A,1]\)</span> to Bob. Bob won't know the value of <span class="math inline">\(a\)</span> since all wire keys are random</li>
-<li>The mapping should be <span class="math inline">\(k[C,0]\Rightarrow0\)</span>,<span class="math inline">\(k[C,1]\Rightarrow1\)</span></li>
-</ul></li>
-<li>Bob runs a 1-from-2 <em>oblivious transfer</em> (OT) protocol with Alice for Bob input bits. Bob will get the keys that corresponds to <span class="math inline">\(b\)</span> from Alice without Alice learning <span class="math inline">\(b\)</span>.
-<ul>
-<li>For example, if <span class="math inline">\(b=1\)</span>, Bob will get <span class="math inline">\(k[B,1]\)</span>. Bob won't know <span class="math inline">\(k[B,0]\)</span> and Alice won't know <span class="math inline">\(b=1\)</span>.</li>
-</ul></li>
-<li>Bob doubly decrypts the garbled gate entry to learn the final encrypted result <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> and uses the decryption mapping table to map <span class="math inline">\(k[C,\text{AND}(a,b)]\)</span> to its plaintext bit <span class="math inline">\(\text{AND}(a,b)\)</span>. Bob sends this to Alice.</li>
-</ol>
-<h2 id="from-2-oblivious-transfer-protocol">1-from-2 Oblivious Transfer protocol</h2>
-<p>Here is an illustrative example for 1-from-2 OT. There are many others protocols. What's more, 1-from-2 OT can be extended to k-from-n OT. WLOG, we assume that Alice has two messages <span class="math inline">\(m_1,m_2\)</span> and Bob wants to know <span class="math inline">\(m_1\)</span>.</p>
-<h3 id="step-by-step-1">Step by step</h3>
-<ol type="1">
-<li>Alice has two messages <span class="math inline">\(m_1,m_2\)</span></li>
-<li>Alice generates two public-private key pairs <span class="math inline">\(\text{(Pub1,Priv1)}\)</span>, <span class="math inline">\(\text{(Pub2,Priv2)}\)</span>.</li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(\text{Pub1,Pub2}\)</span></li>
-<li>Bob generates a symmetric key <span class="math inline">\(k\)</span> and chooses <span class="math inline">\(\text{Pub1}\)</span>.</li>
-<li>Bob <span class="math inline">\(\rightarrow\)</span> Alice: <span class="math inline">\(c=E_{\text{Pub1}}(k)\)</span></li>
-<li>Alice does <span class="math inline">\(D_{\text{Priv1}}(c)=k\)</span>, <span class="math inline">\(D_{\text{Priv2}}(c)=u\neq k\)</span></li>
-<li>Alice <span class="math inline">\(\rightarrow\)</span> Bob: <span class="math inline">\(c_1=E_k(m_1)\)</span>, <span class="math inline">\(c_2=E_u(m_2)\)</span></li>
-<li>Bob does <span class="math inline">\(D_k(c_1)=D_k(E_k(m_1))=m_1\)</span> and <span class="math inline">\(D_k(c_2)=D_k(E_u(m_2))=\text{non sense}\)</span></li>
-</ol>
-<h3 id="conclusion">Conclusion</h3>
-<ul>
-<li>Bob learns <span class="math inline">\(m_1\)</span> in this example.</li>
-<li>Alice doesn't know which message Bob knows.</li>
-<li>Alice's messages need to have a structure that Bob can recognise to distinguish the good message <span class="math inline">\(m_1\)</span> from the gibberish message.</li>
 </ul>
-<h2 id="point-and-permutate-p-bit">Point-and-Permutate p-bit</h2>
-<p>In the Step 7, Bob doubly decrypts the garbled gate entry to learn the final encrypted result. Bob could decrypt each entry if the underlying encryption method makes it obvious when decrypting which is the “correct” ciphertext. This is both inefficient and inelegant. The following trick is to pair a random <strong>point-and-permutate</strong> bit and its inverse to each of the keys of the wire (the <span class="math inline">\(0\)</span> key and <span class="math inline">\(1\)</span> key).</p>
-<p>For example, if wire A has keys <span class="math inline">\(k[A,0],k[A,1]\)</span>, we would now have <span class="math inline">\((k[A,0],\text{pA})\)</span>, <span class="math inline">\((k[A,1],\text{not pA})\)</span>.</p>
-<p>Here is the equivalent pseudo-code to show how Alice generates the <strong>point-and-permutate</strong> garbled table.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each permutated PGT <span class="keyword">with</span> input wires A, B <span class="keyword">and</span> output wire C</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>] <span class="keyword">for</span> b <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        x = a xor pbit[A]</span><br><span class="line">        y = b xor pbit[B]</span><br><span class="line">        z = GATE(x,y) <span class="comment"># e.g. AND, OR, XOR, NAND ...</span></span><br><span class="line">        k[C,z] = GATE(k[A,x], k[B,y])</span><br><span class="line">        zl = z xor pbit[C]</span><br><span class="line">        PGT[a][b] = E[k[A,x], k[B,y]](k[C,z], zl) <span class="comment"># double encrypt</span></span><br></pre></td></tr></table></figure>
-<p>In Step 5, Alice sends both the encrypted bits and the pbit for its input. In Step 6, Bob obtains both his key and the pbit of his key by running OT. As a result, Bob learns <span class="math inline">\(k[A,a], \text{pA or not pA}\)</span> and <span class="math inline">\(k[B,b], \text{pB or not pB}\)</span>. Then Bob can directly doubly decrypts <span class="math inline">\(\text{PGT[pA][pB]}\)</span> to learn <span class="math inline">\(k[C,z], z^{\prime}\)</span>.</p>
-<h3 id="example">Example</h3>
-For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
-<style>
-    th {
-        display: none;
-    }
-</style>
-<center>
-<table>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[1][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,1]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[1][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,0],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\text{PGT[0][1]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,1]}(k[C,1],1)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{PGT[0][0]}\)</span></td>
-<td><span class="math inline">\(E_{k[A,1],k[B,0]}(k[C,0],0)\)</span></td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Bob learns <span class="math inline">\(k[A,0],1\)</span> and <span class="math inline">\(k[B,1],1\)</span>. He locates and doubly decrypts <span class="math inline">\(\text{PGT[1,1]}\)</span> with <span class="math inline">\(k[A,0],k[B,1]\)</span> to learn <span class="math inline">\(k[C,0], 0\)</span>. Finally, he uses the decryption mapping table to map <span class="math inline">\(k[C,0]\)</span> to its plaintext <span class="math inline">\(0\)</span>.</p>
-<h2 id="garbled-circuit-performance">Garbled circuit performance</h2>
+<h2 id="典型不可修系统的可靠性分析">典型不可修系统的可靠性分析</h2>
+<h3 id="可靠性分析假设">可靠性分析假设</h3>
 <ul>
-<li>Runs in a constant number of rounds.</li>
-<li>Computation cost dominated by encryption function used. Typically hardware-assisted AES is used.</li>
-<li>High communication costs - time to transfer circuit, plus time to complete oblivious transfers (later can be done in parallel).</li>
-<li>Both Alice and Bob could cheat at various stages. Techniques such as zero-knowledge proofs and cut-and-choose can be used but have high overheads.</li>
+<li>系统及组成单元只有故障与正常两种状态</li>
+<li>不同方框表示的不同单元的故障概率是相互独立的</li>
+<li>不考虑输入错误引起的系统故障</li>
+<li>假设系统的整个软件是完全可靠的</li>
+<li>假设人员操作是完全可靠的。</li>
 </ul>
+<h3 id="串联系统">串联系统</h3>
+<p><span class="math display">\[S=x_1\cap{}x_2\cap{}\dots\cap{}x_n\]</span> <span class="math display">\[\bar{S}=\bar{x}_1\cup\bar{x}_2\cup\dots\cup\bar{x}_n\]</span> <span class="math display">\[R_S(t)=\prod_{i=1}^nR_i(t)\]</span></p>
+<ul>
+<li>当各单元的寿命分布均为指数分布时，系统的寿命也服从指数分布</li>
+<li>串联系统中提高可靠度最小的设备的可靠性，对系统可靠性的提高贡献最大</li>
+</ul>
+<h3 id="并联系统">并联系统</h3>
+<p><span class="math display">\[S=x_1\cup{}x_2\cup{}\dots\cup{}x_n\]</span> <span class="math display">\[\bar{S}=\bar{x}_1\cap\bar{x}_2\cap\dots\cap\bar{x}_n\]</span> <span class="math display">\[R_S(t)=1-\prod_{i=1}^n(1-e^{-\lambda_it})\]</span> <span class="math display">\[MTTF_S=\sum_{i=1}^n(i\lambda)^{-1}\]</span></p>
+<ul>
+<li>三并联到四并联基本上可以满足要求</li>
+<li>并联系统中提高可靠度最大的设备的可靠性，对系统可靠性的提高贡献最大</li>
+</ul>
+<h3 id="kn表决系统"><span class="math inline">\(k/n\)</span>表决系统</h3>
+<p><span class="math display">\[R_S(t)=\sum_{i=0}^{n-k}C_n^i[1-R(t)]^i[R(t)]^{n-i}\]</span> <span class="math display">\[\text{For exponential distribution, }MTTF_S=\sum_{i=k}^n\frac{1}{i\lambda}\]</span></p>
+<h3 id="储备系统">储备系统</h3>
+<p>组成系统的各单元<strong>只有一个单元工作</strong>，当工作单元故障时，通过转换装置接到另一个单元继续工作，直到所有单元都故障时系统才故障，称为非工作贮备系统(又可称为旁联系统)</p>
+<h4 id="卷积方法">卷积方法</h4>
+<p><span class="math display">\[f_{12}(t)=f_1(t)*f_2(t)=\int_0^tf_2(t-t_1)f_1(t)dt_1\]</span> <span class="math inline">\(f_1(t)=\lambda_1e^{-\lambda_1t},f_2(t)=\lambda_2e^{-\lambda_2t}\)</span> <span class="math display">\[L[f_{12}(t)]=L[f_1(t)*f_2(t)]=L[f_1(t)]\cdot{}L[f_2(t)]=\frac{\lambda_1}{s+\lambda_1}\frac{\lambda_2}{s+\lambda_2}\]</span> <span class="math display">\[\Rightarrow{}f_{12}(t)=\frac{\lambda_1\lambda_2}{\lambda_1-\lambda_2}(e^{-\lambda_2t}-e^{-\lambda_1t})\]</span></p>
+<h4 id="复合事件概率法">复合事件概率法</h4>
+<ul>
+<li>两设备的失效可认为是独立的</li>
+<li>计算储备系统时需考虑两者产生的非独立性（在时间上）</li>
+</ul>
+<p><span class="math display">\[R_{12}(t)=R_1(t)+\int_0^tR_2(t-t_1)f_1(t_1)dt_1\]</span></p>
+<ul>
+<li>考虑冗余设备的备用失效 <span class="math inline">\(R_2^{-}(\cdot)\)</span></li>
+<li>考虑不完全切换 <span class="math inline">\(R_{SW}\)</span></li>
+</ul>
+<p><span class="math display">\[R_{12}(t)=R_1(t)+R_{SW}\int_0^tR_2(t-t_1)R_2^{-}(t_1)f_1(t_1)dt_1\]</span></p>
+<h2 id="网络系统">网络系统</h2>
+<h3 id="全概率分解法分析复杂系统可靠性">全概率分解法分析复杂系统可靠性</h3>
+<p><span class="math display">\[R_S(t)=P(S)=P(x)P(S|x)+P(\bar{x})P(S|\bar{x})\]</span></p>
+<ul>
+<li><span class="math inline">\(S(x)\)</span> 表示把网络 <span class="math inline">\(S\)</span> 中设备 <span class="math inline">\(x\)</span> 的两端节点合成一个节点而产生的新网络</li>
+<li><span class="math inline">\(S(\bar{x})\)</span> 表示把网络 <span class="math inline">\(S\)</span> 中设备 <span class="math inline">\(x\)</span> 去掉(即两个端点之间不存在经由 <span class="math inline">\(x\)</span> 的联系)而产生的新网络</li>
+</ul>
+<p><span class="math display">\[R_S(t)=P(S)=P(x)P(S(x))+P(\bar{x})P(S(\bar{x}))\]</span></p>
+<h4 id="选用分解弧的原则">选用分解弧的原则</h4>
+<ul>
+<li>对任意无向弧可以作为分解弧</li>
+<li>与输入节点与输出节点相连的弧可以作为分解弧</li>
+<li>对任意有向弧，其两端点的任何一个<strong>只有流入或流出</strong>的弧，可以作为分解弧，若弧的两端都有流入和流出的弧不可作为分解弧（<strong>因为不可以引入原本不存在的通路</strong>）</li>
+</ul>
+<h3 id="最小路集最小割集法分析系统可靠性">最小路集/最小割集法分析系统可靠性</h3>
+<h4 id="结构函数">结构函数</h4>
+<p><span class="math display">\[Y=\varphi(X)=\varphi(x_1,x_2,\dots,x_n)\]</span> <span class="math display">\[\bar{\varphi}(X)=1-\varphi(\overline{1-X})\]</span> <span class="math display">\[C_1(X)=\{i|x_i=1\},C_0(X)=\{i|x_i=0\}\]</span></p>
+<ul>
+<li>路集中任何一个设备变成失效则系统失效，此路集为最小路集</li>
+<li>割集中任何一个设备变成成功则系统成功，此割集为最小割集</li>
+</ul>
+<h4 id="单调关联系统的表示">单调关联系统的表示</h4>
+<p>设最小路集为 <span class="math inline">\(p_1,\dots,p_m\)</span>，最小割集为 <span class="math inline">\(k_1,\dots,k_m\)</span> <span class="math display">\[\varphi(x)=\bigcup_{j=1}^m\bigcap_{i\in{}p_j}x_i=\bigcap_{j=1}^l\bigcup_{i\in{}k_j}x_i\]</span></p>
+<h3 id="最小路集最小割集求解">最小路集/最小割集求解</h3>
+<h4 id="联络矩阵法">联络矩阵法</h4>
+<p><span class="math display">\[C:\{C_{ij}=x\text{ if arc }x\text{ exists between }i,j\text{; }0\text{ otherwise}\}\]</span> <span class="math display">\[C^r=C\times{}C^{r-1}\]</span> 如果研究 <span class="math inline">\(I\)</span> 到 <span class="math inline">\(L\)</span> 的可靠性</p>
+<ul>
+<li>只需求出<span class="math inline">\(C^2,C^3,\dots,C^{n-1}\)</span>中第 <span class="math inline">\(L\)</span> 列</li>
+<li><span class="math inline">\(C^{n-1}\)</span>只需求出第 <span class="math inline">\(I\)</span> 行</li>
+</ul>
+<h4 id="布尔行列式">布尔行列式</h4>
+<ul>
+<li>给定联络矩阵 <span class="math inline">\(C\)</span> ，令 <span class="math inline">\(D=C+I\)</span></li>
+<li>删去输入节点列，输出节点行，得到 <span class="math inline">\(S\)</span></li>
+<li><span class="math inline">\(|S|\)</span> 展开并且各项取正</li>
+</ul>
+<h4 id="最小割集">最小割集</h4>
+<p><span class="math inline">\(S\)</span> 最小割集为 <span class="math inline">\(\bar{S}\)</span> 最小路集</p>
+<h3 id="利用最小路集最小割集求解系统可靠度">利用最小路集/最小割集求解系统可靠度</h3>
+<h4 id="精确解">精确解</h4>
+<p>最小路集/最小割集一般相交（可以直接用容斥原理求解），可对其进行“不交化”，得到相互独立的最小路集/最小割集 <span class="math display">\[K_1\cup{}K_2=K_1+\bar{K}_1K_2\]</span></p>
+<h4 id="近似解">近似解</h4>
+<ul>
+<li>区间估计：当设备可靠度较高，容斥原理展式的首项或前两项起主要作用</li>
+<li>点估计</li>
+</ul>
+<h3 id="特殊情况三角形与星形">特殊情况：三角形与星形</h3>
 
   
   
@@ -518,7 +536,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
           <blockquote>
             
               
-                <p>Permanent link is: <a href=https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/>https://zs-liu.github.io/2020/11/16/Garbled%20Circuits/</a></p>
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2019/03/18/%E4%B8%8D%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/>https://zs-liu.github.io/2019/03/18/%E4%B8%8D%E5%8F%AF%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/</a></p>
               
             
           </blockquote>
@@ -535,10 +553,10 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-22T22:37:57+00:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T10:01:59+01:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Sep 20, 2020</p>
   </a>
 </div>
 
@@ -547,7 +565,7 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Privacy-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Privacy Engineering</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Reliability-Engineering/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Reliability Engineering</p></a></div>
 
 
         
@@ -567,12 +585,18 @@ For <span class="math inline">\(a=0,\text{pA}=1,b=1,\text{pB}=0\)</span>
   
     <div class="prev-next">
       
+        <a class='prev' href='/2019/03/19/Convex%20Optimization%20Problems/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Convex Optimization Problems</p>
+          <p class='content'>Optimization problem in standard form
+\[\text{minimize }f_0(x)\] \[\text{subject to }f_i(x)\leq0\...</p>
+        </a>
       
-        <a class='next' href='/2020/11/09/Shamir%20Secret%20Sharing%20and%20BGW%20Protocol/'>
-          <p class='title'>Shamir Secret Sharing and BGW Protocol<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>MPC (Multi-party Computation)
+      
+        <a class='next' href='/2019/03/07/Convex%20Functions/'>
+          <p class='title'>Convex Functions<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Basic properties and examples
 Definition
-Given \(n\) parties, design a protocol which computes a ...</p>
+\(f:R^n\rightarrow{}R\) is convex if dom\(f\) is a conve...</p>
         </a>
       
     </div>
@@ -668,7 +692,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-gate-garbled-circuit"><span class="toc-text">One Gate Garbled Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step"><span class="toc-text">Step by step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#from-2-oblivious-transfer-protocol"><span class="toc-text">1-from-2 Oblivious Transfer protocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-by-step-1"><span class="toc-text">Step by step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#point-and-permutate-p-bit"><span class="toc-text">Point-and-Permutate p-bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#garbled-circuit-performance"><span class="toc-text">Garbled circuit performance</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E9%80%BB%E8%BE%91%E6%A1%86%E5%9B%BE"><span class="toc-text">可靠性逻辑框图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="toc-text">系统可靠性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%8F%AF%E9%9D%A0%E6%80%A7%E6%A1%86%E5%9B%BE"><span class="toc-text">系统可靠性框图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E4%B8%8D%E5%8F%AF%E4%BF%AE%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-text">典型不可修系统的可靠性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90%E5%81%87%E8%AE%BE"><span class="toc-text">可靠性分析假设</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E8%81%94%E7%B3%BB%E7%BB%9F"><span class="toc-text">串联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E8%81%94%E7%B3%BB%E7%BB%9F"><span class="toc-text">并联系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kn%E8%A1%A8%E5%86%B3%E7%B3%BB%E7%BB%9F"><span class="toc-text">\(k&#x2F;n\)表决系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%82%A8%E5%A4%87%E7%B3%BB%E7%BB%9F"><span class="toc-text">储备系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E6%96%B9%E6%B3%95"><span class="toc-text">卷积方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E4%BA%8B%E4%BB%B6%E6%A6%82%E7%8E%87%E6%B3%95"><span class="toc-text">复合事件概率法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">网络系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E6%A6%82%E7%8E%87%E5%88%86%E8%A7%A3%E6%B3%95%E5%88%86%E6%9E%90%E5%A4%8D%E6%9D%82%E7%B3%BB%E7%BB%9F%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="toc-text">全概率分解法分析复杂系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E7%94%A8%E5%88%86%E8%A7%A3%E5%BC%A7%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">选用分解弧的原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E8%B7%AF%E9%9B%86%E6%9C%80%E5%B0%8F%E5%89%B2%E9%9B%86%E6%B3%95%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="toc-text">最小路集&#x2F;最小割集法分析系统可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-text">结构函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%B0%83%E5%85%B3%E8%81%94%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">单调关联系统的表示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E8%B7%AF%E9%9B%86%E6%9C%80%E5%B0%8F%E5%89%B2%E9%9B%86%E6%B1%82%E8%A7%A3"><span class="toc-text">最小路集&#x2F;最小割集求解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%94%E7%BB%9C%E7%9F%A9%E9%98%B5%E6%B3%95"><span class="toc-text">联络矩阵法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="toc-text">布尔行列式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2%E9%9B%86"><span class="toc-text">最小割集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E6%9C%80%E5%B0%8F%E8%B7%AF%E9%9B%86%E6%9C%80%E5%B0%8F%E5%89%B2%E9%9B%86%E6%B1%82%E8%A7%A3%E7%B3%BB%E7%BB%9F%E5%8F%AF%E9%9D%A0%E5%BA%A6"><span class="toc-text">利用最小路集&#x2F;最小割集求解系统可靠度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E8%A7%A3"><span class="toc-text">精确解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%91%E4%BC%BC%E8%A7%A3"><span class="toc-text">近似解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%8E%E6%98%9F%E5%BD%A2"><span class="toc-text">特殊情况：三角形与星形</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -688,7 +712,7 @@ Given \(n\) parties, design a protocol which computes a ...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Garbled Circuits";
+  pdata.postTitle="不可修复系统的可靠性分析";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
