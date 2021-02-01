@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en,zh-CN,zh-HK,zh-TW,default">
-<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.4'>
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
@@ -16,6 +16,9 @@
   <meta name="HandheldFriendly" content="True" >
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
 
   <!-- 页面元数据 -->
   
@@ -69,10 +72,55 @@
 
   <script id="loadcss"></script>
 
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
 </head>
 
-<body>
-  
+  <body>
+    
 
 <header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
@@ -309,8 +357,8 @@
   </div>
 </header>
 
-  <div id="l_body">
-    <div id="l_cover">
+    <div id="l_body">
+      <div id="l_cover">
   
     
         <div id="full" class='cover-wrapper post dock' style="display: none;">
@@ -340,9 +388,9 @@
   
   </div>
 
-    <div id='safearea'>
-      <div class='body-wrapper' id="pjax-container">
-        
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
 
 <div class='l_main'>
   <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
@@ -414,16 +462,17 @@
 
 
   
+  
   <h2 id="text">Text</h2>
 <a id="more"></a>
 <h2 id="figure">Figure</h2>
 <h3 id="two-column-figure">Two Column Figure</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;figure&#125;</span><span class="string">[htbp]</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;minipage&#125;</span><span class="string">[t]</span><span class="string">&#123;0.5\linewidth&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">includegraphics</span><span class="string">[]</span><span class="string">&#123;&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;minipage&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;minipage&#125;</span><span class="string">[t]</span><span class="string">&#123;0.5\linewidth&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">includegraphics</span><span class="string">[]</span><span class="string">&#123;&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;minipage&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;figure&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[htbp]</span><br><span class="line">    <span class="keyword">\begin</span>&#123;minipage&#125;[t]&#123;0.5<span class="keyword">\linewidth</span>&#125;</span><br><span class="line">        <span class="keyword">\includegraphics</span>[]&#123;&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;minipage&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;minipage&#125;[t]&#123;0.5<span class="keyword">\linewidth</span>&#125;</span><br><span class="line">        <span class="keyword">\includegraphics</span>[]&#123;&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;minipage&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="table">Table</h2>
 <h3 id="cross-row-table">Cross Row Table</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;multirow&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span><span class="string">[htbp]</span></span></span><br><span class="line">    <span class="tag">\<span class="name">centering</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;|c|c|&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">        <span class="tag">\<span class="name">multirow</span><span class="string">&#123;2&#125;</span><span class="string">&#123;*&#125;</span><span class="string">&#123;Cross It&#125;</span></span>&amp;N<span class="tag">\<span class="name">\</span></span></span><br><span class="line">        &amp;N<span class="tag">\<span class="name">\</span></span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;multirow&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[htbp]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;|c|c|&#125;</span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">        <span class="keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;Cross It&#125;<span class="built_in">&amp;</span>N<span class="keyword">\\</span></span><br><span class="line">        <span class="built_in">&amp;</span>N<span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="newline-in-table">Newline in Table</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;makecell&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span><span class="string">[htbp]</span></span></span><br><span class="line">    <span class="tag">\<span class="name">centering</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;c&#125;</span></span></span><br><span class="line">    	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">    	<span class="tag">\<span class="name">makecell</span><span class="string">&#123;First Line\\Second Line&#125;</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;makecell&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[htbp]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;c&#125;</span><br><span class="line">    	<span class="keyword">\hline</span></span><br><span class="line">    	<span class="keyword">\makecell</span>&#123;First Line<span class="keyword">\\</span>Second Line&#125;<span class="keyword">\\</span></span><br><span class="line">    	<span class="keyword">\hline</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="equation">Equation</h2>
 <h3 id="un-italic">Un-Italic</h3>
 <table>
@@ -450,17 +499,17 @@
 </table>
 <h2 id="others">Others</h2>
 <h3 id="two-column-document">Two Column Document</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8,a4paper,14pt,twocolumn]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">twocolumn</span><span class="string">[</span></span></span><br><span class="line"><span class="tag"><span class="string">    \begin&#123;@twocolumnfalse&#125;</span></span></span><br><span class="line"><span class="tag"><span class="string">        % something here may cross two column</span></span></span><br><span class="line"><span class="tag"><span class="string">    \end&#123;@twocolumnfalse&#125;]</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8,a4paper,14pt,twocolumn]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">    <span class="keyword">\twocolumn</span>[</span><br><span class="line">    <span class="keyword">\begin</span>&#123;@twocolumnfalse&#125;</span><br><span class="line">        <span class="comment">% something here may cross two column</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;@twocolumnfalse&#125;]</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="hyperlink">Hyperlink</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">[colorlinks,linkcolor=blue]</span><span class="string">&#123;hyperref&#125;</span></span></span><br><span class="line"><span class="comment">% include this package as the final one</span></span><br><span class="line"><span class="tag">\<span class="name">href</span><span class="string">&#123;https://www.google.com&#125;</span><span class="string">&#123;Google&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>[colorlinks,linkcolor=blue]&#123;hyperref&#125;</span><br><span class="line"><span class="comment">% include this package as the final one</span></span><br><span class="line"><span class="keyword">\href</span>&#123;<span class="link">https://www.google.com</span>&#125;&#123;Google&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="code-display">Code Display</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;listings&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">lstset</span><span class="string">&#123;numbers=left,</span></span></span><br><span class="line"><span class="tag"><span class="string">    numberstyle=\tiny,</span></span></span><br><span class="line"><span class="tag"><span class="string">    basicstyle=\small\ttfamily,</span></span></span><br><span class="line"><span class="tag"><span class="string">    stringstyle=\color&#123;purple&#125;</span></span>,</span><br><span class="line">    keywordstyle=<span class="tag">\<span class="name">color</span><span class="string">&#123;red!25!green!33!blue!100&#125;</span></span><span class="tag">\<span class="name">bfseries</span></span>,</span><br><span class="line">    commentstyle=<span class="tag">\<span class="name">color</span><span class="string">&#123;olive&#125;</span></span>,</span><br><span class="line">    <span class="comment">%directivestyle=\color&#123;blue&#125;,</span></span><br><span class="line">    frame=shadowbox,</span><br><span class="line">    framerule=0pt,</span><br><span class="line">    backgroundcolor=<span class="tag">\<span class="name">color</span><span class="string">&#123;red!0.5!green!0.5!blue!0.5!&#125;</span></span>,</span><br><span class="line">    rulesepcolor=<span class="tag">\<span class="name">color</span><span class="string">&#123;red!20!green!20!blue!20&#125;</span></span>&#125;</span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;lstlisting&#125;</span><span class="string">[language=&#123;[ANSI]</span></span>C&#125;]</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;lstlisting&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;</span><br><span class="line"><span class="keyword">\lstset</span>&#123;numbers=left,</span><br><span class="line">    numberstyle=<span class="keyword">\tiny</span>,</span><br><span class="line">    basicstyle=<span class="keyword">\small</span><span class="keyword">\ttfamily</span>,</span><br><span class="line">    stringstyle=<span class="keyword">\color</span>&#123;purple&#125;,</span><br><span class="line">    keywordstyle=<span class="keyword">\color</span>&#123;red!25!green!33!blue!100&#125;<span class="keyword">\bfseries</span>,</span><br><span class="line">    commentstyle=<span class="keyword">\color</span>&#123;olive&#125;,</span><br><span class="line">    <span class="comment">%directivestyle=\color&#123;blue&#125;,</span></span><br><span class="line">    frame=shadowbox,</span><br><span class="line">    framerule=0pt,</span><br><span class="line">    backgroundcolor=<span class="keyword">\color</span>&#123;red!0.5!green!0.5!blue!0.5!&#125;,</span><br><span class="line">    rulesepcolor=<span class="keyword">\color</span>&#123;red!20!green!20!blue!20&#125;&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;lstlisting&#125;[language=&#123;[ANSI]C&#125;]</span><br><span class="line"><span class="keyword">\end</span>&#123;lstlisting&#125;</span><br></pre></td></tr></table></figure>
 <p>or a more convenient way:</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;listings&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">[cache=false]</span><span class="string">&#123;minted&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;minted&#125;</span><span class="string">[frame=single, tabsize=4]</span><span class="string">&#123;js&#125;</span></span></span><br><span class="line">print(&quot;<span class="tag">\<span class="name">n</span></span>&quot;)</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;minted&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">mintinline</span><span class="string">&#123;python&#125;</span><span class="string">&#123;print(&quot;\n&quot;)&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[cache=false]&#123;minted&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;minted&#125;[frame=single, tabsize=4]&#123;js&#125;<span class="string"></span></span><br><span class="line"><span class="string">print(&quot;\n&quot;)</span></span><br><span class="line"><span class="string"></span><span class="keyword">\end</span>&#123;minted&#125;</span><br><span class="line"><span class="keyword">\mintinline</span>&#123;python&#125;&#123;<span class="string">print(&quot;\n&quot;)</span>&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="tight-list">Tight List</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">providecommand</span><span class="string">&#123;\tightlist&#125;</span><span class="string">&#123;%\setlength&#123;\itemsep&#125;</span><span class="string">&#123;0pt&#125;</span></span><span class="tag">\<span class="name">setlength</span><span class="string">&#123;\parskip&#125;</span><span class="string">&#123;0pt&#125;</span></span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\providecommand</span>&#123;<span class="keyword">\tightlist</span>&#125;&#123;<span class="comment">%\setlength&#123;\itemsep&#125;&#123;0pt&#125;\setlength&#123;\parskip&#125;&#123;0pt&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 <h3 id="insert-author-info">Insert Author Info</h3>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">[colorlinks,linkcolor=blue]</span><span class="string">&#123;hyperref&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">hypersetup</span><span class="string">&#123;</span></span></span><br><span class="line"><span class="tag"><span class="string">    pdftitle=&#123;None&#125;</span></span>,</span><br><span class="line">    pdfauthor=&#123;Nobody&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>[colorlinks,linkcolor=blue]&#123;hyperref&#125;</span><br><span class="line"><span class="keyword">\hypersetup</span>&#123;</span><br><span class="line">    pdftitle=&#123;None&#125;,</span><br><span class="line">    pdfauthor=&#123;Nobody&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
   
   
@@ -640,9 +689,8 @@
 
 
 
-        
-        
-          <!--此文件用来存放一些不方便取值的变量-->
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
@@ -651,16 +699,23 @@
   pdata.postTitle="$\rm \LaTeX$ Manual";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
-
+  // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
   l_header.classList.add("show");
   
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
 </script>
 
+        </div>
         
-      </div>
-      
   
   <footer class="footer clearfix">
     <br><br>
@@ -700,21 +755,59 @@ Except where otherwise noted, content on this site is licensed under a <a rel="l
   </footer>
 
 
-      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
     </div>
-  </div>
-  <div>
-    <script>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
 window.volantis={};
 window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
 /********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
 function loadScript(src, cb) {
-var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
-var script = document.createElement('script');
-script.setAttribute('type','text/javascript');
-if (cb) script.onload = cb;
-script.setAttribute('src', src);
-HEAD.appendChild(script);
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
 }
 //https://github.com/filamentgroup/loadCSS
 var loadCSS = function( href, before, media, attributes ){
@@ -830,13 +923,24 @@ var loadCSS = function( href, before, media, attributes ){
   function SCload_fancybox() {
     if ($(".md .gallery").find("img").length == 0) return;
     loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
-    setTimeout(function() {
-      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
-    }, 1);
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
   };
   $(function () {
     SCload_fancybox();
   });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
 </script>
 
 
@@ -873,7 +977,7 @@ var loadCSS = function( href, before, media, attributes ){
         
           
     <li>
-      <a class='vlts-menu fix-cursor-default' 
+      <a class='vlts-menu fix-cursor-default ' 
         
         
         
@@ -881,6 +985,20 @@ var loadCSS = function( href, before, media, attributes ){
         
         >
         <i class='fa fa-print fa-fw'></i> 打印页面
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default toggle-mode-btn' 
+        
+        
+        
+        >
+        <i class='fas fa-moon fa-fw'></i> Dark mode
       </a>
     </li>
   
@@ -987,18 +1105,8 @@ var loadCSS = function( href, before, media, attributes ){
           copyHref.style.display = 'none';
         }
       }
-
-      // 有音乐播放器
-      if ('' == true && ('home,print'||[]).includes('music')) {
-        // 如果有aplayer，初始化一下
-      	try {
-      		checkAPlayer();
-          updateTitle();
-      	} catch (error) {
-      		console.log(error);
-      	}
-      }
-
+      // 有音乐播放器 see: layout/_third-party/aplayer/script.ejs
+      
       return false; // 该行代码确保系统自带的右键菜单不会被调出
     }
     function hideMenu() {
@@ -1019,6 +1127,22 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
 
 
 
@@ -1052,46 +1176,36 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
   
-    <script>
-      window.FPConfig = {
-        delay: 0,
-        ignoreKeywords: [],
-        maxRPS: 5,
-        hoverDelay: 25
-      };
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
   
-
-
-
-
-
-
-
-
-
-
-  
-  
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/valine.min.js"></script>
+<script src="/js/valine.js"></script>
 
 
 <script>
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var meta = 'nick,mail,link'.split(',').filter(function (item) {
-    return GUEST_INFO.indexOf(item) > -1
-  });
-  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
-  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
-    return REQUIRED_FIELDS.indexOf(item) > -1
-  });
-
   function emoji(path, idx, ext) {
     return path + "/" + path + "-" + idx + "." + ext;
   }
-
   var emojiMaps = {};
   for (var i = 1; i <= 54; i++) {
     emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
@@ -1108,51 +1222,36 @@ var loadCSS = function( href, before, media, attributes ){
   for (var i = 1; i <= 4; i++) {
     emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
   }
-
   function pjax_valine() {
     if(!document.querySelectorAll("#valine_container")[0])return;
-
     let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
-
     let path = pdata.commentPath;
     if (path.length == 0) {
       let defaultPath = '';
       path = defaultPath || decodeURI(window.location.pathname);
     }
-
     var valine = new Valine();
-    valine.init({
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"ol0rNclh8rV80tFUDwI7W84z-gzGzoHsz","appKey":"8I3MWttJD6gK0MvjmnzgGITq","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
       el: '#valine_container',
-      meta: meta,
-      placeholder: pagePlaceholder,
       path: path,
-      appId: "",
-      appKey: "",
-      pageSize: '10',
-      avatar: 'robohash',
-      lang: 'zh-cn',
-      visitor: 'true',
-      highlight: 'true',
-      mathJax: 'false',
-      enableQQ: 'true',
-      recordIP: 'false',
-      requiredFields: requiredFields,
+      placeholder: pagePlaceholder,
       emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
-      emojiMaps: emojiMaps
-    })
+      emojiMaps: emojiMaps,
+    }))
   }
-
   $(function () {
     pjax_valine();
   });
+  volantis.pjax.push(pjax_valine);
 </script>
 
 
 
 
 
+
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1164,7 +1263,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.4/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 
@@ -1408,28 +1507,15 @@ const darkModeStorageKey = "user-color-scheme";
 const rootElementDarkModeAttributeName = "data-user-color-scheme";
 
 const setLS = (k, v) => {
-  try {
     localStorage.setItem(k, v);
-  } catch (e) {
-    console.log(e.message);
-  }
 };
 
 const removeLS = (k) => {
-  try {
     localStorage.removeItem(k);
-  } catch (e) {
-    console.log(e.message);
-  }
 };
 
 const getLS = (k) => {
-  try {
     return localStorage.getItem(k);
-  } catch (e) {
-    console.log(e.message);
-    return null;
-  }
 };
 
 const getModeFromCSSMediaQuery = () => {
@@ -1485,8 +1571,8 @@ const toggleCustomDarkMode = () => {
 /**
  * bind click event for toggle button
  */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
 function bindToggleButton() {
-	var btn=$("#wrapper .toggle-mode-btn");
     btn.on('click',(e) => {
       const mode = toggleCustomDarkMode();
       applyCustomDarkModeSettings(mode);
@@ -1495,9 +1581,13 @@ function bindToggleButton() {
 
 applyCustomDarkModeSettings();
 document.addEventListener("DOMContentLoaded", bindToggleButton);
-document.addEventListener("pjax:success", bindToggleButton);
-
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
 </script>
+
+
 
 
 
@@ -1587,11 +1677,9 @@ document.addEventListener("pjax:success", listennSidebarTOC);
 
 <!-- more -->
 
-
-
-
-    
-      
+ 
+	   
+	    
 
 
 <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
@@ -1604,7 +1692,7 @@ document.addEventListener("pjax:success", listennSidebarTOC);
         elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
         selectors: [
           "title",
-          "#l_cover",
+          
           "#pjax-container",
           "#pjax-header-nav-list"
         ],
@@ -1630,9 +1718,7 @@ document.addEventListener("pjax:success", listennSidebarTOC);
       } catch (error) {}
 
       window.subData = null; // 移除标题（用于一二级导航栏切换处）
-      if (typeof $.fancybox != "undefined") {
-        $.fancybox.close();    // 关闭弹窗
-      }
+
       volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
       volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
       volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
@@ -1645,57 +1731,32 @@ document.addEventListener("pjax:success", listennSidebarTOC);
       $(document).unbind('scroll');
       $(document).unbind('click');
       $('body').unbind('click');
-	  
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
     });
 
     document.addEventListener('pjax:complete', function () {
-      // 关于百度统计对 SPA 页面的处理：
-      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
-      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
-       
-
-      // 关于谷歌统计对 SPA 页面的处理：
-      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
-      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
-      
-	 
-
       $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
       $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
       $('script[data-pjax], .pjax-reload script').each(function () {
         $(this).parent().append($(this).remove());
       });
       try{
-          if (typeof $.fancybox == "undefined") {
-            SCload_fancybox();
-          } else {
-            pjax_fancybox();
-          }
-        
-        
-        
-        
-        
-        
-          pjax_valine();
-        
-        
-        
-        
-        
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
       } catch (e) {
         console.log(e);
       }
-	  
     });
 
     document.addEventListener('pjax:error', function (e) {
-	  
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
       window.location.href = e.triggerElement.href;
     });
 </script>
-
-    
-  </div>
-</body>
+ 
+	  
+    </div>
+  </body>
 </html>
