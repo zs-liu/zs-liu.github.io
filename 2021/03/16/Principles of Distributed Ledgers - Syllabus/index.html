@@ -22,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Categories - 鲈鱼柳的博客</title>
+  <title>Principles of Distributed Ledgers - Outline - 鲈鱼柳的博客</title>
+  
+    <meta name="keywords" content="Distributed Ledgers">
   
 
   
@@ -357,7 +359,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper category dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="addition/030.jpg"></div>
           
@@ -388,53 +390,553 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-    
-      <div class='post-wrapper'>
-        <article id="cat" class="post article white-box reveal shadow">
-          <h2>Categories</h2>
-          <div class="all-cats">
-            
-              
-                <a class="" href="/categories/Computer-Science/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;Computer Science</span>
-                  <span class="title">
-                    (6)
-                  </span>
-                </a>
-              
-                <a class="" href="/categories/Computer/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;Computer</span>
-                  <span class="title">
-                    (1)
-                  </span>
-                </a>
-              
-                <a class="" href="/categories/Life/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;Life</span>
-                  <span class="title">
-                    (2)
-                  </span>
-                </a>
-              
-                <a class="" href="/categories/Math/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;Math</span>
-                  <span class="title">
-                    (17)
-                  </span>
-                </a>
-              
-            
-          </div>
-          <br>
-          
 
-        </article>
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Principles of Distributed Ledgers - Outline
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="addition/me.png">
+    <p>鲈鱼柳</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Computer-Science/">Computer Science</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 16, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Principles of Distributed Ledgers - Outline" data-path="/2021/03/16/Principles%20of%20Distributed%20Ledgers%20-%20Syllabus/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
       </div>
     
+  </div>
+
+
   
+  
+  <p>This is an outline of emerging technology in distributed ledgers. If you want to know more about one topic, please refer to associated article.</p>
+<h2 id="lecture-1">Lecture 1</h2>
+<h3 id="cryptographic">Cryptographic</h3>
+<ul>
+<li><p>Cryptographic Hash Functions: Properties</p></li>
+<li><p>Merkle Trees</p></li>
+<li><p>Elliptic Curve Signature Algorithm (ECDSA): Nothing in Bitcoin is encrypted</p></li>
+</ul>
+<h3 id="addresses">Addresses</h3>
+<ul>
+<li>BTC Address conversion</li>
+</ul>
+<h3 id="transactions">Transactions</h3>
+<ul>
+<li><p>UTXO (Unspent transaction output): In cryptocurrencies such as Bitcoin, an unspent transaction output (UTXO) is an abstraction of electronic money. Each UTXO is analogous to a coin, and holds a certain amount of value in its respective currency. Each UTXO represents a chain of ownership implemented as a chain of digital signatures where the owner signs a message (transaction) transferring ownership of their UTXO to the receiver's public key.</p></li>
+<li><p>Coinbase Transaction: First transaction in a Block, deﬁned by the miner. No inputs required.</p></li>
+</ul>
+<h3 id="script">Script</h3>
+<ul>
+<li><p>Former UTXO: OP_DUP OP_HASH160 &lt;PubKeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG</p></li>
+<li><p>Latter UTXO: &lt;Sig&gt; &lt;PubKey&gt;</p></li>
+<li><p>If evals to true <span class="math inline">\(\rightarrow\)</span> Bitcoin transaction is valid</p></li>
+<li><p>Execution time is critical to prevent DoS attacks</p></li>
+<li><p>Transaction types: P2PKH; P2SH; Multisignature (m from n)</p></li>
+</ul>
+<h3 id="wallet">Wallet</h3>
+<h3 id="chain-of-blocks">Chain of Blocks</h3>
+<ul>
+<li>Header: Block version; Hash of previous block's header; Merkle root; Unix time; Target; Nonce</li>
+</ul>
+<h3 id="lightweight-clients">Lightweight Clients</h3>
+<ul>
+<li>SPV Transaction veriﬁcation: Blockchain with headers only</li>
+</ul>
+<h2 id="lecture-2">Lecture 2</h2>
+<h3 id="proof-of-work">Proof of Work</h3>
+<ul>
+<li><p>Find Nonce <span class="math inline">\(N\)</span>, s.t. Hash(Hash(<span class="math inline">\(B_{\rm former}\)</span>)|merkle root|<span class="math inline">\(N\)</span>) <span class="math inline">\(&lt;\)</span> target</p></li>
+<li><p>Pool: Give proportional reward (pool's difficulty &lt; Bitcoin's difficulty)</p></li>
+</ul>
+<h3 id="merged-mining">Merged Mining</h3>
+<ul>
+<li><p>Assembles a transaction set for both block chains</p></li>
+<li><p>Hash the final namecoin block</p></li>
+<li><p>Creates a transaction containing this hash and inserts it in the Bitcoin transaction set at the tip of the tree (scriptSig)</p></li>
+<li><p>Assembles the final Bitcoin header with this transaction in it and sends out the work units</p></li>
+</ul>
+<h3 id="mining-pool-dangers">Mining Pool Dangers</h3>
+<ul>
+<li><p>Influence which transactions enter the blockchain</p></li>
+<li><p>Inﬂate transaction fees/Ethereum gas price</p></li>
+<li><p>Collude with each other (to reach 51%, selfish mining)</p></li>
+<li><p>Network layer attacks</p></li>
+<li><p>Political and Regulatory danger</p></li>
+<li><p>Pool operators are trusted to pay out reward</p></li>
+<li><p>Influence voting mechanisms (cf. SegWit)</p></li>
+</ul>
+<h3 id="decentralised-mining">Decentralised Mining</h3>
+<ul>
+<li><p>Each block of the share chain is a share</p></li>
+<li><p>Each share chain block has a lower difficulty than the bitcoin block chain</p></li>
+<li><p>Once a share satisﬁes the same difficulty as Bitcoin, it's a valid Bitcoin block</p></li>
+<li><p>Coinbase transaction is used for reward and tracking of share chain</p></li>
+</ul>
+<h3 id="forks">Forks</h3>
+<ul>
+<li><p><span class="math inline">\(\mathcal{P}\)</span>: protocol; <span class="math inline">\(\mathcal{V}\)</span>: Validity set; <span class="math inline">\(\mathcal{N}\)</span>: difference between <span class="math inline">\(\mathcal{V}\)</span> and <span class="math inline">\(\mathcal{V}^{\prime}\)</span></p></li>
+<li><p>Hard fork: Previously invalid blocks/transactions are make valid (and vice-versa)</p></li>
+<li><p>Soft fork: Only previously valid blocks/transactions are made invalid <span class="math inline">\(\rightarrow\)</span> reducing functionality</p></li>
+<li><p>Segregated Witness</p></li>
+<li><p>Vote through blocks</p></li>
+</ul>
+<h3 id="proof-of-stakesauthority">Proof of Stakes/Authority</h3>
+<h2 id="lecture-3">Lecture 3</h2>
+<h3 id="bitcoin-and-smart-contracts">Bitcoin and Smart Contracts</h3>
+<ul>
+<li><p>Bitcoin Script: No support for loops</p></li>
+<li><p>Bitcoin Script Applications: Proof of Burn; Multisignature addresses; Pay-for-hash pre-image; Micropayment channels</p></li>
+</ul>
+<h3 id="namecoin">Namecoin</h3>
+<h3 id="introduction-to-ethereum">Introduction to Ethereum</h3>
+<ul>
+<li>Account Based model: No need to go through whole history; Sequence between any two blocks can be verified; Light clients can sync up quickly</li>
+</ul>
+<h3 id="ethereum-blockchain-structure">Ethereum Blockchain Structure</h3>
+<ul>
+<li><p>Ethereum Blockchain Structure</p></li>
+<li><p>Ethereum Merkle Patricia Tree</p></li>
+</ul>
+<h3 id="ethereum-accounts-and-transactions">Ethereum Accounts and Transactions</h3>
+<ul>
+<li>Types of transactions: send; create; call</li>
+</ul>
+<h3 id="ethereum-virtual-machine">Ethereum Virtual Machine</h3>
+<ul>
+<li><p>Stack of max depth of 1024</p></li>
+<li><p>Memory is zero initialized</p></li>
+<li><p>Storage is very expensive (The cost of storing 1 kb is currently 6.4 USD)</p></li>
+</ul>
+<h3 id="ethereum-transaction-fees">Ethereum Transaction Fees</h3>
+<ul>
+<li><p>Each opcode of the EVM has a certain gas cost</p></li>
+<li><p>Maximum GAS_LIMIT per block</p></li>
+<li><p>If GAS_LIMIT <span class="math inline">\(\times\)</span> GAS_PRICE &gt; accounts[from].balance, halt execution abruptly</p>
+<ul>
+<li><p>accounts[from].balance -= value + gas <span class="math inline">\(\times\)</span> gasprice</p></li>
+<li><p>accounts[to].balance += value</p></li>
+<li><p>execute(code)</p></li>
+<li><p>accounts[from] += unusedGas <span class="math inline">\(\times\)</span> gasprice</p></li>
+</ul></li>
+<li><p>If remaining GAS is 0 before termination, throw out-of-gas, and pay miners</p></li>
+</ul>
+<h3 id="solidity">Solidity</h3>
+<h2 id="lecture-4">Lecture 4</h2>
+<h3 id="classical-consensus">Classical Consensus</h3>
+<ul>
+<li><p>In a fully asynchronous system, there is no deterministic consensus solution that tolerates one or more failures</p></li>
+<li><p>No algorithm can always reach consensus in bounded time</p></li>
+</ul>
+<h3 id="blockchain-bootstrapping">Blockchain Bootstrapping</h3>
+<ul>
+<li><p>Bootstrap Methods: DNS (Domain Name System) Bootstrap; Hardcoded IPs; Chat/Forums (dangerous)</p></li>
+<li><p>Bitcoin Node: TCP based, no authentication/encryption</p></li>
+</ul>
+<h3 id="network-denial-of-service-protection">Network Denial of Service Protection</h3>
+<ul>
+<li><p>DoS Protection Mechanism: Sanity checks (size, encoding); Signature validation; UTXO/double spending validation</p></li>
+<li><p>DoS Protection Mechanism is a weakness (directly ban IP)</p></li>
+</ul>
+<h3 id="network-gossip-protocol">Network Gossip Protocol</h3>
+<ul>
+<li><p>Standard Transaction/Block advertisement: Hash (36 bytes); Get request; Block</p></li>
+<li><p>Send Headers Block advertisement: Header (80 bytes); Get request; Block</p></li>
+<li><p>Unsolicited Block Push: Block</p></li>
+<li><p>Bitcoin Fibre: Block sketch; Construct; Correct error; Emit (UDP based)</p></li>
+</ul>
+<h3 id="network-security---eclipse-attacks">Network Security - Eclipse Attacks</h3>
+<ul>
+<li><p>Request timeouts: block: 20 min; transaction: 2 min</p></li>
+<li><p>Blind victim &gt; 20 min: Double spending; Aggravated selfish mining; Network wide DoS</p></li>
+<li><p>Being first: connections of adversary:victim <span class="math inline">\(=800:40\)</span>, approximately 90%</p></li>
+<li><p>Transactions follow FIFO while Blocks don't</p></li>
+</ul>
+<h3 id="eclipse-attacks---delaying-blocks">Eclipse Attacks - Delaying Blocks</h3>
+<ul>
+<li><p>Occupy all open connections: not receive block header and version message</p></li>
+<li><p>Different blocks timeout are independent</p></li>
+</ul>
+<h3 id="eclipse-attacks---double-spending">Eclipse Attacks - Double Spending</h3>
+<ul>
+<li><p>Double Spending 0 Confirmation Transactions: Very reliable attack</p></li>
+<li><p>Double Spending 1 Confirmation Transactions: Collude with miners</p></li>
+</ul>
+<h3 id="eclipse-attacks---denial-of-service">Eclipse Attacks - Denial of Service</h3>
+<ul>
+<li><p>6000 reachable Bitcoin nodes</p></li>
+<li><p>450,000 TCP connections required</p></li>
+</ul>
+<h3 id="eclipse-attacks---hardening-the-p2p-layer">Eclipse Attacks - Hardening the P2P Layer</h3>
+<ul>
+<li><p>Dynamic timeouts</p></li>
+<li><p>Handling Transaction Advertisements: filter IP; randomly choose sender</p></li>
+<li><p>Updating Block Advertisements: broadcast header instead of hash (so that PoW can be verified)</p></li>
+<li><p>After 5 minutes, transaction is received, even if the adversary controls 95% of the inv</p></li>
+</ul>
+<h3 id="selﬁsh-mining-and-eclipse-attacks">Selﬁsh Mining and Eclipse Attacks</h3>
+<ul>
+<li><p>Instead of publishing, keep a block private</p></li>
+<li><p>Other miners will perform wasteful computations</p></li>
+<li><p>Combine with denying block <span class="math inline">\(\rightarrow\)</span> higher pool revenue</p></li>
+</ul>
+<h2 id="lecture-5">Lecture 5</h2>
+<h3 id="blockchain-security">Blockchain Security</h3>
+<ul>
+<li>Multi-layer: Hardware; Network; Blockchain; Programming Language; Application</li>
+</ul>
+<h3 id="smart-contract-security">Smart Contract Security</h3>
+<ul>
+<li><p>Reentrancy: redefine payable() to call the withdraw repeatedly</p></li>
+<li><p>Unprivileged write to storage: user may change the wallet's owner</p></li>
+<li><p>Automated Security Analysis: Testing | Dynamic analysis; Symbolic execution | Static analysis; Formal verification</p></li>
+</ul>
+<h3 id="smart-contract-bug">Smart Contract Bug</h3>
+<ul>
+<li><p>Any variable is readable on the public Ethereum blockchain. Declaring a variable private only restricts the automatic creation of getter for that variable, but does not hide it</p></li>
+<li><p>Balance should be changed before a transfer is made (to prevent reentrancy attack)</p></li>
+</ul>
+<h3 id="decentralized-autonomous-organization">Decentralized Autonomous Organization</h3>
+<h3 id="comparing-quantitatively-layer-1-security">Comparing Quantitatively Layer 1 Security</h3>
+<ul>
+<li><p>Faster block generation <span class="math inline">\(\rightarrow\)</span> Faster payments (less security)</p></li>
+<li><p>Bigger block size <span class="math inline">\(\rightarrow\)</span> More throughput/Slower propagation (less security)</p></li>
+</ul>
+<h3 id="modeling-a-blockchain-in-an-mdp">Modeling a Blockchain in an MDP</h3>
+<h3 id="quantifying-security-with-an-mdp">Quantifying Security with an MDP</h3>
+<ul>
+<li>Double-Spending Threshold: transaction value, below which the optimal strategy is honest mining, above which the optimal strategy is double-spending attack</li>
+</ul>
+<h3 id="selﬁsh-mining-and-the-stale-block-rate">Selﬁsh Mining and the Stale Block Rate</h3>
+<ul>
+<li><p>The higher the stale block rate the higher the relative revenue of selfish mining</p></li>
+<li><p>Selfish Mining yields fewer block rewards than honest mining under constant difficulty</p></li>
+</ul>
+<h3 id="blockchain-network-simulator">Blockchain Network Simulator</h3>
+<ul>
+<li><p>1 MB blocks, 1 min Block interval <span class="math inline">\(\rightarrow\)</span> No stale block rate increase</p></li>
+<li><p>Drawbacks: TCP protocol (no congestion)</p></li>
+</ul>
+<h3 id="bitcoin-ng">Bitcoin-NG</h3>
+<ul>
+<li><p>The key block miner is the one mining the microblocks</p></li>
+<li><p>60% <span class="math inline">\(\rightarrow\)</span> latter, 40% <span class="math inline">\(\rightarrow\)</span> former</p></li>
+</ul>
+<h2 id="lecture-6">Lecture 6</h2>
+<h3 id="blockchain-scaling">Blockchain Scaling</h3>
+<ul>
+<li><p>Off Chain Transaction: Transaction outside the blockchain, secured by the blockchain</p></li>
+<li><p>No consensus latency or mining fees, while still achieving non-custodial security</p></li>
+<li><p>Backward compatibility</p></li>
+</ul>
+<h3 id="channel-networks">Channel Networks</h3>
+<h3 id="channel-networks-state-replacement">Channel Networks State Replacement</h3>
+<ul>
+<li><p>Time Lock State Replacement: T=100,99,98,<span class="math inline">\(\cdots\)</span>, expiry</p></li>
+<li><p>Revocation State Replacement: Agree on last state, keep all previous revoked states</p></li>
+<li><p>State Replacement Techniques (2016+): State change, everyone signs</p></li>
+</ul>
+<h3 id="channel-networks-htlc">Channel Networks HTLC</h3>
+<ul>
+<li><p>Humble Conditional Transfer</p></li>
+<li><p>Path-based Payments (HTLC): synchronise a payment among peers on the path</p></li>
+<li><p>Path-based virtual Payment Channels (Perun): set up a virtual channel to avoid intermediary peers to be responsive</p></li>
+</ul>
+<h3 id="channel-networks-routing">Channel Networks Routing</h3>
+<ul>
+<li><p>Routing Properties: scalable; effective; efficient</p></li>
+<li><p>Routing Approaches: Source-routing; Per-hop routing</p></li>
+<li><p>Privacy: Value-Privacy; Transfer-Privacy</p></li>
+</ul>
+<h3 id="channel-networks-summary">Channel Networks Summary</h3>
+<h3 id="channel-networks-trusted-execution-environments">Channel Networks Trusted Execution Environments</h3>
+<ul>
+<li><p>TEEs: Efficient and fast payments among peers</p></li>
+<li><p>Privacy: Intermediary nodes are not visible outside the enclave</p></li>
+<li><p>Offline Payments: Peers can remain offline!</p></li>
+<li><p>Examples: Teechan, Teechain</p></li>
+</ul>
+<h3 id="payment-channel-hubs">Payment Channel Hubs</h3>
+<ul>
+<li>Payment Channel Hubs are great for instant ﬁnality and no trust. But expensive to run.</li>
+</ul>
+<h3 id="commit-chains">Commit-Chains</h3>
+<ul>
+<li><p>Off the chain transactions: Like on-chain transactions!</p></li>
+<li><p>Constant-size checkpoint</p></li>
+<li><p>Without Collateral: Eventual Finality</p></li>
+<li><p>With Collateral: Instant Finality!</p></li>
+<li><p>Join without on-chain Transaction</p></li>
+<li><p>but a centralized Operator!</p></li>
+</ul>
+<h3 id="commit-chains-plasma-cash">Commit-Chains Plasma Cash</h3>
+<ul>
+<li><p>Non-Fungible Coins</p></li>
+<li><p>Merkle Tree: Every leaf is a coin</p></li>
+</ul>
+<h3 id="commit-chains-nocust">Commit-Chains NOCUST</h3>
+<ul>
+<li><p>Deposit a coin: Balance credit in a Merkle Tree</p></li>
+<li><p>ZKP: User can directly challenge through Smart Contract</p></li>
+</ul>
+<h3 id="commit-chains-nocust-security">Commit-Chains NOCUST Security</h3>
+<ul>
+<li><p>NOCUST server disappears: on-chain transactions are safe; use insurance pool to recover off-chain transactions</p></li>
+<li><p>Users to attempt double-spending: central operator will reject</p></li>
+<li><p>NOCUST server colludes with client to attempt double-spending (create or steal): Operator is challenged!</p></li>
+</ul>
+<h3 id="commit-chains-summary">Commit-Chains Summary</h3>
+<h2 id="lecture-7">Lecture 7</h2>
+<h3 id="blockchain-privacy">Blockchain Privacy</h3>
+<ul>
+<li>Blockchain Privacy is a Multilayer Challenge</li>
+</ul>
+<h3 id="blockchain-privacy-ethical-concerns">Blockchain Privacy Ethical Concerns</h3>
+<h3 id="blockchain-privacy-network-layer">Blockchain Privacy Network Layer</h3>
+<ul>
+<li><p>Peer to Peer Network: Validating nodes / Lightweight clients / Miner</p></li>
+<li><p>Network Privacy Leakages: IP; Client version; Port scan</p></li>
+</ul>
+<h3 id="blockchain-privacy-transaction-layer">Blockchain Privacy Transaction Layer</h3>
+<ul>
+<li><p>Change Address:If new, then likely a change address</p></li>
+<li><p>Multi-input Transactions: All inputs can be signed by the same entity</p></li>
+</ul>
+<h3 id="blockchain-privacy-native-privacy-blockchain">Blockchain Privacy Native Privacy Blockchain</h3>
+<ul>
+<li><p>ZCash: Transparent Transactions/Shielded Transactions</p></li>
+<li><p>Monero; CoinJoin: Stealth Addresses</p></li>
+</ul>
+<h3 id="blockchain-privacy-stealth-addresses">Blockchain Privacy Stealth Addresses</h3>
+<ul>
+<li><p>Hierarchical Deterministic (HD) Wallets: Addresses derived from the same key; From one address cannot derive the other addresses</p></li>
+<li><p>Adversary can't see where this transaction is paid to, but port scanner can</p></li>
+<li><p>Dark wallet</p></li>
+</ul>
+<h3 id="blockchain-privacy-ring-signatures">Blockchain Privacy Ring Signatures</h3>
+<h3 id="blockchain-privacy-add-onmixer-privacy">Blockchain Privacy Add-on/Mixer Privacy</h3>
+<ul>
+<li><p>Coinjoin</p></li>
+<li><p>Tornado Cash/Miximus/MicroMix</p></li>
+</ul>
+<h3 id="blockchain-privacy-lightweight-clients">Blockchain Privacy Lightweight Clients</h3>
+<ul>
+<li><p>Private Information Retrieval</p></li>
+<li><p>Bloom Filter</p></li>
+<li><p>TEEs</p></li>
+</ul>
+<h3 id="blockchain-privacy-bloom-filter-spv">Blockchain Privacy Bloom Filter &amp; SPV</h3>
+<ul>
+<li><p>Stair stepping: actual FPR <span class="math inline">\(\leq\)</span> target FPR</p></li>
+<li><p>Resizing/Restarting: different FP <span class="math inline">\(\rightarrow\)</span> intersection</p></li>
+<li><p>Multiple Bloom ﬁlters</p>
+<ul>
+<li><p>Same seed; Same size: no change</p></li>
+<li><p>Same seed; Resize: improves the attack</p></li>
+<li><p>Restart; Same Size: improves the attack</p></li>
+<li><p>Restart; Resize: totally leaks</p></li>
+</ul></li>
+<li><p>Solution</p>
+<ul>
+<li><p>Pre-generate Bitcoin addresses and insert into ﬁlter</p></li>
+<li><p>Keep state about outsourced Bloom ﬁlter</p></li>
+</ul></li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>Permanent link is: <a href=https://zs-liu.github.io/2021/03/16/Principles%20of%20Distributed%20Ledgers%20-%20Syllabus/>https://zs-liu.github.io/2021/03/16/Principles%20of%20Distributed%20Ledgers%20-%20Syllabus/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-19T20:48:37+00:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Mar 20, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Distributed-Ledgers/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Distributed Ledgers</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2020/11/16/Garbled%20Circuits/'>
+          <p class='title'>Garbled Circuits<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Introduction
+
+Gabled circuits express the function to be computed as an “encrypted” boolean circu...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -444,11 +946,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>Content</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-1"><span class="toc-text">Lecture 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cryptographic"><span class="toc-text">Cryptographic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#addresses"><span class="toc-text">Addresses</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transactions"><span class="toc-text">Transactions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#script"><span class="toc-text">Script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wallet"><span class="toc-text">Wallet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chain-of-blocks"><span class="toc-text">Chain of Blocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lightweight-clients"><span class="toc-text">Lightweight Clients</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-2"><span class="toc-text">Lecture 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#proof-of-work"><span class="toc-text">Proof of Work</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#merged-mining"><span class="toc-text">Merged Mining</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mining-pool-dangers"><span class="toc-text">Mining Pool Dangers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decentralised-mining"><span class="toc-text">Decentralised Mining</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#forks"><span class="toc-text">Forks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proof-of-stakesauthority"><span class="toc-text">Proof of Stakes&#x2F;Authority</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-3"><span class="toc-text">Lecture 3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bitcoin-and-smart-contracts"><span class="toc-text">Bitcoin and Smart Contracts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#namecoin"><span class="toc-text">Namecoin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#introduction-to-ethereum"><span class="toc-text">Introduction to Ethereum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ethereum-blockchain-structure"><span class="toc-text">Ethereum Blockchain Structure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ethereum-accounts-and-transactions"><span class="toc-text">Ethereum Accounts and Transactions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ethereum-virtual-machine"><span class="toc-text">Ethereum Virtual Machine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ethereum-transaction-fees"><span class="toc-text">Ethereum Transaction Fees</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solidity"><span class="toc-text">Solidity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-4"><span class="toc-text">Lecture 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#classical-consensus"><span class="toc-text">Classical Consensus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-bootstrapping"><span class="toc-text">Blockchain Bootstrapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#network-denial-of-service-protection"><span class="toc-text">Network Denial of Service Protection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#network-gossip-protocol"><span class="toc-text">Network Gossip Protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#network-security---eclipse-attacks"><span class="toc-text">Network Security - Eclipse Attacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-attacks---delaying-blocks"><span class="toc-text">Eclipse Attacks - Delaying Blocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-attacks---double-spending"><span class="toc-text">Eclipse Attacks - Double Spending</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-attacks---denial-of-service"><span class="toc-text">Eclipse Attacks - Denial of Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-attacks---hardening-the-p2p-layer"><span class="toc-text">Eclipse Attacks - Hardening the P2P Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sel%EF%AC%81sh-mining-and-eclipse-attacks"><span class="toc-text">Selﬁsh Mining and Eclipse Attacks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-5"><span class="toc-text">Lecture 5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-security"><span class="toc-text">Blockchain Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#smart-contract-security"><span class="toc-text">Smart Contract Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#smart-contract-bug"><span class="toc-text">Smart Contract Bug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decentralized-autonomous-organization"><span class="toc-text">Decentralized Autonomous Organization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comparing-quantitatively-layer-1-security"><span class="toc-text">Comparing Quantitatively Layer 1 Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modeling-a-blockchain-in-an-mdp"><span class="toc-text">Modeling a Blockchain in an MDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#quantifying-security-with-an-mdp"><span class="toc-text">Quantifying Security with an MDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sel%EF%AC%81sh-mining-and-the-stale-block-rate"><span class="toc-text">Selﬁsh Mining and the Stale Block Rate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-network-simulator"><span class="toc-text">Blockchain Network Simulator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bitcoin-ng"><span class="toc-text">Bitcoin-NG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-6"><span class="toc-text">Lecture 6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-scaling"><span class="toc-text">Blockchain Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel-networks"><span class="toc-text">Channel Networks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel-networks-state-replacement"><span class="toc-text">Channel Networks State Replacement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel-networks-htlc"><span class="toc-text">Channel Networks HTLC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel-networks-routing"><span class="toc-text">Channel Networks Routing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel-networks-summary"><span class="toc-text">Channel Networks Summary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel-networks-trusted-execution-environments"><span class="toc-text">Channel Networks Trusted Execution Environments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#payment-channel-hubs"><span class="toc-text">Payment Channel Hubs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-chains"><span class="toc-text">Commit-Chains</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-chains-plasma-cash"><span class="toc-text">Commit-Chains Plasma Cash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-chains-nocust"><span class="toc-text">Commit-Chains NOCUST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-chains-nocust-security"><span class="toc-text">Commit-Chains NOCUST Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-chains-summary"><span class="toc-text">Commit-Chains Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-7"><span class="toc-text">Lecture 7</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy"><span class="toc-text">Blockchain Privacy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-ethical-concerns"><span class="toc-text">Blockchain Privacy Ethical Concerns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-network-layer"><span class="toc-text">Blockchain Privacy Network Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-transaction-layer"><span class="toc-text">Blockchain Privacy Transaction Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-native-privacy-blockchain"><span class="toc-text">Blockchain Privacy Native Privacy Blockchain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-stealth-addresses"><span class="toc-text">Blockchain Privacy Stealth Addresses</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-ring-signatures"><span class="toc-text">Blockchain Privacy Ring Signatures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-add-onmixer-privacy"><span class="toc-text">Blockchain Privacy Add-on&#x2F;Mixer Privacy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-lightweight-clients"><span class="toc-text">Blockchain Privacy Lightweight Clients</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockchain-privacy-bloom-filter-spv"><span class="toc-text">Blockchain Privacy Bloom Filter &amp; SPV</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
   
 
 
 </aside>
+
 
 
 		  
@@ -457,8 +974,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Principles of Distributed Ledgers - Outline";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
